@@ -14,6 +14,11 @@
 {
     font-size: 1em !important;
 }
+.ui-galleria, 
+.ui-galleria-panel-wrapper{
+    /* Hacer que la galería se renderize al 100% */
+    width: 100% !important;
+}
 .ui-button, .ui-button-text {
     font-size: 1.1em;
 }
@@ -138,13 +143,13 @@
 }
 
 .image { 
-   position: relative; 
-   width: 100%; /* for IE 6 */
+    position: relative; 
+    width: 100%; /* for IE 6 */
 }
 
 .overImage { 
-   position: absolute; 
-   top: 30px; 
-   left: 350px; 
-   width: 100%; 
+    position: absolute; 
+    top: 30px; 
+    left: 350px; 
+    width: 100%; 
 }

@@ -36,11 +36,11 @@
                 <h:form>
                     <p:panel header="Usabilidad">
                         <h:panelGrid columns="2">
-                            <h:outputText value="PR: " />
+                            <h:outputText value="Preference: " />
                             <p:selectBooleanCheckbox value="#{MUController.muPreference}"/>
-                            <h:outputText value="AB: " />
+                            <h:outputText value="AbortOperation: " />
                             <p:selectBooleanCheckbox value="#{MUController.muAbortOperation}"/>
-                            <h:outputText value="FB: " />
+                            <h:outputText value="ProgressFB: " />
                             <p:selectBooleanCheckbox value="#{MUController.muProgressFeedBack}"/>
                         </h:panelGrid>
                         <p:commandButton value="#{bundle.AceptarBoton}" ajax="false"/>
@@ -58,10 +58,37 @@
                                     </p:link>
                                 </div>
                             </h:panelGrid>
+                            <h:panelGrid width="100%">
+                                <h:panelGrid style="position: relative; left: 20px" columns="6">
+                                    <p:graphicImage value="/icono/store.png"/>
+                                    <h:outputText value="#{bundle.lblAyuda}"/>
+                                    <p:graphicImage value="/icono/help.png"/>
+                                    <h:outputText value="#{bundle.lblNuestrasTiendas}"/>
+                                    <p:graphicImage value="/icono/call-center.png"/>
+                                    <h:outputText value="#{bundle.lblNuestrasTiendas}"/>
+                                </h:panelGrid>
+                                <p:outputPanel style="position: absolute; right: 10px" >
+                                    <p:commandLink value="Español" ajax="false" action="#{LanguageSwitcher.changeLanguage('es')}"/>
+                                    <p:graphicImage width="30" height="30" value="/icono/flag_spain.png"/>
+                                    <p:spacer width="10"/>
+                                    <p:commandLink value="English" ajax="false" action="#{LanguageSwitcher.changeLanguage('en')}"/>
+                                    <p:graphicImage  width="30" height="30" value="/icono/flag_usa.png"/>
+                                </p:outputPanel>
+                            </h:panelGrid>
                         </h:panelGrid>
                     </p:panel>
                 </h:form>
                 <ui:insert name="content">Content</ui:insert>
+                <p:panel>
+                    <h:panelGrid width="100%" columns="3">
+                        <h:outputText value="&copy; QuickStore"/>
+                        <h:outputText value="Test de Usabilidad"/>
+                        <h:outputText value="2015"/>
+                    </h:panelGrid>
+                    <f:facet name="footer">
+                        <h:outputText value="Tesis de Máster en TICs, 2015"/>
+                    </f:facet>
+                </p:panel>
             </p:layoutUnit>
         </p:layout>
 
