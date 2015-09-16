@@ -13,6 +13,7 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
@@ -132,11 +133,11 @@ public class ArticuloFE implements Serializable {
      * @return
      */
     public String doListar() {
-//        try { 
-//            Thread.sleep(5000);
-//        } catch (InterruptedException ex) {
-//            Logger.getLogger(ArticuloController.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try { 
+            Thread.sleep(3000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ArticuloFE.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (this.criterioBusqueda.length() > 0) {
             this.listaArticulo = articuloDAO.findAllbyCriterio(criterioBusqueda);
         } else {

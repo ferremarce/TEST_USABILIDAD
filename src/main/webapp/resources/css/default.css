@@ -26,8 +26,8 @@
     vertical-align: top !important;
 }
 .shoppingcart{
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
     background-image: url( ../../icono/cart.png) !important;
     background-repeat: no-repeat;
 }

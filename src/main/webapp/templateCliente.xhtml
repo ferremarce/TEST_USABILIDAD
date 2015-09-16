@@ -6,15 +6,12 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:p="http://primefaces.org/ui">
-
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <h:outputStylesheet name="./css/default.css"/>
         <title>TESIS USABILIDAD</title>
     </h:head>
-
     <h:body>
-
         <p:layout fullPage="true">
             <p:layoutUnit position="east" size="250" header="#{bundle.lblOpciones}" collapsed="#{LoginManager.clientCollapse}" collapsible="true" >
                 <h:form id="formCarrito">
@@ -36,6 +33,19 @@
                         </h:panelGrid>
                     </p:panel>
                 </h:form>
+                <h:form>
+                    <p:panel header="Usabilidad">
+                        <h:panelGrid columns="2">
+                            <h:outputText value="PR: " />
+                            <p:selectBooleanCheckbox value="#{MUController.muPreference}"/>
+                            <h:outputText value="AB: " />
+                            <p:selectBooleanCheckbox value="#{MUController.muAbortOperation}"/>
+                            <h:outputText value="FB: " />
+                            <p:selectBooleanCheckbox value="#{MUController.muProgressFeedBack}"/>
+                        </h:panelGrid>
+                        <p:commandButton value="#{bundle.AceptarBoton}" ajax="false"/>
+                    </p:panel>
+                </h:form>
             </p:layoutUnit>
             <p:layoutUnit position="center" >
                 <h:form>
@@ -43,11 +53,11 @@
                         <h:panelGrid columns="3">
                             <h:panelGrid>
                                 <div class="image">
-                                    <p:graphicImage value="/img/logo-admin.png"/>
+                                    <p:link outcome="/frontend/index">
+                                        <p:graphicImage value="/img/logo-admin.png"/>
+                                    </p:link>
                                 </div>
                             </h:panelGrid>
-
-
                         </h:panelGrid>
                     </p:panel>
                 </h:form>

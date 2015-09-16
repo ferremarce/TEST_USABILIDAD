@@ -7,37 +7,44 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
-        <h:form>
+        <h:form id="formBuscarMain">
+            <p:growl rendered="#{MUController.muProgressFeedBack?true:false}" globalOnly="true" id="messages"/>
+            <p:ajax global="false" event="click" update="#{sistema.form_update}," listener="#{ClickCounter.increment()}"/>
+            <ui:include src="/ajax.xhtml"/>
             <h:panelGrid columns="2">
                 <p:inputText size="50" id="txtCriterioBusqueda" value="#{ArticuloFE.criterioBusqueda}" rendered="true" requiredMessage="#{bundle.Requerido}"/>
-                <p:commandButton id="cmdBuscarArticulo" value="#{bundle.BuscarBoton}" ajax="false" action="#{ArticuloFE.doListar()}" icon="ui-icon-document"/>
+                <p:commandButton id="cmdBuscarArticulo" value="#{bundle.BuscarBoton}" ajax="#{MUController.muProgressFeedBack?'true':'false'}" update="@form" action="#{ArticuloFE.doListar()}" icon="ui-icon-document"/>
                 <p:watermark for="txtCriterioBusqueda" value=""/>
                 <p:defaultCommand target="cmdBuscarArticulo" />
             </h:panelGrid>
             <p:dataTable var="item" value="#{ArticuloFE.listaArticulo}">
-                <p:column style="width: 100px">
-                    <p:graphicImage rendered="#{item.articuloAdjuntoList.size()>0}" height="100" width="100" value="/images/#{item.articuloAdjuntoList.get(0).toNameDownload()}"/>
+                <f:facet name="header">
+                    <h:outputText value="#{ArticuloFE.listaArticulo.size()} registros recuperados."/>
+                </f:facet>
+                <p:column style="width: 150px">
+                    <p:graphicImage rendered="#{item.articuloAdjuntoList.size()>0}" height="150" width="150" value="/images/#{item.articuloAdjuntoList.get(0).toNameDownload()}"/>
                 </p:column>
                 <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Artículo"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idCategoria}" /><br/>
-                    <h:outputText styleClass="itemResaltado1" value="#{index+1}. #{item.nombreArticulo} "/>
-                    <h:outputText style="color: red" value="#{item.precio}">
-                        <f:convertNumber currencySymbol=" USD " type="currency"/>
-                    </h:outputText>
-                    <p:panel rendered="#{item.esPromocion}">
-                        <h:outputText value="Desc. % #{item.porcentajeDescuento} "/>
-                        <h:outputText styleClass="itemResaltado2" value="#{item.precio-item.precio*item.porcentajeDescuento/100}">
-                            <f:convertNumber currencySymbol="USD " type="currency"/>
+                    <p:panel>
+                        <h:outputText value="#{item.idCategoria}" /><br/>
+                        <h:outputText styleClass="itemResaltado1" value="#{index+1}. #{item.nombreArticulo} "/>
+                        <p/>
+                        <h:outputText style="color: red" value="#{item.precio}">
+                            <f:convertNumber currencySymbol=" USD " type="currency"/>
                         </h:outputText>
+                        <p:panel rendered="#{item.esPromocion}">
+                            <h:outputText value="Desc. % #{item.porcentajeDescuento} "/>
+                            <h:outputText styleClass="itemResaltado2" value="#{item.precio-item.precio*item.porcentajeDescuento/100}">
+                                <f:convertNumber currencySymbol="USD " type="currency"/>
+                            </h:outputText>
+                        </p:panel>
+
+                        <f:facet name="footer">
+                            <p:commandButton ajax="false"  icon="ui-icon-zoomin" value="#{bundle.VerBoton}" action="#{ArticuloFE.doVerDetalleArticulo(item)}"/>
+                            <p:commandButton icon="shoppingcart" value="#{bundle.AgregarBoton}" update="#{sistema.form_update}, :formBuscarMain:messages" actionListener="#{CarritoFE.doAgregarCarrito(item)}"/>
+                        </f:facet>
                     </p:panel>
                 </p:column>
-                <p:column>
-                    <p:commandButton ajax="false"  icon="ui-icon-zoomin" value="#{bundle.VerBoton}" action="#{ArticuloFE.doVerDetalleArticulo(item)}"/>
-                </p:column>
-
             </p:dataTable>
         </h:form>
     </ui:define>
