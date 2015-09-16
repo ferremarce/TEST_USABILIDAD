@@ -1,0 +1,222 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 8, 2015, 2:51:29 PM
+    Author     : root
+*/
+@import url(LocalFonts.css);
+
+* {
+    font-family: 'Droid Sans', arial, serif !important;
+}
+body{
+    font-size: 1.1em !important;
+}
+.ui-widget,
+.ui-widget-header,
+.ui-widget-content,
+.ui-datatable ui-widget,
+.ui-datatable-data ui-widget-content,
+.ui-column-title,
+.ui-toolbar
+{
+    font-size: 1.1em !important;
+}
+.ui-button, .ui-button-text {
+    font-size: 1.1em;
+}
+.ui-spinner-input{
+    height: 50px !important;
+    font-size: 1.1em !important;
+    width: 90%;
+}
+.top{
+    vertical-align: top !important;
+}
+.shoppingcart{
+    width: 20px;
+    height: 20px;
+    background-image: url( ../../icono/cart.png) !important;
+    background-repeat: no-repeat;
+}
+.escoba{
+    background-image: url( ../../icono/escoba.png) !important;
+    background-repeat: no-repeat;
+}
+.sign-in{
+    width: 40px;
+    height: 40px;
+    background-image: url(../../icono/sign-in.png) !important;
+    background-repeat: no-repeat;
+}
+.login{
+    width: 40px;
+    height: 40px;
+    background-image: url(../../icono/login.png) !important;
+    background-repeat: no-repeat;
+}
+
+.panelNoBorder, .panelNoBorder tr, .panelNoBorder td{
+    border: none !important;   
+}
+
+.itemResaltado1 { 
+    font-weight: bold;
+    color: black;
+}
+.itemResaltado2 { 
+    font-weight: bold;
+    background: #ccffcc;
+    padding: 5px;
+    border-radius: 10px;
+}
+.titulo1 { 
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #000066;
+    padding: 5px;
+}
+.titulo2 { 
+    font-size: 1.6em;
+    color: #666666;
+    font-weight: bold;
+    padding: 5px;
+}
+.titulo3 { 
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.texto-tachado {
+    text-decoration:line-through;
+    color: red;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+.texto-no-tachado {
+    color: black;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+.texto-promocion { 
+    font-weight: bold;
+    background: #ccffcc;
+    font-size: 1.4em;
+    padding: 5px;
+    border-radius: 10px;
+}
+.texto-carrito { 
+    font-weight: bold;
+    font-size: 1.4em;
+    padding: 5px;
+    color: white;
+    text-shadow: 0px 0px 10.0px #8F8F8F;
+    background: #666666;
+    border-radius: 10px;
+}
+.texto-centrado {
+    text-align: center;
+}
+.nav { 
+    color: #546078;
+    text-decoration: none;
+    display: block;
+    height: 25px;
+}
+.nav:hover {
+    font-size: 1.3em;
+    font-weight: bolder;
+    text-decoration: none;
+    display: block;
+    height: 25px;
+}
+.header-background{
+    background-image: url("../../img/backg1.jpg") !important;
+    background-repeat: repeat;
+}
+
+.ui-layout-west {
+    z-index:20 !important;
+    overflow:visible !important;
+}
+.ui-layout-west .ui-layout-unit-content {
+    overflow:visible !important;
+}
+
+.image { 
+   position: relative; 
+   width: 100%; /* for IE 6 */
+}
+
+.overImage { 
+   position: absolute; 
+   top: 30px; 
+   left: 350px; 
+   width: 100%; 
+}
+
+
+#top {
+    position: relative;
+    background-color: #036fab;
+    color: white;
+    padding: 5px;
+    margin: 0px 0px 10px 0px;
+}
+
+#bottom {
+    position: relative;
+    background-color: #c2dfef;
+    padding: 5px;
+    margin: 10px 0px 0px 0px;
+}
+
+#left {
+    float: left;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+#right {
+    float: right;
+    background-color: #ece3a5;
+    padding: 5px;
+    width: 150px;
+}
+
+.center_content {
+    position: relative;
+    background-color: #dddddd;
+    padding: 5px;
+}
+
+.left_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin-left: 170px;
+}
+
+.right_content {
+    background-color: #dddddd;
+    padding: 5px;
+    margin: 0px 170px 0px 170px;
+}
+
+#top a:link, #top a:visited {
+  color: white;
+  font-weight : bold;
+  text-decoration: none;
+}
+
+#top a:link:hover, #top a:visited:hover  {
+  color: black;
+  font-weight : bold;
+  text-decoration : underline;
+}
+
+

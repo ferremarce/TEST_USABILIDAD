@@ -15,11 +15,54 @@
     </properties>
     
     <dependencies>
+        <!--PRIMEFACES UPLOAD-->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.3m</version>
+        </dependency>
+        <!--PRIMEFACES EXTENSION-->
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>primefaces-extensions</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.primefaces.extensions</groupId>
+            <artifactId>all-themes</artifactId>
+            <version>1.0.8</version>
+        </dependency>
+        <!--HTML PARSER-->
+        <dependency>
+            <!-- jsoup HTML parser library @ http://jsoup.org/ -->
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.7.3</version>
+        </dependency>
+        <!--BOOTSFACES-->
+        <dependency>
+            <groupId>net.bootsfaces</groupId>
+            <artifactId>bootsfaces</artifactId>
+            <version>0.6.6</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>5.0</version>
+            <version>5.2</version>
+            <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>
@@ -37,6 +80,12 @@
             <artifactId>javaee-web-api</artifactId>
             <version>7.0</version>
             <scope>provided</scope>
+        </dependency>
+        <!--GOOGLE SHORTENER-->
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-urlshortener</artifactId>
+            <version>v1-rev41-1.20.0</version>
         </dependency>
     </dependencies>
 

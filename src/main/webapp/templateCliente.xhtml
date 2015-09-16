@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <title>TESIS USABILIDAD</title>
+    </h:head>
+
+    <h:body>
+
+        <p:layout fullPage="true">
+            <p:layoutUnit position="east" size="250" header="#{bundle.lblOpciones}" collapsed="#{LoginManager.clientCollapse}" collapsible="true" >
+                <h:form id="formCarrito">
+                    <p:panel header="Mi carrito">
+                        <p:commandLink ajax="false" action="#{CarritoFE.doProcesarCarritoFrom()}">
+                            <h:panelGrid columns="3">
+                                <p:graphicImage width="50" height="50" rendered="#{CarritoFE.listaOrdenCarrito.size()==0}" value="/icono/cart2.gif"/>
+                                <h:outputText styleClass="texto-carrito" id="listaArticuloCarrito" value="#{CarritoFE.listaOrdenCarrito.size()}"/>
+                                <p:graphicImage width="50" height="50" rendered="#{CarritoFE.listaOrdenCarrito.size()>0}" value="/icono/cart.gif"/>                                   
+                            </h:panelGrid>
+                        </p:commandLink>
+                    </p:panel>
+                </h:form>
+                <h:form id="formMetrica">
+                    <p:panel rendered="true" header="Métricas">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel for="contadorClick" value="Click Counter: "/>
+                            <h:outputText id="contadorClick" value="#{ClickCounter.count}"/>
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </p:layoutUnit>
+            <p:layoutUnit position="center" >
+                <h:form>
+                    <p:panel styleClass="header-background">
+                        <h:panelGrid columns="3">
+                            <h:panelGrid>
+                                <div class="image">
+                                    <p:graphicImage value="/img/logo-admin.png"/>
+                                </div>
+                            </h:panelGrid>
+
+
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+                <ui:insert name="content">Content</ui:insert>
+            </p:layoutUnit>
+        </p:layout>
+
+    </h:body>
+
+</html>
