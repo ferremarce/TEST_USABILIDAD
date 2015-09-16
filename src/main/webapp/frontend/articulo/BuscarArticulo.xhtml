@@ -8,7 +8,7 @@
 
     <ui:define name="content">
         <h:form id="formBuscarMain">
-            <p:growl rendered="#{MUController.muProgressFeedBack?true:false}" globalOnly="true" id="messages"/>
+            <p:growl globalOnly="true" id="messages"/>
             <p:ajax global="false" event="click" update="#{sistema.form_update}," listener="#{ClickCounter.increment()}"/>
             <ui:include src="/ajax.xhtml"/>
             <h:panelGrid columns="2">

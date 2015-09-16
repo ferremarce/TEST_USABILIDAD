@@ -133,11 +133,11 @@ public class ArticuloFE implements Serializable {
      * @return
      */
     public String doListar() {
-        try { 
-            Thread.sleep(3000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ArticuloFE.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try { 
+//            Thread.sleep(3000);
+//        } catch (InterruptedException ex) {
+//            Logger.getLogger(ArticuloFE.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         if (this.criterioBusqueda.length() > 0) {
             this.listaArticulo = articuloDAO.findAllbyCriterio(criterioBusqueda);
         } else {

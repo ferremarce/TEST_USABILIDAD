@@ -11,6 +11,7 @@
     <ui:define name="content">
         <h1 class="ui-state-default ui-corner-all"><h:outputText value="Bienvenido"/></h1>
         <h:form id="formIndex">
+            <p:growl sticky="true" globalOnly="true" id="messages"/>
             <p:panel>
                 <h:panelGrid columns="2">
                     <p:inputText size="50" id="txtCriterioBusqueda" value="#{ArticuloFE.criterioBusqueda}" rendered="true" requiredMessage="#{bundle.Requerido}"/>
@@ -20,7 +21,7 @@
                 </h:panelGrid>
             </p:panel>
             <p:carousel circular="true" numVisible="4" headerText="En Promoción" value="#{ArticuloFE.listaArticulo}" var="articulo" autoPlayInterval="5000">
-                <p:panelGrid style="width: 300px" columns="1">
+                <p:panelGrid style="width: 300px; overflow: auto" columns="1">
                     <f:facet name="header">
                         <p:graphicImage rendered="#{articulo.articuloAdjuntoList.size()>0}" width="300" height="250" value="/images/#{articulo.articuloAdjuntoList.get(0).toNameDownload()}" alt="#{articulo.nombreArticulo}" title=""/>
                     </f:facet>

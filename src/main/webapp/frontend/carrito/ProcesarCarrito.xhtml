@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateCliente.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:pe="http://primefaces.org/ui/extensions"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h1 class="ui-state-default ui-corner-all">
+            <p:graphicImage width="50" height="50" rendered="#{CarritoFE.listaOrdenCarrito.size()>0}" value="/icono/cart.gif"/>                                   
+            <h:outputText value="Mi Carrito de Compra"/>
+        </h1>
+        <h:form>
+            <p:ajax global="false" event="click" update="#{sistema.form_update}," listener="#{ClickCounter.increment()}"/>
+            <ui:include src="/ajax.xhtml"/>
+            <p:dataTable value="#{CarritoFE.listaOrdenCarrito}" var="item" emptyMessage="#{bundle.SinRegistrosMensaje}" >
+                <p:column style="width: 50px">
+                    <p:commandButton style="position: relative; right: 10px;" title="#{bundle.EliminarBoton}" icon="ui-icon-closethick" update="#{sistema.form_update},@form" action="#{CarritoFE.doSacarArticuloOrdenCompra(item)}"/>
+                </p:column>
+                <p:column >
+                    <f:facet name="header">
+                        <h:outputText value="Artículo"/>
+                    </f:facet>
+                    <h:panelGrid rendered="#{item.idArticulo!=null}" styleClass="panelNoBorder" columns="2">                                        
+                        <p:graphicImage rendered="#{item.idArticulo.articuloAdjuntoList.size()>0}" styleClass="texto-centrado" width="50" height="50" value="/images/#{item.idArticulo.articuloAdjuntoList.get(0).toNameDownload()}" />                        
+                        <h:panelGrid>
+                            <span style="font-weight: bold;font-style: italic">[#{item.idArticulo.idCategoria}]</span>
+                            <h:outputText value="#{item.idArticulo.nombreArticulo}"/>
+                        </h:panelGrid>
+                    </h:panelGrid>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Cantidad"/>
+                    </f:facet>
+                    <p:spinner min="1" max="10" value="#{item.cantidad}">
+                        <p:ajax global="no" update="#{sistema.form_update},@form" />
+                        <p:ajax global="no" listener="#{CarritoFE.siHayCambios()}"/>
+                    </p:spinner>
+                </p:column>
+                <p:column style="text-align: right">
+                    <f:facet name="header">
+                        <h:outputText value="Importe"/>
+                    </f:facet>
+                    <h:outputText style="color: green !important" styleClass="texto-no-tachado" value="#{CarritoFE.calcularPrecioFinal(item.idArticulo)}">
+                        <f:convertNumber currencySymbol="USD " type="currency"/>
+                    </h:outputText><br/>
+                </p:column>
+                <p:columnGroup type="footer">
+                    <p:row>
+                        <p:column style="text-align: right" colspan="3">
+                            <f:facet name="footer">
+                                <h:outputText style="font-size: 1.3em !important" value="Total (impuestos incluídos): "/>
+                            </f:facet>
+                        </p:column>
+                        <p:column style="text-align: right">
+                            <f:facet name="footer">
+                                <h:outputText id="totalCarrito" style="font-size: 1.8em !important" value="#{CarritoFE.calcularTotal()}">
+                                    <f:convertNumber currencySymbol="USD " type="currency"/>
+                                </h:outputText>
+                            </f:facet>
+                        </p:column>
+                    </p:row>
+                </p:columnGroup>
+            </p:dataTable>
+            <p:panel>
+                <p:commandButton styleClass="boton2x"  disabled="#{CarritoFE.listaOrdenCarrito.size()==0}" ajax="false" iconPos="right" icon="ui-icon-circle-arrow-e" value="#{bundle.PagarBoton}" action="#{CarritoFE.doProcesarDatosEntrega()}"/>
+                <p:commandButton rendered="#{MUController.muAbortOperation}" styleClass="boton2x" global="false" immediate="true" value="#{bundle.CancelarBoton}" action="#{CarritoFE.doAbortOperation()}" icon="ui-icon-close"/>
+            </p:panel>
+            <p:dialog header="Cambios pendientes..." closeOnEscape="true" widgetVar="confirmacionAbort" >
+                <p:panel>
+                    <h:outputText value="#{bundle.ConfirmacionAbort}"/>
+                    <f:facet name="footer">
+                        <p:commandButton ajax="false" value="SI" action="#{CarritoFE.doOpcionSI()}"  icon="ui-icon-check" />
+                        <p:commandButton ajax="false" immediate="true" value="NO" action="#{CarritoFE.doOpcionNO()}"  icon="ui-icon-close" />
+                    </f:facet>
+                </p:panel>
+            </p:dialog>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

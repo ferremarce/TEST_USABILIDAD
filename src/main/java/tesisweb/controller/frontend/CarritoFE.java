@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.event.SelectEvent;
 import tesisweb.ejb.entity.Articulo;
@@ -61,6 +62,7 @@ public class CarritoFE implements Serializable {
     private ClienteDAO clienteDAO;
     private Carrito carrito;
     private List<OrdenCarrito> listaOrdenCarrito;
+    private List<OrdenCarrito> listaOrdenCarritoAbort;
     private Boolean aceptaPolitica;
     private DireccionCliente direccionSeleccionada;
     private MetodoPagoCliente metodoPagoClienteSeleccionado;
@@ -68,6 +70,7 @@ public class CarritoFE implements Serializable {
     private Cliente cliente;
     private Direccion direccion;
     private Boolean estoyDeAcuerdo;
+    private Boolean hayCambios;
 
     /**
      * Creates a new instance of CarritoController
@@ -164,6 +167,9 @@ public class CarritoFE implements Serializable {
     }
 
     public String doProcesarCarritoFrom() {
+        this.listaOrdenCarritoAbort = new ArrayList<>();
+        this.listaOrdenCarritoAbort.addAll(listaOrdenCarrito);
+        this.hayCambios = Boolean.FALSE;
         this.aceptaPolitica = null;
         return "/frontend/carrito/ProcesarCarrito";
     }
@@ -277,4 +283,38 @@ public class CarritoFE implements Serializable {
         }
     }
 
+    public String doAbortOperation() {
+        if (this.hayCambios) {
+            RequestContext context = RequestContext.getCurrentInstance();
+            context.execute("PF('confirmacionAbort').show();");
+            return "";
+        } else {
+            return "/frontend/index";
+        }
+    }
+
+    public String doOpcionSI() {
+        JSFutil.addSuccessMessage("Los cambios han sido aceptados...");
+        return "/frontend/index";
+    }
+
+    public String doOpcionNO() {
+        //Restaurar el carrito anterior
+        this.listaOrdenCarrito = new ArrayList<>();
+        this.listaOrdenCarrito.addAll(listaOrdenCarritoAbort);
+        JSFutil.addSuccessMessage("Los cambios han sido ignorados. Su carrito no ha sido alterado.");
+        return "/frontend/index";
+    }
+
+    public void siHayCambios() {
+        this.hayCambios = true;
+    }
+
+    public Integer doGetCantidadItemsCarrito() {
+        Integer cantidad = 0;
+        for (OrdenCarrito oc : this.listaOrdenCarrito) {
+            cantidad += oc.getCantidad();
+        }
+        return cantidad;
+    }
 }

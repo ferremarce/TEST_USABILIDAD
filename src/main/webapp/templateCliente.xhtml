@@ -19,7 +19,7 @@
                         <p:commandLink ajax="false" action="#{CarritoFE.doProcesarCarritoFrom()}">
                             <h:panelGrid columns="3">
                                 <p:graphicImage width="50" height="50" rendered="#{CarritoFE.listaOrdenCarrito.size()==0}" value="/icono/cart2.gif"/>
-                                <h:outputText styleClass="texto-carrito" id="listaArticuloCarrito" value="#{CarritoFE.listaOrdenCarrito.size()}"/>
+                                <h:outputText styleClass="texto-carrito" id="listaArticuloCarrito" value="#{CarritoFE.doGetCantidadItemsCarrito()}"/>
                                 <p:graphicImage width="50" height="50" rendered="#{CarritoFE.listaOrdenCarrito.size()>0}" value="/icono/cart.gif"/>                                   
                             </h:panelGrid>
                         </p:commandLink>
