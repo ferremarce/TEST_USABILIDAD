@@ -131,12 +131,12 @@ public class PreferenceController implements Serializable {
         try {
             Preference p = preferenceDAO.find(JSFutil.getUsuarioConectado().getIdPreference().getIdPreference());
             if (p == null) {
-                return "aristo";
+                return "cupertino";
             } else {
                 return p.getTema();
             }
         } catch (Exception ex) {
-            return "aristo";
+            return "cupertino";
         }
     }
 
