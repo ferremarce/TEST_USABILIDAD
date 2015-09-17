@@ -114,7 +114,7 @@ public class MetodoPagoCliente implements Serializable {
 
     @Override
     public String toString() {
-        return "quickstore.ejb.entity.MetodoPagoCliente[ idMetodoPagoCliente=" + idMetodoPagoCliente + " ]";
+        return "tesisweb.ejb.entity.MetodoPagoCliente[ idMetodoPagoCliente=" + idMetodoPagoCliente + " ]";
     }
 
     public TarjetaCredito getIdTarjetaCredito() {

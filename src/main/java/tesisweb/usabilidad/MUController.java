@@ -20,6 +20,7 @@ public class MUController implements Serializable {
     private Boolean muPreference;
     private Boolean muAbortOperation;
     private Boolean muProgressFeedBack;
+    private Boolean modoNormal;
 
     /**
      * Creates a new instance of MUController
@@ -49,6 +50,14 @@ public class MUController implements Serializable {
 
     public void setMuProgressFeedBack(Boolean muProgressFeedBack) {
         this.muProgressFeedBack = muProgressFeedBack;
+    }
+
+    public Boolean getModoNormal() {
+        return modoNormal;
+    }
+
+    public void setModoNormal(Boolean modoNormal) {
+        this.modoNormal = modoNormal;
     }
 
 }

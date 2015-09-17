@@ -167,7 +167,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "quickstore.ejb.entity.Cliente[ idCliente=" + idCliente + " ]";
+        return "tesisweb.ejb.entity.Cliente[ idCliente=" + idCliente + " ]";
     }
 
     public String getTelefonoMovil() {

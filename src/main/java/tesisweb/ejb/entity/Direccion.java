@@ -164,7 +164,7 @@ public class Direccion implements Serializable {
 
     @Override
     public String toString() {
-        return "quickstore.ejb.entity.Direccion[ idDireccion=" + idDireccion + " ]";
+        return "tesisweb.ejb.entity.Direccion[ idDireccion=" + idDireccion + " ]";
     }
     
 }

@@ -110,7 +110,7 @@ public class OrdenCarrito implements Serializable {
 
     @Override
     public String toString() {
-        return "quickstore.ejb.entity.OrdenCarrito[ idOrdenCarrito=" + idOrdenCarrito + " ]";
+        return "tesisweb.ejb.entity.OrdenCarrito[ idOrdenCarrito=" + idOrdenCarrito + " ]";
     }
 
     public Integer getCantidad() {

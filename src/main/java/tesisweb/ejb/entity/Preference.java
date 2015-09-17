@@ -141,7 +141,7 @@ public class Preference implements Serializable {
 
     @Override
     public String toString() {
-        return "quickstore.ejb.entity.Preference[ idPreference=" + idPreference + " ]";
+        return "tesisweb.ejb.entity.Preference[ idPreference=" + idPreference + " ]";
     }
 
 }

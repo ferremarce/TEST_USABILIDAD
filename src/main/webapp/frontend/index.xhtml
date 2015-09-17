@@ -9,6 +9,9 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{LoginManager.init()}"/>
+        </f:metadata>
         <h1 class="ui-state-default ui-corner-all"><h:outputText value="Bienvenido"/></h1>
         <h:form id="formIndex">
             <p:growl sticky="true" globalOnly="true" id="messages"/>

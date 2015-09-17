@@ -97,7 +97,7 @@ public class ListaDeseo implements Serializable {
 
     @Override
     public String toString() {
-        return "quickstore.ejb.entity.ListaDeseo[ idListaDeseo=" + idListaDeseo + " ]";
+        return "tesisweb.ejb.entity.ListaDeseo[ idListaDeseo=" + idListaDeseo + " ]";
     }
     
 }

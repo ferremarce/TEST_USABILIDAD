@@ -141,7 +141,7 @@ public class TarjetaCredito implements Serializable {
 
     @Override
     public String toString() {
-        return "quickstore.ejb.entity.QsTarjetaCredito[ idTarjetaCredito=" + idTarjetaCredito + " ]";
+        return "tesisweb.ejb.entity.QsTarjetaCredito[ idTarjetaCredito=" + idTarjetaCredito + " ]";
     }
     
 }

@@ -201,7 +201,7 @@ public class Articulo implements Serializable {
 
     @Override
     public String toString() {
-        return "quickstore.ejb.entity.Articulo_1[ idArticulo=" + idArticulo + " ]";
+        return "tesisweb.ejb.entity.Articulo_1[ idArticulo=" + idArticulo + " ]";
     }
 
 }

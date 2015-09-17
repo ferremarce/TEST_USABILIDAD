@@ -88,7 +88,18 @@ public class PreferenceController implements Serializable {
         } else {
             persist(PersistAction.CREATE);
         }
-        return "";
+        return "/frontend/index";
+    }
+
+    public String doAsignarStandarPreference() {
+        this.preference.setFuente("Droid Sans");
+        this.preference.setTamanho("100");
+        this.preference.setTema("cupertino");
+        persist(PersistAction.UPDATE);
+        if (JSFutil.getUsuarioConectado().getIdPreference().getIdPreference().compareTo(this.preference.getIdPreference()) == 0) {
+            JSFutil.putSessionVariable("language", this.preference.getIdioma());
+        }
+        return this.doCambiarPreferencia(preference);
     }
 
     private void persist(PersistAction persistAction) {
@@ -116,6 +127,12 @@ public class PreferenceController implements Serializable {
     }
 
     public String doEditarForm(Preference u) {
+        this.preference = preferenceDAO.find(u.getIdPreference());
+        this.sizeFont = Integer.parseInt(this.preference.getTamanho());
+        return "/frontend/preference/CambiarPreference";
+    }
+
+    public String doCambiarPreferencia(Preference u) {
         this.preference = preferenceDAO.find(u.getIdPreference());
         this.sizeFont = Integer.parseInt(this.preference.getTamanho());
         return "/frontend/preference/CambiarPreference";

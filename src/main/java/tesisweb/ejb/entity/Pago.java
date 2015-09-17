@@ -94,7 +94,7 @@ public class Pago implements Serializable {
 
     @Override
     public String toString() {
-        return "quickstore.ejb.entity.Pago[ idPago=" + idPago + " ]";
+        return "tesisweb.ejb.entity.Pago[ idPago=" + idPago + " ]";
     }
     
 }

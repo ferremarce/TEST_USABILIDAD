@@ -15,7 +15,7 @@
             <ui:include src="/ajax.xhtml"/>
             <p:panel>
                 <p:commandButton immediate="true" ajax="false" value="#{bundle.VolverBoton}" action="/frontend/articulo/BuscarArticulo" icon="ui-icon-arrowreturnthick-1-w"/>
-                <p:commandButton icon="shoppingcart" value="#{bundle.AgregarBoton}" update="#{sistema.form_update}," actionListener="#{CarritoFE.doAgregarCarrito(ArticuloFE.articulo)}"/>
+                <p:commandButton icon="shoppingcart" value="#{bundle.AgregarCarritoBoton}" update="#{sistema.form_update}," actionListener="#{CarritoFE.doAgregarCarrito(ArticuloFE.articulo)}"/>
             </p:panel>
             <h:panelGrid width="100%" rowClasses="top" columns="2">
                 <h:panelGrid>
@@ -42,7 +42,7 @@
             </h:panelGrid>
             <p:panel>
                 <p:commandButton immediate="true" ajax="false" value="#{bundle.VolverBoton}" action="/frontend/articulo/BuscarArticulo" icon="ui-icon-arrowreturnthick-1-w"/>
-                <p:commandButton icon="shoppingcart" value="#{bundle.AgregarBoton}" update="#{sistema.form_update},messages" actionListener="#{CarritoFE.doAgregarCarrito(ArticuloFE.articulo)}"/>
+                <p:commandButton icon="shoppingcart" value="#{bundle.AgregarCarritoBoton}" update="#{sistema.form_update},messages" actionListener="#{CarritoFE.doAgregarCarrito(ArticuloFE.articulo)}"/>
             </p:panel>
         </h:form>
     </ui:define>

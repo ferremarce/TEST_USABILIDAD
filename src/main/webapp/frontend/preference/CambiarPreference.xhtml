@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateCliente.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+    <ui:define name="content">
+        <h1 class="ui-state-default ui-corner-all"><h:outputText value="Personalizar mi interfaz"/></h1>
+        <h:form>
+            <p:growl globalOnly="true" id="messages"/>
+            <p:panelGrid columns="3">
+                <p:outputLabel value="Nombre:" for="nombrePreferencia" />
+                <p:inputText size="50" id="nombrePreferencia" value="#{PreferenceController.preference.nombrePreferencia}" title="NombrePreferencia" required="true" requiredMessage="#{bundle.Requerido}"/>
+                <p:message for="nombrePreferencia"/>
+                <p:outputLabel value="Familia de la Letra:" for="fuente" />
+                <p:selectOneMenu id="fuente" value="#{PreferenceController.preference.fuente}" required="true" requiredMessage="#{bundle.Requerido}" >
+                    <f:selectItems  value="#{PreferenceController.doGetFonts()}"/>
+                </p:selectOneMenu>
+                <p:message for="fuente"/>
+                <p:outputLabel value="Tamaño de la Letra:" for="tamanho" />
+                <h:panelGrid columns="1" style="margin-bottom: 10px">
+                    <p:outputLabel id="tamanho" value="#{PreferenceController.sizeFont}%" />
+                    <h:inputHidden id="txt2" value="#{PreferenceController.sizeFont}" />
+                    <p:slider for="txt2" display="tamanho" maxValue="120" style="width: 500px" minValue="80" displayTemplate="Ajustar al {value}%" />
+                </h:panelGrid>
+                <p:message for="tamanho"/>
+                <p:outputLabel value="Idioma:" for="idioma" />
+                <p:selectOneMenu id="idioma" value="#{PreferenceController.preference.idioma}" required="true" requiredMessage="#{bundle.Requerido}" >
+                    <f:selectItems value="#{PreferenceController.doGetLanguages()}"/>
+                </p:selectOneMenu>
+                <p:message for="idioma"/>
+                <p:outputLabel value="Tema:" for="tema" />
+                <p:selectOneMenu id="tema" value="#{PreferenceController.preference.tema}" required="true" requiredMessage="#{bundle.Requerido}" >
+                    <f:selectItems value="#{PreferenceController.doGetThemes()}" />
+                </p:selectOneMenu>
+                <p:message for="tema"/>
+            </p:panelGrid>
+            <p:panel>
+                <p:commandButton ajax="false" value="#{bundle.AplicarBoton}" action="#{PreferenceController.doGuardar()}" icon="ui-icon-disk"/>
+
+                <f:facet name="footer">
+                    <p:outputPanel  style="font-size: 16px !important; font-family: sans-serif !important">
+                        <h:outputLabel value="#{bundle.lblPreferenceRecomendado}"/>
+                        <p:commandButton ajax="false" value="#{bundle.ConfigDefectoBoton}" action="#{PreferenceController.doAsignarStandarPreference()}" icon="ui-icon-refresh"/>
+                    </p:outputPanel>
+                </f:facet>
+            </p:panel>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

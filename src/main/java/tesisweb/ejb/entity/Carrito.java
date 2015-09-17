@@ -109,7 +109,7 @@ public class Carrito implements Serializable {
 
     @Override
     public String toString() {
-        return "quickstore.ejb.entity.Carrito[ idCarrito=" + idCarrito + " ]";
+        return "tesisweb.ejb.entity.Carrito[ idCarrito=" + idCarrito + " ]";
     }
 
     @XmlTransient

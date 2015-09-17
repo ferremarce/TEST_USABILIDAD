@@ -145,7 +145,7 @@ public class ArticuloAdjunto implements Serializable {
 
     @Override
     public String toString() {
-        return "quickstore.ejb.entity.ArticuloAdjunto_1[ idArchivoAdjunto=" + idArchivoAdjunto + " ]";
+        return "tesisweb.ejb.entity.ArticuloAdjunto_1[ idArchivoAdjunto=" + idArchivoAdjunto + " ]";
     }
 
     public byte[] getArchivo() {

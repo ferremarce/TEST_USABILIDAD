@@ -104,7 +104,7 @@ public class Factura implements Serializable {
 
     @Override
     public String toString() {
-        return "quickstore.ejb.entity.QsFactura[ idFactura=" + idFactura + " ]";
+        return "tesisweb.ejb.entity.QsFactura[ idFactura=" + idFactura + " ]";
     }
     
 }

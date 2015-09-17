@@ -41,7 +41,7 @@
 
                         <f:facet name="footer">
                             <p:commandButton ajax="false"  icon="ui-icon-zoomin" value="#{bundle.VerBoton}" action="#{ArticuloFE.doVerDetalleArticulo(item)}"/>
-                            <p:commandButton icon="shoppingcart" value="#{bundle.AgregarBoton}" update="#{sistema.form_update}, :formBuscarMain:messages" actionListener="#{CarritoFE.doAgregarCarrito(item)}"/>
+                            <p:commandButton icon="shoppingcart" value="#{bundle.AgregarCarritoBoton}" update="#{sistema.form_update}, :formBuscarMain:messages" actionListener="#{CarritoFE.doAgregarCarrito(item)}"/>
                         </f:facet>
                     </p:panel>
                 </p:column>
