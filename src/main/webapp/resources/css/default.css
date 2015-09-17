@@ -18,7 +18,7 @@
     width: 100% !important;
     overflow-y: auto;
     height: 450px !important;
-        
+
 }
 
 .ui-button, .ui-button-text {
@@ -157,4 +157,7 @@
 }
 .boton2x{
     height: 80px;
+}
+.myRadioCtrl td {
+    width:80px !important; 
 }

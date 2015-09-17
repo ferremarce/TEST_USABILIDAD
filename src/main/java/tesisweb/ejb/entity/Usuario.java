@@ -5,6 +5,7 @@
 package tesisweb.ejb.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
@@ -65,6 +67,8 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "ID_DATOS_USUARIO", referencedColumnName = "ID_DATOS_USUARIO")
     @ManyToOne
     private DatosUsuario idDatosUsuario;
+    @OneToMany(mappedBy = "idUsuario")
+    private List<CuestionarioFamiliaridad> cuestionarioFamiliaridadList;
 
     public Usuario() {
     }
@@ -160,6 +164,16 @@ public class Usuario implements Serializable {
     public void setIdDatosUsuario(DatosUsuario idDatosUsuario) {
         this.idDatosUsuario = idDatosUsuario;
     }
+
+    public List<CuestionarioFamiliaridad> getCuestionarioFamiliaridadList() {
+        return cuestionarioFamiliaridadList;
+    }
+
+    public void setCuestionarioFamiliaridadList(List<CuestionarioFamiliaridad> cuestionarioFamiliaridadList) {
+        this.cuestionarioFamiliaridadList = cuestionarioFamiliaridadList;
+    }
+
+   
 
     @Override
     public int hashCode() {
