@@ -343,17 +343,20 @@ public class LoginManager implements Serializable {
             FacesContext context = FacesContext.getCurrentInstance();
             Map<String, String> paramMap = context.getExternalContext().getRequestParameterMap();
             String usuarioSujeto = paramMap.get("q");
+            HttpServletRequest req = (HttpServletRequest) context.getExternalContext().getRequest();
+            HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
+            String userAgent = req.getHeader("user-agent");
+            String accept = req.getHeader("Accept");
+
             if (usuarioSujeto != null) {
                 this.cuenta = usuarioSujeto;
                 this.contrasenha = "123456789";
                 this.doLoginNoPass();
                 //Redirect al main
-                HttpServletRequest req = (HttpServletRequest) context.getExternalContext().getRequest();
-                HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
-                String userAgent = req.getHeader("user-agent");
-                String accept = req.getHeader("Accept");
-
                 response.sendRedirect(req.getContextPath() + "/frontend/index.xhtml");
+            } else if (JSFutil.getUsuarioConectado() == null) {
+                //No se puede hacer el experimento si el usuario no esta logeado en el sistema              
+                response.sendRedirect(req.getContextPath() + "/404.xhtml");
             }
 
         } catch (NumberFormatException | NullPointerException e) {
