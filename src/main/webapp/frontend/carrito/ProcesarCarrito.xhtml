@@ -15,9 +15,10 @@
             <h:outputText value="Mi Carrito de Compra"/>
         </h1>
         <h:form>
+            <p:growl sticky="true" globalOnly="true" id="messages"/>
             <p:ajax global="false" event="click" update="#{sistema.form_update}," listener="#{ClickCounter.increment()}"/>
             <ui:include src="/ajax.xhtml"/>
-            <p:dataTable value="#{CarritoFE.listaOrdenCarrito}" var="item" emptyMessage="#{bundle.SinRegistrosMensaje}" >
+            <p:dataTable id="dataTableOrdenCarrito" value="#{CarritoFE.listaOrdenCarrito}" var="item" emptyMessage="#{bundle.SinRegistrosMensaje}" >
                 <p:column style="width: 50px">
                     <p:commandButton style="position: relative; right: 10px;" title="#{bundle.EliminarBoton}" icon="ui-icon-closethick" update="#{sistema.form_update},@form" action="#{CarritoFE.doSacarArticuloOrdenCompra(item)}"/>
                 </p:column>
@@ -25,24 +26,22 @@
                     <f:facet name="header">
                         <h:outputText value="Artículo"/>
                     </f:facet>
-                    <h:panelGrid rendered="#{item.idArticulo!=null}" styleClass="panelNoBorder" columns="2">                                        
+                    <p:outputPanel rendered="#{item.idArticulo!=null}">                                        
                         <p:graphicImage rendered="#{item.idArticulo.articuloAdjuntoList.size()>0}" styleClass="texto-centrado" width="50" height="50" value="/images/#{item.idArticulo.articuloAdjuntoList.get(0).toNameDownload()}" />                        
-                        <h:panelGrid>
-                            <span style="font-weight: bold;font-style: italic">[#{item.idArticulo.idCategoria}]</span>
-                            <h:outputText value="#{item.idArticulo.nombreArticulo}"/>
-                        </h:panelGrid>
-                    </h:panelGrid>
+                        <span style="font-weight: bold;font-style: italic">[#{item.idArticulo.idCategoria}] </span>
+                        <p:commandLink ajax="false" value="#{item.idArticulo.nombreArticulo}" action="#{ArticuloFE.doVerDetalleArticulo(item.idArticulo)}"/>
+                    </p:outputPanel>
                 </p:column>
-                <p:column>
+                <p:column style="width: 100px;">
                     <f:facet name="header">
                         <h:outputText value="Cantidad"/>
                     </f:facet>
                     <p:spinner min="1" max="10" value="#{item.cantidad}">
-                        <p:ajax global="no" update="#{sistema.form_update},@form" />
+                        <p:ajax global="no" update="#{sistema.form_update},dataTableOrdenCarrito" />
                         <p:ajax global="no" listener="#{CarritoFE.siHayCambios()}"/>
                     </p:spinner>
                 </p:column>
-                <p:column style="text-align: right">
+                <p:column style="width: 250px; text-align: right">
                     <f:facet name="header">
                         <h:outputText value="Importe"/>
                     </f:facet>
@@ -54,12 +53,12 @@
                     <p:row>
                         <p:column style="text-align: right" colspan="3">
                             <f:facet name="footer">
-                                <h:outputText style="font-size: 1.3em !important" value="Total (impuestos incluídos): "/>
+                                <h:outputText style="font-size: 1.3em !important" value="SubTotal sin descuentos: "/>
                             </f:facet>
                         </p:column>
                         <p:column style="text-align: right">
                             <f:facet name="footer">
-                                <h:outputText id="totalCarrito" style="font-size: 1.8em !important" value="#{CarritoFE.calcularTotal()}">
+                                <h:outputText id="subtotalCarrito" style="font-size: 1.8em !important" value="#{CarritoFE.calcularSubTotal()}">
                                     <f:convertNumber currencySymbol="USD " type="currency"/>
                                 </h:outputText>
                             </f:facet>
@@ -67,6 +66,31 @@
                     </p:row>
                 </p:columnGroup>
             </p:dataTable>
+            <p:panel header="Información de Pago">
+                <p:messages id="messages1"/>
+                <h:panelGrid columns="3">
+                    <h:outputLabel for="codigoPromocional" value="Código Promocional: "/>
+                    <p:inputText id="codigoPromocional" value="#{CarritoFE.codigoPromocional}">
+                        <p:ajax global="no" listener="#{CarritoFE.siHayCambios()}"/>
+                    </p:inputText>
+                    <p:commandButton value="#{bundle.ValidarBoton}">
+                        <p:ajax update="panelTotal, messages1" listener="#{CarritoFE.mensajeCodigo()}"/>
+                    </p:commandButton>
+                </h:panelGrid>
+                <f:facet name="footer">
+                    <h:panelGrid id="panelTotal" style="text-align: right !important;" columns="2">
+                        <h:outputLabel styleClass="itemResaltado1" value="Descuentos: "/>
+                        <h:outputText style="font-size: 1.8em !important;" value="#{CarritoFE.codigoPromocional==2015?'25%':'0'}"/>
+                        <h:outputLabel styleClass="itemResaltado1" value="Gastos de envío: "/>
+                        <h:outputText style="font-size: 1.8em !important;" value="0"/>
+                        <h:outputLabel styleClass="itemResaltado1" value="Total (impuestos incluídos): "/>
+                        <h:outputText id="totalCarrito" style="font-size: 1.8em !important;color: #006633; font-weight: bold" value="#{CarritoFE.calcularTotal()}">
+                            <f:convertNumber currencySymbol="USD " type="currency"/>
+                        </h:outputText>
+                    </h:panelGrid>
+                </f:facet>
+            </p:panel>
+
             <p:panel>
                 <p:commandButton styleClass="boton2x"  disabled="#{CarritoFE.listaOrdenCarrito.size()==0}" ajax="false" iconPos="right" icon="ui-icon-circle-arrow-e" value="#{bundle.PagarBoton}" action="#{CarritoFE.doProcesarDatosEntrega()}"/>
                 <p:commandButton rendered="#{MUController.muAbortOperation}" styleClass="boton2x" global="false" immediate="true" value="#{bundle.CancelarBoton}" action="#{CarritoFE.doAbortOperation()}" icon="ui-icon-close"/>

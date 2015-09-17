@@ -14,6 +14,7 @@ import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -592,5 +593,13 @@ public class JSFutil implements Serializable {
             return true;
         }
         return " %$&+,/:;=?@<>#%".indexOf(ch) >= 0;
+    }
+
+    public static <T> List<T> cloneList(List<T> source) {
+        List<T> dest = new ArrayList<>();
+        for (T item : source) {
+            dest.add(item);
+        }
+        return dest;
     }
 }

@@ -71,6 +71,8 @@ public class CarritoFE implements Serializable {
     private Direccion direccion;
     private Boolean estoyDeAcuerdo;
     private Boolean hayCambios;
+    private Integer codigoPromocional;
+    private Integer codigoPromocionalAbort;
 
     /**
      * Creates a new instance of CarritoController
@@ -80,6 +82,14 @@ public class CarritoFE implements Serializable {
     //********************************************
     // SETTERS Y GETTERS
     //********************************************
+
+    public Integer getCodigoPromocional() {
+        return codigoPromocional;
+    }
+
+    public void setCodigoPromocional(Integer codigoPromocional) {
+        this.codigoPromocional = codigoPromocional;
+    }
 
     public List<OrdenCarrito> getListaOrdenCarrito() {
         return listaOrdenCarrito;
@@ -167,13 +177,12 @@ public class CarritoFE implements Serializable {
     }
 
     public String doProcesarCarritoFrom() {
-        this.listaOrdenCarritoAbort = new ArrayList<>();
-        this.listaOrdenCarritoAbort.addAll(listaOrdenCarrito);
+        this.listaOrdenCarritoAbort = JSFutil.cloneList(listaOrdenCarrito);
+        this.codigoPromocionalAbort = this.codigoPromocional;
         this.hayCambios = Boolean.FALSE;
         this.aceptaPolitica = null;
         return "/frontend/carrito/ProcesarCarrito";
     }
-
     public String doProcesarDatosPago() {
         if (this.direccionSeleccionada == null) {
             JSFutil.addErrorMessage("Debe seleccionar una dirección para el proceso de envío");
@@ -212,10 +221,45 @@ public class CarritoFE implements Serializable {
         return "/frontend/index2";
     }
 
+    public String doAbortOperation() {
+        if (this.hayCambios) {
+            RequestContext context = RequestContext.getCurrentInstance();
+            context.execute("PF('confirmacionAbort').show();");
+            return "";
+        } else {
+            return "/frontend/index";
+        }
+    }
+
+    public String doOpcionSI() {
+        JSFutil.addSuccessMessage("Los cambios han sido aceptados...");
+        return "/frontend/index";
+    }
+
+    public String doOpcionNO() {
+        //Restaurar el carrito anterior
+        this.listaOrdenCarrito = JSFutil.cloneList(listaOrdenCarritoAbort);
+        this.codigoPromocional = this.codigoPromocionalAbort;
+        JSFutil.addSuccessMessage("Los cambios han sido ignorados. Su carrito no ha sido alterado.");
+        return "/frontend/index";
+    }
+
+    public void siHayCambios() {
+        this.hayCambios = true;
+    }
+
+    public Integer doGetCantidadItemsCarrito() {
+        Integer cantidad = 0;
+        for (OrdenCarrito oc : this.listaOrdenCarrito) {
+            cantidad += oc.getCantidad();
+        }
+        return cantidad;
+    }
+
     //********************************************
     // METODOS DEL LISTENER
     //********************************************
-    public Float calcularTotal() {
+    public Float calcularSubTotal() {
         Float total = Float.valueOf("0");
         for (OrdenCarrito oc : this.listaOrdenCarrito) {
             total += oc.getCantidad() * this.calcularPrecioFinal(oc.getIdArticulo());
@@ -283,38 +327,21 @@ public class CarritoFE implements Serializable {
         }
     }
 
-    public String doAbortOperation() {
-        if (this.hayCambios) {
-            RequestContext context = RequestContext.getCurrentInstance();
-            context.execute("PF('confirmacionAbort').show();");
-            return "";
+    public Float calcularTotal() {
+        Float sub = this.calcularSubTotal();
+        if (codigoPromocional != null && codigoPromocional.compareTo(2015) == 0) {
+            return sub - sub * 25 / 100;
         } else {
-            return "/frontend/index";
+            return sub;
         }
     }
 
-    public String doOpcionSI() {
-        JSFutil.addSuccessMessage("Los cambios han sido aceptados...");
-        return "/frontend/index";
-    }
-
-    public String doOpcionNO() {
-        //Restaurar el carrito anterior
-        this.listaOrdenCarrito = new ArrayList<>();
-        this.listaOrdenCarrito.addAll(listaOrdenCarritoAbort);
-        JSFutil.addSuccessMessage("Los cambios han sido ignorados. Su carrito no ha sido alterado.");
-        return "/frontend/index";
-    }
-
-    public void siHayCambios() {
-        this.hayCambios = true;
-    }
-
-    public Integer doGetCantidadItemsCarrito() {
-        Integer cantidad = 0;
-        for (OrdenCarrito oc : this.listaOrdenCarrito) {
-            cantidad += oc.getCantidad();
+    public void mensajeCodigo() {
+        if (codigoPromocional != null && codigoPromocional.compareTo(2015) == 0) {
+            JSFutil.addSuccessMessage("Código promocional aceptado");
+        } else {
+            JSFutil.addErrorMessage("No existe descuentos para ese código");
         }
-        return cantidad;
     }
+
 }

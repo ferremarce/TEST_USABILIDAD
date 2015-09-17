@@ -79,16 +79,20 @@
                     </p:panel>
                 </h:form>
                 <ui:insert name="content">Content</ui:insert>
-                <p:panel>
-                    <h:panelGrid width="100%" columns="3">
-                        <h:outputText value="&copy; QuickStore"/>
-                        <h:outputText value="Test de Usabilidad"/>
-                        <h:outputText value="2015"/>
-                    </h:panelGrid>
-                    <f:facet name="footer">
-                        <h:outputText value="Tesis de Máster en TICs, 2015"/>
-                    </f:facet>
-                </p:panel>
+                <h:form>
+                    <p:panel>
+                        <f:facet name="header">
+                            <h:panelGrid width="100%" columns="3">
+                                <h:outputText value="&copy; QuickStore"/>
+                                <h:outputText value="Test de Usabilidad"/>
+                                <h:outputText value="2015"/>
+                            </h:panelGrid>
+                        </f:facet>
+                        <f:facet name="footer">
+                            <h:outputText value="Tesis de Máster en TICs, 2015"/>
+                        </f:facet>
+                    </p:panel>
+                </h:form>
             </p:layoutUnit>
         </p:layout>
 

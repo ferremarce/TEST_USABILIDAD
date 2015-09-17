@@ -18,7 +18,6 @@
     font-size: 1.1em;
 }
 .ui-spinner-input{
-    height: 50px !important;
     font-size: 1.1em !important;
     width: 90%;
 }
@@ -110,6 +109,7 @@
 }
 .texto-centrado {
     text-align: center;
+    vertical-align: middle;
 }
 .nav { 
     color: #546078;
