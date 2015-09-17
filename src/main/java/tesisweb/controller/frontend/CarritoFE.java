@@ -177,12 +177,25 @@ public class CarritoFE implements Serializable {
     }
 
     public String doProcesarCarritoFrom() {
-        this.listaOrdenCarritoAbort = JSFutil.cloneList(listaOrdenCarrito);
+        this.listaOrdenCarritoAbort = this.clonarLista(listaOrdenCarrito);
         this.codigoPromocionalAbort = this.codigoPromocional;
         this.hayCambios = Boolean.FALSE;
         this.aceptaPolitica = null;
         return "/frontend/carrito/ProcesarCarrito";
     }
+
+    private List<OrdenCarrito> clonarLista(List<OrdenCarrito> source) {
+        OrdenCarrito oc;
+        List<OrdenCarrito> target = new ArrayList<>();
+        for (OrdenCarrito orden : source) {
+            oc = new OrdenCarrito();
+            oc.setIdArticulo(orden.getIdArticulo());
+            oc.setCantidad(orden.getCantidad());
+            target.add(oc);
+        }
+        return target;
+    }
+
     public String doProcesarDatosPago() {
         if (this.direccionSeleccionada == null) {
             JSFutil.addErrorMessage("Debe seleccionar una dirección para el proceso de envío");
@@ -238,7 +251,7 @@ public class CarritoFE implements Serializable {
 
     public String doOpcionNO() {
         //Restaurar el carrito anterior
-        this.listaOrdenCarrito = JSFutil.cloneList(listaOrdenCarritoAbort);
+        this.listaOrdenCarrito = this.clonarLista(listaOrdenCarritoAbort);
         this.codigoPromocional = this.codigoPromocionalAbort;
         JSFutil.addSuccessMessage("Los cambios han sido ignorados. Su carrito no ha sido alterado.");
         return "/frontend/index";
