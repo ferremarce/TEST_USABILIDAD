@@ -14,6 +14,13 @@
 {
     font-size: 1em !important;
 }
+.ui-carousel{
+    width: 100% !important;
+    overflow-y: auto;
+    height: 450px !important;
+        
+}
+
 .ui-button, .ui-button-text {
     font-size: 1.1em;
 }

@@ -23,8 +23,8 @@
                     <p:defaultCommand target="cmdBuscarArticulo" />
                 </h:panelGrid>
             </p:panel>
-            <p:carousel circular="true" numVisible="4" headerText="En Promoción" value="#{ArticuloFE.listaArticulo}" var="articulo" autoPlayInterval="5000">
-                <p:panelGrid style="width: 300px; overflow: auto" columns="1">
+            <p:carousel circular="true" numVisible="3" headerText="En Promoción" value="#{ArticuloFE.listaArticulo}" var="articulo" autoPlayInterval="5000">
+                <h:panelGrid style="width: 300px;height: 400px" columns="1">
                     <f:facet name="header">
                         <p:graphicImage rendered="#{articulo.articuloAdjuntoList.size()>0}" width="300" height="250" value="/images/#{articulo.articuloAdjuntoList.get(0).toNameDownload()}" alt="#{articulo.nombreArticulo}" title=""/>
                     </f:facet>
@@ -39,7 +39,7 @@
                             <f:convertNumber currencySymbol="USD " type="currency"/>
                         </h:outputText>
                     </p:panel>
-                </p:panelGrid>
+                </h:panelGrid>
             </p:carousel>
         </h:form>
     </ui:define>
