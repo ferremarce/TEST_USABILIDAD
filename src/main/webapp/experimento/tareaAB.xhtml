@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateExperimento.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <h:form>
+            <p:panel header="Tarea Abort Operation">
+                Realiza la siguiente tarea
+                <p/>
+                <p:panel>
+                    <p:outputPanel>
+                        Acceda tu carrito de compra. De la lista de artículos ya agregados a tu carrito, incremente la cantidad del primer item de tu carrito e ingrese el código promocional “021”. Ahora te arrepientes por lo que decides comprar en otro momento y CANCELAS la operación para ignorar los cambios. NO PRESIONES EL BOTON ACEPTAR.
+                        <p/>
+                        Observación: En caso de que no pudiera realizar alguna de las acciones solicitadas haga click directamente en el botón FINALIZAR del Sistema que está evaluando.
+                        <p/>
+                        Una vez estés seguro de que la tarea se ha concluido, pulsa sobre el botón “Siguiente”.
+                    </p:outputPanel>
+                </p:panel>
+                <f:facet name="footer">
+                    <p:commandButton ajax="false"  action="#{ExperimentoController.gotoNextForm(3)}" value="Siguiente"/>
+                </f:facet>
+            </p:panel>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

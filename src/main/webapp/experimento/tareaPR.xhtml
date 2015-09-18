@@ -10,7 +10,7 @@
 
     <ui:define name="content">
         <h:form>
-            <p:panel header="Tarea 1">
+            <p:panel header="Tarea Preference">
                 Imagina que eres un empleado de una tienda en línea por internet. Serás el vendedor virtual, y podrás procesar tareas con los productos: crear nuevos productos, dar de baja, buscar, promocionar, etc. 
                 <p/>
                 En este punto vas a evaluar la usabilidad de la aplicación Web de una tienda en línea.
@@ -22,15 +22,11 @@
 
                 <p/>
                 <p:panel>
-                    Simularás una operación cancelar durante el procesamiento de tu tu carrito de compra.
 
-                    Tarea: Acceda tu carrito de compra. De la lista de artículos ya agregados a tu carrito, incremente la cantidad del primer item de tu carrito e ingrese el código promocional “021”. Ahora te arrepientes por lo que decides comprar en otro momento y CANCELAS la operación para ignorar los cambios. NO PRESIONES EL BOTON ACEPTAR.
-
-                    Observación: En caso de que no pudiera realizar alguna de las acciones solicitadas haga click directamente en el botón FINALIZAR.
                 </p:panel>
 
             </p:panel>
-            <p:commandButton action="/wizard/cuestionario1?faces-redirect=true" value="Siguiente"/>
+            <p:commandButton ajax="false"  action="#{ExperimentoController.gotoNextForm(2)}" value="Siguiente"/>
         </h:form>
     </ui:define>
 
