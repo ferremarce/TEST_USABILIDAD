@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -601,5 +603,20 @@ public class JSFutil implements Serializable {
             dest.add(item);
         }
         return dest;
+    }
+
+    public static String getServerUrl() {
+        try {
+            HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+            URL url = new URL(request.getRequestURL().toString());
+            URL newUrl = new URL(url.getProtocol(),
+                    url.getHost(),
+                    url.getPort(),
+                    "");
+            return newUrl.toString();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(JSFutil.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 }

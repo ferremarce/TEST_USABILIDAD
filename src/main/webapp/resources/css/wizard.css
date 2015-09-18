@@ -23,7 +23,7 @@ body{
 .ui-column-title,
 .ui-toolbar
 {
-    font-size: 1.1em !important;
+    font-size: 18px !important;
 }
 .ui-button, .ui-button-text {
     font-size: 1.1em;

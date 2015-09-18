@@ -8,7 +8,8 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/wizard.css"/>
+        <h:outputStylesheet library="primefaces-bluesky" name="theme.css" />
         <title>TESIS USABILIDAD - EXPERIMENTO</title>
     </h:head>
     <h:body>
@@ -17,6 +18,8 @@
                 <h:form>
                     <p:panel styleClass="header-background">
                         <h1 class="ui-state-default ui-corner-all">TEST DE USABILIDAD</h1>
+                        <h:outputLabel for="usuarioExperimental" rendered="#{LoginManager.usuarioLogeado!=null}" value="Experimento de: "/>
+                        <h:outputText id="usuarioExperimental" styleClass="itemResaltado1" rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.usuarioLogeado.nombres} #{LoginManager.usuarioLogeado.apellidos}"/>
                     </p:panel>
                 </h:form>
                 <ui:insert name="content">Content</ui:insert>

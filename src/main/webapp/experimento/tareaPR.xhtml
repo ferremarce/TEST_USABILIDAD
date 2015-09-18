@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateExperimento.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <h:form>
+            <p:panel header="Tarea 1">
+                Imagina que eres un empleado de una tienda en línea por internet. Serás el vendedor virtual, y podrás procesar tareas con los productos: crear nuevos productos, dar de baja, buscar, promocionar, etc. 
+                <p/>
+                En este punto vas a evaluar la usabilidad de la aplicación Web de una tienda en línea.
+                <p/>
+                a) Haga click en la siguiente dirección y se te abrirá la página Web a evaluar. 
+                <a href="#{LoginManager.doGetURLAPP()}" target="_blank">#{LoginManager.doGetURLAPP()}</a>
+                <p/>
+                c) Realiza la siguiente tarea
+
+                <p/>
+                <p:panel>
+                    Simularás una operación cancelar durante el procesamiento de tu tu carrito de compra.
+
+                    Tarea: Acceda tu carrito de compra. De la lista de artículos ya agregados a tu carrito, incremente la cantidad del primer item de tu carrito e ingrese el código promocional “021”. Ahora te arrepientes por lo que decides comprar en otro momento y CANCELAS la operación para ignorar los cambios. NO PRESIONES EL BOTON ACEPTAR.
+
+                    Observación: En caso de que no pudiera realizar alguna de las acciones solicitadas haga click directamente en el botón FINALIZAR.
+                </p:panel>
+
+            </p:panel>
+            <p:commandButton action="/wizard/cuestionario1?faces-redirect=true" value="Siguiente"/>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

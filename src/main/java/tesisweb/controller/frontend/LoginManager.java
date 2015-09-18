@@ -166,6 +166,16 @@ public class LoginManager implements Serializable {
         }
     }
 
+    public String doAutoLogin() {
+        this.cuenta="marcelo";
+        this.doLoginNoPass();
+        return "/experimento/tareaPR";
+    }
+
+    public String doGetURLAPP() {
+        return JSFutil.getServerUrl() + "/tesisapp/frontend/index.xhtml";
+    }
+
     public String doLoginNoPass() {
         try {
             Usuario usuario = usuarioDAO.getUsuario(cuenta);
