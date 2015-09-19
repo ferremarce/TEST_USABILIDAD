@@ -14,8 +14,8 @@ import java.util.TreeMap;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
-import tesisweb.ejb.entity.Preference;
-import tesisweb.ejb.facade.PreferenceDAO;
+import tesisweb.ejb.tienda.entity.Preference;
+import tesisweb.ejb.tienda.facade.PreferenceDAO;
 import tesisweb.util.JSFutil;
 import tesisweb.util.JSFutil.PersistAction;
 

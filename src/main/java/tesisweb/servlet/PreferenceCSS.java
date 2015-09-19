@@ -12,8 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import tesisweb.ejb.entity.Preference;
-import tesisweb.ejb.facade.PreferenceDAO;
+import tesisweb.ejb.tienda.entity.Preference;
+import tesisweb.ejb.tienda.facade.PreferenceDAO;
 
 /**
  *

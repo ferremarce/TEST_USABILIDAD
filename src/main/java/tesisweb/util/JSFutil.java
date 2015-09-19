@@ -31,8 +31,8 @@ import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.mindrot.jbcrypt.BCrypt;
-import tesisweb.ejb.entity.Cliente;
-import tesisweb.ejb.entity.Usuario;
+import tesisweb.ejb.tienda.entity.Cliente;
+import tesisweb.ejb.tienda.entity.Usuario;
 
 /**
  * Conjunto de utilidades necesarias para el app-web

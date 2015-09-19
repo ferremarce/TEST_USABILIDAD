@@ -21,12 +21,12 @@ import javax.faces.event.PhaseId;
 import javax.inject.Inject;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
-import tesisweb.ejb.entity.Articulo;
-import tesisweb.ejb.entity.ArticuloAdjunto;
-import tesisweb.ejb.entity.SubTipo;
-import tesisweb.ejb.facade.ArticuloAdjuntoDAO;
-import tesisweb.ejb.facade.ArticuloDAO;
-import tesisweb.ejb.facade.SubTipoDAO;
+import tesisweb.ejb.tienda.entity.Articulo;
+import tesisweb.ejb.tienda.entity.ArticuloAdjunto;
+import tesisweb.ejb.tienda.entity.SubTipo;
+import tesisweb.ejb.tienda.facade.ArticuloAdjuntoDAO;
+import tesisweb.ejb.tienda.facade.ArticuloDAO;
+import tesisweb.ejb.tienda.facade.SubTipoDAO;
 import tesisweb.util.JSFutil;
 
 /**

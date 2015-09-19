@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.primefaces.event.ToggleEvent;
-import tesisweb.ejb.entity.Usuario;
-import tesisweb.ejb.facade.UsuarioDAO;
+import tesisweb.ejb.tienda.entity.Usuario;
+import tesisweb.ejb.tienda.facade.UsuarioDAO;
 import tesisweb.util.JSFutil;
 
 /**

@@ -13,9 +13,9 @@ import java.util.ResourceBundle;
 import java.util.logging.Logger;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import tesisweb.ejb.entity.Preference;
-import tesisweb.ejb.facade.PreferenceDAO;
-import tesisweb.ejb.facade.UsuarioDAO;
+import tesisweb.ejb.tienda.entity.Preference;
+import tesisweb.ejb.tienda.facade.PreferenceDAO;
+import tesisweb.ejb.tienda.facade.UsuarioDAO;
 import tesisweb.util.JSFutil;
 
 /**

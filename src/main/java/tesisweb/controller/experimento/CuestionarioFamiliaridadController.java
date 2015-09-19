@@ -14,12 +14,12 @@ import java.util.logging.Logger;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
 import tesisweb.controller.frontend.LoginManager;
-import tesisweb.ejb.entity.CuestionarioFamiliaridad;
-import tesisweb.ejb.entity.Usuario;
-import tesisweb.ejb.facade.CuestionarioFamiliaridadDAO;
-import tesisweb.ejb.facade.PreferenceDAO;
-import tesisweb.ejb.facade.RolDAO;
-import tesisweb.ejb.facade.UsuarioDAO;
+import tesisweb.ejb.tienda.entity.CuestionarioFamiliaridad;
+import tesisweb.ejb.tienda.entity.Usuario;
+import tesisweb.ejb.tienda.facade.CuestionarioFamiliaridadDAO;
+import tesisweb.ejb.tienda.facade.PreferenceDAO;
+import tesisweb.ejb.tienda.facade.RolDAO;
+import tesisweb.ejb.tienda.facade.UsuarioDAO;
 import tesisweb.util.JSFutil;
 import tesisweb.util.JSFutil.PersistAction;
 

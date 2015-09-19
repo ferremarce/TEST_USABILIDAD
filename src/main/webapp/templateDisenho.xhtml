@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/wizard.css"/>
+        <h:outputStylesheet library="primefaces-cupertino" name="theme.css" />
+        <title>TESIS USABILIDAD - EXPERIMENTO</title>
+    </h:head>
+    <h:body>
+        <p:layout fullPage="true">
+            <p:layoutUnit position="west" size="250" header="#{bundle.lblOpciones}" collapsible="true" >
+                <h:form id="formCarrito">
+                    <p:menu>
+                        <p:submenu label="Experimento">
+                            <p:menuitem value="Diseño Experimental" ajax="false" action="#{DisenhoExperimentalController.doListar()}" icon="ui-icon-disk" />
+                        </p:submenu>
+                    </p:menu>
+                </h:form>
+            </p:layoutUnit>
+            <p:layoutUnit position="center" >
+                <h:form>
+                    <p:panel styleClass="header-background">
+                        <h1 class="ui-state-default ui-corner-all">TEST DE USABILIDAD</h1>
+                        <h:outputLabel for="usuarioExperimental" rendered="#{LoginManager.usuarioLogeado!=null}" value="Experimento de: "/>
+                        <h:outputText id="usuarioExperimental" styleClass="itemResaltado1" rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.usuarioLogeado.nombres} #{LoginManager.usuarioLogeado.apellidos}"/>
+                    </p:panel>
+                </h:form>
+                <ui:insert name="content">Content</ui:insert>
+                <p:outputPanel>
+                    <p:panel>
+                        <f:facet name="header">
+                            <h:panelGrid width="100%" columns="3">
+                                <h:outputText value="&copy; tesisweb"/>
+                                <h:outputText value="Test de Usabilidad"/>
+                                <h:outputText value="2015"/>
+                            </h:panelGrid>
+                        </f:facet>
+                        <f:facet name="footer">
+                            <h:outputText value="Tesis de Máster en TICs, 2015"/>
+                        </f:facet>
+                    </p:panel>
+                </p:outputPanel>
+            </p:layoutUnit>
+        </p:layout>
+
+    </h:body>
+
+</html>

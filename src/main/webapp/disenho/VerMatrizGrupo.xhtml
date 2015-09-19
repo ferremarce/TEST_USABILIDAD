@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateDisenho.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+
+        <h:form>
+            <p:dataTable value="#{DisenhoExperimentalController.disenhoExperimental.grupoMatrizExperimentalList}" var="item">
+                <p:columnGroup type="header">
+                    <p:row>
+                        <p:column headerText="ORDEN" />
+                        <p:column headerText="MECANISMO" />
+                        <p:column headerText="ESTADO" />
+                    </p:row>
+                </p:columnGroup>
+                <p:subTable var="ordenExposicion" value="#{item.ordenExposicionMuGrupoList}">
+                    <f:facet name="header">
+                        <p:panelGrid columns="2">
+                            <h:outputText value="#{item.nombreGrupo} - [Participantes: #{item.cantidadParticipante}]" />
+                            <p:commandButton value="Agregar Orden" oncomplete="PF('ordenExposicionMU').show();"/>
+                        </p:panelGrid>
+                    </f:facet>
+                    <p:column>
+                        <h:outputText value="#{ordenExposicion.orden}" />
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{ordenExposicion.idMu.nombreMecanismo}" />
+                    </p:column>
+                    <p:column>
+                        <h:outputText value="#{ordenExposicion.estado}" />
+                    </p:column>
+                </p:subTable>
+            </p:dataTable>
+            <p:dialog header="Orden de Exposición de MUs" widgetVar="ordenExposicionMU" minHeight="40">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Orden:" for="orden" />
+                    <p:inputText size="10" id="orden" value="#{OrdenExposicionMuGrupoController.ordenExposicionMuGrupo.orden}" title="Orden" />
+                    <p:outputLabel value="IdMu:" for="idMu" />
+                    <p:selectOneMenu converter="MecanismoUsabilidadConverter" id="idMu" value="#{OrdenExposicionMuGrupoController.ordenExposicionMuGrupo.idMu}" >
+                        <f:selectItems value="#{MecanismoUsabilidadController.mecanismoUsabilidadSet}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Estado:" for="estado" />
+                    <p:selectBooleanCheckbox id="estado" value="#{OrdenExposicionMuGrupoController.ordenExposicionMuGrupo.estado}" />
+                </p:panelGrid>
+            </p:dialog>
+
+        </h:form>
+    </ui:define>
+</ui:composition>
