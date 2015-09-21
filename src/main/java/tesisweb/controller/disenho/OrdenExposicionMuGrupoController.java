@@ -13,7 +13,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
-import tesisweb.ejb.experimento.entity.DisenhoExperimental;
 import tesisweb.ejb.experimento.entity.GrupoMatrizExperimental;
 import tesisweb.ejb.experimento.entity.OrdenExposicionMuGrupo;
 import tesisweb.ejb.experimento.facade.OrdenExposicionMuGrupoFacade;

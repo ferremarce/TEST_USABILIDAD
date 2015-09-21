@@ -20,6 +20,10 @@
                         <h1 class="ui-state-default ui-corner-all">TEST DE USABILIDAD</h1>
                         <h:outputLabel for="usuarioExperimental" rendered="#{LoginManager.usuarioLogeado!=null}" value="Experimento de: "/>
                         <h:outputText id="usuarioExperimental" styleClass="itemResaltado1" rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.usuarioLogeado.nombres} #{LoginManager.usuarioLogeado.apellidos}"/>
+                        <h:outputText styleClass="itemResaltado1" rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.grupoUsuarioLogin.nombreGrupo}"/>
+                        <p:dataList value="#{LoginManager.grupoUsuarioLogin.ordenExposicionMuGrupoList}" var="ordenUsuario">
+                            #{ordenUsuario.orden}/#{ordenUsuario.idMu}/#{ordenUsuario.estado}
+                        </p:dataList>
                     </p:panel>
                 </h:form>
                 <ui:insert name="content">Content</ui:insert>

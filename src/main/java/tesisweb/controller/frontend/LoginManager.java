@@ -19,6 +19,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.primefaces.event.ToggleEvent;
+import tesisweb.controller.disenho.GrupoMatrizExperimentalController;
+import tesisweb.ejb.experimento.entity.GrupoMatrizExperimental;
+import tesisweb.ejb.experimento.facade.GrupoMatrizExperimentalFacade;
 import tesisweb.ejb.tienda.entity.Usuario;
 import tesisweb.ejb.tienda.facade.UsuarioDAO;
 import tesisweb.util.JSFutil;
@@ -33,6 +36,8 @@ public class LoginManager implements Serializable {
 
     @Inject
     UsuarioDAO usuarioDAO;
+    @Inject
+    private GrupoMatrizExperimentalFacade grupoMatrizExperimentalFacade;
 
     private final String USER_SESSION_KEY = "user";
     private final String USER_SESSION_LANGUAGE = "language";
@@ -43,6 +48,15 @@ public class LoginManager implements Serializable {
     private Boolean adminCollapse = Boolean.FALSE;
     private Boolean clientCollapse = Boolean.FALSE;
     private Integer cantidadClick;
+    private GrupoMatrizExperimental grupoUsuarioLogin;
+
+    public GrupoMatrizExperimental getGrupoUsuarioLogin() {
+        return grupoUsuarioLogin;
+    }
+
+    public void setGrupoUsuarioLogin(GrupoMatrizExperimental grupoUsuarioLogin) {
+        this.grupoUsuarioLogin = grupoUsuarioLogin;
+    }
 
     /**
      * Creates a new instance of LoginManager
@@ -167,9 +181,10 @@ public class LoginManager implements Serializable {
     }
 
     public String doAutoLogin() {
-        this.cuenta="marcelo";
+        this.cuenta = "marcelo";
         this.doLoginNoPass();
-        return "/experimento/tareaPR";
+        this.grupoUsuarioLogin = grupoMatrizExperimentalFacade.findSiguienteGrupoExperimental();
+        return "/experimento/index";
     }
 
     public String doGetURLAPP() {

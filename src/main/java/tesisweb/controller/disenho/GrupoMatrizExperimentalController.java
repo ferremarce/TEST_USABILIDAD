@@ -84,6 +84,13 @@ public class GrupoMatrizExperimentalController implements Serializable {
         this.doListar();
         return "/disenho/VerMatrizGrupo";
     }
+
+    public void doGetListaGrupoMatrizExperimental() {
+        this.listaGrupoMatrizExperimental = grupoMatrizExperimentalFacade.findAllbyDisenho(1);
+        for (GrupoMatrizExperimental grupo : this.listaGrupoMatrizExperimental) {
+
+        }
+    }
     //METODOS LISTENER
 
 }

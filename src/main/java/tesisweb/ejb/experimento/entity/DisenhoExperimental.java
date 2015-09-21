@@ -31,6 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "DisenhoExperimental.findAll", query = "SELECT d FROM DisenhoExperimental d")})
 public class DisenhoExperimental implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,6 +44,8 @@ public class DisenhoExperimental implements Serializable {
     @Size(max = 255)
     @Column(name = "CONTEXTO")
     private String contexto;
+    @Column(name = "ESTADO")
+    private Boolean estado;
     @Size(max = 255)
     @Column(name = "INFORMACION_DISENHO")
     private String informacionDisenho;
@@ -54,6 +57,14 @@ public class DisenhoExperimental implements Serializable {
 
     public DisenhoExperimental(Integer idDisenho) {
         this.idDisenho = idDisenho;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
     }
 
     public Integer getIdDisenho() {
@@ -121,5 +132,5 @@ public class DisenhoExperimental implements Serializable {
     public String toString() {
         return "tesisweb.ejb.experimento.entity.DisenhoExperimental[ idDisenho=" + idDisenho + " ]";
     }
-    
+
 }
