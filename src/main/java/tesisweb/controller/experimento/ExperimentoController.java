@@ -8,6 +8,8 @@ package tesisweb.controller.experimento;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import tesisweb.ejb.experimento.entity.OrdenExposicionMuGrupo;
+import tesisweb.util.JSFutil;
 
 /**
  *
@@ -17,25 +19,37 @@ import java.io.Serializable;
 @SessionScoped
 public class ExperimentoController implements Serializable {
 
+    private int indexFormActual;
+
     /**
      * Creates a new instance of ExperimentoController
      */
     public ExperimentoController() {
     }
 
-    public String gotoNextForm(Integer orden) {
-        switch (orden) {
-            case 1:
-                return "/experimento/tareaPR";
-            case 2:
-                return "/experimento/tareaAB";
-            case 3:
-                return "/experimento/tareaFB";
-            case 4:
-                return "/experimento/cuestionarioFinal";
-            case 5:
-                return "/experimento/agradecimiento";
+    public String gotoFirstForm() {
+        this.indexFormActual = -1;
+        return this.gotoNextForm();
+    }
+
+    public String gotoNextForm() {
+        this.indexFormActual++;
+        if (indexFormActual < 3) {
+            OrdenExposicionMuGrupo orden = JSFutil.getUsuarioConectado().getIdGrupoExperimental().getOrdenExposicionMuGrupoList().get(indexFormActual);
+            switch (orden.getIdMu().getIdMu()) {
+                case 1: //PREFERENCE
+                    return "/experimento/tareaPR";
+                case 2: //ABORT OPERATION
+                    return "/experimento/tareaAB";
+                case 3: //PROGRESS FEEDBACK
+                    return "/experimento/tareaFB";
+                default:
+                    return "";
+            }
+        } else if (indexFormActual == 4) {
+            return "/experimento/cuestionarioFinal";
+        } else {
+            return "/experimento/agradecimiento";
         }
-        return "/experimento/tareaPR";
     }
 }

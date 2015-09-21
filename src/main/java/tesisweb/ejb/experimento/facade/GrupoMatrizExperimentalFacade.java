@@ -44,16 +44,24 @@ public class GrupoMatrizExperimentalFacade extends AbstractFacade<GrupoMatrizExp
         Query q = em.createQuery("SELECT a FROM GrupoMatrizExperimental a WHERE a.idDisenho.estado=true AND a.cantidadParticipante NOT IN (SELECT MAX(b.cantidadParticipante) FROM GrupoMatrizExperimental b)");
         //LOG.log(Level.INFO, "findAllbyTipo: {0}", sql);
         List<GrupoMatrizExperimental> tr = q.getResultList();
+        GrupoMatrizExperimental grupoForUpdate;
         Random r = new Random();
         int aleatorio;
         if (!tr.isEmpty()) {
+            //Se trae solo los ordenes con cantidades iguales a la que tiene cantidad mayor
             aleatorio = r.nextInt(tr.size());
-            return tr.get(aleatorio);
+            grupoForUpdate = tr.get(aleatorio);
         } else {
+            //Se trae todos los ordenes
             q = em.createQuery("SELECT a FROM GrupoMatrizExperimental a WHERE a.idDisenho.estado=true");
             tr = q.getResultList();
             aleatorio = r.nextInt(tr.size());
-            return tr.get(aleatorio);
+            grupoForUpdate = tr.get(aleatorio);
         }
+        //Incrementar la cantidad de participantes
+        grupoForUpdate.setCantidadParticipante(grupoForUpdate.getCantidadParticipante() + 1);
+        em.merge(grupoForUpdate);
+        //retornar el grupo para el usuario
+        return grupoForUpdate;
     }
 }

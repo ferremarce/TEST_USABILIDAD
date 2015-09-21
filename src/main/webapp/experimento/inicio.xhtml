@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateExperimento.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <h:form>
+            <h1 class="ui-state-default ui-corner-all">Bienvenido</h1>          
+            <p:panel >
+                <b:alert severity="success"><strong>OK!</strong> El entorno experimental ha sido preparado con éxito.</b:alert>
+                <h:outputLabel for="usuarioExperimental" rendered="#{LoginManager.usuarioLogeado!=null}" value="Experimento de: "/>
+                <h:outputText id="usuarioExperimental" styleClass="itemResaltado1" rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.usuarioLogeado.nombres} #{LoginManager.usuarioLogeado.apellidos} [#{LoginManager.usuarioLogeado.idGrupoExperimental.nombreGrupo}]"/>
+                <p:dataList rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.usuarioLogeado.idGrupoExperimental.ordenExposicionMuGrupoList}" var="ordenUsuario">
+                    #{ordenUsuario.orden}/#{ordenUsuario.idMu}/#{ordenUsuario.estado}
+                </p:dataList>
+                Para proceder con las tareas haga click en Iniciar Tarea
+                <hr/>
+                <p:panel>
+                    <p:commandButton ajax="false" action="#{ExperimentoController.gotoFirstForm()}" value="Iniciar Tarea"/>
+                </p:panel>
+            </p:panel>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
