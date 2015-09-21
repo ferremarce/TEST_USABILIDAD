@@ -50,14 +50,6 @@ public class LoginManager implements Serializable {
     private Integer cantidadClick;
     private GrupoMatrizExperimental grupoUsuarioLogin;
 
-    public GrupoMatrizExperimental getGrupoUsuarioLogin() {
-        return grupoUsuarioLogin;
-    }
-
-    public void setGrupoUsuarioLogin(GrupoMatrizExperimental grupoUsuarioLogin) {
-        this.grupoUsuarioLogin = grupoUsuarioLogin;
-    }
-
     /**
      * Creates a new instance of LoginManager
      */
@@ -183,7 +175,7 @@ public class LoginManager implements Serializable {
     public String doAutoLogin() {
         this.cuenta = "marcelo";
         this.doLoginNoPass();
-        this.grupoUsuarioLogin = grupoMatrizExperimentalFacade.findSiguienteGrupoExperimental();
+
         return "/experimento/index";
     }
 
@@ -195,6 +187,9 @@ public class LoginManager implements Serializable {
         try {
             Usuario usuario = usuarioDAO.getUsuario(cuenta);
             if (usuario != null) {
+                this.grupoUsuarioLogin=grupoMatrizExperimentalFacade.findSiguienteGrupoExperimental();
+                usuario.setIdGrupoExperimental(this.grupoUsuarioLogin);
+                usuarioDAO.update(usuario);
                 JSFutil.addSuccessMessage("Acceso concedido");
                 JSFutil.putSessionVariable(USER_SESSION_KEY, usuario);
                 JSFutil.putSessionVariable(USER_SESSION_LANGUAGE, usuario.getIdPreference().getIdioma());

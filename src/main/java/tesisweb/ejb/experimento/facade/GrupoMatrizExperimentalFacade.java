@@ -45,12 +45,15 @@ public class GrupoMatrizExperimentalFacade extends AbstractFacade<GrupoMatrizExp
         //LOG.log(Level.INFO, "findAllbyTipo: {0}", sql);
         List<GrupoMatrizExperimental> tr = q.getResultList();
         Random r = new Random();
+        int aleatorio;
         if (!tr.isEmpty()) {
-            return tr.get(r.nextInt(tr.size()));
+            aleatorio = r.nextInt(tr.size());
+            return tr.get(aleatorio);
         } else {
             q = em.createQuery("SELECT a FROM GrupoMatrizExperimental a WHERE a.idDisenho.estado=true");
             tr = q.getResultList();
-            return tr.get(r.nextInt(tr.size()));
+            aleatorio = r.nextInt(tr.size());
+            return tr.get(aleatorio);
         }
     }
 }

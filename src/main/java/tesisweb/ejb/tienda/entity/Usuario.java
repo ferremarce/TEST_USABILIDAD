@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import tesisweb.ejb.experimento.entity.GrupoMatrizExperimental;
 
 /**
  *
@@ -69,6 +70,9 @@ public class Usuario implements Serializable {
     private DatosUsuario idDatosUsuario;
     @OneToMany(mappedBy = "idUsuario")
     private List<CuestionarioFamiliaridad> cuestionarioFamiliaridadList;
+    @JoinColumn(name = "ID_GRUPO_EXPERIMENTAL", referencedColumnName = "ID_GRUPO")
+    @ManyToOne
+    private GrupoMatrizExperimental idGrupoExperimental;
 
     public Usuario() {
     }
@@ -171,6 +175,14 @@ public class Usuario implements Serializable {
 
     public void setCuestionarioFamiliaridadList(List<CuestionarioFamiliaridad> cuestionarioFamiliaridadList) {
         this.cuestionarioFamiliaridadList = cuestionarioFamiliaridadList;
+    }
+
+    public GrupoMatrizExperimental getIdGrupoExperimental() {
+        return idGrupoExperimental;
+    }
+
+    public void setIdGrupoExperimental(GrupoMatrizExperimental idGrupoExperimental) {
+        this.idGrupoExperimental = idGrupoExperimental;
     }
 
    

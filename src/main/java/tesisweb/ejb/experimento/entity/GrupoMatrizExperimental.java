@@ -22,6 +22,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import tesisweb.ejb.tienda.entity.Usuario;
 
 /**
  *
@@ -51,6 +52,8 @@ public class GrupoMatrizExperimental implements Serializable {
     @JoinColumn(name = "ID_DISENHO", referencedColumnName = "ID_DISENHO")
     @ManyToOne
     private DisenhoExperimental idDisenho;
+    @OneToMany(mappedBy = "idGrupoExperimental")
+    private List<Usuario> usuarioList;
 
     public GrupoMatrizExperimental() {
     }
@@ -98,6 +101,14 @@ public class GrupoMatrizExperimental implements Serializable {
 
     public void setIdDisenho(DisenhoExperimental idDisenho) {
         this.idDisenho = idDisenho;
+    }
+
+    public List<Usuario> getUsuarioList() {
+        return usuarioList;
+    }
+
+    public void setUsuarioList(List<Usuario> usuarioList) {
+        this.usuarioList = usuarioList;
     }
 
     @Override

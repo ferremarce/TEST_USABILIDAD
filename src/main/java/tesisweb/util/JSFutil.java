@@ -263,6 +263,7 @@ public class JSFutil implements Serializable {
      */
     public static void putSessionVariable(String variable, Object valor) {
         FacesContext context = FacesContext.getCurrentInstance();
+        removeSessionVariable(variable);
         context.getExternalContext().getSessionMap().put(variable, valor);
     }
 
