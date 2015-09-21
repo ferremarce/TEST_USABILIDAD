@@ -133,7 +133,7 @@ public class GrupoMatrizExperimental implements Serializable {
 
     @Override
     public String toString() {
-        return "tesisweb.ejb.experimento.entity.GrupoMatrizExperimental[ idGrupo=" + idGrupo + " ]";
+        return this.nombreGrupo;
     }
 
 }

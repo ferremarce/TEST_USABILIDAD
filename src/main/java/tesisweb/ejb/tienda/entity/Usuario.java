@@ -6,6 +6,7 @@ package tesisweb.ejb.tienda.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -56,7 +57,7 @@ public class Usuario implements Serializable {
     @ManyToOne
     private Rol idRol;
     @JoinColumn(name = "ID_PREFERENCE", referencedColumnName = "ID_PREFERENCE")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Preference idPreference;
     @JoinColumn(name = "ID_SUB_ROL", referencedColumnName = "ID_SUB_TIPO")
     @ManyToOne
@@ -66,7 +67,7 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "ID_DATOS_USUARIO", referencedColumnName = "ID_DATOS_USUARIO")
     @ManyToOne
     private DatosUsuario idDatosUsuario;
-    @OneToMany(mappedBy = "idUsuario")
+    @OneToMany(mappedBy = "idUsuario", cascade = CascadeType.REMOVE)
     private List<CuestionarioFamiliaridad> cuestionarioFamiliaridadList;
     @JoinColumn(name = "ID_GRUPO_EXPERIMENTAL", referencedColumnName = "ID_GRUPO")
     @ManyToOne

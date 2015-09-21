@@ -392,11 +392,11 @@ public class LoginManager implements Serializable {
             HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
             String userAgent = req.getHeader("user-agent");
             String accept = req.getHeader("Accept");
-//Agregar prodcutos al carrito
+            //Agregar prodcutos al carrito
             if (carritoFE.getListaOrdenCarrito().isEmpty()) {
                 for (Articulo art : articuloDAO.findAll()) {
                     carritoFE.doAgregarCarrito(art);
-                    if (carritoFE.getListaOrdenCarrito().size() > 2) {
+                    if (carritoFE.getListaOrdenCarrito().size() > 1) {
                         break;
                     }
                 }
