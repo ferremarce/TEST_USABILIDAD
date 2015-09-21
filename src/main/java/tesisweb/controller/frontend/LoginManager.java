@@ -182,7 +182,7 @@ public class LoginManager implements Serializable {
     }
 
     public String doAutoLogin() {
-        this.cuenta = "marcelo";
+        this.cuenta = "jmferreira";
         this.doLoginNoPass();
 
         return "/experimento/inicio";

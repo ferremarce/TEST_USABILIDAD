@@ -13,7 +13,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -32,6 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "MecanismoUsabilidad.findAll", query = "SELECT m FROM MecanismoUsabilidad m")})
 public class MecanismoUsabilidad implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +49,8 @@ public class MecanismoUsabilidad implements Serializable {
     private byte[] informacionAdicional;
     @OneToMany(mappedBy = "idMu")
     private List<OrdenExposicionMuGrupo> OrdenExposicionMuGrupoList;
+    @OneToMany(mappedBy = "idMecanismoUsabilidad")
+    private List<PreguntaUsabilidad> preguntaUsabilidadList;
 
     public MecanismoUsabilidad() {
     }
@@ -76,6 +81,14 @@ public class MecanismoUsabilidad implements Serializable {
 
     public void setInformacionAdicional(byte[] informacionAdicional) {
         this.informacionAdicional = informacionAdicional;
+    }
+
+    public List<PreguntaUsabilidad> getPreguntaUsabilidadList() {
+        return preguntaUsabilidadList;
+    }
+
+    public void setPreguntaUsabilidadList(List<PreguntaUsabilidad> preguntaUsabilidadList) {
+        this.preguntaUsabilidadList = preguntaUsabilidadList;
     }
 
     @XmlTransient
@@ -111,5 +124,5 @@ public class MecanismoUsabilidad implements Serializable {
     public String toString() {
         return this.nombreMecanismo;
     }
-    
+
 }

@@ -61,6 +61,8 @@ body{
 
 .panelNoBorder, .panelNoBorder tr, .panelNoBorder td{
     border: none !important;   
+    text-align: center;
+    vertical-align: top;
 }
 
 .itemResaltado1 { 

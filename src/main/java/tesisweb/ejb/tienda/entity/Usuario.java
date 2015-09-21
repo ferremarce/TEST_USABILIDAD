@@ -18,9 +18,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import tesisweb.ejb.experimento.entity.CuestionarioUsabilidad;
 import tesisweb.ejb.experimento.entity.GrupoMatrizExperimental;
 
 /**
@@ -72,6 +72,8 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "ID_GRUPO_EXPERIMENTAL", referencedColumnName = "ID_GRUPO")
     @ManyToOne
     private GrupoMatrizExperimental idGrupoExperimental;
+    @OneToMany(mappedBy = "idUsuario")
+    private List<CuestionarioUsabilidad> cuestionarioUsabilidadList;
 
     public Usuario() {
     }
@@ -182,6 +184,14 @@ public class Usuario implements Serializable {
 
     public void setIdGrupoExperimental(GrupoMatrizExperimental idGrupoExperimental) {
         this.idGrupoExperimental = idGrupoExperimental;
+    }
+
+    public List<CuestionarioUsabilidad> getCuestionarioUsabilidadList() {
+        return cuestionarioUsabilidadList;
+    }
+
+    public void setCuestionarioUsabilidadList(List<CuestionarioUsabilidad> cuestionarioUsabilidadList) {
+        this.cuestionarioUsabilidadList = cuestionarioUsabilidadList;
     }
 
    
