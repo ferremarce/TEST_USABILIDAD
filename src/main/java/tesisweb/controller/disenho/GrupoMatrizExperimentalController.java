@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 import javax.inject.Inject;
+import tesisweb.ejb.experimento.entity.DisenhoExperimental;
 import tesisweb.ejb.experimento.entity.GrupoMatrizExperimental;
 import tesisweb.ejb.experimento.facade.GrupoMatrizExperimentalFacade;
 import tesisweb.util.JSFutil;
@@ -33,6 +34,7 @@ public class GrupoMatrizExperimentalController implements Serializable {
     @Inject
     private GrupoMatrizExperimentalFacade grupoMatrizExperimentalFacade;
     private GrupoMatrizExperimental grupoMatrizExperimental;
+    private DisenhoExperimental disenhoExperimental;
     private List<GrupoMatrizExperimental> listaGrupoMatrizExperimental;
 
     /**
@@ -50,6 +52,14 @@ public class GrupoMatrizExperimentalController implements Serializable {
         this.grupoMatrizExperimental = grupoMatrizExperimental;
     }
 
+    public DisenhoExperimental getDisenhoExperimental() {
+        return disenhoExperimental;
+    }
+
+    public void setDisenhoExperimental(DisenhoExperimental disenhoExperimental) {
+        this.disenhoExperimental = disenhoExperimental;
+    }
+
     public List<GrupoMatrizExperimental> getListaGrupoMatrizExperimental() {
         return listaGrupoMatrizExperimental;
     }
@@ -60,7 +70,7 @@ public class GrupoMatrizExperimentalController implements Serializable {
     //METODOS DE ACCION
 
     public String doListar() {
-        this.listaGrupoMatrizExperimental = grupoMatrizExperimentalFacade.findAll();
+        this.listaGrupoMatrizExperimental = grupoMatrizExperimentalFacade.findAllbyDisenho(this.disenhoExperimental.getIdDisenho());
         if (this.listaGrupoMatrizExperimental.size() > 0) {
             JSFutil.addSuccessMessage(this.listaGrupoMatrizExperimental.size() + " registro/s recuperado/s");
         } else {
@@ -68,7 +78,12 @@ public class GrupoMatrizExperimentalController implements Serializable {
         }
         return "/disenho/ListarDisenho";
     }
-    
+
+    public String doVerMatrizGrupo(DisenhoExperimental de) {
+        this.disenhoExperimental = de;
+        this.doListar();
+        return "/disenho/VerMatrizGrupo";
+    }
     //METODOS LISTENER
 
 }

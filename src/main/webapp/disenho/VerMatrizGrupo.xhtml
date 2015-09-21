@@ -7,49 +7,62 @@
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
-
     <ui:define name="content">
-
-        <h:form>
-            <p:dataTable value="#{DisenhoExperimentalController.disenhoExperimental.grupoMatrizExperimentalList}" var="item">
-                <p:columnGroup type="header">
-                    <p:row>
-                        <p:column headerText="ORDEN" />
-                        <p:column headerText="MECANISMO" />
-                        <p:column headerText="ESTADO" />
-                    </p:row>
-                </p:columnGroup>
-                <p:subTable var="ordenExposicion" value="#{item.ordenExposicionMuGrupoList}">
+        <h:form id="formMatriz">
+            <p:growl globalOnly="true" id="messages"/>
+            <h:outputText style="font-size: 22px !important;font-weight: bold" value="#{GrupoMatrizExperimentalController.disenhoExperimental.descripcionDisenho}-#{GrupoMatrizExperimentalController.disenhoExperimental.contexto}"/>
+            
+            <p:dataTable id="dataTableGrupo" value="#{GrupoMatrizExperimentalController.listaGrupoMatrizExperimental}" var="item" emptyMessage="#{bundle.SinRegistrosMensaje}">
+                <p:column style="width:16px">
+                    <p:rowToggler />
+                </p:column>
+                <p:column>
                     <f:facet name="header">
-                        <p:panelGrid columns="2">
-                            <h:outputText value="#{item.nombreGrupo} - [Participantes: #{item.cantidadParticipante}]" />
-                            <p:commandButton value="Agregar Orden" oncomplete="PF('ordenExposicionMU').show();"/>
-                        </p:panelGrid>
+                        <h:outputText value="Grupo"/>
                     </f:facet>
-                    <p:column>
-                        <h:outputText value="#{ordenExposicion.orden}" />
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="#{ordenExposicion.idMu.nombreMecanismo}" />
-                    </p:column>
-                    <p:column>
-                        <h:outputText value="#{ordenExposicion.estado}" />
-                    </p:column>
-                </p:subTable>
+                    <h:outputText value="#{item.nombreGrupo} - [Participantes: #{item.cantidadParticipante}]" />
+                </p:column>
+                <p:column>
+                    <p:commandButton immediate="true" value="Agregar Orden" update=":formMatriz:panelOrdenExposicion" action="#{OrdenExposicionMuGrupoController.doCrearFormDialog(item)}" oncomplete="PF('ordenExposicionMU').show();"/>
+                </p:column>
+                <p:rowExpansion>
+                    <p:dataTable id="dataTableOrdenExposicion" var="ordenExposicion" value="#{item.ordenExposicionMuGrupoList}">
+                        <p:column headerText="Orden">
+                            <h:outputText value="#{ordenExposicion.orden}" />
+                        </p:column>
+                        <p:column headerText="Mecanismo de Usabilidad">
+                            <h:outputText value="#{ordenExposicion.idMu.nombreMecanismo}" />
+                        </p:column>
+                        <p:column headerText="Activado?">
+                            <h:outputText value="#{ordenExposicion.estado}" />
+                        </p:column>
+                        <p:column>
+                            <p:commandButton immediate="true" value="Borrar" update="dataTableOrdenExposicion" action="#{OrdenExposicionMuGrupoController.doBorrar(ordenExposicion)}"/>
+                        </p:column>
+                    </p:dataTable>
+                </p:rowExpansion>
             </p:dataTable>
             <p:dialog header="Orden de Exposición de MUs" widgetVar="ordenExposicionMU" minHeight="40">
-                <p:panelGrid columns="2">
-                    <p:outputLabel value="Orden:" for="orden" />
-                    <p:inputText size="10" id="orden" value="#{OrdenExposicionMuGrupoController.ordenExposicionMuGrupo.orden}" title="Orden" />
-                    <p:outputLabel value="IdMu:" for="idMu" />
-                    <p:selectOneMenu converter="MecanismoUsabilidadConverter" id="idMu" value="#{OrdenExposicionMuGrupoController.ordenExposicionMuGrupo.idMu}" >
-                        <f:selectItems value="#{MecanismoUsabilidadController.mecanismoUsabilidadSet}"/>
-                    </p:selectOneMenu>
-                    <p:outputLabel value="Estado:" for="estado" />
-                    <p:selectBooleanCheckbox id="estado" value="#{OrdenExposicionMuGrupoController.ordenExposicionMuGrupo.estado}" />
-                </p:panelGrid>
+                <h:panelGrid id="panelOrdenExposicion">
+                    <h:outputText value="Grupo: #{OrdenExposicionMuGrupoController.ordenExposicionMuGrupo.idGrupo.nombreGrupo}"/>
+                    <p:panelGrid columns="3">
+                        <p:outputLabel value="Orden:" for="orden" />
+                        <p:inputText size="10" id="orden" value="#{OrdenExposicionMuGrupoController.ordenExposicionMuGrupo.orden}" title="Orden" required="true" requiredMessage="#{bundle.Requerido}" />
+                        <p:message for="orden"/>
+                        <p:outputLabel value="Mecanismo de Usabilidad:" for="idMu" />
+                        <p:selectOneMenu converter="MecanismoUsabilidadConverter" id="idMu" value="#{OrdenExposicionMuGrupoController.ordenExposicionMuGrupo.idMu}" required="true" requiredMessage="#{bundle.Requerido}" >
+                            <f:selectItems value="#{MecanismoUsabilidadController.mecanismoUsabilidadSet}"/>
+                        </p:selectOneMenu>
+                        <p:message for="idMu"/>
+                        <p:outputLabel value="Activado?:" for="estado" />
+                        <p:selectBooleanCheckbox id="estado" value="#{OrdenExposicionMuGrupoController.ordenExposicionMuGrupo.estado}" required="true" requiredMessage="#{bundle.Requerido}" />
+                        <p:message for="estado"/>
+                    </p:panelGrid>
+                    <p:panel>
+                        <p:commandButton value="Aceptar" update="@form" action="#{OrdenExposicionMuGrupoController.doGuardar()}"/>
+                    </p:panel>
+                </h:panelGrid>
             </p:dialog>
-
         </h:form>
     </ui:define>
 </ui:composition>

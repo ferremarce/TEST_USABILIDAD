@@ -69,10 +69,7 @@ public class DisenhoExperimentalController implements Serializable {
         }
         return "/disenho/ListarDisenho";
     }
-    public String doVerMatrizGrupo(DisenhoExperimental de){
-        this.disenhoExperimental=de;
-        return "/disenho/VerMatrizGrupo"; 
-    }
+    
     //METODOS LISTENER
 
 }

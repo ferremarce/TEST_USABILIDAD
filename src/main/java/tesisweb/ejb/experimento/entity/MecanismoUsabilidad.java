@@ -109,7 +109,7 @@ public class MecanismoUsabilidad implements Serializable {
 
     @Override
     public String toString() {
-        return "tesisweb.ejb.experimento.entity.MecanismoUsabilidad[ idMu=" + idMu + " ]";
+        return this.nombreMecanismo;
     }
     
 }
