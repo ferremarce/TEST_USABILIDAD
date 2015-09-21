@@ -14,12 +14,17 @@ import java.util.logging.Logger;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
 import tesisweb.controller.frontend.LoginManager;
+import tesisweb.ejb.experimento.entity.GrupoMatrizExperimental;
+import tesisweb.ejb.experimento.entity.OrdenExposicionMuGrupo;
+import tesisweb.ejb.experimento.facade.GrupoMatrizExperimentalFacade;
 import tesisweb.ejb.tienda.entity.CuestionarioFamiliaridad;
+import tesisweb.ejb.tienda.entity.Preference;
 import tesisweb.ejb.tienda.entity.Usuario;
 import tesisweb.ejb.tienda.facade.CuestionarioFamiliaridadDAO;
 import tesisweb.ejb.tienda.facade.PreferenceDAO;
 import tesisweb.ejb.tienda.facade.RolDAO;
 import tesisweb.ejb.tienda.facade.UsuarioDAO;
+import tesisweb.usabilidad.MUController;
 import tesisweb.util.JSFutil;
 import tesisweb.util.JSFutil.PersistAction;
 
@@ -49,8 +54,13 @@ public class CuestionarioFamiliaridadController implements Serializable {
     RolDAO rolDAO;
     @Inject
     LoginManager loginManager;
+    @Inject
+    private GrupoMatrizExperimentalFacade grupoMatrizExperimentalFacade;
+    @Inject
+    MUController muController;
     private CuestionarioFamiliaridad cuestionarioFamiliaridad;
     private List<CuestionarioFamiliaridad> listaCuestionarioFamiliaridad;
+    private GrupoMatrizExperimental grupoUsuarioLogin;
 
     /**
      * Creates a new instance of CuestionarioFamiliaridadController
@@ -85,7 +95,11 @@ public class CuestionarioFamiliaridadController implements Serializable {
             Usuario u = new Usuario();
             u.setCuenta(this.cuestionarioFamiliaridad.getAlias());
             u.setEsActivo(Boolean.TRUE);
-            u.setIdPreference(preferenceDAO.find(0)); //PREFERENCIA SUCIA
+            
+            Preference p=preferenceDAO.find(0);
+            p.setIdPreference(null);
+            preferenceDAO.create(p);
+            u.setIdPreference(p); //PREFERENCIA SUCIA
             u.setIdRol(rolDAO.find(5)); //SUJETO EXPERIMENTAL
             u.setNombres(this.cuestionarioFamiliaridad.getAlias());
             u.setApellidos("SUJETO EXPERIMENTAL");
@@ -94,11 +108,28 @@ public class CuestionarioFamiliaridadController implements Serializable {
             this.cuestionarioFamiliaridad.setIdUsuario(u);
             //Crear el cuestionario asociado a este usuario
             cuestionarioFamiliaridadDAO.create(cuestionarioFamiliaridad);
-
+            //Recuperar un grupo aleatoriamente y asignar al usuario
+            this.grupoUsuarioLogin = grupoMatrizExperimentalFacade.findSiguienteGrupoExperimental();
+            u.setIdGrupoExperimental(this.grupoUsuarioLogin);
+            usuarioDAO.update(u);
+            //Activar o desactivar los mecanismos de usabilidad
+            for (OrdenExposicionMuGrupo orden : this.grupoUsuarioLogin.getOrdenExposicionMuGrupoList()) {
+                switch (orden.getIdMu().getIdMu()) {
+                    case 1: //PREFERENCE
+                        this.muController.setMuPreference(orden.getEstado());
+                        break;
+                    case 2: //ABORT OPERATION
+                        this.muController.setMuAbortOperation(orden.getEstado());
+                        break;
+                    case 3: //PROGRESS FEEDBACK
+                        this.muController.setMuProgressFeedBack(orden.getEstado());
+                        break;
+                }
+            }
             JSFutil.addSuccessMessage("Acceso concedido");
             JSFutil.putSessionVariable(USER_SESSION_KEY, u);
             JSFutil.putSessionVariable(USER_SESSION_LANGUAGE, u.getIdPreference().getIdioma());
-            return "/experimento/tareaPR";
+            return "/experimento/inicio";
         } catch (EJBException ex) {
             String msg = "";
             Throwable cause = ex.getCause();

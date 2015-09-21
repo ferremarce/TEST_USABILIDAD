@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateExperimento.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <h:form>
+            <p:commandButton immediate="true" ajax="false" action="#{LoginManager.doAutoLogin()}" value="AutoLogin"/>
+
+            <h1 class="ui-state-default ui-corner-all">Bienvenido</h1>          
+            <p:panel >
+                <p:panel>
+                    Gracias por participar en la encuesta para evaluar la usabilidad de una aplicación Web.<p/>
+                    Esta prueba sólo la puedes hacer una vez. La prueba consta de 2 a 3 tareas que se harán sobre la aplicación Web que gestiona una tienda virtual. <br/>
+                    En ningún momento durante TODA la prueba pulses el botón <b>"RETROCEDER O ATRÁS"</b> del navegador Web donde estás visualizando esta página. <br/>
+                    El tiempo estimado para hacer las tareas es de 7-12 minutos. 
+                    <p/>
+                    Una vez empieces la prueba la debes terminar sin interrupciones. No te debes distraer con cualquier otra cosa, como por ejemplo el messenger, whatsapp, skype, etc.
+                    <p/>Se te va a controlar el tiempo que tardas en finalizar las tareas y si inviertes tiempo en cosas distintas a la prueba, los tiempos no serán realistas. Por tanto, es recomendable que apagues el messenger, skype u otro mecanismo de mensajería. 
+                    <p/>
+                    Al final de todas las tareas deberás contestar a un cuestionario en base a la experiencia obtenida en el uso del sistema.
+                    <p/>
+                    A continuación, tienes un cuestionario para recoger tus datos personales. Una vez lo finalices, pulsa sobre el botón "siguiente" y ya puedes empezar la primera tarea. 
+                    <p/>
+                </p:panel>
+                <p:panel header="Cuestionario">
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Nombre o Alias" for="alias" />
+                        <p:inputText size="30" id="alias" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.alias}" title="Alias" required="true" requiredMessage="#{bundle.Requerido}"/>
+                        <p:outputLabel value="Sexo:" for="sexo" />
+                        <p:selectOneRadio  id="sexo" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.sexo}" required="true" requiredMessage="#{bundle.Requerido}">
+                            <f:selectItem itemLabel="MASCULINO&nbsp;&nbsp;&nbsp;" itemValue="MASCULINO" />
+                            <f:selectItem itemLabel="FEMENINO&nbsp;&nbsp;&nbsp;" itemValue="FEMENINO" />
+                        </p:selectOneRadio>
+                        <p:outputLabel value="Edad" for="edad" />
+                        <p:selectOneRadio id="edad" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.edad}" required="true" requiredMessage="#{bundle.Requerido}" >
+                            <f:selectItem itemLabel="MENOS DE 18&nbsp;&nbsp;&nbsp;" itemValue="MENOS DE 18" />
+                            <f:selectItem itemLabel="18 - 30&nbsp;&nbsp;&nbsp;" itemValue="18 - 30" />
+                            <f:selectItem itemLabel="31 - 40&nbsp;&nbsp;&nbsp;" itemValue="31 - 40" />
+                            <f:selectItem itemLabel="41 - 50&nbsp;&nbsp;&nbsp;" itemValue="41 - 50" />
+                            <f:selectItem itemLabel="55 O MAS&nbsp;&nbsp;&nbsp;" itemValue="55 O MAS" />
+                        </p:selectOneRadio>
+                        <p:outputLabel value="Idioma conocidos" for="idioma" />
+                        <p:selectOneRadio  id="idioma" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.idioma}" required="true" requiredMessage="#{bundle.Requerido}">
+                            <f:selectItem itemLabel="CASTELLANO&nbsp;&nbsp;&nbsp;" itemValue="CASTELLANO" />
+                            <f:selectItem itemLabel="INGLÉS&nbsp;&nbsp;&nbsp;" itemValue="INGLÉS" />
+                        </p:selectOneRadio>
+                        <p:outputLabel value="Eres profesional en el Área de Informática/Computación" for="esProfesional" />
+                        <p:selectOneRadio   id="esProfesional" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.esProfesional}" required="true" requiredMessage="#{bundle.Requerido}" >
+                            <f:selectItem itemLabel="SI&nbsp;&nbsp;&nbsp;" itemValue="SI" />
+                            <f:selectItem itemLabel="NO&nbsp;&nbsp;&nbsp;" itemValue="NO" />
+                        </p:selectOneRadio>
+                        <p:outputLabel value="Profesión/Ocupación:" for="profesion" />
+                        <p:inputText size="30" id="profesion" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.profesion}" title="Profesion" />
+                        <p:outputLabel value="Donde usas internet mayormente?" for="dondeUsasInternet" />
+                        <p:selectOneRadio id="dondeUsasInternet" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.dondeUsasInternet}" required="true" requiredMessage="#{bundle.Requerido}" >
+                            <f:selectItem itemLabel="EN LA CASA&nbsp;&nbsp;&nbsp;" itemValue="EN LA CASA" />
+                            <f:selectItem itemLabel="EN EL TRABAJO&nbsp;&nbsp;&nbsp;" itemValue="EN EL TRABAJO" />
+                            <f:selectItem itemLabel="NO USO INTERNET&nbsp;&nbsp;&nbsp;" itemValue="NO USO INTERNET" />
+                        </p:selectOneRadio>
+                        <p:outputLabel value="Para qué usas internet?" for="porqueUsasInternet" />
+                        <p:selectOneRadio   id="porqueUsasInternet" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.porqueUsasInternet}" required="true" requiredMessage="#{bundle.Requerido}" >
+                            <f:selectItem itemLabel="COMPRAS&nbsp;&nbsp;&nbsp;" itemValue="COMPRAS" />
+                            <f:selectItem itemLabel="TRABAJO&nbsp;&nbsp;&nbsp;" itemValue="TRABAJO" />
+                            <f:selectItem itemLabel="EDUCACION&nbsp;&nbsp;&nbsp;" itemValue="EDUCACION" />
+                            <f:selectItem itemLabel="ENTRETENIMIENTO&nbsp;&nbsp;&nbsp;" itemValue="ENTRETENIMIENTO" />
+                        </p:selectOneRadio>
+                        <p:outputLabel value="Que aplicaciones web usas con mayor frecuencia?" for="queAppUsa" />
+                        <p:selectOneRadio   id="queAppUsa" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.queAppUsa}" required="true" requiredMessage="#{bundle.Requerido}" >
+                            <f:selectItem itemLabel="FACEBOOK&nbsp;&nbsp;&nbsp;" itemValue="FACEBOOK" />
+                            <f:selectItem itemLabel="TWITTER&nbsp;&nbsp;&nbsp;" itemValue="TWITTER" />
+                            <f:selectItem itemLabel="GOOGLE+&nbsp;&nbsp;&nbsp;" itemValue="GOOGLE" />
+                            <f:selectItem itemLabel="NINGUNO&nbsp;&nbsp;&nbsp;" itemValue="NINGUNO" />
+                        </p:selectOneRadio>
+                        <p:outputLabel value="Has realizado compras personalmente por internet?" for="comprasPersonales" />
+                        <p:selectOneRadio   id="comprasPersonales" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.comprasPersonales}" required="true" requiredMessage="#{bundle.Requerido}" >
+                            <f:selectItem itemLabel="NUNCA&nbsp;&nbsp;&nbsp;" itemValue="NUNCA" />
+                            <f:selectItem itemLabel="RARA VEZ&nbsp;&nbsp;&nbsp;" itemValue="RARA VEZ" />
+                            <f:selectItem itemLabel="A VECES&nbsp;&nbsp;&nbsp;" itemValue="A VECES" />
+                            <f:selectItem itemLabel="CASI SIEMPRE&nbsp;&nbsp;&nbsp;" itemValue="CASI SIEMPRE" />
+                            <f:selectItem itemLabel="SIEMPRE&nbsp;&nbsp;&nbsp;" itemValue="SIEMPRE" />
+                        </p:selectOneRadio>
+                        <p:outputLabel value="Has realizado compras por internet con ayuda de intermediarios?" for="comprasIntermediario" />
+                        <p:selectOneRadio   id="comprasIntermediario" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.comprasIntermediario}" required="true" requiredMessage="#{bundle.Requerido}" >
+                            <f:selectItem itemLabel="NUNCA&nbsp;&nbsp;&nbsp;" itemValue="NUNCA" />
+                            <f:selectItem itemLabel="RARA VEZ&nbsp;&nbsp;&nbsp;" itemValue="RARA VEZ" />
+                            <f:selectItem itemLabel="A VECES&nbsp;&nbsp;&nbsp;" itemValue="A VECES" />
+                            <f:selectItem itemLabel="CASI SIEMPRE&nbsp;&nbsp;&nbsp;" itemValue="CASI SIEMPRE" />
+                            <f:selectItem itemLabel="SIEMPRE&nbsp;&nbsp;&nbsp;" itemValue="SIEMPRE" />
+                        </p:selectOneRadio>
+                        <p:outputLabel value="Cuales de las tiendas en internet has usado para buscar o comprar productos?" for="tiendasPreferidas" />
+                        <p:selectOneRadio  id="tiendasPreferidas" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.tiendasPreferidas}" required="true" requiredMessage="#{bundle.Requerido}" >
+                            <f:selectItem itemLabel="AMAZON&nbsp;&nbsp;&nbsp;" itemValue="AMAZON" />
+                            <f:selectItem itemLabel="eBAY&nbsp;&nbsp;&nbsp;" itemValue="eBAY" />
+                            <f:selectItem itemLabel="OTRAS TIENDAS&nbsp;&nbsp;&nbsp;" itemValue="OTRAS TIENDAS" />
+                            <f:selectItem itemLabel="NINGUNO&nbsp;&nbsp;&nbsp;" itemValue="NINGUNO" />
+                        </p:selectOneRadio>
+                        <p:outputLabel value="Qué problemas percibes cuando compras o quieres comprar por internet?" for="problemasPercibidos" />
+                        <p:selectOneRadio  id="problemasPercibidos" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.problemasPercibidos}" required="true" requiredMessage="#{bundle.Requerido}" >
+                            <f:selectItem itemLabel="Los productos se presentan con precios inesperados (impuestos, tasas, envíos, etc)&nbsp;&nbsp;&nbsp;" itemValue="PRECIOS INESPERADOS" />
+                            <f:selectItem itemLabel="Las tiendas físicas ofrecen mejores precios y promociones&nbsp;&nbsp;&nbsp;" itemValue="TIENDA FISICA MEJOR" />
+                            <f:selectItem itemLabel="Siento inseguridad en el pago (tarjetas de crédito, etc)&nbsp;&nbsp;&nbsp;" itemValue="INSEGURIDAD EN EL PAGO" />
+                            <f:selectItem itemLabel="Tengo dudas sobre el soporte y la garantía de los productos&nbsp;&nbsp;&nbsp;" itemValue="DUDAS SOBRE EL PRODUCTO" />
+                            <f:selectItem itemLabel="OTROS&nbsp;&nbsp;&nbsp;" itemValue="OTROS" />
+                        </p:selectOneRadio>
+                        <p:outputLabel value="En líneas generales, considera una opción atractiva las compras por internet?" for="esAtractivoCompra" />
+                        <p:selectOneRadio   id="esAtractivoCompra" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.esAtractivoCompra}" required="true" requiredMessage="#{bundle.Requerido}" >
+                            <f:selectItem itemLabel="SI&nbsp;&nbsp;&nbsp;" itemValue="SI" />
+                            <f:selectItem itemLabel="NO&nbsp;&nbsp;&nbsp;" itemValue="NO" />
+                        </p:selectOneRadio>
+                    </p:panelGrid>
+                    <p:commandButton ajax="false" action="#{CuestionarioFamiliaridadController.doGuardar()}" value="Siguiente"/>
+                </p:panel>
+            </p:panel>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

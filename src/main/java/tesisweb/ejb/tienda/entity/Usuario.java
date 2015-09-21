@@ -27,9 +27,7 @@ import tesisweb.ejb.experimento.entity.GrupoMatrizExperimental;
  * @author jmferreira
  */
 @Entity
-@Table(name = "USUARIO",
-        uniqueConstraints
-        = @UniqueConstraint(columnNames = {"CUENTA"}))
+@Table(name = "USUARIO")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")})
@@ -49,7 +47,7 @@ public class Usuario implements Serializable {
     @Column(name = "CONTRASENHA")
     private String contrasenha;
     @Size(max = 255)
-    @Column(unique = true, name = "CUENTA")
+    @Column(name = "CUENTA")
     private String cuenta;
     @Size(max = 255)
     @Column(name = "NOMBRES")

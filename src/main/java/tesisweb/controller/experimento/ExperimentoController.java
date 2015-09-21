@@ -46,7 +46,7 @@ public class ExperimentoController implements Serializable {
                 default:
                     return "";
             }
-        } else if (indexFormActual == 4) {
+        } else if (indexFormActual == 3) {
             return "/experimento/cuestionarioFinal";
         } else {
             return "/experimento/agradecimiento";
