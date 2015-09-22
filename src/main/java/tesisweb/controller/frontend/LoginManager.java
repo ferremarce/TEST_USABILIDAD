@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.ToggleEvent;
 import tesisweb.controller.disenho.GrupoMatrizExperimentalController;
 import tesisweb.ejb.experimento.entity.GrupoMatrizExperimental;
@@ -57,12 +58,30 @@ public class LoginManager implements Serializable {
     private Boolean adminCollapse = Boolean.FALSE;
     private Boolean clientCollapse = Boolean.FALSE;
     private Integer cantidadClick;
+    private Integer contadorPR = 0;
+    private Boolean contadorPRhabilitado = Boolean.TRUE;
     private GrupoMatrizExperimental grupoUsuarioLogin;
 
     /**
      * Creates a new instance of LoginManager
      */
     public LoginManager() {
+    }
+
+    public Integer getContadorPR() {
+        return contadorPR;
+    }
+
+    public void setContadorPR(Integer contadorPR) {
+        this.contadorPR = contadorPR;
+    }
+
+    public Boolean getContadorPRhabilitado() {
+        return contadorPRhabilitado;
+    }
+
+    public void setContadorPRhabilitado(Boolean contadorPRhabilitado) {
+        this.contadorPRhabilitado = contadorPRhabilitado;
     }
 
     public Integer getIntento() {
@@ -380,6 +399,22 @@ public class LoginManager implements Serializable {
         this.cantidadClick++;
     }
 
+    public void incrementarContadorPreference() {
+        if (this.contadorPR == null) {
+            this.contadorPR = 0;
+        }
+        this.contadorPR++;
+        if (this.contadorPR > 5 && this.contadorPRhabilitado) {
+            this.contadorPR = 0;
+            RequestContext context = RequestContext.getCurrentInstance();
+            context.execute("PF('msgPreference').show();");
+        }
+    }
+
+    public void doDetenerContadorPreference() {
+        this.contadorPRhabilitado = Boolean.FALSE;
+    }
+
     public void init() {
         try {
             /**
@@ -412,7 +447,6 @@ public class LoginManager implements Serializable {
                 //No se puede hacer el experimento si el usuario no esta logeado en el sistema              
                 response.sendRedirect(req.getContextPath() + "/404.xhtml");
             }
-
         } catch (NumberFormatException | NullPointerException e) {
         } catch (IOException ex) {
             Logger.getLogger(LoginManager.class.getName()).log(Level.SEVERE, null, ex);

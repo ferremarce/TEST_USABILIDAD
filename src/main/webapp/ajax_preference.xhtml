@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:p="http://primefaces.org/ui"
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core">
+    <ui:fragment>
+        <h:form>
+            <h:outputText id="txt_count" value="Contador: #{LoginManager.contadorPR}" />
+            <p:poll global="false" interval="3" rendered="#{LoginManager.contadorPRhabilitado}" listener="#{LoginManager.incrementarContadorPreference()}" update="@this, txt_count" />
+            <p:commandButton type="button" value="Mensaje" onclick="PF('msgPreference').show()"/>
+            <p:dialog id="msgPreference" header="Tiempo agotado..." closeOnEscape="true" widgetVar="msgPreference" >
+                <p:panel>
+                    <h:panelGrid>
+                        <h:outputText style="font-weight: bold; color: #990000; font-size: 20px" value="El tiempo ha superado el límite permitido..."/>
+                        <h:outputText style="font-size: 20px" value="Le parece si pasamos a la siguiente etapa?"/>
+                    </h:panelGrid>
+                    <f:facet name="footer">
+                        <p:commandButton  style="font-size: 20px" value="De acuerdo" action="#{LoginManager.doDetenerContadorPreference()}" oncomplete="PF('msgPreference').hide()"/>
+                        <p:commandButton  style="font-size: 20px" value="Necesito más tiempo" type="button" onclick="PF('msgPreference').hide()"  />
+                    </f:facet>
+                </p:panel>
+            </p:dialog>
+        </h:form>
+    </ui:fragment>
+</html>
+
