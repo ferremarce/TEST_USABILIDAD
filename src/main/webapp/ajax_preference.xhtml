@@ -5,20 +5,24 @@
        xmlns:ui="http://java.sun.com/jsf/facelets"
        xmlns:h="http://java.sun.com/jsf/html"
        xmlns:f="http://java.sun.com/jsf/core">
-    <ui:fragment>
+    <ui:fragment>          
         <h:form>
             <h:outputText id="txt_count" value="Contador: #{LoginManager.contadorPR}" />
             <p:poll global="false" interval="3" rendered="#{LoginManager.contadorPRhabilitado}" listener="#{LoginManager.incrementarContadorPreference()}" update="@this, txt_count" />
-            <p:commandButton type="button" value="Mensaje" onclick="PF('msgPreference').show()"/>
-            <p:dialog id="msgPreference" header="Tiempo agotado..." closeOnEscape="true" widgetVar="msgPreference" >
+            <p:dialog id="msgPreference" closeOnEscape="true" widgetVar="msgPreference" >
+                <f:facet name="header">
+                    <h:outputText value="Tiempo agotado..."/>
+                </f:facet>
                 <p:panel>
-                    <h:panelGrid>
-                        <h:outputText style="font-weight: bold; color: #990000; font-size: 20px" value="El tiempo ha superado el límite permitido..."/>
-                        <h:outputText style="font-size: 20px" value="Le parece si pasamos a la siguiente etapa?"/>
+                    <h:panelGrid width="600">
+                        <h:outputText style="font-weight: bold; color: #990000; font-size: 20px !important" value="El tiempo ha superado el límite permitido..."/>
+                        <h:outputText style="font-size: 20px !important" rendered="#{MUController.muPreference}" value="Fijate que tienes una opción de personalización en la parte superior de la pantalla, donde puedes configurar el sistema y adaptarlo mejor a tus preferencias. Si ya lo hiciste, entonces..."/>
+                        <h:outputText style="font-size: 20px !important" rendered="#{!MUController.muPreference}" value="Es probable que el sistema no este dotado de opciones para realizar la configuración que deseas."/>
+                        <h:outputText style="font-size: 20px !important" value="Le parece si pasamos a la siguiente etapa?"/>
                     </h:panelGrid>
                     <f:facet name="footer">
-                        <p:commandButton  style="font-size: 20px" value="De acuerdo" action="#{LoginManager.doDetenerContadorPreference()}" oncomplete="PF('msgPreference').hide()"/>
-                        <p:commandButton  style="font-size: 20px" value="Necesito más tiempo" type="button" onclick="PF('msgPreference').hide()"  />
+                        <p:commandButton style="font-size: 20px !important" value="De acuerdo" action="#{LoginManager.doDetenerContadorPreference()}" oncomplete="PF('msgPreference').hide()"/>
+                        <p:commandButton style="font-size: 20px !important" value="Necesito más tiempo" type="button" onclick="PF('msgPreference').hide()"  />
                     </f:facet>
                 </p:panel>
             </p:dialog>

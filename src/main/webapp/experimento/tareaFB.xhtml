@@ -10,8 +10,12 @@
 
     <ui:define name="content">
         <h:form>
-            <p:panel header="Tarea Progress FeedBack">
-                Realiza la siguiente tarea
+            <p:panel>
+                <f:facet name="header">
+                    <h:outputText value="TAREA PROGRESS FEEDBACK"/>
+                    <a style="right: 10px; position: absolute" href="#{LoginManager.doGetURLAPP()}" target="_blank">#{LoginManager.doGetURLAPP()}</a>
+                </f:facet>
+                
                 <p/>
                 <p:panel>
                     <p:outputPanel>

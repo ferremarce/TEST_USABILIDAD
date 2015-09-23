@@ -10,16 +10,24 @@
 
     <ui:define name="content">
         <h:form>
-            <h1 class="ui-state-default ui-corner-all">Bienvenido</h1>          
             <p:panel >
+                <f:facet name="header">
+                    <h:outputText value="PRESENTACIÓN"/>
+                    <a style="right: 10px; position: absolute" href="#{LoginManager.doGetURLAPP()}" target="_blank"><p:graphicImage height="25" width="30" value="/icono/cart.gif"/>&nbsp;Ir a la pagina web de la Tienda</a>
+                </f:facet>
+
                 <b:alert severity="success"><strong>OK!</strong> El entorno experimental ha sido preparado con éxito.</b:alert>
-                <h:outputLabel for="usuarioExperimental" rendered="#{LoginManager.usuarioLogeado!=null}" value="Experimento de: "/>
+                <h:outputLabel for="usuarioExperimental" rendered="#{LoginManager.usuarioLogeado!=null}" value="Experimento de:&nbsp;"/>
                 <h:outputText id="usuarioExperimental" styleClass="itemResaltado1" rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.usuarioLogeado.nombres} #{LoginManager.usuarioLogeado.apellidos} [#{LoginManager.usuarioLogeado.idGrupoExperimental.nombreGrupo}]"/>
                 <p:dataList rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.usuarioLogeado.idGrupoExperimental.ordenExposicionMuGrupoList}" var="ordenUsuario">
                     #{ordenUsuario.orden}/#{ordenUsuario.idMu}/#{ordenUsuario.estado}
                 </p:dataList>
-                Para proceder con las tareas haga click en Iniciar Tarea
+                En este punto vas a evaluar la usabilidad de la aplicación Web de una tienda en línea.
+                Para ello, haga click en la dirección web ubicada en la parte superior de esta pantalla y se te abrirá la página Web a evaluar. 
+                <BR/>
+                Si cierras accidentalmente la aplicación, puedes abrirlo de vuelta, en cualquier momento, haciendo click en dicho enlace.
                 <hr/>
+                <h:outputText styleClass="itemResaltado3" value="Para iniciar la primera tarea, haga click en el botón 'INICIAR TAREA'."/>
                 <p:panel>
                     <p:commandButton ajax="false" action="#{ExperimentoController.gotoFirstForm()}" value="Iniciar Tarea"/>
                 </p:panel>

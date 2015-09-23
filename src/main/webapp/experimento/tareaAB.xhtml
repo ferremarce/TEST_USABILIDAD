@@ -10,7 +10,11 @@
 
     <ui:define name="content">
         <h:form>
-            <p:panel header="Tarea Abort Operation">
+            <p:panel>
+                <f:facet name="header">
+                    <h:outputText value="TAREA ABORT OPERATION"/>
+                    <a style="right: 10px; position: absolute" href="#{LoginManager.doGetURLAPP()}" target="_blank">#{LoginManager.doGetURLAPP()}</a>
+                </f:facet>
                 Realiza la siguiente tarea
                 <p/>
                 <p:panel>

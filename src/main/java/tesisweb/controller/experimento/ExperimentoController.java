@@ -8,6 +8,9 @@ package tesisweb.controller.experimento;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.inject.Inject;
+import tesisweb.controller.frontend.LoginManager;
+import tesisweb.controller.general.PreferenceController;
 import tesisweb.ejb.experimento.entity.OrdenExposicionMuGrupo;
 import tesisweb.util.JSFutil;
 
@@ -20,7 +23,8 @@ import tesisweb.util.JSFutil;
 public class ExperimentoController implements Serializable {
 
     private int indexFormActual;
-
+@Inject
+LoginManager loginManager;
     /**
      * Creates a new instance of ExperimentoController
      */
@@ -29,6 +33,7 @@ public class ExperimentoController implements Serializable {
 
     public String gotoFirstForm() {
         this.indexFormActual = -1;
+        this.loginManager.setContadorPRhabilitado(Boolean.TRUE);
         return this.gotoNextForm();
     }
 
