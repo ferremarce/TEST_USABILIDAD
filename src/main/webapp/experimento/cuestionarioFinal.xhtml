@@ -13,16 +13,42 @@
             <f:event type="preRenderView" listener="#{CuestionarioUsabilidadController.init()}"/>
         </f:metadata>
         <h:form>
-            <p:panel header="Cuestionario Final">
-                <p:dataTable value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidadPR}" var="item">
+            <p:panel>
+                <f:facet name="header">
+                    <h:outputText styleClass="itemResaltado3" value="Cuestionario sobre las Tareas"/>
+                </f:facet>
+                <p:panel>
+                    Este cuestionario le ofrece la oportunidad de expresar la satisfacción que ha experimentado en las tareas que acaba de terminar. 
+                    <br/>
+                    Sus respuestas nos ayudarán a conocer los aspectos con los que está disconforme, así como aquellos con los que está conforme. 
+                    <br/>
+                    Piense en las tareas que has realizado y evalúa las siguientes sentencias. 
+                    <br/>
+                    Cada sentencia está escrita en afirmativo y en negativo. Por favor, lea cada sentencia y marque la casilla que más se aproxime a su experiencia (en afirmativo o en negativo). 
+                    <br/>
+                    Posibles casos: 
+                    <br/>
+                    - Si marco la primera casilla, es que estoy totalmente de acuerdo con la sentencia en afirmativo 
+                    <br/>
+                    - Si marco la segunda casilla, es que estoy bastante de acuerdo con la sentencia en afirmativo 
+                    <br/>
+                    - Si marco la tercera casilla es que no lo tengo claro o estoy indeciso, término medio 
+                    <br/>
+                    - Si marco la cuarta casilla estoy bastante de acuerdo con la sentencia en negativo 
+                    <br/>
+                    - Si marco la quinta casilla es que estoy totalmente de acuerdo con la sentencia en negativo 
+
+                </p:panel>
+
+                <p:dataTable id="datatablePR" rowIndexVar="indexPR" value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidadPR}" var="item">
                     <f:facet name="header">
                         <h:outputText value="PREFERENCES"/>
                     </f:facet>                      
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Preguntas en Afirmativo"/>
+                            <h:outputText value="Sentencias en Afirmativo"/>
                         </f:facet>
-                        <h:outputText escape="false" value="#{item.idPreguntaUsabilidad.preguntaPositivo}"/>
+                        <h:outputText escape="false" value="#{indexPR+1}. #{item.idPreguntaUsabilidad.preguntaPositivo}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
@@ -39,30 +65,31 @@
                                 <h:outputText value="totalmente de acuerdo con la sentencia en negativo"/>
                             </h:panelGrid>
                         </f:facet>
-                        <p:selectOneRadio value="#{item.valorPregunta}">
+                        <p:selectOneRadio id="idPR" required="true" requiredMessage="#{bundle.Requerido}" value="#{item.valorPregunta}">
                             <f:selectItem itemValue="1" />
                             <f:selectItem itemValue="2" />
                             <f:selectItem itemValue="3" />
                             <f:selectItem itemValue="4" />
                             <f:selectItem itemValue="5" />
                         </p:selectOneRadio>
+                        <p:message for="idPR"/>
                     </p:column>                    
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Preguntas en Negativo"/>
+                            <h:outputText value="Sentencias en Negativo"/>
                         </f:facet>
                         <h:outputText escape="false" value="#{item.idPreguntaUsabilidad.preguntaNegativo}"/>
                     </p:column>
                 </p:dataTable>
-                <p:dataTable value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidadAB}" var="item2">
+                <p:dataTable rowIndexVar="indexAB" value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidadAB}" var="item2">
                     <f:facet name="header">
                         <h:outputText value="ABORT OPERATION"/>
                     </f:facet>
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Preguntas en Afirmativo"/>
+                            <h:outputText value="Sentencias en Afirmativo"/>
                         </f:facet>
-                        <h:outputText escape="false" value="#{item2.idPreguntaUsabilidad.preguntaPositivo}"/>
+                        <h:outputText escape="false" value="#{indexAB+1}. #{item2.idPreguntaUsabilidad.preguntaPositivo}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
@@ -79,30 +106,31 @@
                                 <h:outputText value="totalmente de acuerdo con la sentencia en negativo"/>
                             </h:panelGrid>
                         </f:facet>
-                        <p:selectOneRadio value="#{item2.valorPregunta}">
+                        <p:selectOneRadio id="idAB" required="true" requiredMessage="#{bundle.Requerido}" value="#{item2.valorPregunta}">
                             <f:selectItem itemValue="1" />
                             <f:selectItem itemValue="2" />
                             <f:selectItem itemValue="3" />
                             <f:selectItem itemValue="4" />
                             <f:selectItem itemValue="5" />
                         </p:selectOneRadio>
+                        <p:message for="idAB"/>
                     </p:column>                    
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Preguntas en Negativo"/>
+                            <h:outputText value="Sentencias en Negativo"/>
                         </f:facet>
                         <h:outputText escape="false" value="#{item2.idPreguntaUsabilidad.preguntaNegativo}"/>
                     </p:column>
                 </p:dataTable>
-                <p:dataTable value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidadFB}" var="item3">
+                <p:dataTable rowIndexVar="indexFB" value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidadFB}" var="item3">
                     <f:facet name="header">
                         <h:outputText value="PROGRESS FEEDBACK"/>
                     </f:facet>
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Preguntas en Afirmativo"/>
+                            <h:outputText value="Sentencias en Afirmativo"/>
                         </f:facet>
-                        <h:outputText escape="false" value="#{item3.idPreguntaUsabilidad.preguntaPositivo}"/>
+                        <h:outputText escape="false" value="#{indexFB+1}. #{item3.idPreguntaUsabilidad.preguntaPositivo}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
@@ -114,28 +142,34 @@
                                 <h:outputText value="totalmente de desacuerdo"/>
                             </h:panelGrid>
                         </f:facet>
-                        <p:selectOneRadio value="#{item3.valorPregunta}">
+                        <p:selectOneRadio id="idFB" required="true" requiredMessage="#{bundle.Requerido}" value="#{item3.valorPregunta}">
                             <f:selectItem itemValue="1" />
                             <f:selectItem itemValue="2" />
                             <f:selectItem itemValue="3" />
                             <f:selectItem itemValue="4" />
                             <f:selectItem itemValue="5" />
                         </p:selectOneRadio>
+                        <p:message for="idFB"/>
                     </p:column>                    
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Preguntas en Negativo"/>
+                            <h:outputText value="Sentencias en Negativo"/>
                         </f:facet>
                         <h:outputText escape="false" value="#{item3.idPreguntaUsabilidad.preguntaNegativo}"/>
                     </p:column>
                 </p:dataTable>
+            </p:panel>
+            <p:panel>
+                <f:facet name="header">
+                    <h:outputText styleClass="itemResaltado3" value="Cuestionario Final"/>
+                </f:facet>
                 <p:dataTable rowIndexVar="index4" value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidadSUS}" var="item4">
                     <f:facet name="header">
                         <h:outputText value="SUS"/>
                     </f:facet>
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Preguntas en Afirmativo"/>
+                            <h:outputText value="Sentencias"/>
                         </f:facet>
                         <h:outputText escape="false" value="#{index4+1}. #{item4.idPreguntaUsabilidad.preguntaPositivo}"/>
                     </p:column>
@@ -147,30 +181,34 @@
                                 <h:outputText value="▲"/>
                                 <h:outputText value="►"/>
                                 <h:outputText value="►"/>
-                                <h:outputText value="totalmente de acuerdo con la sentencia en afirmativo"/>
-                                <h:outputText value="bastante de acuerdo con la sentencia en afirmativo"/>
-                                <h:outputText value="no lo tengo claro o estoy indeciso"/>
-                                <h:outputText value="bastante de acuerdo con la sentencia en negativo"/>
-                                <h:outputText value="totalmente de acuerdo con la sentencia en negativo"/>
+                                <h:outputText value="totalmente de acuerdo"/>
+                                <h:outputText value="de acuerdo"/>
+                                <h:outputText value="ni de acuerdo ni en desacuerdo (neutral)"/>
+                                <h:outputText value="bastante en desacuerdo"/>
+                                <h:outputText value="totalmente en desacuerdo"/>
                             </h:panelGrid>
                         </f:facet>
-                        <p:selectOneRadio value="#{item4.valorPregunta}">
+                        <p:selectOneRadio id="idSUS" required="true" requiredMessage="#{bundle.Requerido}" value="#{item4.valorPregunta}">
                             <f:selectItem itemValue="1" />
                             <f:selectItem itemValue="2" />
                             <f:selectItem itemValue="3" />
                             <f:selectItem itemValue="4" />
                             <f:selectItem itemValue="5" />
                         </p:selectOneRadio>
+                        <p:message for="idSUS"/>
                     </p:column>                    
                     <!--p:column>
                         <f:facet name="header">
-                            <h:outputText value="Preguntas en Negativo"/>
+                            <h:outputText value="Sentencias en Negativo"/>
                         </f:facet>
                         <h:outputText escape="false" value="#{item4.idPreguntaUsabilidad.preguntaNegativo}"/>
                     </p:column-->
                 </p:dataTable>
+                <f:facet name="footer">
+                    <p:commandButton ajax="false" action="#{CuestionarioUsabilidadController.doGuardar()}" value="Siguiente"/>
+                </f:facet>
             </p:panel>
-            <p:commandButton ajax="false"  action="#{ExperimentoController.gotoNextForm()}" value="Siguiente"/>
+
         </h:form>
     </ui:define>
 

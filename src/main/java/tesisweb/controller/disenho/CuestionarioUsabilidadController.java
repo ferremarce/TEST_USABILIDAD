@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
+import javax.ejb.EJBException;
 import javax.inject.Inject;
 import tesisweb.ejb.experimento.entity.CuestionarioUsabilidad;
 import tesisweb.ejb.experimento.entity.PreguntaUsabilidad;
@@ -108,6 +109,36 @@ public class CuestionarioUsabilidadController implements Serializable {
             this.cuestionarioUsabilidad.setIdPreguntaUsabilidad(preg);
             this.cuestionarioUsabilidad.setIdUsuario(JSFutil.getUsuarioConectado());
             this.listaCuestionarioUsabilidadFB.add(cuestionarioUsabilidad);
+        }
+    }
+
+    public String doGuardar() {
+        try {
+            for (CuestionarioUsabilidad cu : this.listaCuestionarioUsabilidadAB) {
+                cuestionarioUsabilidadFacade.create(cu);
+            }
+            for (CuestionarioUsabilidad cu : this.listaCuestionarioUsabilidadPR) {
+                cuestionarioUsabilidadFacade.create(cu);
+            }
+            for (CuestionarioUsabilidad cu : this.listaCuestionarioUsabilidadFB) {
+                cuestionarioUsabilidadFacade.create(cu);
+            }
+            for (CuestionarioUsabilidad cu : this.listaCuestionarioUsabilidadSUS) {
+                cuestionarioUsabilidadFacade.create(cu);
+            }
+            return "/experimento/agradecimiento?faces-redirect=true";
+        } catch (EJBException ex) {
+            String msg = "";
+            Throwable cause = ex.getCause();
+            if (cause != null) {
+                msg = cause.getLocalizedMessage();
+            }
+            if (msg.length() > 0) {
+                JSFutil.addErrorMessage(msg);
+            } else {
+                JSFutil.addErrorMessage(ex, JSFutil.getMyBundle().getString("UpdateError"));
+            }
+            return "";
         }
     }
 

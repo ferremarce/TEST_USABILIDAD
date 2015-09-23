@@ -15,9 +15,10 @@
             <h1 class="ui-state-default ui-corner-all">Bienvenido</h1>          
             <p:panel >
                 <p:panel>
-                    Gracias por participar en la encuesta para evaluar la usabilidad de una aplicación Web.<p/>
-                    Esta prueba sólo la puedes hacer una vez. La prueba consta de 2 a 3 tareas que se harán sobre la aplicación Web que gestiona una tienda virtual. <br/>
-                    En ningún momento durante TODA la prueba pulses el botón <b>"RETROCEDER O ATRÁS"</b> del navegador Web donde estás visualizando esta página. <br/>
+                    Gracias por participar en este experimento donde vas a evaluar la usabilidad de una aplicación Web.<p/>
+                    Esta prueba sólo la puedes hacer <b>UNA SOLA VEZ</b>. La prueba consta de 3 tareas que se harán sobre una Aplicación Web que gestiona una tienda virtual. <p/>
+                    <p/>
+                    Durante toda la prueba no debes hacer click en el botón <b>"RETROCEDER O ATRÁS"</b> del navegador Web donde estás visualizando esta página. <br/>
                     El tiempo estimado para hacer las tareas es de 7-12 minutos. 
                     <p/>
                     Una vez empieces la prueba la debes terminar sin interrupciones. No te debes distraer con cualquier otra cosa, como por ejemplo el messenger, whatsapp, skype, etc.
@@ -25,7 +26,7 @@
                     <p/>
                     Al final de todas las tareas deberás contestar a un cuestionario en base a la experiencia obtenida en el uso del sistema.
                     <p/>
-                    A continuación, tienes un cuestionario para recoger tus datos personales. Una vez lo finalices, pulsa sobre el botón "siguiente" y ya puedes empezar la primera tarea. 
+                    A continuación, tienes un cuestionario para recoger tus datos de interés. Una vez que lo finalices, pulsa sobre el botón "SIGUIENTE" para iniciar el entorno del experimento. 
                     <p/>
                 </p:panel>
                 <p:panel header="Cuestionario">
@@ -33,7 +34,9 @@
                         <p:outputLabel value="Nombre o Alias" for="alias" />
                         <p:inputText size="30" id="alias" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.alias}" title="Alias" required="true" requiredMessage="#{bundle.Requerido}"/>
                     </p:panelGrid>
-                    <p:commandButton ajax="false" action="#{CuestionarioFamiliaridadController.doGuardar()}" value="Siguiente"/>
+                    <f:facet name="footer">
+                        <p:commandButton ajax="false" action="#{CuestionarioFamiliaridadController.doGuardar()}" value="Siguiente"/>
+                    </f:facet>
                 </p:panel>
             </p:panel>
         </h:form>

@@ -43,16 +43,16 @@ LoginManager loginManager;
             OrdenExposicionMuGrupo orden = JSFutil.getUsuarioConectado().getIdGrupoExperimental().getOrdenExposicionMuGrupoList().get(indexFormActual);
             switch (orden.getIdMu().getIdMu()) {
                 case 1: //PREFERENCE
-                    return "/experimento/tareaPR";
+                    return "/experimento/tareaPR?faces-redirect=true";
                 case 2: //ABORT OPERATION
-                    return "/experimento/tareaAB";
+                    return "/experimento/tareaAB?faces-redirect=true";
                 case 3: //PROGRESS FEEDBACK
-                    return "/experimento/tareaFB";
+                    return "/experimento/tareaFB?faces-redirect=true";
                 default:
                     return "";
             }
         } else if (indexFormActual == 3) {
-            return "/experimento/cuestionarioFinal";
+            return "/experimento/cuestionarioFinal?faces-redirect=true";
         } else {
             return "/experimento/agradecimiento";
         }
