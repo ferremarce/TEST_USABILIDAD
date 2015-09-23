@@ -13,7 +13,7 @@
             <p:panel >
                 <f:facet name="header">
                     <h:outputText value="PRESENTACIÓN"/>
-                    <a style="right: 10px; position: absolute" href="#{LoginManager.doGetURLAPP()}" target="_blank"><p:graphicImage height="25" width="30" value="/icono/cart.gif"/>&nbsp;Ir a la pagina web de la Tienda</a>
+                    <a style="right: 10px; position: absolute" href="#{LoginManager.doGetURLAPP()}" target="_blank"><p:graphicImage height="25" width="30" value="/icono/cart.gif"/>&nbsp;Abrir la página web de la Tienda</a>
                 </f:facet>
 
                 <b:alert severity="success"><strong>OK!</strong> El entorno experimental ha sido preparado con éxito.</b:alert>
@@ -22,15 +22,16 @@
                 <p:dataList rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.usuarioLogeado.idGrupoExperimental.ordenExposicionMuGrupoList}" var="ordenUsuario">
                     #{ordenUsuario.orden}/#{ordenUsuario.idMu}/#{ordenUsuario.estado}
                 </p:dataList>
-                En este punto vas a evaluar la usabilidad de la aplicación Web de una tienda en línea.
+                Estas a punto de evaluar la usabilidad de la aplicación Web de una tienda en línea.
+                <br/>
                 Para ello, haga click en la dirección web ubicada en la parte superior de esta pantalla y se te abrirá la página Web a evaluar. 
                 <BR/>
-                Si cierras accidentalmente la aplicación, puedes abrirlo de vuelta, en cualquier momento, haciendo click en dicho enlace.
+                Si cierras accidentalmente la aplicación durante las tareas, puedes abrirlo de vuelta, en cualquier momento, haciendo click en dicho enlace.
                 <hr/>
                 <h:outputText styleClass="itemResaltado3" value="Para iniciar la primera tarea, haga click en el botón 'INICIAR TAREA'."/>
-                <p:panel>
+                <f:facet name="footer">
                     <p:commandButton ajax="false" action="#{ExperimentoController.gotoFirstForm()}" value="Iniciar Tarea"/>
-                </p:panel>
+                </f:facet>
             </p:panel>
         </h:form>
     </ui:define>

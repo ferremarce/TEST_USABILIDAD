@@ -13,7 +13,7 @@
             <ui:include src="/ajax.xhtml"/>
             <h:panelGrid columns="2">
                 <p:inputText size="50" id="txtCriterioBusqueda" value="#{ArticuloFE.criterioBusqueda}" rendered="true" requiredMessage="#{bundle.Requerido}"/>
-                <p:commandButton id="cmdBuscarArticulo" value="#{bundle.BuscarBoton}" ajax="#{MUController.muProgressFeedBack?'true':'false'}" update="@form" action="#{ArticuloFE.doListar()}" icon="ui-icon-document"/>
+                <p:commandButton id="cmdBuscarArticulo" title="#{bundle.BuscarBoton}" value="#{bundle.BuscarBoton}" ajax="#{MUController.muProgressFeedBack?'true':'false'}" update="@form" action="#{ArticuloFE.doListar()}" icon="ui-icon-document"/>
                 <p:watermark for="txtCriterioBusqueda" value=""/>
                 <p:defaultCommand target="cmdBuscarArticulo" />
             </h:panelGrid>
@@ -40,8 +40,8 @@
                         </p:panel>
 
                         <f:facet name="footer">
-                            <p:commandButton ajax="false"  icon="ui-icon-zoomin" value="#{bundle.VerBoton}" action="#{ArticuloFE.doVerDetalleArticulo(item)}"/>
-                            <p:commandButton icon="shoppingcart" value="#{bundle.AgregarCarritoBoton}" update="#{sistema.form_update}, :formBuscarMain:messages" actionListener="#{CarritoFE.doAgregarCarrito(item)}"/>
+                            <p:commandButton ajax="false"  icon="ui-icon-zoomin" title="#{bundle.VerBoton}" value="#{bundle.VerBoton}" action="#{ArticuloFE.doVerDetalleArticulo(item)}"/>
+                            <p:commandButton icon="shoppingcart" title="#{bundle.AgregarCarritoBoton}" value="#{bundle.AgregarCarritoBoton}" update="#{sistema.form_update}, :formBuscarMain:messages" actionListener="#{CarritoFE.doAgregarCarrito(item)}"/>
                         </f:facet>
                     </p:panel>
                 </p:column>

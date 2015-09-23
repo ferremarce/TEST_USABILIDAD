@@ -14,8 +14,8 @@
             <p:ajax global="false" event="click" update="#{sistema.form_update}," listener="#{ClickCounter.increment()}"/>
             <ui:include src="/ajax.xhtml"/>
             <p:panel>
-                <p:commandButton immediate="true" ajax="false" value="#{bundle.VolverBoton}" action="/frontend/articulo/BuscarArticulo" icon="ui-icon-arrowreturnthick-1-w"/>
-                <p:commandButton icon="shoppingcart" value="#{bundle.AgregarCarritoBoton}" update="#{sistema.form_update}," actionListener="#{CarritoFE.doAgregarCarrito(ArticuloFE.articulo)}"/>
+                <p:commandButton immediate="true" ajax="false" title="#{bundle.VolverBoton}" value="#{bundle.VolverBoton}" action="/frontend/articulo/BuscarArticulo" icon="ui-icon-arrowreturnthick-1-w"/>
+                <p:commandButton icon="shoppingcart" title="#{bundle.AgregarCarritoBoton}" value="#{bundle.AgregarCarritoBoton}" update="#{sistema.form_update}," actionListener="#{CarritoFE.doAgregarCarrito(ArticuloFE.articulo)}"/>
             </p:panel>
             <h:panelGrid width="100%" rowClasses="top" columns="2">
                 <h:panelGrid>
@@ -41,8 +41,8 @@
                 </p:galleria>
             </h:panelGrid>
             <p:panel>
-                <p:commandButton immediate="true" ajax="false" value="#{bundle.VolverBoton}" action="/frontend/articulo/BuscarArticulo" icon="ui-icon-arrowreturnthick-1-w"/>
-                <p:commandButton icon="shoppingcart" value="#{bundle.AgregarCarritoBoton}" update="#{sistema.form_update},messages" actionListener="#{CarritoFE.doAgregarCarrito(ArticuloFE.articulo)}"/>
+                <p:commandButton immediate="true" ajax="false" title="#{bundle.VolverBoton}" value="#{bundle.VolverBoton}" action="/frontend/articulo/BuscarArticulo" icon="ui-icon-arrowreturnthick-1-w"/>
+                <p:commandButton icon="shoppingcart" title="#{bundle.AgregarCarritoBoton}" value="#{bundle.AgregarCarritoBoton}" update="#{sistema.form_update},messages" actionListener="#{CarritoFE.doAgregarCarrito(ArticuloFE.articulo)}"/>
             </p:panel>
         </h:form>
     </ui:define>

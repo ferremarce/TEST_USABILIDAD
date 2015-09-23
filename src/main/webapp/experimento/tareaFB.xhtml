@@ -13,15 +13,15 @@
             <p:panel>
                 <f:facet name="header">
                     <h:outputText value="TAREA PROGRESS FEEDBACK"/>
-                    <a style="right: 10px; position: absolute" href="#{LoginManager.doGetURLAPP()}" target="_blank">#{LoginManager.doGetURLAPP()}</a>
+                    <a style="right: 10px; position: absolute" href="#{LoginManager.doGetURLAPP()}" target="_blank"><p:graphicImage height="25" width="30" value="/icono/cart.gif"/>&nbsp;Abrir la página web de la Tienda</a>
                 </f:facet>
-                
+                <h4>Realiza la siguiente tarea</h4>
                 <p/>
                 <p:panel>
                     <p:outputPanel>
-                        Supongamos que desea comprar el libro “EL NAUFRAGO DE LA ARMADA” desde la tienda. Entonces realice una búsqueda de este artículo y agréguelo a tu carrito de compra
+                        Supongamos que estas interesado en adquirir el libro titulado “EL NAUFRAGO DE LA ARMADA” desde la tienda. Entonces realice una búsqueda de este artículo y agréguelo a tu carrito de compra.
                         <p/>
-                        Una vez estés seguro de que la tarea se ha concluido, pulsa sobre el botón “Siguiente”.
+                        <h:outputText styleClass="itemResaltado3" value="Una vez estés seguro de haber finalizado la tarea, pulsa sobre el botón 'SIGUIENTE'."/>
                     </p:outputPanel>
                     <f:facet name="footer">
                         <p:commandButton ajax="false"  action="#{ExperimentoController.gotoNextForm()}" value="Siguiente"/>

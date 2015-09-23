@@ -13,17 +13,21 @@
             <p:panel>
                 <f:facet name="header">
                     <h:outputText value="TAREA ABORT OPERATION"/>
-                    <a style="right: 10px; position: absolute" href="#{LoginManager.doGetURLAPP()}" target="_blank">#{LoginManager.doGetURLAPP()}</a>
+                    <a style="right: 10px; position: absolute" href="#{LoginManager.doGetURLAPP()}" target="_blank"><p:graphicImage height="25" width="30" value="/icono/cart.gif"/>&nbsp;Abrir la página web de la Tienda</a>
                 </f:facet>
-                Realiza la siguiente tarea
+                <h4>Realiza la siguiente tarea</h4>
                 <p/>
                 <p:panel>
                     <p:outputPanel>
-                        Acceda tu carrito de compra. De la lista de artículos ya agregados a tu carrito, incremente la cantidad del primer item de tu carrito e ingrese el código promocional “021”. Ahora te arrepientes por lo que decides comprar en otro momento y CANCELAS la operación para ignorar los cambios. NO PRESIONES EL BOTON ACEPTAR.
+                        Vamos a suponer que el día de ayer accediste a la tienda y ya tienes items o artículos agregados a tu carrito.
+                        Acceda entonces a tu carrito de compra y de la lista de artículos ya agregados, haz cambios en la cantidad 
+                        del primer item/artículo ingresando la cantidad que deseas y luego ingrese el código promocional “2015” en la casilla especificada. 
                         <p/>
-                        Observación: En caso de que no pudiera realizar alguna de las acciones solicitadas haga click directamente en el botón FINALIZAR del Sistema que está evaluando.
+                        Ahora te das cuenta que el precio total supera tus espectativas y te arrepientes, por lo que decides comprar en otro momento y cancelas la operación para ignorar los cambios.
                         <p/>
-                        Una vez estés seguro de que la tarea se ha concluido, pulsa sobre el botón “Siguiente”.
+                        <span style="font-weight: bold">Observación:</span>Si te sientes imposibilitado de realizar alguna de las acciones solicitadas, por favor continue con la siguiente tarea.
+                        <p/>
+                        <h:outputText styleClass="itemResaltado3" value="Una vez estés seguro de haber finalizado la tarea, pulsa sobre el botón 'SIGUIENTE'."/>
                     </p:outputPanel>
                 </p:panel>
                 <f:facet name="footer">

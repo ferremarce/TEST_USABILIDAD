@@ -73,7 +73,7 @@
                     <p:inputText id="codigoPromocional" value="#{CarritoFE.codigoPromocional}">
                         <p:ajax global="no" listener="#{CarritoFE.siHayCambios()}"/>
                     </p:inputText>
-                    <p:commandButton value="#{bundle.ValidarBoton}">
+                    <p:commandButton title="#{bundle.ValidarBoton}" value="#{bundle.ValidarBoton}">
                         <p:ajax update="panelTotal, messages1" listener="#{CarritoFE.mensajeCodigo()}"/>
                     </p:commandButton>
                 </h:panelGrid>
@@ -92,15 +92,15 @@
             </p:panel>
 
             <p:panel>
-                <p:commandButton styleClass="boton2x"  disabled="#{CarritoFE.listaOrdenCarrito.size()==0}" ajax="false" iconPos="right" icon="ui-icon-circle-arrow-e" value="#{bundle.PagarBoton}" action="#{CarritoFE.doProcesarDatosEntrega()}"/>
-                <p:commandButton rendered="#{MUController.muAbortOperation}" styleClass="boton2x" global="false" immediate="true" value="#{bundle.CancelarBoton}" action="#{CarritoFE.doAbortOperation()}" icon="ui-icon-close"/>
+                <p:commandButton styleClass="boton2x"  disabled="#{CarritoFE.listaOrdenCarrito.size()==0}" ajax="false" iconPos="right" icon="ui-icon-circle-arrow-e" title="#{bundle.PagarBoton}" value="#{bundle.PagarBoton}" action="#{CarritoFE.doProcesarDatosEntrega()}"/>
+                <p:commandButton rendered="#{MUController.muAbortOperation}" styleClass="boton2x" global="false" immediate="true" title="#{bundle.CancelarBoton}" value="#{bundle.CancelarBoton}" action="#{CarritoFE.doAbortOperation()}" icon="ui-icon-close"/>
             </p:panel>
             <p:dialog header="Cambios pendientes..." closeOnEscape="true" widgetVar="confirmacionAbort" >
                 <p:panel>
                     <h:outputText value="#{bundle.ConfirmacionAbort}"/>
                     <f:facet name="footer">
-                        <p:commandButton ajax="false" value="SI" action="#{CarritoFE.doOpcionSI()}"  icon="ui-icon-check" />
-                        <p:commandButton ajax="false" immediate="true" value="NO" action="#{CarritoFE.doOpcionNO()}"  icon="ui-icon-close" />
+                        <p:commandButton ajax="false" title="#{bundle.SiBoton}" value="#{bundle.SiBoton}" action="#{CarritoFE.doOpcionSI()}"  icon="ui-icon-check" />
+                        <p:commandButton ajax="false" immediate="true" title="#{bundle.NoBoton}" value="#{bundle.NoBoton}" action="#{CarritoFE.doOpcionNO()}"  icon="ui-icon-close" />
                     </f:facet>
                 </p:panel>
             </p:dialog>

@@ -13,18 +13,19 @@
             <p:panel>
                 <f:facet name="header">
                     <h:outputText value="TAREA PREFERENCE"/>
-                    <a style="right: 10px; position: absolute" href="#{LoginManager.doGetURLAPP()}" target="_blank"><p:graphicImage height="25" width="30" value="/icono/cart.gif"/>&nbsp;Ir a la pagina web de la Tienda</a>
+                    <a style="right: 10px; position: absolute" href="#{LoginManager.doGetURLAPP()}" target="_blank"><p:graphicImage height="25" width="30" value="/icono/cart.gif"/>&nbsp;Abrir la página web de la Tienda</a>
                 </f:facet>
                 <h4>Realiza la siguiente tarea</h4>
                 <p/>
                 <p:panel>
-                Observa el sistema. Siéntete libre de personalizarlo en caso de que lo desees. Si te sientes imposibilitado de hacer las configuraciones que deseas, te sugerimos continuar con la siguiente tarea.
-                <p/>
-                <h:outputText styleClass="itemResaltado3" value="Una vez estés seguro de haber finalizado la tarea, pulsa sobre el botón 'SIGUIENTE'."/>
+                    Observa el sistema. Siéntete libre de personalizarlo en caso de que lo desees. Si te encuentras imposibilitado de hacer las configuraciones que deseas, te sugerimos continuar con la siguiente tarea.
+                    <p/>
+                    <h:outputText styleClass="itemResaltado3" value="Una vez estés seguro de haber finalizado la tarea, pulsa sobre el botón 'SIGUIENTE'."/>
                 </p:panel>
-
+                <f:facet name="footer">
+                    <p:commandButton ajax="false"  action="#{ExperimentoController.gotoNextForm()}" value="Siguiente"/>                  
+                </f:facet>
             </p:panel>
-            <p:commandButton ajax="false"  action="#{ExperimentoController.gotoNextForm()}" value="Siguiente"/>
         </h:form>
     </ui:define>
 

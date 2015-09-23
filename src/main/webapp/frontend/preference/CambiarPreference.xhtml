@@ -38,12 +38,12 @@
                 <p:message for="tema"/>
             </p:panelGrid>
             <p:panel>
-                <p:commandButton ajax="false" value="#{bundle.AplicarBoton}" action="#{PreferenceController.doGuardar()}" icon="ui-icon-disk"/>
+                <p:commandButton ajax="false" title="#{bundle.AplicarBoton}" value="#{bundle.AplicarBoton}" action="#{PreferenceController.doGuardar()}" icon="ui-icon-disk"/>
 
                 <f:facet name="footer">
                     <p:outputPanel  style="font-size: 16px !important; font-family: sans-serif !important">
                         <h:outputLabel value="#{bundle.lblPreferenceRecomendado}"/>
-                        <p:commandButton ajax="false" value="#{bundle.ConfigDefectoBoton}" action="#{PreferenceController.doAsignarStandarPreference()}" icon="ui-icon-refresh"/>
+                        <p:commandButton ajax="false" title="#{bundle.ConfigDefectoBoton}" value="#{bundle.ConfigDefectoBoton}" action="#{PreferenceController.doAsignarStandarPreference()}" icon="ui-icon-refresh"/>
                     </p:outputPanel>
                 </f:facet>
             </p:panel>
