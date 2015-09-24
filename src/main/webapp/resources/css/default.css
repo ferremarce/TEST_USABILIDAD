@@ -144,8 +144,9 @@
     left: 350px; 
     width: 100%; 
 }
+
 .boton2x{
-    height: 80px;
+    padding: 5px 5px 5px 5px !important;    
 }
 .myRadioCtrl td {
     width:80px !important; 

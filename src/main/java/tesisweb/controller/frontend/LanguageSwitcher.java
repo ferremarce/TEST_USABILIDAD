@@ -52,7 +52,7 @@ public class LanguageSwitcher implements Serializable {
                 System.out.println("------ Actualizando idioma del usuario desde LanguageSwitcher...");
             }
         }
-        System.out.println("------ Cambiando idioma desde LanguageSwitcher...");
+        System.out.println("------ Cambiando idioma desde LanguageSwitcher..."+language);
         JSFutil.putSessionVariable("language", language);
     }
 

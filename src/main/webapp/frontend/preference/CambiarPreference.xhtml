@@ -7,7 +7,7 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
     <ui:define name="content">
-        <h1 class="ui-state-default ui-corner-all"><h:outputText value="Personalizar mi interfaz"/></h1>
+        <h2 class="ui-state-default ui-corner-all"><h:outputText value="Personalizar mi interfaz"/></h2>
         <style>
             .ui-widget,
             .ui-widget-header,
@@ -51,7 +51,7 @@
                     <f:selectItems value="#{PreferenceController.doGetLanguages()}"/>
                 </p:selectOneMenu>
                 <p:message for="idioma"/>
-                <p:outputLabel value="Tema:" for="tema" />
+                <p:outputLabel value="Tema/Esquema de colores:" for="tema" />
                 <p:selectOneMenu id="tema" value="#{PreferenceController.preference.tema}" required="true" requiredMessage="#{bundle.Requerido}" >
                     <f:selectItems value="#{PreferenceController.doGetThemes()}" />
                 </p:selectOneMenu>

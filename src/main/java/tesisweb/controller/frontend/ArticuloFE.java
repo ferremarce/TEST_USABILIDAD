@@ -241,7 +241,7 @@ public class ArticuloFE implements Serializable {
             return file;
         } else {
             JSFutil.addErrorMessage("No dispone de adjuntos para visualizar...");
-            String noContent = "<html><h1>Sin adjunto...</></html>";
+            String noContent = "<html><h2>Sin adjunto...</></html>";
             return new DefaultStreamedContent(new ByteArrayInputStream(noContent.getBytes()), "text/html", "No existe Archivo");
         }
     }

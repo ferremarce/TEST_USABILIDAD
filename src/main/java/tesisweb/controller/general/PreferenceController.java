@@ -99,7 +99,8 @@ public class PreferenceController implements Serializable {
         if (JSFutil.getUsuarioConectado().getIdPreference().getIdPreference().compareTo(this.preference.getIdPreference()) == 0) {
             JSFutil.putSessionVariable("language", this.preference.getIdioma());
         }
-        return this.doCambiarPreferencia(preference);
+        this.doCambiarPreferencia(preference);
+        return "/frontend/index";
     }
 
     private void persist(PersistAction persistAction) {

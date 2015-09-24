@@ -23,7 +23,7 @@
         <p:layout fullPage="true">
             <p:layoutUnit position="east" size="250" header="#{bundle.lblOpciones}" collapsed="#{LoginManager.clientCollapse}" collapsible="true" >
                 <h:form id="formCarrito">
-                    <p:panel header="Mi carrito">
+                    <p:panel>
                         <p:commandLink ajax="false" action="#{CarritoFE.doProcesarCarritoFrom()}">
                             <h:panelGrid columns="3">
                                 <p:graphicImage width="50" height="50" rendered="#{CarritoFE.listaOrdenCarrito.size()==0}" value="/icono/cart2.gif"/>
@@ -59,7 +59,7 @@
             <p:layoutUnit position="center" >
                 <h:form>
                     <p:panel styleClass="header-background">
-                        <h:panelGrid columns="3">
+                        <h:panelGrid columns="2">
                             <h:panelGrid>
                                 <div class="image">
                                     <p:link outcome="/frontend/index">

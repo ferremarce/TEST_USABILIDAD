@@ -7,22 +7,24 @@
        xmlns:f="http://java.sun.com/jsf/core">
     <ui:fragment>          
         <h:form>
-            <h:outputText id="txt_count" value="Contador: #{LoginManager.contadorPR}" />
-            <p:poll global="false" interval="3" rendered="#{LoginManager.contadorPRhabilitado}" listener="#{LoginManager.incrementarContadorPreference()}" update="@this, txt_count" />
+            <p:outputPanel id="panelContadorPR">
+                <h:outputText id="txt_count" value="Contador: #{LoginManager.contadorPR}" />
+                <!--p:poll global="false" interval="3" rendered="#{LoginManager.contadorPRhabilitado}" listener="#{LoginManager.incrementarContadorPreference()}" update="panelContadorPR" /-->
+            </p:outputPanel>
             <p:dialog id="msgPreference" closeOnEscape="true" widgetVar="msgPreference" >
                 <f:facet name="header">
                     <h:outputText value="Tiempo agotado..."/>
                 </f:facet>
                 <p:panel>
                     <h:panelGrid width="600">
-                        <h:outputText style="font-weight: bold; color: #990000; font-size: 20px !important" value="El tiempo ha superado el límite permitido..."/>
-                        <h:outputText style="font-size: 20px !important" rendered="#{MUController.muPreference}" value="Veo que no has cambiado nada... Fijate que tienes una opción de Preferencias en la parte superior de la pantalla, donde puedes cambiar algunas características del sistema. Si ya lo hiciste"/>
-                        <h:outputText style="font-size: 20px !important" rendered="#{!MUController.muPreference}" value="Veo que no has cambiado nada. Quizás el sistema no te lo permite o no encuentras cómo hacerlo? En cualquier caso, pasemos a usar el sistema de modo que no se alargue mucho la tarea que necesitamos que hagas"/>
-                        <h:outputText style="font-size: 20px !important" value="Entonces... le recomendamos cerrar esta ventana para retornar a la anterior y continuar con la siguiente tarea."/>
+                        <h:outputText style="font-weight: bold; color: #990000; font-size: 16px !important" value="El tiempo ha superado el límite permitido..."/>
+                        <h:outputText style="font-size: 16px !important" rendered="#{MUController.muPreference}" value="Veo que no has cambiado nada... Fijate que tienes una opción de Preferencias en la parte superior de la pantalla, donde puedes cambiar algunas características del sistema. Si ya lo hiciste"/>
+                        <h:outputText style="font-size: 16px !important" rendered="#{!MUController.muPreference}" value="Veo que no has cambiado nada. Quizás el sistema no te lo permite o no encuentras cómo hacerlo? En cualquier caso, pasemos a usar el sistema de modo que no se alargue mucho la tarea que necesitamos que hagas"/>
+                        <h:outputText style="font-size: 16px !important" value="Entonces... le recomendamos cerrar esta ventana para retornar a la anterior y continuar con la siguiente tarea."/>
                     </h:panelGrid>
                     <f:facet name="footer">
-                        <p:commandButton style="font-size: 20px !important" value="Quiero cerrarlo" oncomplete="javascript: window.close();" actionListener="#{LoginManager.doDetenerContadorPreference()}"/> 
-                        <p:commandButton style="font-size: 20px !important" value="Espere, necesito más tiempo" type="button" onclick="PF('msgPreference').hide()"  />
+                        <p:commandButton style="font-size: 16px !important" value="Quiero cerrarlo" oncomplete="javascript: window.close();" actionListener="#{LoginManager.doDetenerContadorPreference()}"/> 
+                        <p:commandButton style="font-size: 16px !important" value="Espere, necesito más tiempo" type="button" onclick="PF('msgPreference').hide()"  />
                     </f:facet>
                 </p:panel>
             </p:dialog>

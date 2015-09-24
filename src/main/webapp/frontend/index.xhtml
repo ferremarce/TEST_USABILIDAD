@@ -12,7 +12,7 @@
         <f:metadata>
             <f:event type="preRenderView" listener="#{LoginManager.init()}"/>
         </f:metadata>
-        <h1 class="ui-state-default ui-corner-all"><h:outputText value="Bienvenido"/></h1>
+        <h2 class="ui-state-default ui-corner-all"><h:outputText value="Bienvenido"/></h2>
         <h:form id="formIndex">
             <p:growl sticky="true" globalOnly="true" id="messages"/>
             <h:panelGroup rendered="#{MUController.muProgressFeedBack}">    
@@ -21,8 +21,8 @@
             <p:panel>
                 <h:panelGrid columns="2">
                     <p:inputText size="50" id="txtCriterioBusqueda" value="#{ArticuloFE.criterioBusqueda}" required="true" requiredMessage="#{bundle.Requerido}"/>
-                    <p:commandButton id="cmdBuscarArticulo" title="#{bundle.BuscarBoton}" value="#{bundle.BuscarBoton}" update="@form" ajax="true" action="#{ArticuloFE.doListar()}" icon="ui-icon-document"/>
-                    <p:watermark for="txtCriterioBusqueda" value=""/>
+                    <p:commandButton styleClass="boton2x" id="cmdBuscarArticulo" title="#{bundle.BuscarBoton}" value="#{bundle.BuscarBoton}" update="@form" ajax="true" action="#{ArticuloFE.doListar()}" icon="ui-icon-document"/>
+                    <p:watermark for="txtCriterioBusqueda" value="#{bundle.BuscarBoton}"/>
                     <p:defaultCommand target="cmdBuscarArticulo" />
                     <p:message for="txtCriterioBusqueda"/>
                 </h:panelGrid>

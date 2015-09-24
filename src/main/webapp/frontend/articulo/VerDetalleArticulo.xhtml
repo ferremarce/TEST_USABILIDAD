@@ -8,7 +8,7 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="content">
-        <h1 class="ui-state-default ui-corner-all"><h:outputText style="color: #000066;" value="#{ArticuloFE.articulo.nombreArticulo}"/></h1>
+        <h2 class="ui-state-default ui-corner-all"><h:outputText style="color: #000066;" value="#{ArticuloFE.articulo.nombreArticulo}"/></h2>
         <h:form>
             <p:growl life="5000" globalOnly="true" id="messages"/>
             <p:ajax global="false" event="click" update="#{sistema.form_update}," listener="#{ClickCounter.increment()}"/>

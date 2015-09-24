@@ -40,18 +40,20 @@ public class PreferenceCSS extends HttpServlet {
         PrintWriter out = response.getWriter();
         String parametro = request.getParameter("object");
         String cadena;
-        System.out.println("Preference id: "+parametro);
+        System.out.println("Preference id: " + parametro);
         try {
             Preference p = preferenceDAO.find(Integer.parseInt(parametro));
             String size = p.getTamanho() + "%";
             String family = "'" + p.getFuente() + "'";
-            cadena = "h1, h2, h3, span {"
+            cadena = "h1, h2, h3, span \n"
+                    + "{\n"
                     + "    font-family: " + family + " !important; \n"
-                    + "}"
-                    + "td {"
+                    + "}\n"
+                    + "td \n"
+                    + "{\n"
                     + "    font-size: " + size + " !important;\n"
                     + "    font-family: " + family + " !important; \n"
-                    + "}"
+                    + "}\n"
                     + ".ui-widget,\n"
                     + ".ui-widget-header,\n"
                     + ".ui-widget-content,\n"
@@ -66,6 +68,8 @@ public class PreferenceCSS extends HttpServlet {
                     + ".ui-button-text,\n"
                     + ".ui-selectonemenu-label,\n"
                     + ".ui-selectonemenu-item\n"
+                    + ".ui-state-default\n"
+                    + ".ui-datatable-tablewrapper\n"
                     + "{\n"
                     + "    font-size: " + size + " !important;\n"
                     + "    font-family: " + family + " !important; \n"

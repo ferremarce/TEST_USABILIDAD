@@ -10,10 +10,10 @@
                 xmlns:p="http://primefaces.org/ui">
 
     <ui:define name="content">
-        <h1 class="ui-state-default ui-corner-all">
+        <h2 class="ui-state-default ui-corner-all">
             <p:graphicImage width="40" height="40" rendered="#{CarritoFE.listaOrdenCarrito.size()>0}" value="/icono/cart.gif"/>                                   
             <h:outputText value="Mi Carrito de Compra"/>
-        </h1>
+        </h2>
         <h:form>
             <p:growl sticky="true" globalOnly="true" id="messages"/>
             <p:ajax global="false" event="click" update="#{sistema.form_update}," listener="#{ClickCounter.increment()}"/>
@@ -72,7 +72,7 @@
                     <p:inputText id="codigoPromocional" value="#{CarritoFE.codigoPromocional}">
                         <p:ajax global="no" listener="#{CarritoFE.siHayCambios()}"/>
                     </p:inputText>
-                    <p:commandButton title="#{bundle.ValidarBoton}" value="#{bundle.ValidarBoton}">
+                    <p:commandButton styleClass="boton2x" title="#{bundle.ValidarBoton}" value="#{bundle.ValidarBoton}">
                         <p:ajax update="panelTotal, messages1" listener="#{CarritoFE.mensajeCodigo()}"/>
                     </p:commandButton>
                 </p:panelGrid>
@@ -91,8 +91,10 @@
             </p:panel>
 
             <p:panel>
-                <p:commandButton style="width: 100px" styleClass="boton2x"  disabled="#{CarritoFE.listaOrdenCarrito.size()==0}" ajax="false" iconPos="right" icon="ui-icon-circle-arrow-e" title="#{bundle.PagarBoton}" value="#{bundle.PagarBoton}" />
-                <p:commandButton style="width: 100px" rendered="#{MUController.muAbortOperation}" global="false" immediate="true" title="#{bundle.CancelarBoton}" value="#{bundle.CancelarBoton}" action="#{CarritoFE.doAbortOperation()}" icon="ui-icon-close"/>
+                <h:panelGrid columns="2">
+                    <p:commandButton styleClass="boton2x" disabled="#{CarritoFE.listaOrdenCarrito.size()==0}" ajax="false" iconPos="right" icon="ui-icon-circle-arrow-e" title="#{bundle.PagarBoton}" value="#{bundle.PagarBoton}" />
+                    <p:commandButton styleClass="boton2x" rendered="#{MUController.muAbortOperation}" global="false" immediate="true" title="#{bundle.CancelarBoton}" value="#{bundle.CancelarBoton}" action="#{CarritoFE.doAbortOperation()}" icon="ui-icon-close"/>
+                </h:panelGrid>
             </p:panel>
             <p:dialog header="Cambios pendientes..." closeOnEscape="true" widgetVar="confirmacionAbort" >
                 <p:panel>
