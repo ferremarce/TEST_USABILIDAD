@@ -2,7 +2,7 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/templateExperimento.xhtml"
+                template="/templateExperimentoMU.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:p="http://primefaces.org/ui"
@@ -10,6 +10,7 @@
 
     <ui:define name="content">
         <h:form>
+            <p:messages/>
             <p:panel>
                 <f:facet name="header">
                     <h:outputText value="TAREA ABORT OPERATION"/>
@@ -35,6 +36,9 @@
                 </f:facet>
             </p:panel>
         </h:form>
+        <p:panel>
+            <iframe src="http://localhost:8080/tesisapp/frontend/index.xhtml" frameborder="0" height="900" width="98%"/>
+        </p:panel>
     </ui:define>
 
 </ui:composition>

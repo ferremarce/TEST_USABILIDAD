@@ -2,28 +2,47 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/templateExperimento.xhtml"
+                template="/templateExperimentoMU.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
+        <script>
+            var myWindow;
+
+            function openWin() {
+                myWindow = window.open("http://localhost:8080/tesisapp/frontend/index.xhtml", "myWindow", "width=400, height=200");
+                var w = screen.width - 50;
+                var h = screen.height - 100;
+                var left = (screen.width / 2) - (w / 2);
+                var top = (screen.height / 2) - (h / 2);
+                myWindow.moveTo(top, left);
+                myWindow.resizeTo(w, h);
+            }
+
+            function closeWin() {
+                myWindow.close();
+            }
+        </script>
         <h:form>
+            <p:messages/>
             <p:panel>
                 <f:facet name="header">
                     <h:outputText value="TAREA PREFERENCE"/>
-                    <a style="right: 10px; position: absolute" href="#{LoginManager.doGetURLAPP()}" target="_blank"><p:graphicImage height="25" width="30" value="/icono/cart.gif"/>&nbsp;Abrir la página web de la Tienda</a>
                 </f:facet>
-                <h4>Realiza la siguiente tarea</h4>
-                <p/>
                 <p:panel>
-                    Observa el sistema. Siéntete libre de personalizarlo en caso de que lo desees. Si te encuentras imposibilitado de hacer las configuraciones que deseas, te sugerimos continuar con la siguiente tarea.
+                    Abre la Tienda Virtual haciendo click 
+                    <p:commandButton value="Aquí" onclick="openWin()">
+                        <p:ajax listener="#{ExperimentoController.setClickPopupPR(true)}" update="@form"/>
+                    </p:commandButton>
+                    Luego revisa la apariencia del sistema y comprueba que estás cómodo con sus características: idioma, tamaño de la letra, tipo de letra, colores... Si necesitas cambiar algo, ahora es el momento. Procede, por favor, a hacerlo.
                     <p/>
-                    <h:outputText styleClass="itemResaltado3" value="Una vez estés seguro de haber finalizado la tarea, pulsa sobre el botón 'SIGUIENTE'."/>
+                    <h:outputText styleClass="itemResaltado3" value="Cuando acabes, haz click en el botón 'SIGUIENTE'."/>
                 </p:panel>
                 <f:facet name="footer">
-                    <p:commandButton ajax="false"  action="#{ExperimentoController.gotoNextForm()}" value="Siguiente"/>                  
+                    <p:commandButton ajax="false" onmouseup="closeWin()"  action="#{ExperimentoController.gotoNextForm()}" value="Siguiente"/>
                 </f:facet>
             </p:panel>
         </h:form>

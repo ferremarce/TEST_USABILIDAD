@@ -204,7 +204,7 @@ public class LoginManager implements Serializable {
         this.cuenta = "jmferreira";
         this.doLoginNoPass();
 
-        return "/experimento/inicio";
+        return "/experimento/inicio?faces-redirect=true";
     }
 
     public String doGetURLAPP() {
@@ -409,6 +409,7 @@ public class LoginManager implements Serializable {
             RequestContext context = RequestContext.getCurrentInstance();
             context.execute("PF('msgPreference').show();");
         }
+        System.out.println("Contador: " + this.contadorPR);
     }
 
     public void doDetenerContadorPreference() {

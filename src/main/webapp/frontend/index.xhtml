@@ -24,12 +24,12 @@
                 </h:panelGrid>
             </p:panel>
             <p:carousel circular="true" numVisible="3" headerText="En Promoción" value="#{ArticuloFE.listaArticulo}" var="articulo" autoPlayInterval="5000">
-                <h:panelGrid style="width: 300px;height: 400px" columns="1">
+                <h:panelGrid columns="1">
                     <f:facet name="header">
                         <p:graphicImage rendered="#{articulo.articuloAdjuntoList.size()>0}" width="300" height="250" value="/images/#{articulo.articuloAdjuntoList.get(0).toNameDownload()}" alt="#{articulo.nombreArticulo}" title=""/>
                     </f:facet>
                     <p:separator/>
-                    <span class="itemResaltado1">#{articulo.nombreArticulo}</span>
+                    <h:outputText styleClass="itemResaltado1" value="#{articulo.nombreArticulo}"/>
                     <h:outputText style="color: red" value="#{articulo.precio}">
                         <f:convertNumber currencySymbol=" USD " type="currency"/>
                     </h:outputText>

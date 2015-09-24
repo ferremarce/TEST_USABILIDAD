@@ -16,12 +16,11 @@
                 <p:panel>
                     <h:panelGrid width="600">
                         <h:outputText style="font-weight: bold; color: #990000; font-size: 20px !important" value="El tiempo ha superado el límite permitido..."/>
-                        <h:outputText style="font-size: 20px !important" rendered="#{MUController.muPreference}" value="Fijate que tienes una opción de personalización en la parte superior de la pantalla, donde puedes configurar el sistema y adaptarlo mejor a tus preferencias. Si ya lo hiciste, entonces..."/>
-                        <h:outputText style="font-size: 20px !important" rendered="#{!MUController.muPreference}" value="Es probable que el sistema no este dotado de opciones para realizar la configuración que deseas."/>
-                        <h:outputText style="font-size: 20px !important" value="Le parece si pasamos a la siguiente etapa?"/>
+                        <h:outputText style="font-size: 20px !important" rendered="#{MUController.muPreference}" value="Veo que no has cambiado nada... Fijate que tienes una opción de Preferencias en la parte superior de la pantalla, donde puedes cambiar algunas características del sistema. Si ya lo hiciste"/>
+                        <h:outputText style="font-size: 20px !important" rendered="#{!MUController.muPreference}" value="Veo que no has cambiado nada. Quizás el sistema no te lo permite o no encuentras cómo hacerlo? En cualquier caso, pasemos a usar el sistema de modo que no se alargue mucho la tarea que necesitamos que hagas"/>
+                        <h:outputText style="font-size: 20px !important" value="Entonces... le recomendamos cerrar esta ventana para retornar a la anterior y continuar con la siguiente tarea?"/>
                     </h:panelGrid>
                     <f:facet name="footer">
-                        <p:commandButton style="font-size: 20px !important" value="De acuerdo" action="#{LoginManager.doDetenerContadorPreference()}" oncomplete="PF('msgPreference').hide()"/>
                         <p:commandButton style="font-size: 20px !important" value="Necesito más tiempo" type="button" onclick="PF('msgPreference').hide()"  />
                     </f:facet>
                 </p:panel>

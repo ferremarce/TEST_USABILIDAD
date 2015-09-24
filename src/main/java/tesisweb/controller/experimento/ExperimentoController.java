@@ -22,13 +22,41 @@ import tesisweb.util.JSFutil;
 @SessionScoped
 public class ExperimentoController implements Serializable {
 
+    @Inject
+    LoginManager loginManager;
     private int indexFormActual;
-@Inject
-LoginManager loginManager;
+    private Boolean clickPopupPR = Boolean.FALSE;
+    private Boolean clickPopupAB = Boolean.FALSE;
+    private Boolean clickPopupFB = Boolean.FALSE;
+
     /**
      * Creates a new instance of ExperimentoController
      */
     public ExperimentoController() {
+    }
+
+    public Boolean getClickPopupPR() {
+        return clickPopupPR;
+    }
+
+    public void setClickPopupPR(Boolean clickPopupPR) {
+        this.clickPopupPR = clickPopupPR;
+    }
+
+    public Boolean getClickPopupAB() {
+        return clickPopupAB;
+    }
+
+    public void setClickPopupAB(Boolean clickPopupAB) {
+        this.clickPopupAB = clickPopupAB;
+    }
+
+    public Boolean getClickPopupFB() {
+        return clickPopupFB;
+    }
+
+    public void setClickPopupFB(Boolean clickPopupFB) {
+        this.clickPopupFB = clickPopupFB;
     }
 
     public String gotoFirstForm() {
@@ -38,6 +66,12 @@ LoginManager loginManager;
     }
 
     public String gotoNextForm() {
+        //Se despliega un mensaje si no se abrió el popup en las tareas
+        if (!this.clickPopupAB && !this.clickPopupFB && !this.clickPopupPR && this.indexFormActual != -1) {
+            JSFutil.addErrorMessage("No puedes continuar con la siguiente tarea sin haber abierto la Tienda y hecho la tarea");
+            return "";
+        }
+        this.initPopup();
         this.indexFormActual++;
         if (indexFormActual < 3) {
             OrdenExposicionMuGrupo orden = JSFutil.getUsuarioConectado().getIdGrupoExperimental().getOrdenExposicionMuGrupoList().get(indexFormActual);
@@ -56,5 +90,11 @@ LoginManager loginManager;
         } else {
             return "/experimento/agradecimiento";
         }
+    }
+
+    private void initPopup() {
+        this.clickPopupAB = Boolean.FALSE;
+        this.clickPopupPR = Boolean.FALSE;
+        this.clickPopupFB = Boolean.FALSE;
     }
 }
