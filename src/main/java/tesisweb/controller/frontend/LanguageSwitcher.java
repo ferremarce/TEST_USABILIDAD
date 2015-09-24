@@ -49,13 +49,14 @@ public class LanguageSwitcher implements Serializable {
             if (p.getIdioma().compareTo(language) != 0) {
                 p.setIdioma(language);
                 preferenceDAO.update(p);
+                System.out.println("------ Actualizando idioma del usuario desde LanguageSwitcher...");
             }
         }
+        System.out.println("------ Cambiando idioma desde LanguageSwitcher...");
         JSFutil.putSessionVariable("language", language);
     }
 
     public void changeUserLanguage() {
         this.changeLanguage(JSFutil.getIdiomaSesion());
-        System.out.println("------ Cambiando idioma desde LanguageSwitcher...");
     }
 }
