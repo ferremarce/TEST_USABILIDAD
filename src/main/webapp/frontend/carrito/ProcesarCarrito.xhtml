@@ -26,7 +26,7 @@
                         <h:outputText value="Artículo"/>
                     </f:facet>
                     <p:outputPanel rendered="#{item.idArticulo!=null}">                                        
-                        <p:graphicImage rendered="#{item.idArticulo.articuloAdjuntoList.size()>0}" styleClass="texto-centrado" width="50" height="50" value="/images/#{item.idArticulo.articuloAdjuntoList.get(0).toNameDownload()}" />                        
+                        <p:graphicImage rendered="#{item.idArticulo.articuloAdjuntoList.size()>0}" styleClass="texto-centrado" width="50" height="50" value="/ImageServlet?file=#{item.idArticulo.articuloAdjuntoList.get(0).toNameDownload()}" />                        
                         <span style="font-weight: bold;font-style: italic">[#{item.idArticulo.idCategoria}] </span>
                         <p:commandLink ajax="false" value="#{item.idArticulo.nombreArticulo}" action="#{ArticuloFE.doVerDetalleArticulo(item.idArticulo)}"/>
                     </p:outputPanel>
