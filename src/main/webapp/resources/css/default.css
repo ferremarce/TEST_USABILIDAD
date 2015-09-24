@@ -23,11 +23,7 @@
 
 }
 
-.ui-button, .ui-button-text {
-    font-size: 1.1em;
-}
 .ui-spinner-input{
-    font-size: 1.1em !important;
     width: 90%;
 }
 .top{
@@ -71,19 +67,16 @@
     border-radius: 10px;
 }
 .titulo1 { 
-    font-size: 1.8em;
     font-weight: bold;
     color: #000066;
     padding: 5px;
 }
 .titulo2 { 
-    font-size: 1.6em;
     color: #666666;
     font-weight: bold;
     padding: 5px;
 }
 .titulo3 { 
-    font-size: 1.4em;
     font-weight: bold;
     padding: 5px;
 }
@@ -91,7 +84,6 @@
 .texto-tachado {
     text-decoration:line-through;
     color: red;
-    font-size: 1.4em;
     font-weight: bold;
 }
 .texto-no-tachado {
@@ -123,7 +115,6 @@
     height: 25px;
 }
 .nav:hover {
-    font-size: 1.3em;
     font-weight: bolder;
     text-decoration: none;
     display: block;

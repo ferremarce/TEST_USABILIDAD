@@ -2,15 +2,38 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/templateClienteNoPR.xhtml"
+                template="/templateCliente.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
     <ui:define name="content">
         <h1 class="ui-state-default ui-corner-all"><h:outputText value="Personalizar mi interfaz"/></h1>
+        <style>
+            .ui-widget,
+            .ui-widget-header,
+            .ui-widget-content,
+            .ui-datatable ui-widget,
+            .ui-datatable-data ui-widget-content,
+            .ui-column-title,
+            .ui-toolbar,
+            .ui-menuitem,
+            .ui-menuitem-text,
+            .ui-menu-list,
+            .ui-c,
+            .ui-button-text,
+            .ui-selectonemenu-label,
+            .ui-selectonemenu-item
+            {
+                font-family: 'Droid Sans', arial, serif !important;
+                font-size: 100% !important;
+            }        
+            h1{
+                font-family: 'Droid Sans', arial, serif !important;
+            }
+        </style>
         <h:form>
             <p:growl globalOnly="true" id="messages"/>
-            <p:panelGrid columns="3">
+            <p:panelGrid style="font-size: 18px !important; font-family: 'Droid Sans', arial, serif !important;" columns="3">
                 <p:outputLabel value="Familia de la Letra:" for="fuente" />
                 <p:selectOneMenu id="fuente" value="#{PreferenceController.preference.fuente}" required="true" requiredMessage="#{bundle.Requerido}" >
                     <f:selectItems  value="#{PreferenceController.doGetFonts()}"/>
@@ -38,7 +61,7 @@
                 <p:commandButton ajax="false" title="#{bundle.AplicarBoton}" value="#{bundle.AplicarBoton}" action="#{PreferenceController.doGuardar()}" icon="ui-icon-disk"/>
 
                 <f:facet name="footer">
-                    <p:outputPanel  style="font-size: 16px !important; font-family: sans-serif !important">
+                    <p:outputPanel>
                         <h:outputLabel value="#{bundle.lblPreferenceRecomendado}"/>
                         <p:commandButton ajax="false" title="#{bundle.ConfigDefectoBoton}" value="#{bundle.ConfigDefectoBoton}" action="#{PreferenceController.doAsignarStandarPreference()}" icon="ui-icon-refresh"/>
                     </p:outputPanel>

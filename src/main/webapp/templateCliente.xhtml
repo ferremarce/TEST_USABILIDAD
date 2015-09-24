@@ -18,6 +18,7 @@
         </p:outputPanel>
         <f:metadata>
             <f:event type="preRenderView" listener="#{LanguageSwitcher.changeUserLanguage()}"/>
+            <f:event type="preRenderView" listener="#{LoginManager.init()}"/>
         </f:metadata>
         <p:layout fullPage="true">
             <p:layoutUnit position="east" size="250" header="#{bundle.lblOpciones}" collapsed="#{LoginManager.clientCollapse}" collapsible="true" >
@@ -34,7 +35,7 @@
                     </p:panel>
                 </h:form>
                 <h:form id="formMetrica">
-                    <p:panel rendered="true" header="Métricas">
+                    <p:panel style="font-size: 18px !important"  rendered="true" header="Métricas">
                         <h:panelGrid columns="2">
                             <h:outputLabel for="contadorClick" value="Click Counter: "/>
                             <h:outputText id="contadorClick" value="#{ClickCounter.count}"/>
@@ -77,19 +78,21 @@
                                 </h:panelGrid>
                             </h:panelGrid>
                         </h:panelGrid>
-                        <p:toolbar style="font-size: 18px !important">
+                        <p:toolbar >
                             <f:facet name="left">
-                                <p:commandButton icon="ui-icon-home" ajax="false" value="#{bundle.lblInicio}" action="/frontend/index"/>
-                                <h:outputLabel rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.usuarioLogeado.nombres} #{LoginManager.usuarioLogeado.apellidos}"/>
-                                <!--p:menu style="width: 250px" overlay="true" trigger="cmdUsuarioLogeado" my="left top" at="left bottom">
-                                    <p:submenu label="Acceso">
-                                        <p:menuitem ajax="false" value="#{bundle.CambiarContrasenhaBoton}" action="#{LoginManager.doCambiarContrasenhaForm()}" icon="ui-icon-disk"/>
-                                    </p:submenu>
-                                </p:menu-->
+                                <p:outputPanel style="font-size: 16px !important">
+                                    <p:commandButton icon="ui-icon-home" ajax="false" value="#{bundle.lblInicio}" action="/frontend/index"/>
+                                    <h:outputLabel rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.usuarioLogeado.nombres} #{LoginManager.usuarioLogeado.apellidos}"/>
+                                    <!--p:menu style="width: 250px" overlay="true" trigger="cmdUsuarioLogeado" my="left top" at="left bottom">
+                                        <p:submenu label="Acceso">
+                                            <p:menuitem ajax="false" value="#{bundle.CambiarContrasenhaBoton}" action="#{LoginManager.doCambiarContrasenhaForm()}" icon="ui-icon-disk"/>
+                                        </p:submenu>
+                                    </p:menu-->
+                                </p:outputPanel>
                             </f:facet>
                             <f:facet name="right">
-                                <p:outputPanel rendered="#{MUController.muPreference and LoginManager.usuarioLogeado!=null}">
-                                    <p:commandButton style="font-size: 18px !important" ajax="false" value="#{bundle.PreferenciaBoton}" action="#{PreferenceController.doCambiarPreferencia(LoginManager.usuarioLogeado.idPreference)}" icon="ui-icon-power"/>
+                                <p:outputPanel style="font-size: 16px !important" rendered="#{MUController.muPreference and LoginManager.usuarioLogeado!=null}">
+                                    <p:commandButton ajax="false" value="#{bundle.PreferenciaBoton}" action="#{PreferenceController.doCambiarPreferencia(LoginManager.usuarioLogeado.idPreference)}" icon="ui-icon-power"/>
                                     <p:commandLink value="Español" ajax="false" action="#{LanguageSwitcher.changeLanguage('es')}"/>
                                     <p:graphicImage width="30" height="25" value="/icono/flag_spain.png"/>
                                     <p:spacer width="10"/>
@@ -102,7 +105,7 @@
                 </h:form>
                 <ui:insert name="content">Content</ui:insert>
                 <ui:insert name="ajax_preference">
-                      <ui:include src="/ajax_preference.xhtml"/>
+                    <ui:include src="/ajax_preference.xhtml"/>
                 </ui:insert>
             </p:layoutUnit>
         </p:layout>
