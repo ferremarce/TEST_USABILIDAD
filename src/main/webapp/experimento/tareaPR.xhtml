@@ -2,30 +2,14 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/templateExperimentoMU.xhtml"
+                template="/templateExperimento.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:b="http://bootsfaces.net/ui"
                 xmlns:p="http://primefaces.org/ui"
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
-        <script>
-            var myWindow;
-
-            function openWin() {
-                myWindow = window.open("http://localhost:8080/tesisapp/frontend/index.xhtml", "myWindow", "width=400, height=200");
-                var w = screen.width - 50;
-                var h = screen.height - 100;
-                var left = (screen.width / 2) - (w / 2);
-                var top = (screen.height / 2) - (h / 2);
-                myWindow.moveTo(top, left);
-                myWindow.resizeTo(w, h);
-            }
-
-            function closeWin() {
-                myWindow.close();
-            }
-        </script>
+        <h:outputScript library="js" name="popup.js" />
         <h:form>
             <p:messages/>
             <p:panel>
@@ -33,11 +17,12 @@
                     <h:outputText value="TAREA PREFERENCE"/>
                 </f:facet>
                 <p:panel>
-                    Abre la Tienda Virtual haciendo click 
-                    <p:commandButton value="Aquí" onclick="openWin()">
+                    <b>Revisa la apariencia del sistema</b> y comprueba que estás cómodo con sus características: idioma, tamaño de la letra, tipo de letra, colores... <b>Si necesitas cambiar algo, ahora es el momento</b>. Procede, por favor, a hacerlo.
+                    <p:separator/>
+                    Para hacer esta tarea acceda a la Tienda Virtual haciendo click 
+                    <p:commandButton value="Aquí" onclick="openWin('#{LoginManager.doGetURLAPP()}')">
                         <p:ajax listener="#{ExperimentoController.setClickPopupPR(true)}"/>
                     </p:commandButton>
-                    Luego revisa la apariencia del sistema y comprueba que estás cómodo con sus características: idioma, tamaño de la letra, tipo de letra, colores... Si necesitas cambiar algo, ahora es el momento. Procede, por favor, a hacerlo.
                     <p/>
                     <h:outputText styleClass="itemResaltado3" value="Cuando acabes, haz click en el botón 'SIGUIENTE'."/>
                 </p:panel>
