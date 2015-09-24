@@ -11,7 +11,7 @@
 
     <ui:define name="content">
         <h1 class="ui-state-default ui-corner-all">
-            <p:graphicImage width="50" height="50" rendered="#{CarritoFE.listaOrdenCarrito.size()>0}" value="/icono/cart.gif"/>                                   
+            <p:graphicImage width="40" height="40" rendered="#{CarritoFE.listaOrdenCarrito.size()>0}" value="/icono/cart.gif"/>                                   
             <h:outputText value="Mi Carrito de Compra"/>
         </h1>
         <h:form>
@@ -19,7 +19,7 @@
             <p:ajax global="false" event="click" update="#{sistema.form_update}," listener="#{ClickCounter.increment()}"/>
             <p:dataTable id="dataTableOrdenCarrito" value="#{CarritoFE.listaOrdenCarrito}" var="item" emptyMessage="#{bundle.SinRegistrosMensaje}" >
                 <p:column style="width: 50px">
-                    <p:commandButton style="position: relative; right: 10px;" title="#{bundle.EliminarBoton}" icon="ui-icon-closethick" update="#{sistema.form_update},@form" action="#{CarritoFE.doSacarArticuloOrdenCompra(item)}"/>
+                    <p:commandButton rendered="false" style="position: relative; right: 10px;" title="#{bundle.EliminarBoton}" icon="ui-icon-closethick" update="#{sistema.form_update},@form" action="#{CarritoFE.doSacarArticuloOrdenCompra(item)}"/>
                 </p:column>
                 <p:column >
                     <f:facet name="header">
@@ -52,12 +52,12 @@
                     <p:row>
                         <p:column style="text-align: right" colspan="3">
                             <f:facet name="footer">
-                                <h:outputText style="font-size: 1.3em !important" value="SubTotal sin descuentos: "/>
+                                <h:outputText value="SubTotal sin descuentos: "/>
                             </f:facet>
                         </p:column>
                         <p:column style="text-align: right">
                             <f:facet name="footer">
-                                <h:outputText id="subtotalCarrito" style="font-size: 1.8em !important" value="#{CarritoFE.calcularSubTotal()}">
+                                <h:outputText id="subtotalCarrito" value="#{CarritoFE.calcularSubTotal()}">
                                     <f:convertNumber currencySymbol="USD " type="currency"/>
                                 </h:outputText>
                             </f:facet>
@@ -67,7 +67,7 @@
             </p:dataTable>
             <p:panel header="Información de Pago">
                 <p:messages id="messages1"/>
-                <h:panelGrid columns="3">
+                <p:panelGrid columns="3">
                     <h:outputLabel for="codigoPromocional" value="Código Promocional: "/>
                     <p:inputText id="codigoPromocional" value="#{CarritoFE.codigoPromocional}">
                         <p:ajax global="no" listener="#{CarritoFE.siHayCambios()}"/>
@@ -75,15 +75,15 @@
                     <p:commandButton title="#{bundle.ValidarBoton}" value="#{bundle.ValidarBoton}">
                         <p:ajax update="panelTotal, messages1" listener="#{CarritoFE.mensajeCodigo()}"/>
                     </p:commandButton>
-                </h:panelGrid>
+                </p:panelGrid>
                 <f:facet name="footer">
                     <h:panelGrid id="panelTotal" style="text-align: right !important;" columns="2">
                         <h:outputLabel styleClass="itemResaltado1" value="Descuentos: "/>
-                        <h:outputText style="font-size: 1.8em !important;" value="#{CarritoFE.codigoPromocional==2015?'25%':'0'}"/>
+                        <h:outputText  value="#{CarritoFE.codigoPromocional==2015?'25%':'0'}"/>
                         <h:outputLabel styleClass="itemResaltado1" value="Gastos de envío: "/>
-                        <h:outputText style="font-size: 1.8em !important;" value="0"/>
+                        <h:outputText value="0"/>
                         <h:outputLabel styleClass="itemResaltado1" value="Total (impuestos incluídos): "/>
-                        <h:outputText id="totalCarrito" style="font-size: 1.8em !important;color: #006633; font-weight: bold" value="#{CarritoFE.calcularTotal()}">
+                        <h:outputText id="totalCarrito" style="color: #006633; font-weight: bold" value="#{CarritoFE.calcularTotal()}">
                             <f:convertNumber currencySymbol="USD " type="currency"/>
                         </h:outputText>
                     </h:panelGrid>
@@ -91,8 +91,8 @@
             </p:panel>
 
             <p:panel>
-                <p:commandButton styleClass="boton2x"  disabled="#{CarritoFE.listaOrdenCarrito.size()==0}" ajax="false" iconPos="right" icon="ui-icon-circle-arrow-e" title="#{bundle.PagarBoton}" value="#{bundle.PagarBoton}" action="#{CarritoFE.doProcesarDatosEntrega()}"/>
-                <p:commandButton rendered="#{MUController.muAbortOperation}" styleClass="boton2x" global="false" immediate="true" title="#{bundle.CancelarBoton}" value="#{bundle.CancelarBoton}" action="#{CarritoFE.doAbortOperation()}" icon="ui-icon-close"/>
+                <p:commandButton style="width: 100px" styleClass="boton2x"  disabled="#{CarritoFE.listaOrdenCarrito.size()==0}" ajax="false" iconPos="right" icon="ui-icon-circle-arrow-e" title="#{bundle.PagarBoton}" value="#{bundle.PagarBoton}" />
+                <p:commandButton style="width: 100px" rendered="#{MUController.muAbortOperation}" global="false" immediate="true" title="#{bundle.CancelarBoton}" value="#{bundle.CancelarBoton}" action="#{CarritoFE.doAbortOperation()}" icon="ui-icon-close"/>
             </p:panel>
             <p:dialog header="Cambios pendientes..." closeOnEscape="true" widgetVar="confirmacionAbort" >
                 <p:panel>

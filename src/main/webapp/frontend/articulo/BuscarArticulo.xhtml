@@ -44,7 +44,7 @@
 
                         <f:facet name="footer">
                             <p:commandButton ajax="false"  icon="ui-icon-zoomin" title="#{bundle.VerBoton}" value="#{bundle.VerBoton}" action="#{ArticuloFE.doVerDetalleArticulo(item)}"/>
-                            <p:commandButton ajax="false" icon="shoppingcart" title="#{bundle.AgregarCarritoBoton}" value="#{bundle.AgregarCarritoBoton}" action="#{CarritoFE.doAgregarCarrito(ArticuloFE.articulo)}"/>
+                            <p:commandButton ajax="false" icon="shoppingcart" title="#{bundle.AgregarCarritoBoton}" value="#{bundle.AgregarCarritoBoton}" action="#{CarritoFE.doAgregarCarrito(item)}"/>
                         </f:facet>
                     </p:panel>
                 </p:column>

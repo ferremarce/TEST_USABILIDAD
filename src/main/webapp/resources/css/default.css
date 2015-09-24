@@ -11,6 +11,8 @@
 .ui-datatable-data ui-widget-content,
 .ui-column-title,
 .ui-toolbar
+.ui-state-default
+.ui-panelgrid-cell
 {
     font-size: 1em !important;
 }
@@ -59,7 +61,6 @@
 }
 
 .itemResaltado1 { 
-    font-size: 1.1em;
     font-weight: bold;
     color: black;
 }
@@ -95,19 +96,16 @@
 }
 .texto-no-tachado {
     color: black;
-    font-size: 1.4em;
     font-weight: bold;
 }
 .texto-promocion { 
     font-weight: bold;
     background: #ccffcc;
-    font-size: 1.4em;
     padding: 5px;
     border-radius: 10px;
 }
 .texto-carrito { 
     font-weight: bold;
-    font-size: 1.4em;
     padding: 5px;
     color: white;
     text-shadow: 0px 0px 10.0px #8F8F8F;

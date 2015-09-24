@@ -2,7 +2,7 @@
 <!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
                 xmlns:ui="http://java.sun.com/jsf/facelets"
-                template="/templateCliente.xhtml"
+                template="/templateClienteNoPR.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
@@ -11,9 +11,6 @@
         <h:form>
             <p:growl globalOnly="true" id="messages"/>
             <p:panelGrid columns="3">
-                <p:outputLabel value="Nombre:" for="nombrePreferencia" />
-                <p:inputText size="50" id="nombrePreferencia" value="#{PreferenceController.preference.nombrePreferencia}" title="NombrePreferencia" required="true" requiredMessage="#{bundle.Requerido}"/>
-                <p:message for="nombrePreferencia"/>
                 <p:outputLabel value="Familia de la Letra:" for="fuente" />
                 <p:selectOneMenu id="fuente" value="#{PreferenceController.preference.fuente}" required="true" requiredMessage="#{bundle.Requerido}" >
                     <f:selectItems  value="#{PreferenceController.doGetFonts()}"/>

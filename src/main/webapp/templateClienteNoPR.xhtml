@@ -13,9 +13,6 @@
         <title>TESIS USABILIDAD - WEB</title>
     </h:head>
     <h:body>
-        <p:outputPanel>
-            <link type="text/css" rel="stylesheet" href="#{request.contextPath}/PreferenceCSS?object=#{LoginManager.idPreferenciaUsuario}" />
-        </p:outputPanel>
         <f:metadata>
             <f:event type="preRenderView" listener="#{LanguageSwitcher.changeUserLanguage()}"/>
         </f:metadata>
@@ -28,7 +25,6 @@
                                 <p:graphicImage width="50" height="50" rendered="#{CarritoFE.listaOrdenCarrito.size()==0}" value="/icono/cart2.gif"/>
                                 <h:outputText styleClass="texto-carrito" id="listaArticuloCarrito" value="#{CarritoFE.doGetCantidadItemsCarrito()}"/>
                                 <p:graphicImage width="50" height="50" rendered="#{CarritoFE.listaOrdenCarrito.size()>0}" value="/icono/cart.gif"/>                                   
-                                <h:outputText value="Mi Carrito"/>
                             </h:panelGrid>
                         </p:commandLink>
                     </p:panel>
@@ -42,7 +38,7 @@
                     </p:panel>
                 </h:form>
                 <h:form>
-                    <p:panel style="font-size: 18px !important" header="Usabilidad">
+                    <p:panel header="Usabilidad">
                         <h:panelGrid columns="2">
                             <h:outputText value="Preference: " />
                             <p:selectBooleanCheckbox value="#{MUController.muPreference}"/>
