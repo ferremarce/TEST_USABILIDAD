@@ -14,7 +14,8 @@
                 <f:facet name="header">
                     <h:outputText value="PRESENTACIÓN"/>
                 </f:facet>
-                <b:alert severity="success"><strong>OK!</strong> El entorno experimental ha sido preparado con éxito.</b:alert>
+                <b:alert rendered="#{LoginManager.usuarioLogeado!=null}" severity="success"><strong>OK!</strong> El entorno experimental ha sido preparado con éxito.</b:alert>
+                <b:alert rendered="#{LoginManager.usuarioLogeado==null}" severity="danger"><strong>Oh Oh!</strong> Ocurrió un fallo durante la creación del entorno experimental. Le sugerimos ingresar nuevamente al sistema e intentar nuevamente</b:alert>
                 <p/>
                 <h:panelGrid rowClasses="top" columns="2">
                     <p:outputPanel>
