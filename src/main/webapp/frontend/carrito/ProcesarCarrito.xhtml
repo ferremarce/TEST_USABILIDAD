@@ -17,7 +17,6 @@
         <h:form>
             <p:growl sticky="true" globalOnly="true" id="messages"/>
             <p:ajax global="false" event="click" update="#{sistema.form_update}," listener="#{ClickCounter.increment()}"/>
-            <ui:include src="/ajax.xhtml"/>
             <p:dataTable id="dataTableOrdenCarrito" value="#{CarritoFE.listaOrdenCarrito}" var="item" emptyMessage="#{bundle.SinRegistrosMensaje}" >
                 <p:column style="width: 50px">
                     <p:commandButton style="position: relative; right: 10px;" title="#{bundle.EliminarBoton}" icon="ui-icon-closethick" update="#{sistema.form_update},@form" action="#{CarritoFE.doSacarArticuloOrdenCompra(item)}"/>

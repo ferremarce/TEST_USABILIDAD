@@ -158,7 +158,7 @@ public class CarritoFE implements Serializable {
     //********************************************
     // METODOS DE ACCIÓN
     //********************************************
-    public void doAgregarCarrito(Articulo a) {
+    public String doAgregarCarrito(Articulo a) {
         OrdenCarrito ocarrito = new OrdenCarrito();
         ocarrito.setCantidad(1);
         ocarrito.setIdArticulo(a);
@@ -174,6 +174,7 @@ public class CarritoFE implements Serializable {
             this.listaOrdenCarrito.add(ocarrito);
         }
         JSFutil.addSuccessMessage("Artículo agregado exitosamente al Carrito");
+        return "/frontend/carrito/ProcesarCarrito";
     }
 
     public String doProcesarCarritoFrom() {
