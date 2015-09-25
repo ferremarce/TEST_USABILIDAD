@@ -1,4 +1,10 @@
+
+/**
 @import url(LocalFonts.css);
+**/
+@import url(https://fonts.googleapis.com/css?family=Megrim);
+@import url(https://fonts.googleapis.com/css?family=Exo);
+@import url(https://fonts.googleapis.com/css?family=Droid+Sans);
 
 * {
     font-family: 'Droid Sans', arial, serif !important;

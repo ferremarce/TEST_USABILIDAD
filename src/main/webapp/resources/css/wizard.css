@@ -13,7 +13,7 @@ and open the template in the editor.
     font-family: 'Droid Sans', arial, serif !important;
 }
 body{
-    font-size: 1.1em !important;
+    font-size: 1em !important;
 }
 .ui-widget,
 .ui-widget-header,
@@ -23,7 +23,7 @@ body{
 .ui-column-title,
 .ui-toolbar
 {
-    font-size: 18px !important;
+    font-size: 16px !important;
 }
 .ui-button, .ui-button-text {
     font-size: 1.1em;
