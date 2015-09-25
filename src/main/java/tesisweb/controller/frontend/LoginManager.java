@@ -208,7 +208,7 @@ public class LoginManager implements Serializable {
     }
 
     public String doGetURLAPP() {
-        return JSFutil.getServerUrl() + "/tesisapp/frontend/index.xhtml";
+        return JSFutil.getServerUrl() + "/tesisweb/frontend/index.xhtml";
     }
 
     public String doLoginNoPass() {
@@ -431,7 +431,7 @@ public class LoginManager implements Serializable {
             //Agregar prodcutos al carrito
             if (carritoFE.getListaOrdenCarrito().isEmpty()) {
                 for (Articulo art : articuloDAO.findAll()) {
-                    carritoFE.doAgregarCarrito(art);
+                    carritoFE.doAgregarCarritoInit(art);
                     if (carritoFE.getListaOrdenCarrito().size() > 1) {
                         break;
                     }
@@ -443,7 +443,7 @@ public class LoginManager implements Serializable {
                 this.contrasenha = "123456789";
                 this.doLoginNoPass();
                 //Redirect al main
-                response.sendRedirect(req.getContextPath() + "/frontend/index.xhtml");
+                //response.sendRedirect(req.getContextPath() + "/frontend/index.xhtml");
             } else if (JSFutil.getUsuarioConectado() == null) {
                 //No se puede hacer el experimento si el usuario no esta logeado en el sistema              
                 response.sendRedirect(req.getContextPath() + "/404.xhtml");

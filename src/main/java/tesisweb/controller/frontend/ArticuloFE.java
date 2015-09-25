@@ -174,6 +174,9 @@ public class ArticuloFE implements Serializable {
     public List<Articulo> doGetMasVendidos() {
         return articuloDAO.findTopVendidos(5);
     }
+    public List<Articulo> doGetEnPromocion(){
+        return articuloDAO.findEnPromocion(10);
+    }
 
     //********************************************
 // METODOS DEL LISTENER

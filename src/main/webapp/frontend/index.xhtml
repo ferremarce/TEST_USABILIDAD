@@ -22,22 +22,23 @@
                 <h:panelGrid columns="2">
                     <p:inputText size="50" id="txtCriterioBusqueda" value="#{ArticuloFE.criterioBusqueda}" required="true" requiredMessage="#{bundle.Requerido}"/>
                     <p:commandButton styleClass="boton2x" id="cmdBuscarArticulo" title="#{bundle.BuscarBoton}" value="#{bundle.BuscarBoton}" update="@form" ajax="true" action="#{ArticuloFE.doListar()}" icon="ui-icon-document"/>
-                    <p:watermark for="txtCriterioBusqueda" value="#{bundle.BuscarBoton}"/>
+                    <p:watermark for="txtCriterioBusqueda" value="#{bundle.lblEscribaCriterio}"/>
                     <p:defaultCommand target="cmdBuscarArticulo" />
                     <p:message for="txtCriterioBusqueda"/>
                 </h:panelGrid>
             </p:panel>
-            <p:carousel circular="true" numVisible="3" headerText="En Promoción" value="#{ArticuloFE.doGetMasVendidos()}" var="articulo" autoPlayInterval="5000">
+            <p:carousel circular="true" numVisible="3" headerText="En Promoción" value="#{ArticuloFE.doGetEnPromocion()}" var="articulo" autoPlayInterval="5000">
                 <h:panelGrid columns="1">
                     <f:facet name="header">
                         <p:graphicImage rendered="#{articulo.articuloAdjuntoList.size()>0}" width="300" height="250" value="/ImageServlet?file=#{articulo.articuloAdjuntoList.get(0).toNameDownload()}" alt="#{articulo.nombreArticulo}" title=""/>
                     </f:facet>
                     <p:separator/>
-                    <p:outputPanel>
-                    <h:outputText styleClass="itemResaltado1" value="#{articulo.nombreArticulo}"/>
-                    <h:outputText style="color: red" value="#{articulo.precio}">
-                        <f:convertNumber currencySymbol=" USD " type="currency"/>
-                    </h:outputText>
+                    <p:outputPanel style="width: 250px;">
+                        <h:outputText styleClass="itemResaltado1" value="#{articulo.nombreArticulo}"/>
+                        <br/>
+                        <h:outputText style="color: red" value="#{articulo.precio}">
+                            <f:convertNumber currencySymbol=" USD " type="currency"/>
+                        </h:outputText>
                     </p:outputPanel>
                     <p:panel rendered="#{articulo.esPromocion}">
                         <h:outputText value="Desc. % #{articulo.porcentajeDescuento} "/>

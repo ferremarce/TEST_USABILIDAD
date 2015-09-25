@@ -54,4 +54,11 @@ public class ArticuloDAO extends AbstractFacade<Articulo> {
         List<Articulo> tr = q.getResultList();
         return tr;
     }
+     public List<Articulo> findEnPromocion(Integer max) {
+        Query q = em.createQuery("SELECT a FROM Articulo a WHERE a.esPromocion=1 ORDER BY a.nombreArticulo ");
+        q.setMaxResults(max);
+        //LOG.log(Level.INFO, "findAllbyTipo: {0}", sql);
+        List<Articulo> tr = q.getResultList();
+        return tr;
+    }
 }

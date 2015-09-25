@@ -12,7 +12,7 @@
             <dir name="/root/Documents/WEB/tesisweb/src/main/webapp"/>
         </link>
         <link target="/">
-            <dir name="/tesisapp/"/>
+            <dir name="/tesisweb/"/>
         </link>
     </web>  
 </application>  
