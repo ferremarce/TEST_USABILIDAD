@@ -8,8 +8,8 @@
     <ui:fragment>          
         <h:form>
             <p:outputPanel id="panelContadorPR">
-                <h:outputText id="txt_count" value="Contador: #{LoginManager.contadorPR}" />
-                <!--p:poll global="false" interval="3" rendered="#{LoginManager.contadorPRhabilitado}" listener="#{LoginManager.incrementarContadorPreference()}" update="panelContadorPR" /-->
+                <h:outputText id="txt_count" value="Contador: #{LoginManager.contadorPR} - (PopupPR #{ExperimentoController.clickPopupPR})" />
+                <p:poll global="false" interval="3" rendered="#{ExperimentoController.clickPopupPR}" listener="#{LoginManager.incrementarContadorPreference()}" update="panelContadorPR" />
             </p:outputPanel>
             <p:dialog id="msgPreference" closeOnEscape="true" widgetVar="msgPreference" >
                 <f:facet name="header">
