@@ -10,7 +10,6 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.inject.Inject;
 import tesisweb.controller.frontend.LoginManager;
-import tesisweb.controller.general.PreferenceController;
 import tesisweb.ejb.experimento.entity.OrdenExposicionMuGrupo;
 import tesisweb.util.JSFutil;
 
@@ -90,6 +89,10 @@ public class ExperimentoController implements Serializable {
         } else {
             return "/experimento/agradecimiento";
         }
+    }
+
+    public String doGetURLAPP() {
+        return JSFutil.getServerUrl() + "/tesisweb/frontend/index.xhtml";
     }
 
     private void initPopup() {

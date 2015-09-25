@@ -207,10 +207,6 @@ public class LoginManager implements Serializable {
         return "/experimento/inicio?faces-redirect=true";
     }
 
-    public String doGetURLAPP() {
-        return JSFutil.getServerUrl() + "/tesisweb/frontend/index.xhtml";
-    }
-
     public String doLoginNoPass() {
         try {
             Usuario usuario = usuarioDAO.getUsuario(cuenta);

@@ -11,8 +11,8 @@
     <ui:define name="content">
         <h:form>
             <p:commandButton immediate="true" ajax="false" action="#{LoginManager.doAutoLogin()}" value="AutoLogin"/>
-            <p:messages/>
-            <h2 class="ui-state-default ui-corner-all">Bienvenido</h2>          
+            <h2 class="ui-state-default ui-corner-all">Bienvenido</h2>   
+            <p:growl globalOnly="true" id="messages"/>
             <p:panel >
                 <p:panel>
                     Gracias por participar en este experimento donde vas a evaluar la usabilidad de una aplicación Web.<p/>
@@ -30,6 +30,7 @@
                     <p/>
                 </p:panel>
                 <p:panel header="Cuestionario">
+                    <p:messages/>
                     <p:panelGrid columns="2">
                         <p:outputLabel value="Nombre o Alias" for="alias" />
                         <p:inputText size="30" id="alias" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.alias}" title="Alias" required="true" requiredMessage="#{bundle.Requerido}"/>
