@@ -12,7 +12,7 @@
     <ui:define name="content">
         <h2 class="ui-state-default ui-corner-all">
             <p:graphicImage width="40" height="40" rendered="#{CarritoFE.listaOrdenCarrito.size()>0}" value="/icono/cart.gif"/>                                   
-            <h:outputText value="Mi Carrito de Compra"/>
+            <h:outputText value="#{bundle.MiCarrritoBoton}"/>
         </h2>
         <h:form>
             <p:growl sticky="true" globalOnly="true" id="messages"/>
@@ -23,7 +23,7 @@
                 </p:column>
                 <p:column >
                     <f:facet name="header">
-                        <h:outputText value="Artículo"/>
+                        <h:outputText value="#{bundle.lblArticulo}"/>
                     </f:facet>
                     <p:outputPanel rendered="#{item.idArticulo!=null}">                                        
                         <p:graphicImage rendered="#{item.idArticulo.articuloAdjuntoList.size()>0}" styleClass="texto-centrado" width="50" height="50" value="/ImageServlet?file=#{item.idArticulo.articuloAdjuntoList.get(0).toNameDownload()}" />                        
@@ -33,7 +33,7 @@
                 </p:column>
                 <p:column style="width: 100px;">
                     <f:facet name="header">
-                        <h:outputText value="Cantidad"/>
+                        <h:outputText value="#{bundle.lblCantidad}"/>
                     </f:facet>
                     <p:spinner min="1" max="10" value="#{item.cantidad}">
                         <p:ajax global="no" update="#{sistema.form_update},dataTableOrdenCarrito" />
@@ -42,7 +42,7 @@
                 </p:column>
                 <p:column style="width: 250px; text-align: right">
                     <f:facet name="header">
-                        <h:outputText value="Importe"/>
+                        <h:outputText value="#{bundle.lblPrecio}"/>
                     </f:facet>
                     <h:outputText style="color: green !important" styleClass="texto-no-tachado" value="#{CarritoFE.calcularPrecioFinal(item.idArticulo)}">
                         <f:convertNumber currencySymbol="USD " type="currency"/>
@@ -52,7 +52,7 @@
                     <p:row>
                         <p:column style="text-align: right" colspan="3">
                             <f:facet name="footer">
-                                <h:outputText value="SubTotal sin descuentos: "/>
+                                <h:outputText value="#{bundle.lblSubtotal} #{bundle.lblSinDescuento} "/>
                             </f:facet>
                         </p:column>
                         <p:column style="text-align: right">
@@ -65,10 +65,10 @@
                     </p:row>
                 </p:columnGroup>
             </p:dataTable>
-            <p:panel header="Información de Pago">
+            <p:panel header="#{bundle.lblInfoPago}">
                 <p:messages id="messages1"/>
                 <p:panelGrid columns="3">
-                    <h:outputLabel for="codigoPromocional" value="Código Promocional: "/>
+                    <h:outputLabel for="codigoPromocional" value="#{bundle.lblCodigoPromo} "/>
                     <p:inputText id="codigoPromocional" value="#{CarritoFE.codigoPromocional}">
                         <p:ajax global="no" listener="#{CarritoFE.siHayCambios()}"/>
                     </p:inputText>
@@ -78,11 +78,11 @@
                 </p:panelGrid>
                 <f:facet name="footer">
                     <h:panelGrid id="panelTotal" style="text-align: right !important;" columns="2">
-                        <h:outputLabel styleClass="itemResaltado1" value="Descuentos: "/>
+                        <h:outputLabel styleClass="itemResaltado1" value="#{bundle.lblDescuentos} "/>
                         <h:outputText  value="#{CarritoFE.codigoPromocional==2015?'25%':'0'}"/>
-                        <h:outputLabel styleClass="itemResaltado1" value="Gastos de envío: "/>
+                        <h:outputLabel styleClass="itemResaltado1" value="#{bundle.lblGastosEnvio} "/>
                         <h:outputText value="0"/>
-                        <h:outputLabel styleClass="itemResaltado1" value="Total (impuestos incluídos): "/>
+                        <h:outputLabel styleClass="itemResaltado1" value="#{bundle.lblTotal} "/>
                         <h:outputText id="totalCarrito" style="color: #006633; font-weight: bold" value="#{CarritoFE.calcularTotal()}">
                             <f:convertNumber currencySymbol="USD " type="currency"/>
                         </h:outputText>

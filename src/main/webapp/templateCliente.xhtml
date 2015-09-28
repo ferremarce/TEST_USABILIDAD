@@ -29,7 +29,7 @@
                                 <p:graphicImage width="50" height="50" rendered="#{CarritoFE.listaOrdenCarrito.size()==0}" value="/icono/cart2.gif"/>
                                 <h:outputText styleClass="texto-carrito" id="listaArticuloCarrito" value="#{CarritoFE.doGetCantidadItemsCarrito()}"/>
                                 <p:graphicImage width="50" height="50" rendered="#{CarritoFE.listaOrdenCarrito.size()>0}" value="/icono/cart.gif"/>                                   
-                                <h:outputText value="Mi Carrito"/>
+                                <h:outputText value="#{bundle.MiCarrritoBoton}"/>
                             </h:panelGrid>
                         </p:commandLink>
                     </p:panel>
@@ -74,7 +74,7 @@
                                     <p:graphicImage value="/icono/help.png"/>
                                     <h:outputText value="#{bundle.lblNuestrasTiendas}"/>
                                     <p:graphicImage value="/icono/call-center.png"/>
-                                    <h:outputText value="#{bundle.lblNuestrasTiendas}"/>
+                                    <h:outputText value="#{bundle.lblAtencionCliente}"/>
                                 </h:panelGrid>
                             </h:panelGrid>
                         </h:panelGrid>

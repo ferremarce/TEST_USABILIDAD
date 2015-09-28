@@ -12,7 +12,7 @@
         <f:metadata>
             <f:event type="preRenderView" listener="#{LoginManager.init()}"/>
         </f:metadata>
-        <h2 class="ui-state-default ui-corner-all"><h:outputText value="Bienvenido"/></h2>
+        <h2 class="ui-state-default ui-corner-all"><h:outputText value="#{bundle.lblBienvenido}"/></h2>
         <h:form id="formIndex">
             <p:growl sticky="true" globalOnly="true" id="messages"/>
             <h:panelGroup rendered="#{MUController.muProgressFeedBack}">    
@@ -27,7 +27,12 @@
                     <p:message for="txtCriterioBusqueda"/>
                 </h:panelGrid>
             </p:panel>
-            <p:carousel circular="true" numVisible="3" headerText="En Promoción" value="#{ArticuloFE.doGetEnPromocion()}" var="articulo" autoPlayInterval="5000">
+            <p:carousel circular="true" numVisible="3" value="#{ArticuloFE.doGetEnPromocion()}" var="articulo" autoPlayInterval="5000">
+                <f:facet name="header">
+                    <p:outputPanel>
+                        #{bundle.lblEnPromocion}
+                    </p:outputPanel>
+                </f:facet>
                 <h:panelGrid columns="1">
                     <f:facet name="header">
                         <p:graphicImage rendered="#{articulo.articuloAdjuntoList.size()>0}" width="300" height="250" value="/ImageServlet?file=#{articulo.articuloAdjuntoList.get(0).toNameDownload()}" alt="#{articulo.nombreArticulo}" title=""/>
