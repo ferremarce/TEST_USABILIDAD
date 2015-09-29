@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import tesisweb.ejb.tienda.entity.Usuario;
 
@@ -30,6 +31,7 @@ import tesisweb.ejb.tienda.entity.Usuario;
 @NamedQueries({
     @NamedQuery(name = "CuestionarioUsabilidad.findAll", query = "SELECT c FROM CuestionarioUsabilidad c")})
 public class CuestionarioUsabilidad implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,6 +40,9 @@ public class CuestionarioUsabilidad implements Serializable {
     private Integer idCuestionarioUsabilidad;
     @Column(name = "VALOR_PREGUNTA")
     private Integer valorPregunta;
+    @Size(max = 1000)
+    @Column(name = "COMENTARIO")
+    private String comentario;
     @JoinColumn(name = "ID_PREGUNTA_USABILIDAD", referencedColumnName = "ID_PREGUNTA_USABILIDAD")
     @ManyToOne
     private PreguntaUsabilidad idPreguntaUsabilidad;
@@ -84,6 +89,14 @@ public class CuestionarioUsabilidad implements Serializable {
         this.idUsuario = idUsuario;
     }
 
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -108,5 +121,5 @@ public class CuestionarioUsabilidad implements Serializable {
     public String toString() {
         return "modelo.CuestionarioUsabilidad[ idCuestionarioUsabilidad=" + idCuestionarioUsabilidad + " ]";
     }
-    
+
 }

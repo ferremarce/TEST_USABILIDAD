@@ -51,7 +51,13 @@
                         <f:selectItem itemValue="1" />
                     </p:selectOneRadio>
                     <p:message for="idPR"/>
-                </p:column>                    
+                </p:column>  
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Comentarios"/>
+                    </f:facet>
+                    <p:inputTextarea rows="3" cols="40" value="#{item.comentario}"/>
+                </p:column>
             </p:dataTable>
             <p:dataTable rowIndexVar="indexAB" value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidadAB}" var="item2">
                 <f:facet name="header">
@@ -81,7 +87,13 @@
                         <f:selectItem itemValue="1" />
                     </p:selectOneRadio>
                     <p:message for="idAB"/>
-                </p:column>                    
+                </p:column>  
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Comentarios"/>
+                    </f:facet>
+                    <p:inputTextarea rows="3" cols="40" value="#{item.comentario}"/>
+                </p:column>
             </p:dataTable>
             <p:dataTable rowIndexVar="indexFB" value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidadFB}" var="item3">
                 <f:facet name="header">
@@ -111,7 +123,13 @@
                         <f:selectItem itemValue="1" />
                     </p:selectOneRadio>
                     <p:message for="idFB"/>
-                </p:column>                    
+                </p:column> 
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Comentarios"/>
+                    </f:facet>
+                    <p:inputTextarea rows="3" cols="40" value="#{item.comentario}"/>
+                </p:column>
             </p:dataTable>
             <h2 class="ui-state-default ui-corner-all"><h:outputText styleClass="itemResaltado3" value="Cuestionario Final"/></h2>
             <p:dataTable rowIndexVar="index4" value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidadSUS}" var="item4">
@@ -143,12 +161,12 @@
                     </p:selectOneRadio>
                     <p:message for="idSUS"/>
                 </p:column>                    
-                <!--p:column>
+                <p:column>
                     <f:facet name="header">
-                        <h:outputText value="Sentencias en Negativo"/>
+                        <h:outputText value="Comentarios"/>
                     </f:facet>
-                    <h:outputText escape="false" value="#{item4.idPreguntaUsabilidad.preguntaNegativo}"/>
-                </p:column-->
+                    <p:inputTextarea rows="3" cols="40" value="#{item.comentario}"/>
+                </p:column>
             </p:dataTable>
             <p:panel>
                 <f:facet name="footer">
