@@ -46,7 +46,7 @@
                         </h:outputText>
                     </p:outputPanel>
                     <p:panel rendered="#{articulo.esPromocion}">
-                        <h:outputText value="Desc. % #{articulo.porcentajeDescuento} "/>
+                        <h:outputText value="#{bundle.lblDescuento} % #{articulo.porcentajeDescuento} "/>
                         <h:outputText styleClass="itemResaltado2" value="#{articulo.precio-articulo.precio*articulo.porcentajeDescuento/100}">
                             <f:convertNumber currencySymbol="USD " type="currency"/>
                         </h:outputText>

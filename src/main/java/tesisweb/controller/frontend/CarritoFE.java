@@ -173,7 +173,7 @@ public class CarritoFE implements Serializable {
         if (!existe) {
             this.listaOrdenCarrito.add(ocarrito);
         }
-        JSFutil.addSuccessMessage("Artículo agregado exitosamente al Carrito");
+        JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("ArticuloAgregadoCarro"));
         return "/frontend/carrito/ProcesarCarrito";
     }
 
@@ -263,7 +263,7 @@ public class CarritoFE implements Serializable {
     }
 
     public String doOpcionSI() {
-        JSFutil.addSuccessMessage("Los cambios han sido aceptados...");
+        JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("CambiosOk"));
         return "/frontend/index";
     }
 
@@ -271,7 +271,7 @@ public class CarritoFE implements Serializable {
         //Restaurar el carrito anterior
         this.listaOrdenCarrito = this.clonarLista(listaOrdenCarritoAbort);
         this.codigoPromocional = this.codigoPromocionalAbort;
-        JSFutil.addSuccessMessage("Los cambios han sido ignorados. Su carrito no ha sido alterado.");
+        JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("CambiosNoOk")+ ". "+JSFutil.getMyBundle().getString("CarritoNoAlterado"));
         return "/frontend/index";
     }
 
@@ -369,9 +369,9 @@ public class CarritoFE implements Serializable {
 
     public void mensajeCodigo() {
         if (codigoPromocional != null && codigoPromocional.compareTo(2015) == 0) {
-            JSFutil.addSuccessMessage("Código promocional aceptado");
+            JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("CodigoPromoOk"));
         } else {
-            JSFutil.addErrorMessage("No existe descuentos para ese código");
+            JSFutil.addErrorMessage(JSFutil.getMyBundle().getString("CodigoPromoNoOk"));
         }
     }
 
