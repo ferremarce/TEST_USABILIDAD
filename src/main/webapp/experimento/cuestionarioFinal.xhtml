@@ -52,11 +52,11 @@
                     </p:selectOneRadio>
                     <p:message for="idPR"/>
                 </p:column>  
-                <p:column>
+                <p:column style="width: 300px">
                     <f:facet name="header">
                         <h:outputText value="Comentarios"/>
                     </f:facet>
-                    <p:inputTextarea rows="3" cols="40" value="#{item.comentario}"/>
+                    <p:inputTextarea rows="2" cols="30" value="#{item.comentario}"/>
                 </p:column>
             </p:dataTable>
             <p:dataTable rowIndexVar="indexAB" value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidadAB}" var="item2">
@@ -88,11 +88,11 @@
                     </p:selectOneRadio>
                     <p:message for="idAB"/>
                 </p:column>  
-                <p:column>
+                <p:column style="width: 300px">
                     <f:facet name="header">
                         <h:outputText value="Comentarios"/>
                     </f:facet>
-                    <p:inputTextarea rows="3" cols="40" value="#{item.comentario}"/>
+                    <p:inputTextarea rows="2" cols="30" value="#{item.comentario}"/>
                 </p:column>
             </p:dataTable>
             <p:dataTable rowIndexVar="indexFB" value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidadFB}" var="item3">
@@ -124,11 +124,11 @@
                     </p:selectOneRadio>
                     <p:message for="idFB"/>
                 </p:column> 
-                <p:column>
+                <p:column style="width: 300px">
                     <f:facet name="header">
                         <h:outputText value="Comentarios"/>
                     </f:facet>
-                    <p:inputTextarea rows="3" cols="40" value="#{item.comentario}"/>
+                    <p:inputTextarea rows="2" cols="30" value="#{item.comentario}"/>
                 </p:column>
             </p:dataTable>
             <h2 class="ui-state-default ui-corner-all"><h:outputText styleClass="itemResaltado3" value="Cuestionario Final"/></h2>
@@ -161,11 +161,11 @@
                     </p:selectOneRadio>
                     <p:message for="idSUS"/>
                 </p:column>                    
-                <p:column>
+                <p:column style="width: 300px">
                     <f:facet name="header">
                         <h:outputText value="Comentarios"/>
                     </f:facet>
-                    <p:inputTextarea rows="3" cols="40" value="#{item.comentario}"/>
+                    <p:inputTextarea rows="2" cols="30" value="#{item.comentario}"/>
                 </p:column>
             </p:dataTable>
             <p:panel>
