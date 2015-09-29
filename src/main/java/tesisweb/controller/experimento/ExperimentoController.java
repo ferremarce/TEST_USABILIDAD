@@ -8,9 +8,14 @@ package tesisweb.controller.experimento;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.inject.Inject;
+import tesisweb.clase.Metrica;
 import tesisweb.controller.frontend.LoginManager;
+import tesisweb.ejb.experimento.entity.MecanismoUsabilidad;
 import tesisweb.ejb.experimento.entity.OrdenExposicionMuGrupo;
+import tesisweb.ejb.experimento.facade.MecanismoUsabilidadFacade;
 import tesisweb.util.JSFutil;
 
 /**
@@ -23,15 +28,29 @@ public class ExperimentoController implements Serializable {
 
     @Inject
     LoginManager loginManager;
+    @Inject
+    MecanismoUsabilidadFacade mecanismoUsabilidadFacade;
     private int indexFormActual;
     private Boolean clickPopupPR = Boolean.FALSE;
     private Boolean clickPopupAB = Boolean.FALSE;
     private Boolean clickPopupFB = Boolean.FALSE;
+    long time_start, time_end;
+    private Integer clickCounter;
+    private MecanismoUsabilidad mecanismoUsabilidad;
+    private List<Metrica> listaMetrica = new ArrayList<>();
 
     /**
      * Creates a new instance of ExperimentoController
      */
     public ExperimentoController() {
+    }
+
+    public List<Metrica> getListaMetrica() {
+        return listaMetrica;
+    }
+
+    public void setListaMetrica(List<Metrica> listaMetrica) {
+        this.listaMetrica = listaMetrica;
     }
 
     public Boolean getClickPopupPR() {
@@ -99,5 +118,31 @@ public class ExperimentoController implements Serializable {
         this.clickPopupAB = Boolean.FALSE;
         this.clickPopupPR = Boolean.FALSE;
         this.clickPopupFB = Boolean.FALSE;
+    }
+
+    public void startMetrica() {
+        Integer id = null;
+        if (this.clickPopupPR) {
+            id = 1;
+        } else if (this.clickPopupAB) {
+            id = 2;
+        } else if (this.clickPopupFB) {
+            id = 3;
+        } else {
+            JSFutil.addErrorMessage("No se puede establecer el mecanismo para capturar las metricas");
+            return;
+        }
+        this.mecanismoUsabilidad = mecanismoUsabilidadFacade.find(id);
+        this.time_start = System.currentTimeMillis();
+        this.clickCounter = 0;
+    }
+
+    public void stopMetrica() {
+        Metrica m = new Metrica();
+        m.setIdMecanismoUsabilidad(mecanismoUsabilidad);
+        m.setIdUsuario(JSFutil.getUsuarioConectado());
+        m.setTiempoInicio(this.time_start);
+        m.setTiempoFin(System.currentTimeMillis());
+        this.listaMetrica.add(m);
     }
 }
