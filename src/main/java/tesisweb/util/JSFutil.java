@@ -606,6 +606,13 @@ public class JSFutil implements Serializable {
         return dest;
     }
 
+    public static String doGetSessionID() {
+        FacesContext fCtx = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) fCtx.getExternalContext().getSession(false);
+        String sessionId = session.getId();
+        return sessionId;
+    }
+
     public static String getServerUrl() {
         try {
             HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();

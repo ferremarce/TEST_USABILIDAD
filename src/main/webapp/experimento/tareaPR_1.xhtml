@@ -10,14 +10,6 @@
 
     <ui:define name="content">
         <h:outputScript library="js" name="popup.js" />
-        <style>
-            iframe {
-                display: block;
-                border: none;
-                height: calc(100vh - 30px);
-                width: 100%;
-            }
-        </style>
         <h:form>
             <p:messages/>
             <p:panel>
@@ -25,7 +17,7 @@
                     <h:outputText value="TAREA PREFERENCE"/>
                 </f:facet>
                 <p:panel>
-                    <b>Revisa la apariencia de la Tienda Virtual</b> y comprueba que estás cómodo con sus características: idioma, tamaño de la letra, tipo de letra, colores... <b>Si necesitas cambiar algo, ahora es el momento</b>. Proceda, por favor, a hacerlo.
+                    <b>Revisa la apariencia de la Tienda Virtual</b> y comprueba que estás cómodo con sus características: idioma, tamaño de la letra, tipo de letra, colores... <b>Si necesitas cambiar algo, ahora es el momento</b>. Procede, por favor, a hacerlo.
                     <p:separator/>
                     Para hacer esta tarea acceda a la Tienda Virtual haciendo click 
                     <p:commandButton value="Aquí" onclick="openWin('#{ExperimentoController.doGetURLAPP()}')">
@@ -38,18 +30,8 @@
                     <p:commandButton ajax="false" onmouseup="closeWin()"  action="#{ExperimentoController.gotoNextForm()}" value="Siguiente"/>
                 </f:facet>
             </p:panel>
-            <!--p:commandButton value="Modal" type="button" onmousedown="PF('dlg2').show();" onmouseup="PF('dlg2').toggleMaximize();"/-->
+            <iframe height="100%" width="100%" frameborder="0" src="http://webadm.senado.gov.py/tesisweb/frontend/index.xhtml"/>
         </h:form>
-        <p:dialog onShow="#{ExperimentoController.startMetrica()}" onHide="#{ExperimentoController.stopMetrica()}" widgetVar="dlg2" >
-            <f:facet name="header">
-                <h:outputText value="Sistema Tienda"/>
-                <p:commandButton value="Recargar la página" update="panelFrame"/>
-                <p:commandButton value="Terminar" type="button" oncomplete="PF('dlg2').hide();"/>
-            </f:facet>
-            <p:outputPanel id="panelFrame">
-                <iframe frameborder="0" src="#{ExperimentoController.doGetURLAPP()}"/>
-            </p:outputPanel>
-        </p:dialog>  
     </ui:define>
 
 </ui:composition>

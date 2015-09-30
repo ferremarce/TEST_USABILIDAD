@@ -14,6 +14,12 @@ function openWin(url) {
     myWindow.moveTo(top, left);
     myWindow.resizeTo(w, h);
 }
+function largoModal() {
+    return screen.height - 100;
+}
+function anchoModal() {
+    return screen.width - 50;
+}
 function closeWin() {
     myWindow.close();
 }

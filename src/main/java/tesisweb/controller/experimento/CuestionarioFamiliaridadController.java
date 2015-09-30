@@ -92,6 +92,7 @@ public class CuestionarioFamiliaridadController implements Serializable {
      */
     public String doGuardar() {
         try {
+            loginManager.doLogout();
             Usuario u = new Usuario();
             u.setCuenta(this.cuestionarioFamiliaridad.getAlias());
             u.setEsActivo(Boolean.TRUE);
@@ -129,7 +130,7 @@ public class CuestionarioFamiliaridadController implements Serializable {
             JSFutil.addSuccessMessage("Acceso concedido");
             JSFutil.putSessionVariable(USER_SESSION_KEY, u);
             JSFutil.putSessionVariable(USER_SESSION_LANGUAGE, u.getIdPreference().getIdioma());
-            return "/experimento/inicio";
+            return "/experimento/inicio?faces-redirect=true";
         } catch (EJBException ex) {
             String msg = "";
             Throwable cause = ex.getCause();

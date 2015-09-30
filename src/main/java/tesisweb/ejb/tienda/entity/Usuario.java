@@ -215,6 +215,6 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return this.getApellidos() + ", " + this.getNombres();
+        return this.getNombres()+"-"+this.getApellidos();
     }
 }

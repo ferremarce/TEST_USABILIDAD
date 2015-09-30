@@ -201,6 +201,7 @@ public class LoginManager implements Serializable {
     }
 
     public String doAutoLogin() {
+        this.doLogout();
         this.cuenta = "jmferreira";
         this.doLoginNoPass();
 
@@ -302,7 +303,7 @@ public class LoginManager implements Serializable {
         if (session != null) {
             session.invalidate();
         }
-        return "/backend/index";
+        return "";
     }
 
     public String doLogoutTienda() {
@@ -410,6 +411,10 @@ public class LoginManager implements Serializable {
 
     public void doDetenerContadorPreference() {
         this.contadorPRhabilitado = Boolean.FALSE;
+    }
+
+    public String doGetSessionID() {
+        return JSFutil.doGetSessionID();
     }
 
     public void init() {

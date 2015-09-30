@@ -15,9 +15,20 @@
     <h:body>
         <p:layout fullPage="true">
             <p:layoutUnit position="center" >
-                <p:panel styleClass="header-background">
-                    <h2 class="ui-state-default ui-corner-all">TEST DE USABILIDAD</h2>
-                </p:panel>
+                <h:form>
+                    <p:panel styleClass="header-background">
+                        <h:panelGrid width="100%" columns="2">
+                            <h:outputText style="font-size: 30px; font-weight: bold" value="TEST DE USABILIDAD"/>
+                            <p:outputPanel>
+                                <h:outputText rendered="#{LoginManager.usuarioLogeado!=null}" value="[#{LoginManager.usuarioLogeado}]"/>
+                                <p:spacer height="20"/>
+                                <h:outputText value="#{LoginManager.doGetSessionID()}"/>
+                                <p:spacer height="20"/>
+                                <p:commandButton rendered="#{LoginManager.usuarioLogeado==null}" immediate="true" ajax="false" action="#{LoginManager.doAutoLogin()}" value="AutoLogin"/>
+                            </p:outputPanel>
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
                 <ui:insert name="content">Content</ui:insert>
                 <p:outputPanel>
                     <p:panel>

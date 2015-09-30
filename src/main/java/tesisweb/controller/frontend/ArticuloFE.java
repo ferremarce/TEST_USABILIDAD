@@ -134,7 +134,7 @@ public class ArticuloFE implements Serializable {
      */
     public String doListar() {
         try { 
-            Thread.sleep(3000);
+            Thread.sleep(5000);
         } catch (InterruptedException ex) {
             Logger.getLogger(ArticuloFE.class.getName()).log(Level.SEVERE, null, ex);
         }
