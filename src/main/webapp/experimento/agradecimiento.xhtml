@@ -10,10 +10,15 @@
 
     <ui:define name="content">
         <h:form>
+            <p:growl globalOnly="true" id="messages"/>
             <p:panel header="Agradecimientos">
                 <h2>Gracias por participar en la realización de este experimento.</h2>
+                <f:facet name="footer">
+                    <h:outputText value="Ya puedes cerrar esta ventana de tu navegador"/>
+                </f:facet>
             </p:panel>
         </h:form>
+
     </ui:define>
 
 </ui:composition>
