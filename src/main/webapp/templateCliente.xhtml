@@ -34,27 +34,45 @@
                         </p:commandLink>
                     </p:panel>
                 </h:form>
-                <h:form id="formMetrica">
-                    <p:panel style="font-size: 18px !important"  rendered="true" header="Métricas">
-                        <h:panelGrid columns="2">
-                            <h:outputLabel for="contadorClick" value="Click Counter: "/>
-                            <h:outputText id="contadorClick" value="#{ClickCounter.count}"/>
-                        </h:panelGrid>
-                    </p:panel>
+                <h:form id="formCategoriaArticulo">
+                    <p:dataList value="#{SubTipoController.idCategoriaArticuloList}" var="categoria" >
+                        <f:facet name="header">
+                            Categorías
+                        </f:facet>
+                        <p:commandLink styleClass="nav" ajax="false" value="#{categoria}" action="#{ArticuloFE.doListarCategoriaForm()}">
+                            <f:param name="idCategoria" value="#{categoria.idSubTipo}" />
+                        </p:commandLink>
+                    </p:dataList>
                 </h:form>
-                <h:form>
-                    <p:panel style="font-size: 18px !important" header="Usabilidad">
-                        <h:panelGrid columns="2">
-                            <h:outputText value="Preference: " />
-                            <p:selectBooleanCheckbox value="#{MUController.muPreference}"/>
-                            <h:outputText value="AbortOperation: " />
-                            <p:selectBooleanCheckbox value="#{MUController.muAbortOperation}"/>
-                            <h:outputText value="ProgressFB: " />
-                            <p:selectBooleanCheckbox value="#{MUController.muProgressFeedBack}"/>
-                        </h:panelGrid>
-                        <p:commandButton value="#{bundle.AceptarBoton}" ajax="false"/>
-                    </p:panel>
-                </h:form>
+                <p:outputPanel rendered="#{ExperimentoController.debugMode}">
+                    <h:form id="formMetrica">
+                        <p:panel style="font-size: 18px !important"  rendered="true" header="Métricas">
+                            <h:panelGrid columns="2">
+                                <h:outputLabel for="contadorClick" value="Click Counter: "/>
+                                <h:outputText id="contadorClick" value="#{ClickCounter.count}"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </h:form>
+                    <h:form>
+                        <p:panel style="font-size: 18px !important" header="Usabilidad">
+                            <h:panelGrid columns="2">
+                                <h:outputText value="Preference: " />
+                                <p:selectBooleanCheckbox value="#{MUController.muPreference}"/>
+                                <h:outputText value="AbortOperation: " />
+                                <p:selectBooleanCheckbox value="#{MUController.muAbortOperation}"/>
+                                <h:outputText value="ProgressFB: " />
+                                <p:selectBooleanCheckbox value="#{MUController.muProgressFeedBack}"/>
+                            </h:panelGrid>
+                            <p:commandButton value="#{bundle.AceptarBoton}" ajax="false"/>
+                        </p:panel>
+                    </h:form>
+                    <h:form>
+                        <p:outputPanel id="panelContadorPR">
+                            <h:outputText id="txt_count" value="Contador: #{LoginManager.contadorPR} - (PopupPR #{ExperimentoController.clickPopupPR})" />
+                            <p:poll global="false" interval="3" rendered="#{ExperimentoController.clickPopupPR}" listener="#{LoginManager.incrementarContadorPreference()}" update="panelContadorPR" />
+                        </p:outputPanel>
+                    </h:form>
+                </p:outputPanel>
             </p:layoutUnit>
             <p:layoutUnit position="center" >
                 <h:form>
@@ -104,6 +122,19 @@
                     </p:panel>
                 </h:form>
                 <ui:insert name="content">Content</ui:insert>
+                <p:panel>
+                    <h:panelGrid style="position: relative; left: 20px" columns="6">
+                        <p:graphicImage value="/icono/store.png"/>
+                        <h:outputText value="#{bundle.lblAyuda}"/>
+                        <p:graphicImage value="/icono/help.png"/>
+                        <h:outputText value="#{bundle.lblNuestrasTiendas}"/>
+                        <p:graphicImage value="/icono/call-center.png"/>
+                        <h:outputText value="#{bundle.lblAtencionCliente}"/>
+                    </h:panelGrid>
+                    <f:facet name="footer">
+                        <p:graphicImage value="/img/cc-logos.jpeg"/>
+                    </f:facet>
+                </p:panel>
                 <ui:insert name="ajax_preference">
                     <ui:include src="/ajax_preference.xhtml"/>
                 </ui:insert>

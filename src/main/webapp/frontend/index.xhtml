@@ -18,15 +18,7 @@
             <h:panelGroup rendered="#{MUController.muProgressFeedBack}">    
                 <ui:include src="/ajax_feedback.xhtml"/>
             </h:panelGroup>     
-            <p:panel>
-                <h:panelGrid columns="2">
-                    <p:inputText size="50" id="txtCriterioBusqueda" value="#{ArticuloFE.criterioBusqueda}" required="true" requiredMessage="#{bundle.Requerido}"/>
-                    <p:commandButton styleClass="boton2x" id="cmdBuscarArticulo" title="#{bundle.BuscarBoton}" value="#{bundle.BuscarBoton}" update="@form" ajax="true" action="#{ArticuloFE.doListar()}" icon="ui-icon-document"/>
-                    <p:watermark for="txtCriterioBusqueda" value="#{bundle.lblEscribaCriterio}"/>
-                    <p:defaultCommand target="cmdBuscarArticulo" />
-                    <p:message for="txtCriterioBusqueda"/>
-                </h:panelGrid>
-            </p:panel>
+            <ui:include src="/panelBuscar.xhtml"/>
             <p:carousel circular="true" numVisible="3" value="#{ArticuloFE.doGetEnPromocion()}" var="articulo" autoPlayInterval="5000">
                 <f:facet name="header">
                     <p:outputPanel>

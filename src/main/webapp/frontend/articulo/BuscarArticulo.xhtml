@@ -14,12 +14,7 @@
                 <ui:include src="/ajax_feedback.xhtml"/>
                 <p:growl globalOnly="true" sticky="true" id="messages"/>
             </h:panelGroup>     
-            <h:panelGrid columns="2">
-                <p:inputText size="50" id="txtCriterioBusqueda" value="#{ArticuloFE.criterioBusqueda}" rendered="true" requiredMessage="#{bundle.Requerido}"/>
-                <p:commandButton styleClass="boton2x" id="cmdBuscarArticulo" title="#{bundle.BuscarBoton}" value="#{bundle.BuscarBoton}" ajax="true" update="@form" action="#{ArticuloFE.doListar()}" icon="ui-icon-document"/>
-                <p:watermark for="txtCriterioBusqueda" value="#{bundle.lblEscribaCriterio}"/>
-                <p:defaultCommand target="cmdBuscarArticulo" />
-            </h:panelGrid>
+            <ui:include src="/panelBuscar.xhtml"/>
             <p:dataTable var="item" value="#{ArticuloFE.listaArticulo}" rows="5" paginator="true">
                 <f:facet name="header">
                     <h:outputText value="#{ArticuloFE.listaArticulo.size()} registros recuperados."/>
