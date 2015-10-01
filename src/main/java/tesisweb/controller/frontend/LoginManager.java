@@ -406,7 +406,7 @@ public class LoginManager implements Serializable {
             RequestContext context = RequestContext.getCurrentInstance();
             context.execute("PF('msgPreference').show();");
         }
-        System.out.println("Contador: " + this.contadorPR);
+        //System.out.println("Contador: " + this.contadorPR);
     }
 
     public void doDetenerContadorPreference() {

@@ -38,11 +38,20 @@ public class ExperimentoController implements Serializable {
     private Integer clickCounter;
     private MecanismoUsabilidad mecanismoUsabilidad;
     private List<Metrica> listaMetrica = new ArrayList<>();
+    private Boolean debugMode=Boolean.TRUE;
 
     /**
      * Creates a new instance of ExperimentoController
      */
     public ExperimentoController() {
+    }
+
+    public Boolean getDebugMode() {
+        return debugMode;
+    }
+
+    public void setDebugMode(Boolean debugMode) {
+        this.debugMode = debugMode;
     }
 
     public List<Metrica> getListaMetrica() {

@@ -22,9 +22,13 @@
                             <p:outputPanel>
                                 <h:outputText rendered="#{LoginManager.usuarioLogeado!=null}" value="[#{LoginManager.usuarioLogeado}]"/>
                                 <p:spacer height="20"/>
-                                <h:outputText value="#{LoginManager.doGetSessionID()}"/>
+                                <h:outputText rendered="#{ExperimentoController.debugMode}" value="ID_SESION: #{LoginManager.doGetSessionID()}"/>
                                 <p:spacer height="20"/>
-                                <p:commandButton rendered="#{LoginManager.usuarioLogeado==null}" immediate="true" ajax="false" action="#{LoginManager.doAutoLogin()}" value="AutoLogin"/>
+                                <p:commandButton rendered="#{LoginManager.usuarioLogeado==null and ExperimentoController.debugMode}" immediate="true" ajax="false" action="#{LoginManager.doAutoLogin()}" value="AutoLogin"/>
+                                <p:spacer height="20"/>
+                                <p:selectBooleanButton offLabel="Modo Debug" onLabel="Modo Normal" value="#{ExperimentoController.debugMode}">
+                                    <p:ajax update="@all"/>
+                                </p:selectBooleanButton>
                             </p:outputPanel>
                         </h:panelGrid>
                     </p:panel>
