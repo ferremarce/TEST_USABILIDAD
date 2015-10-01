@@ -9,7 +9,7 @@
         <p:ajaxStatus onstart="PF('statusDialog').show()" onerror="PF('statusDialog').hide();PF('errorStatusDialog').show();" onsuccess="PF('statusDialog').hide()" />
         <p:dialog widgetVar="statusDialog" draggable="false" closable="true" resizable="false" showHeader="false">
             <p:panel>
-                <h:outputText value="#{bundle.lblProcesoEnCurso}"/>
+                <h:outputText style="font-weight: bold !important" value="#{bundle.lblProcesoEnCurso}"/>
                 <p:separator/>
                 <h:panelGrid>
                     <p:graphicImage height="50" width="400" value="/img/loader.gif" />

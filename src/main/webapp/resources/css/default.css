@@ -36,13 +36,13 @@
     vertical-align: top !important;
 }
 .shoppingcart{
-    width: 10px;
-    height: 10px;
-    background-image: url( ../../icono/cart.png) !important;
+    width: 20px;
+    height: 20px;
+    background-image: url(../..//icono/s-cart.png) !important;
     background-repeat: no-repeat;
 }
 .escoba{
-    background-image: url( ../../icono/escoba.png) !important;
+    background-image: url(../..//icono/escoba.png) !important;
     background-repeat: no-repeat;
 }
 .sign-in{

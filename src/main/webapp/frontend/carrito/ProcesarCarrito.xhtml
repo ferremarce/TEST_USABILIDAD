@@ -31,7 +31,7 @@
                         <p:commandLink ajax="false" value="#{item.idArticulo.nombreArticulo}" action="#{ArticuloFE.doVerDetalleArticulo(item.idArticulo)}"/>
                     </p:outputPanel>
                 </p:column>
-                <p:column style="width: 100px;">
+                <p:column style="width: 150px;">
                     <f:facet name="header">
                         <h:outputText value="#{bundle.lblCantidad}"/>
                     </f:facet>
@@ -66,14 +66,13 @@
                 </p:columnGroup>
             </p:dataTable>
             <p:panel header="#{bundle.lblInfoPago}">
-                <p:messages id="messages1"/>
                 <p:panelGrid columns="3">
                     <h:outputLabel for="codigoPromocional" value="#{bundle.lblCodigoPromo} "/>
                     <p:inputText id="codigoPromocional" value="#{CarritoFE.codigoPromocional}">
                         <p:ajax global="no" listener="#{CarritoFE.siHayCambios()}"/>
                     </p:inputText>
                     <p:commandButton styleClass="boton2x" title="#{bundle.ValidarBoton}" value="#{bundle.ValidarBoton}">
-                        <p:ajax update="panelTotal, messages1" listener="#{CarritoFE.mensajeCodigo()}"/>
+                        <p:ajax update="@form" listener="#{CarritoFE.mensajeCodigo()}"/>
                     </p:commandButton>
                 </p:panelGrid>
                 <f:facet name="footer">

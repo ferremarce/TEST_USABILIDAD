@@ -123,16 +123,23 @@
                 </h:form>
                 <ui:insert name="content">Content</ui:insert>
                 <p:panel>
-                    <h:panelGrid style="position: relative; left: 20px" columns="6">
-                        <p:graphicImage value="/icono/store.png"/>
-                        <h:outputText value="#{bundle.lblAyuda}"/>
-                        <p:graphicImage value="/icono/help.png"/>
-                        <h:outputText value="#{bundle.lblNuestrasTiendas}"/>
-                        <p:graphicImage value="/icono/call-center.png"/>
-                        <h:outputText value="#{bundle.lblAtencionCliente}"/>
+                    <h:panelGrid width="100%" columns="3">
+                        <h:panelGrid columns="2">
+                            <p:graphicImage value="/icono/store.png"/>
+                            <h:outputText value="#{bundle.lblAyuda}"/>
+                        </h:panelGrid>
+                        <h:panelGrid columns="2">
+                            <p:graphicImage value="/icono/help.png"/>
+                            <h:outputText value="#{bundle.lblNuestrasTiendas}"/>
+                        </h:panelGrid>
+                        <h:panelGrid columns="2">
+                            <p:graphicImage value="/icono/call-center.png"/>
+                            <h:outputText value="#{bundle.lblAtencionCliente}"/>
+                        </h:panelGrid>
                     </h:panelGrid>
                     <f:facet name="footer">
                         <p:graphicImage value="/img/cc-logos.jpeg"/>
+                        <p:graphicImage style="position: absolute; right: 5px" value="/img/social-icon.png"/>
                     </f:facet>
                 </p:panel>
                 <ui:insert name="ajax_preference">
