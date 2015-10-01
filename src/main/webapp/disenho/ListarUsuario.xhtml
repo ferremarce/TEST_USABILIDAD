@@ -39,6 +39,11 @@
                         <h:outputText value="Rol"/>
                     </f:facet>
                     <h:outputText value="#{item.idRol}"/>
+                    <hr/>
+                    <h:outputText value="#{item.ipConexion}"/><br/>
+                    <h:outputText value="#{item.fechaHoraConexion}">
+                        <f:convertDateTime timeZone="#{UsuarioController.myTimeZone}" pattern="dd/MM/yyyy HH:mm" />
+                    </h:outputText>
                 </p:column>
                 <p:column headerText="Acción">
                     <p:menuButton value="Acción"> 

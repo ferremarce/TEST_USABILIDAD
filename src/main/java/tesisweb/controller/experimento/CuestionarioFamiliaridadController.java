@@ -12,7 +12,9 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import tesisweb.controller.frontend.LoginManager;
 import tesisweb.ejb.experimento.entity.GrupoMatrizExperimental;
 import tesisweb.ejb.experimento.entity.OrdenExposicionMuGrupo;
@@ -96,14 +98,17 @@ public class CuestionarioFamiliaridadController implements Serializable {
             Usuario u = new Usuario();
             u.setCuenta(this.cuestionarioFamiliaridad.getAlias());
             u.setEsActivo(Boolean.TRUE);
-            
-            Preference p=preferenceDAO.find(0);
+
+            Preference p = preferenceDAO.find(0);
             p.setIdPreference(null);
             preferenceDAO.create(p);
             u.setIdPreference(p); //PREFERENCIA SUCIA
             u.setIdRol(rolDAO.find(5)); //SUJETO EXPERIMENTAL
             u.setNombres(this.cuestionarioFamiliaridad.getAlias());
             u.setApellidos("SUJETO EXPERIMENTAL");
+            u.setFechaHoraConexion(JSFutil.getFechaHoraActual());
+            HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+            u.setIpConexion(JSFutil.getClientIpAddr(request));
             //Crear el usuario autologeable
             usuarioDAO.create(u);
             this.cuestionarioFamiliaridad.setIdUsuario(u);

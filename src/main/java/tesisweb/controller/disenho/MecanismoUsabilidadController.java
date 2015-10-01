@@ -38,6 +38,6 @@ public class MecanismoUsabilidadController implements Serializable {
         this.mecanismoUsabilidadFacade = mecanismoUsabilidadFacade;
     }
  public SelectItem[] getMecanismoUsabilidadSet() {
-        return JSFutil.getSelectItems(mecanismoUsabilidadFacade.findAll(), Boolean.FALSE);
+        return JSFutil.getSelectItems(mecanismoUsabilidadFacade.findAll(), Boolean.TRUE);
     }
 }

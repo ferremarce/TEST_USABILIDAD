@@ -5,6 +5,7 @@
 package tesisweb.ejb.tienda.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -18,6 +19,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import tesisweb.ejb.experimento.entity.CuestionarioUsabilidad;
@@ -74,6 +77,12 @@ public class Usuario implements Serializable {
     private GrupoMatrizExperimental idGrupoExperimental;
     @OneToMany(mappedBy = "idUsuario")
     private List<CuestionarioUsabilidad> cuestionarioUsabilidadList;
+    @Column(name = "FECHA_HORA_CONEXION")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fechaHoraConexion;
+    @Size(max = 255)
+    @Column(name = "IP_CONEXION")
+    private String ipConexion;
 
     public Usuario() {
     }
@@ -194,7 +203,21 @@ public class Usuario implements Serializable {
         this.cuestionarioUsabilidadList = cuestionarioUsabilidadList;
     }
 
-   
+    public Date getFechaHoraConexion() {
+        return fechaHoraConexion;
+    }
+
+    public void setFechaHoraConexion(Date fechaHoraConexion) {
+        this.fechaHoraConexion = fechaHoraConexion;
+    }
+
+    public String getIpConexion() {
+        return ipConexion;
+    }
+
+    public void setIpConexion(String ipConexion) {
+        this.ipConexion = ipConexion;
+    }
 
     @Override
     public int hashCode() {
@@ -215,6 +238,6 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return this.getNombres()+"-"+this.getApellidos();
+        return this.getNombres() + "-" + this.getApellidos();
     }
 }

@@ -30,8 +30,8 @@ public class PreguntaUsabilidadFacade extends AbstractFacade<PreguntaUsabilidad>
         super(PreguntaUsabilidad.class);
     }
     public List<PreguntaUsabilidad> findAllbyCriterio(String criterio) {
-        Query q = em.createQuery("SELECT a FROM PreguntaUsabilidad a WHERE UPPER(a.idMecanismoUsabilidad.nombreMecanismo) LIKE :xCriterio ORDER BY a.idMecanismoUsabilidad, a.idPreguntaUsabilidad ");
-        q.setParameter("xCriterio", "%" + criterio.toUpperCase() + "%");
+        Query q = em.createQuery("SELECT a FROM PreguntaUsabilidad a ORDER BY a.idMecanismoUsabilidad DESC, a.idPreguntaUsabilidad ");
+        //q.setParameter("xCriterio", "%" + criterio.toUpperCase() + "%");
         //LOG.log(Level.INFO, "findAllbyTipo: {0}", sql);
         List<PreguntaUsabilidad> tr = q.getResultList();
         return tr;

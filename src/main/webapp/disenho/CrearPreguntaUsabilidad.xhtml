@@ -17,7 +17,7 @@
                     <p:outputLabel value="PreguntaNegativo:" for="preguntaNegativo" />
                     <p:inputTextarea rows="4" cols="30" id="preguntaNegativo" value="#{PreguntaUsabilidadController.preguntaUsabilidad.preguntaNegativo}" title="PreguntaNegativo" />
                     <p:outputLabel value="Mecanismo de Usabilidad:" for="idMu" />
-                    <p:selectOneMenu converter="MecanismoUsabilidadConverter" id="idMu" value="#{OrdenExposicionMuGrupoController.ordenExposicionMuGrupo.idMu}" required="true" requiredMessage="#{bundle.Requerido}" >
+                    <p:selectOneMenu converter="MecanismoUsabilidadConverter" id="idMu" value="#{PreguntaUsabilidadController.preguntaUsabilidad.idMecanismoUsabilidad}" >
                         <f:selectItems value="#{MecanismoUsabilidadController.mecanismoUsabilidadSet}"/>
                     </p:selectOneMenu>
                 </h:panelGrid>

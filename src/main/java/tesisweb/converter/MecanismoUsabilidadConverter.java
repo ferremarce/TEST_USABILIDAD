@@ -10,6 +10,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import tesisweb.controller.disenho.MecanismoUsabilidadController;
 import tesisweb.ejb.experimento.entity.MecanismoUsabilidad;
+import tesisweb.util.JSFutil;
 
 /**
  * Converter del MecanismoUsabilidadController
@@ -29,7 +30,7 @@ public class MecanismoUsabilidadConverter implements Converter {
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
         //Debe comparar con ---opciones--- que se carga en el ListItem de JSFutil
-        if (value == null || value.length() == 0 || value.compareTo("------ Opciones ------") == 0) {
+        if (value == null || value.length() == 0 || value.compareTo(JSFutil.getMyBundle().getString("lblOpciones")) == 0) {
             return null;
         }
         MecanismoUsabilidadController controller = (MecanismoUsabilidadController) facesContext.getApplication().getELResolver().

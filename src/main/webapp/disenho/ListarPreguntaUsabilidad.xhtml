@@ -14,12 +14,12 @@
             <p:panel>
                 <p:commandButton value="#{bundle.NuevoBoton}" ajax="false" action="#{PreguntaUsabilidadController.doCrearForm()}" icon="ui-icon-document"/>
             </p:panel>
-            <p:dataTable value="#{PreguntaUsabilidadController.listaPreguntaUsabilidad}" var="item" emptyMessage="#{bundle.SinRegistrosMensaje}">
+            <p:dataTable rowIndexVar="index" value="#{PreguntaUsabilidadController.listaPreguntaUsabilidad}" var="item" emptyMessage="#{bundle.SinRegistrosMensaje}">
                 <p:column style="width: 30px">
                     <f:facet name="header">
-                        <h:outputText value="Id"/>
+                        <h:outputText value="item"/>
                     </f:facet>
-                    <h:outputText value="#{item.idPreguntaUsabilidad}"/>
+                    <h:outputText value="#{index+1}"/>
                 </p:column>
                 <p:column>
                     <f:facet name="header">
@@ -27,11 +27,9 @@
                     </f:facet>
                     <h:outputText escape="false" value="#{item.preguntaPositivo}"/>
                 </p:column>
-                <p:column style="width: 100px">
-                    <f:facet name="header">
-                        <h:outputText value="MU"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idMecanismoUsabilidad}"/>
+                <p:column style="width: 120px">
+                    <h:outputText styleClass="itemResaltado3" rendered="#{item.idMecanismoUsabilidad!=null}" value="#{item.idMecanismoUsabilidad}"/>
+                    <h:outputText styleClass="itemResaltado3" rendered="#{item.idMecanismoUsabilidad==null}" value="SUS"/>
                 </p:column>
                 <p:column style="width: 100px" headerText="Acción">
                     <p:menuButton value="Acción"> 

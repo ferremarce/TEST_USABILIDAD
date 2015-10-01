@@ -8,6 +8,7 @@ package tesisweb.controller.disenho;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
@@ -220,7 +221,9 @@ public class UsuarioController implements Serializable {
         doListarForm();
         
     }
-    
+    public TimeZone getMyTimeZone() {
+        return JSFutil.getMyTimeZone();
+    }
     public HttpServletRequest getRequest() {
         return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         
