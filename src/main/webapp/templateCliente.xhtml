@@ -46,6 +46,22 @@
                             </p:commandLink>
                         </p:dataList>
                     </h:form>
+                    <p:outputPanel>
+                        <p:panel>
+                            <f:facet name="header">
+                                <p:graphicImage value="/icono/sello-garantia.png"/>
+                                <h:outputText value="#{bundle.lblTituloGarantia}"/>
+                            </f:facet>
+                            <h:panelGrid columns="2">
+                                <p:graphicImage value="/icono/sticker1.png"/>
+                                <h:outputText value="#{bundle.lblGarantiaSeguridad}"/>
+                                <p:graphicImage value="/icono/sticker1.png"/>
+                                <h:outputText value="#{bundle.lblGarantiaDevolucion}"/>
+                                <p:graphicImage value="/icono/sticker1.png"/>
+                                <h:outputText value="#{bundle.lblGarantiaPrivacidad}"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:outputPanel>
                     <p:outputPanel rendered="#{ExperimentoController.debugMode}">
                         <h:form id="formMetrica">
                             <p:panel style="font-size: 18px !important"  rendered="true" header="Métricas">
