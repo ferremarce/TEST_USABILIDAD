@@ -5,12 +5,15 @@
  */
 package tesisweb.controller.experimento;
 
-import tesisweb.clase.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
-import tesisweb.ejb.experimento.entity.MecanismoUsabilidad;
-import tesisweb.ejb.tienda.entity.Usuario;
+import tesisweb.ejb.experimento.entity.Metrica;
+import tesisweb.ejb.experimento.facade.MetricaFacade;
+import tesisweb.util.JSFutil;
 
 /**
  *
@@ -20,7 +23,10 @@ import tesisweb.ejb.tienda.entity.Usuario;
 @SessionScoped
 public class MetricaController implements Serializable {
 
+    @Inject
+    MetricaFacade metricaFacade;
     private Metrica metrica;
+    private List<Metrica> listaMetrica;
     private Integer tmpClickCounter;
     private long tmpStartTime;
     private long tmpStopTime;
@@ -60,10 +66,25 @@ public class MetricaController implements Serializable {
     public void setTmpStopTime(long tmpStopTime) {
         this.tmpStopTime = tmpStopTime;
     }
-    //METODOS DE ACCIÓN
 
+    public List<Metrica> getListaMetrica() {
+        return listaMetrica;
+    }
+
+    public void setListaMetrica(List<Metrica> listaMetrica) {
+        this.listaMetrica = listaMetrica;
+    }
+
+    //METODOS DE ACCIÓN
     public void increment() {
         tmpClickCounter++;
     }
 
+    public List<Metrica> doGetListaMetrica() {
+        if (JSFutil.getUsuarioConectado() != null) {
+            return metricaFacade.findAllbyUsuario(JSFutil.getUsuarioConectado().getIdUsuario());
+        } else {
+            return new ArrayList<>();
+        }
+    }
 }

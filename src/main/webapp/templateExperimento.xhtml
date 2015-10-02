@@ -36,7 +36,7 @@
                 <ui:insert name="content">Content</ui:insert>
                 <p:outputPanel>
                     <p:panel rendered="#{ExperimentoController.debugMode}" toggleable="true">
-                        <p:dataTable value="#{ExperimentoController.listaMetrica}" var="itemMetrica">
+                        <p:dataTable value="#{MetricaController.doGetListaMetrica()}" var="itemMetrica">
                             <p:column headerText="MU">
                                 <h:outputText value="#{itemMetrica.idMecanismoUsabilidad}"/>
                             </p:column>
@@ -44,18 +44,17 @@
                                 <h:outputText value="#{itemMetrica.idUsuario}"/>
                             </p:column>
                             <p:column headerText="StartTime">
-                                <h:outputText value="#{itemMetrica.tiempoInicio}"/>
+                                <h:outputText value="#{itemMetrica.startTime}"/>
                             </p:column>
                             <p:column headerText="StopTime">
-                                <h:outputText value="#{itemMetrica.tiempoFin}"/>
+                                <h:outputText value="#{itemMetrica.stopTime}"/>
                             </p:column>
                             <p:column headerText="ElapsedTime">
-                                <h:outputText value="#{(itemMetrica.tiempoFin-itemMetrica.tiempoInicio)/1000}"/>
+                                <h:outputText value="#{(itemMetrica.stopTime-itemMetrica.startTime)/1000}"/>
                             </p:column>
                             <p:column headerText="ClickCounter">
-                                <h:outputText value="#{itemMetrica.cantidadClick}"/>
+                                <h:outputText value="#{itemMetrica.clickCounter}"/>
                             </p:column>
-
                         </p:dataTable>
                     </p:panel>
                     <p:panel>

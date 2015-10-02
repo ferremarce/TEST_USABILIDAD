@@ -10,14 +10,14 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import tesisweb.ejb.experimento.entity.PreguntaUsabilidad;
+import tesisweb.ejb.experimento.entity.Metrica;
 
 /**
  *
  * @author root
  */
 @Stateless
-public class PreguntaUsabilidadFacade extends AbstractFacade<PreguntaUsabilidad> {
+public class MetricaFacade extends AbstractFacade<Metrica> {
 
     @PersistenceContext(unitName = "tesisweb_tesisweb_war_1.0-SNAPSHOTPU")
     private EntityManager em;
@@ -27,15 +27,15 @@ public class PreguntaUsabilidadFacade extends AbstractFacade<PreguntaUsabilidad>
         return em;
     }
 
-    public PreguntaUsabilidadFacade() {
-        super(PreguntaUsabilidad.class);
+    public MetricaFacade() {
+        super(Metrica.class);
     }
 
-    public List<PreguntaUsabilidad> findAllbyCriterio(String criterio) {
-        Query q = em.createQuery("SELECT a FROM PreguntaUsabilidad a ORDER BY a.idMecanismoUsabilidad DESC, a.idPreguntaUsabilidad ");
-        //q.setParameter("xCriterio", "%" + criterio.toUpperCase() + "%");
+    public List<Metrica> findAllbyUsuario(Integer idUsuario) {
+        Query q = em.createQuery("SELECT a FROM Metrica a WHERE a.idUsuario.idUsuario=:xIdUsuario");
+        q.setParameter("xIdUsuario", idUsuario);
         //LOG.log(Level.INFO, "findAllbyTipo: {0}", sql);
-        List<PreguntaUsabilidad> tr = q.getResultList();
+        List<Metrica> tr = q.getResultList();
         return tr;
     }
 

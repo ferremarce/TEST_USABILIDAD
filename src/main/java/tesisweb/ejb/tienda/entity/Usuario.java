@@ -25,6 +25,7 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import tesisweb.ejb.experimento.entity.CuestionarioUsabilidad;
 import tesisweb.ejb.experimento.entity.GrupoMatrizExperimental;
+import tesisweb.ejb.experimento.entity.Metrica;
 
 /**
  *
@@ -83,6 +84,8 @@ public class Usuario implements Serializable {
     @Size(max = 255)
     @Column(name = "IP_CONEXION")
     private String ipConexion;
+    @OneToMany(mappedBy = "idUsuario")
+    private List<Metrica> metricaList;
 
     public Usuario() {
     }
@@ -217,6 +220,14 @@ public class Usuario implements Serializable {
 
     public void setIpConexion(String ipConexion) {
         this.ipConexion = ipConexion;
+    }
+
+    public List<Metrica> getMetricaList() {
+        return metricaList;
+    }
+
+    public void setMetricaList(List<Metrica> metricaList) {
+        this.metricaList = metricaList;
     }
 
     @Override

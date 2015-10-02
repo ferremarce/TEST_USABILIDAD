@@ -51,6 +51,8 @@ public class MecanismoUsabilidad implements Serializable {
     private List<OrdenExposicionMuGrupo> OrdenExposicionMuGrupoList;
     @OneToMany(mappedBy = "idMecanismoUsabilidad")
     private List<PreguntaUsabilidad> preguntaUsabilidadList;
+    @OneToMany(mappedBy = "idMecanismoUsabilidad")
+    private List<Metrica> metricaList;
 
     public MecanismoUsabilidad() {
     }
@@ -89,6 +91,14 @@ public class MecanismoUsabilidad implements Serializable {
 
     public void setPreguntaUsabilidadList(List<PreguntaUsabilidad> preguntaUsabilidadList) {
         this.preguntaUsabilidadList = preguntaUsabilidadList;
+    }
+
+    public List<Metrica> getMetricaList() {
+        return metricaList;
+    }
+
+    public void setMetricaList(List<Metrica> metricaList) {
+        this.metricaList = metricaList;
     }
 
     @XmlTransient

@@ -10,12 +10,13 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.ejb.EJBException;
 import javax.inject.Inject;
-import tesisweb.clase.Metrica;
 import tesisweb.controller.frontend.LoginManager;
-import tesisweb.ejb.experimento.entity.MecanismoUsabilidad;
+import tesisweb.ejb.experimento.entity.Metrica;
 import tesisweb.ejb.experimento.entity.OrdenExposicionMuGrupo;
 import tesisweb.ejb.experimento.facade.MecanismoUsabilidadFacade;
+import tesisweb.ejb.experimento.facade.MetricaFacade;
 import tesisweb.util.JSFutil;
 
 /**
@@ -32,6 +33,8 @@ public class ExperimentoController implements Serializable {
     MecanismoUsabilidadFacade mecanismoUsabilidadFacade;
     @Inject
     MetricaController metricaController;
+    @Inject
+    MetricaFacade metricaFacade;
     private int indexFormActual;
     private Boolean clickPopupPR = Boolean.FALSE;
     private Boolean clickPopupAB = Boolean.FALSE;
@@ -115,6 +118,7 @@ public class ExperimentoController implements Serializable {
             }
         } else if (indexFormActual == 3) {
             this.stopMetrica(); //Se detiene la métrica cuando se pasa al siguiente formulario de evaluacion de MU
+
             return "/experimento/cuestionarioFinal?faces-redirect=true";
         } else {
             return "/experimento/agradecimiento";
@@ -160,7 +164,7 @@ public class ExperimentoController implements Serializable {
             return;
         }
         this.metrica.setIdMecanismoUsabilidad(mecanismoUsabilidadFacade.find(id));
-        this.metrica.setTiempoInicio(System.currentTimeMillis());
+        this.metrica.setStartTime(System.currentTimeMillis());
         this.metricaController.setTmpClickCounter(0);
         this.metrica.setIdUsuario(JSFutil.getUsuarioConectado());
         System.out.print("Start de métrica...");
@@ -168,9 +172,22 @@ public class ExperimentoController implements Serializable {
 
     private void stopMetrica() {
         if (this.metrica != null) {
-            this.metrica.setTiempoFin(System.currentTimeMillis());
-            this.metrica.setCantidadClick(this.metricaController.getTmpClickCounter());
-            this.listaMetrica.add(this.metrica);
+            this.metrica.setStopTime(System.currentTimeMillis());
+            this.metrica.setClickCounter(this.metricaController.getTmpClickCounter());
+            try {
+                this.metricaFacade.create(metrica);
+            } catch (EJBException ex) {
+                String msg = "";
+                Throwable cause = ex.getCause();
+                if (cause != null) {
+                    msg = cause.getLocalizedMessage();
+                }
+                if (msg.length() > 0) {
+                    JSFutil.addErrorMessage(msg);
+                } else {
+                    JSFutil.addErrorMessage(ex, JSFutil.getMyBundle().getString("UpdateError"));
+                }
+            }
             System.out.print("Stop de métrica...");
         } else {
             System.out.print("StopMetrica... Métrica no inicializada...");
