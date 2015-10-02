@@ -30,15 +30,15 @@ public class ExperimentoController implements Serializable {
     LoginManager loginManager;
     @Inject
     MecanismoUsabilidadFacade mecanismoUsabilidadFacade;
+    @Inject
+    MetricaController metricaController;
     private int indexFormActual;
     private Boolean clickPopupPR = Boolean.FALSE;
     private Boolean clickPopupAB = Boolean.FALSE;
     private Boolean clickPopupFB = Boolean.FALSE;
-    long time_start, time_end;
-    private Integer clickCounter;
-    private MecanismoUsabilidad mecanismoUsabilidad;
     private List<Metrica> listaMetrica = new ArrayList<>();
-    private Boolean debugMode=Boolean.TRUE;
+    private Boolean debugMode = Boolean.TRUE;
+    private Metrica metrica;
 
     /**
      * Creates a new instance of ExperimentoController
@@ -101,6 +101,7 @@ public class ExperimentoController implements Serializable {
         this.initPopup();
         this.indexFormActual++;
         if (indexFormActual < 3) {
+            this.stopMetrica(); //Se detiene la métrica cuando se pasa al siguiente formulario de evaluacion de MU
             OrdenExposicionMuGrupo orden = JSFutil.getUsuarioConectado().getIdGrupoExperimental().getOrdenExposicionMuGrupoList().get(indexFormActual);
             switch (orden.getIdMu().getIdMu()) {
                 case 1: //PREFERENCE
@@ -113,6 +114,7 @@ public class ExperimentoController implements Serializable {
                     return "";
             }
         } else if (indexFormActual == 3) {
+            this.stopMetrica(); //Se detiene la métrica cuando se pasa al siguiente formulario de evaluacion de MU
             return "/experimento/cuestionarioFinal?faces-redirect=true";
         } else {
             return "/experimento/agradecimiento";
@@ -129,8 +131,24 @@ public class ExperimentoController implements Serializable {
         this.clickPopupFB = Boolean.FALSE;
     }
 
-    public void startMetrica() {
-        Integer id = null;
+    public void doActivatePR() {
+        this.setClickPopupPR(Boolean.TRUE);
+        this.startMetrica();
+    }
+
+    public void doActivateAB() {
+        this.setClickPopupAB(Boolean.TRUE);
+        this.startMetrica();
+    }
+
+    public void doActivateFB() {
+        this.setClickPopupFB(Boolean.TRUE);
+        this.startMetrica();
+    }
+
+    private void startMetrica() {
+        Integer id;
+        this.metrica = new Metrica();
         if (this.clickPopupPR) {
             id = 1;
         } else if (this.clickPopupAB) {
@@ -141,17 +159,21 @@ public class ExperimentoController implements Serializable {
             JSFutil.addErrorMessage("No se puede establecer el mecanismo para capturar las metricas");
             return;
         }
-        this.mecanismoUsabilidad = mecanismoUsabilidadFacade.find(id);
-        this.time_start = System.currentTimeMillis();
-        this.clickCounter = 0;
+        this.metrica.setIdMecanismoUsabilidad(mecanismoUsabilidadFacade.find(id));
+        this.metrica.setTiempoInicio(System.currentTimeMillis());
+        this.metricaController.setTmpClickCounter(0);
+        this.metrica.setIdUsuario(JSFutil.getUsuarioConectado());
+        System.out.print("Start de métrica...");
     }
 
-    public void stopMetrica() {
-        Metrica m = new Metrica();
-        m.setIdMecanismoUsabilidad(mecanismoUsabilidad);
-        m.setIdUsuario(JSFutil.getUsuarioConectado());
-        m.setTiempoInicio(this.time_start);
-        m.setTiempoFin(System.currentTimeMillis());
-        this.listaMetrica.add(m);
+    private void stopMetrica() {
+        if (this.metrica != null) {
+            this.metrica.setTiempoFin(System.currentTimeMillis());
+            this.metrica.setCantidadClick(this.metricaController.getTmpClickCounter());
+            this.listaMetrica.add(this.metrica);
+            System.out.print("Stop de métrica...");
+        } else {
+            System.out.print("StopMetrica... Métrica no inicializada...");
+        }
     }
 }

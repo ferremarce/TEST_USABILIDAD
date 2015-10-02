@@ -30,7 +30,7 @@
                     <p:separator/>
                     Para hacer esta tarea acceda a la Tienda Virtual haciendo click 
                     <p:commandButton value="Aquí" onclick="openWin('#{ExperimentoController.doGetURLAPP()}')">
-                        <p:ajax listener="#{ExperimentoController.setClickPopupPR(true)}"/>
+                        <p:ajax listener="#{ExperimentoController.doActivatePR()}"/>
                     </p:commandButton>
                     <p/>
                     <h:outputText styleClass="itemResaltado3" value="Cuando acabes, cierra la ventana de la Tienda y haz click en el botón 'SIGUIENTE'."/>
@@ -41,11 +41,11 @@
             </p:panel>
             <!--p:commandButton value="Modal" type="button" onmousedown="PF('dlg2').show();" onmouseup="PF('dlg2').toggleMaximize();"/-->
         </h:form>
-        <p:dialog onShow="#{ExperimentoController.startMetrica()}" onHide="#{ExperimentoController.stopMetrica()}" widgetVar="dlg2" >
+        <p:dialog widgetVar="dlg2" >
             <f:facet name="header">
                 <h:outputText value="Sistema Tienda"/>
                 <p:commandButton value="Recargar la página" update="panelFrame"/>
-                <p:commandButton value="Terminar" type="button" oncomplete="PF('dlg2').hide();"/>
+                <p:commandButton value="Terminar" type="button" onmouseup="PF('dlg2').hide();"/>
             </f:facet>
             <p:outputPanel id="panelFrame">
                 <iframe frameborder="0" src="#{ExperimentoController.doGetURLAPP()}"/>

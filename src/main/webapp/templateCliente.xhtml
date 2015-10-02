@@ -21,7 +21,7 @@
             <f:event type="preRenderView" listener="#{LoginManager.init()}"/>
         </f:metadata>
         <h:panelGrid>
-            <p:ajax global="false" event="click" update="#{sistema.form_update}," listener="#{ClickCounter.increment()}"/>
+            <p:ajax global="false" event="click" update="#{sistema.form_update}," listener="#{MetricaController.increment()}"/>
 
             <p:layout fullPage="true">
                 <p:layoutUnit position="east" size="250" header="#{bundle.lblOpciones}" collapsed="#{LoginManager.clientCollapse}" collapsible="true" >
@@ -52,7 +52,7 @@
                             <p:panel style="font-size: 18px !important"  rendered="true" header="Métricas">
                                 <h:panelGrid columns="2">
                                     <h:outputLabel for="contadorClick" value="Click Counter: "/>
-                                    <h:outputText id="contadorClick" value="#{ClickCounter.count}"/>
+                                    <h:outputText id="contadorClick" value="#{MetricaController.tmpClickCounter}"/>
                                 </h:panelGrid>
                             </p:panel>
                         </h:form>

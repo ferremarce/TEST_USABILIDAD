@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
+import tesisweb.controller.frontend.LoginManager;
 import tesisweb.ejb.experimento.entity.CuestionarioUsabilidad;
 import tesisweb.ejb.experimento.entity.PreguntaUsabilidad;
 import tesisweb.ejb.experimento.facade.CuestionarioUsabilidadFacade;
@@ -35,6 +36,8 @@ public class CuestionarioUsabilidadController implements Serializable {
 
     @Inject
     CuestionarioUsabilidadFacade cuestionarioUsabilidadFacade;
+    @Inject
+    LoginManager loginManager;
     private CuestionarioUsabilidad cuestionarioUsabilidad;
     private List<CuestionarioUsabilidad> listaCuestionarioUsabilidadPR;
     private List<CuestionarioUsabilidad> listaCuestionarioUsabilidadAB;
@@ -126,6 +129,8 @@ public class CuestionarioUsabilidadController implements Serializable {
             for (CuestionarioUsabilidad cu : this.listaCuestionarioUsabilidadSUS) {
                 cuestionarioUsabilidadFacade.create(cu);
             }
+            //Invalidar la sesión
+            this.loginManager.doLogout();
             return "/experimento/agradecimiento?faces-redirect=true";
         } catch (EJBException ex) {
             String msg = "";

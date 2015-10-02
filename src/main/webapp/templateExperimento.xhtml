@@ -35,6 +35,29 @@
                 </h:form>
                 <ui:insert name="content">Content</ui:insert>
                 <p:outputPanel>
+                    <p:panel rendered="#{ExperimentoController.debugMode}" toggleable="true">
+                        <p:dataTable value="#{ExperimentoController.listaMetrica}" var="itemMetrica">
+                            <p:column headerText="MU">
+                                <h:outputText value="#{itemMetrica.idMecanismoUsabilidad}"/>
+                            </p:column>
+                            <p:column headerText="Usuario">
+                                <h:outputText value="#{itemMetrica.idUsuario}"/>
+                            </p:column>
+                            <p:column headerText="StartTime">
+                                <h:outputText value="#{itemMetrica.tiempoInicio}"/>
+                            </p:column>
+                            <p:column headerText="StopTime">
+                                <h:outputText value="#{itemMetrica.tiempoFin}"/>
+                            </p:column>
+                            <p:column headerText="ElapsedTime">
+                                <h:outputText value="#{(itemMetrica.tiempoFin-itemMetrica.tiempoInicio)/1000}"/>
+                            </p:column>
+                            <p:column headerText="ClickCounter">
+                                <h:outputText value="#{itemMetrica.cantidadClick}"/>
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:panel>
                     <p:panel>
                         <f:facet name="header">
                             <h:panelGrid width="100%" columns="3">
