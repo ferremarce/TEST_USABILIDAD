@@ -16,38 +16,53 @@
                     <p:selectOneMenu converter="MecanismoUsabilidadConverter" id="idMu" value="#{MetricaController.idMu}" >
                         <f:selectItems value="#{MecanismoUsabilidadController.mecanismoUsabilidadSet}"/>
                     </p:selectOneMenu>
-                    <p:commandButton value="Aceptar" update="@form"/>
+                    <p:commandButton value="Aceptar" action="#{MetricaController.doUpdateListaMetricaDiseǹoMecanismo()}" update="@form"/>
                 </h:panelGrid>
             </p:panel>
-            <p:dataTable rowIndexVar="index" value="#{MetricaController.doListaMetricaDisenhoMecanismo()}" var="item">
-                <p:column>
+            <p:dataTable id="tablaMetrica" rowIndexVar="index" value="#{MetricaController.listaMetrica}" var="item">
+                <f:facet name="header">
+                    <h:commandLink value="Exportar">
+                        <p:graphicImage value="/icono/csv.png" width="24"/>
+                        <p:dataExporter type="csv" target="tablaMetrica" fileName="tablaMetrica-#{MetricaController.idMu.nombreMecanismo}" />
+                    </h:commandLink>
+                </f:facet>
+                <p:column sortBy="#{item.idMecanismoUsabilidad.nombreMecanismo}">
                     <f:facet name="header">
                         <h:outputText value="MU"/>
                     </f:facet>
                     <h:outputText value="#{index+1}. #{item.idMecanismoUsabilidad}"/>
                 </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Sujeto"/>
-                    </f:facet>
+                <p:column headerText="Sujeto" sortBy="#{item.idUsuario.cuenta}">
                     <h:outputText value="#{item.idUsuario.cuenta}"/>
                 </p:column>
-                <p:column>
+                <p:column sortBy="#{item.idUsuario.ipConexion}">
+                    <f:facet name="header">
+                        <h:outputText value="IP"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idUsuario.ipConexion}"/>
+                </p:column>
+                <p:column sortBy="#{item.idUsuario.fechaHoraConexion}">
+                    <f:facet name="header">
+                        <h:outputText value="Fecha-Hora"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idUsuario.fechaHoraConexion}">
+                        <f:convertDateTime timeZone="#{UsuarioController.myTimeZone}" pattern="dd/MM/yyyy HH:mm" />
+                    </h:outputText>
+                </p:column>
+
+                <p:column sortBy="#{(item.stopTime-item.startTime)/1000}">
                     <f:facet name="header">
                         <h:outputText value="elapsedTime (seg)"/>
                     </f:facet>
                     <h:outputText value="#{(item.stopTime-item.startTime)/1000}"/>
                 </p:column>
-                <p:column>
+                <p:column rendered="false"> 
                     <f:facet name="header">
                         <h:outputText value="PartialTime"/>
                     </f:facet>
                     <h:outputText value="#{item.partialTime}"/>
                 </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="ClickCounter"/>
-                    </f:facet>
+                <p:column headerText="ClickCounter" sortable="true" sortBy="#{item.clickCounter}">
                     <h:outputText value="#{item.clickCounter}"/>
                 </p:column>
             </p:dataTable>

@@ -92,13 +92,20 @@ public class MetricaController implements Serializable {
 
     public String doListMetricaDisenho(DisenhoExperimental de) {
         this.disenhoExperimental = de;
-        this.listaMetrica = metricaFacade.findAllbyDisenho(de.getIdDisenho());
+        this.idMu = null;
+        //this.listaMetrica = metricaFacade.findAllbyDisenho(de.getIdDisenho());
         return "/disenho/VerMetricas";
+    }
+
+    public void doUpdateListaMetricaDiseǹoMecanismo() {
+        this.listaMetrica = this.doListaMetricaDisenhoMecanismo();
     }
 
     public List<Metrica> doListaMetricaDisenhoMecanismo() {
         if (this.disenhoExperimental != null && this.idMu != null) {
             return this.metricaFacade.findAllbyDisenhoMecanismo(this.disenhoExperimental.getIdDisenho(), this.idMu.getIdMu());
+        } else if (this.disenhoExperimental != null && this.idMu == null) {
+            return this.metricaFacade.findAllbyDisenho(this.disenhoExperimental.getIdDisenho());
         } else {
             return null;
         }
