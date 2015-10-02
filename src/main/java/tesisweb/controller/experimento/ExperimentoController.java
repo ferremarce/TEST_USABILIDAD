@@ -8,8 +8,6 @@ package tesisweb.controller.experimento;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
 import tesisweb.controller.frontend.LoginManager;
@@ -39,7 +37,6 @@ public class ExperimentoController implements Serializable {
     private Boolean clickPopupPR = Boolean.FALSE;
     private Boolean clickPopupAB = Boolean.FALSE;
     private Boolean clickPopupFB = Boolean.FALSE;
-    private List<Metrica> listaMetrica = new ArrayList<>();
     private Boolean debugMode = Boolean.TRUE;
     private Metrica metrica;
 
@@ -55,14 +52,6 @@ public class ExperimentoController implements Serializable {
 
     public void setDebugMode(Boolean debugMode) {
         this.debugMode = debugMode;
-    }
-
-    public List<Metrica> getListaMetrica() {
-        return listaMetrica;
-    }
-
-    public void setListaMetrica(List<Metrica> listaMetrica) {
-        this.listaMetrica = listaMetrica;
     }
 
     public Boolean getClickPopupPR() {

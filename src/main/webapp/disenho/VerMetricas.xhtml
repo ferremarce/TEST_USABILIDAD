@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateDisenho.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:b="http://bootsfaces.net/ui"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <h:form>
+            <h:outputText style="font-size: 22px !important;font-weight: bold" value="#{MetricaController.disenhoExperimental.descripcionDisenho}-#{MetricaController.disenhoExperimental.contexto}"/>
+            <p:panel header="Filtrar">
+                <h:panelGrid columns="2">
+                    <p:selectOneMenu converter="MecanismoUsabilidadConverter" id="idMu" value="#{MetricaController.idMu}" >
+                        <f:selectItems value="#{MecanismoUsabilidadController.mecanismoUsabilidadSet}"/>
+                    </p:selectOneMenu>
+                    <p:commandButton value="Aceptar" update="@form"/>
+                </h:panelGrid>
+            </p:panel>
+            <p:dataTable rowIndexVar="index" value="#{MetricaController.doListaMetricaDisenhoMecanismo()}" var="item">
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="MU"/>
+                    </f:facet>
+                    <h:outputText value="#{index+1}. #{item.idMecanismoUsabilidad}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Sujeto"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idUsuario.cuenta}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="elapsedTime (seg)"/>
+                    </f:facet>
+                    <h:outputText value="#{(item.stopTime-item.startTime)/1000}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="PartialTime"/>
+                    </f:facet>
+                    <h:outputText value="#{item.partialTime}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="ClickCounter"/>
+                    </f:facet>
+                    <h:outputText value="#{item.clickCounter}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

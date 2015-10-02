@@ -22,7 +22,6 @@
         </f:metadata>
         <h:panelGrid>
             <p:ajax global="false" event="click" update="#{sistema.form_update}," listener="#{MetricaController.increment()}"/>
-
             <p:layout fullPage="true">
                 <p:layoutUnit position="east" size="250" header="#{bundle.lblOpciones}" collapsed="#{LoginManager.clientCollapse}" collapsible="true" >
                     <h:form id="formCarrito">
@@ -126,7 +125,7 @@
                     </h:form>
                     <ui:insert name="content">Content</ui:insert>
                     <p:panel>
-                        <h:panelGrid width="100%" columns="3">
+                        <h:panelGrid width="100%" columns="4">
                             <h:panelGrid columns="2">
                                 <p:graphicImage value="/icono/store.png"/>
                                 <h:outputText value="#{bundle.lblAyuda}"/>
@@ -139,6 +138,7 @@
                                 <p:graphicImage value="/icono/call-center.png"/>
                                 <h:outputText value="#{bundle.lblAtencionCliente}"/>
                             </h:panelGrid>
+                            <p:graphicImage value="/icono/sello-garantia.png"/>
                         </h:panelGrid>
                         <f:facet name="footer">
                             <p:graphicImage value="/img/cc-logos.jpeg"/>

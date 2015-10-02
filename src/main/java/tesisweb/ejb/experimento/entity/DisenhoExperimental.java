@@ -130,7 +130,7 @@ public class DisenhoExperimental implements Serializable {
 
     @Override
     public String toString() {
-        return "tesisweb.ejb.experimento.entity.DisenhoExperimental[ idDisenho=" + idDisenho + " ]";
+        return this.informacionDisenho;
     }
 
 }

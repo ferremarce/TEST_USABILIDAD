@@ -11,6 +11,8 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import tesisweb.ejb.experimento.entity.DisenhoExperimental;
+import tesisweb.ejb.experimento.entity.MecanismoUsabilidad;
 import tesisweb.ejb.experimento.entity.Metrica;
 import tesisweb.ejb.experimento.facade.MetricaFacade;
 import tesisweb.util.JSFutil;
@@ -28,8 +30,8 @@ public class MetricaController implements Serializable {
     private Metrica metrica;
     private List<Metrica> listaMetrica;
     private Integer tmpClickCounter;
-    private long tmpStartTime;
-    private long tmpStopTime;
+    private DisenhoExperimental disenhoExperimental;
+    private MecanismoUsabilidad idMu;
 
     public MetricaController() {
     }
@@ -51,28 +53,28 @@ public class MetricaController implements Serializable {
         this.tmpClickCounter = tmpClickCounter;
     }
 
-    public long getTmpStartTime() {
-        return tmpStartTime;
-    }
-
-    public void setTmpStartTime(long tmpStartTime) {
-        this.tmpStartTime = tmpStartTime;
-    }
-
-    public long getTmpStopTime() {
-        return tmpStopTime;
-    }
-
-    public void setTmpStopTime(long tmpStopTime) {
-        this.tmpStopTime = tmpStopTime;
-    }
-
     public List<Metrica> getListaMetrica() {
         return listaMetrica;
     }
 
     public void setListaMetrica(List<Metrica> listaMetrica) {
         this.listaMetrica = listaMetrica;
+    }
+
+    public DisenhoExperimental getDisenhoExperimental() {
+        return disenhoExperimental;
+    }
+
+    public void setDisenhoExperimental(DisenhoExperimental disenhoExperimental) {
+        this.disenhoExperimental = disenhoExperimental;
+    }
+
+    public MecanismoUsabilidad getIdMu() {
+        return idMu;
+    }
+
+    public void setIdMu(MecanismoUsabilidad idMu) {
+        this.idMu = idMu;
     }
 
     //METODOS DE ACCIÓN
@@ -85,6 +87,20 @@ public class MetricaController implements Serializable {
             return metricaFacade.findAllbyUsuario(JSFutil.getUsuarioConectado().getIdUsuario());
         } else {
             return new ArrayList<>();
+        }
+    }
+
+    public String doListMetricaDisenho(DisenhoExperimental de) {
+        this.disenhoExperimental = de;
+        this.listaMetrica = metricaFacade.findAllbyDisenho(de.getIdDisenho());
+        return "/disenho/VerMetricas";
+    }
+
+    public List<Metrica> doListaMetricaDisenhoMecanismo() {
+        if (this.disenhoExperimental != null && this.idMu != null) {
+            return this.metricaFacade.findAllbyDisenhoMecanismo(this.disenhoExperimental.getIdDisenho(), this.idMu.getIdMu());
+        } else {
+            return null;
         }
     }
 }

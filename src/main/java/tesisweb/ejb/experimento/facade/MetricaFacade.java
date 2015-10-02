@@ -39,4 +39,21 @@ public class MetricaFacade extends AbstractFacade<Metrica> {
         return tr;
     }
 
+    public List<Metrica> findAllbyDisenho(Integer idDisenho) {
+        Query q = em.createQuery("SELECT a FROM Metrica a WHERE a.idUsuario.idGrupoExperimental.idDisenho.idDisenho=:xIdDis");
+        q.setParameter("xIdDis", idDisenho);
+        //LOG.log(Level.INFO, "findAllbyTipo: {0}", sql);
+        List<Metrica> tr = q.getResultList();
+        return tr;
+    }
+
+    public List<Metrica> findAllbyDisenhoMecanismo(Integer idDisenho, Integer idMU) {
+        Query q = em.createQuery("SELECT a FROM Metrica a WHERE a.idUsuario.idGrupoExperimental.idDisenho.idDisenho=:xIdDis AND a.idMecanismoUsabilidad.idMu=:xIdMU");
+        q.setParameter("xIdDis", idDisenho);
+        q.setParameter("xIdMU", idMU);
+        //LOG.log(Level.INFO, "findAllbyTipo: {0}", sql);
+        List<Metrica> tr = q.getResultList();
+        return tr;
+    }
+
 }
