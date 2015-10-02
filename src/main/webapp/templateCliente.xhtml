@@ -20,132 +20,136 @@
             <f:event type="preRenderView" listener="#{LanguageSwitcher.changeUserLanguage()}"/>
             <f:event type="preRenderView" listener="#{LoginManager.init()}"/>
         </f:metadata>
-        <p:layout fullPage="true">
-            <p:layoutUnit position="east" size="250" header="#{bundle.lblOpciones}" collapsed="#{LoginManager.clientCollapse}" collapsible="true" >
-                <h:form id="formCarrito">
-                    <p:panel>
-                        <p:commandLink ajax="false" action="#{CarritoFE.doProcesarCarritoFrom()}">
-                            <h:panelGrid columns="3">
-                                <p:graphicImage width="50" height="50" rendered="#{CarritoFE.listaOrdenCarrito.size()==0}" value="/icono/cart2.gif"/>
-                                <h:outputText styleClass="texto-carrito" id="listaArticuloCarrito" value="#{CarritoFE.doGetCantidadItemsCarrito()}"/>
-                                <p:graphicImage width="50" height="50" rendered="#{CarritoFE.listaOrdenCarrito.size()>0}" value="/icono/cart.gif"/>                                   
-                                <h:outputText value="#{bundle.MiCarrritoBoton}"/>
-                            </h:panelGrid>
-                        </p:commandLink>
-                    </p:panel>
-                </h:form>
-                <h:form id="formCategoriaArticulo">
-                    <p:dataList value="#{SubTipoController.idCategoriaArticuloList}" var="categoria" >
-                        <f:facet name="header">
-                            Categorías
-                        </f:facet>
-                        <p:commandLink styleClass="nav" ajax="false" value="#{categoria}" action="#{ArticuloFE.doListarCategoriaForm()}">
-                            <f:param name="idCategoria" value="#{categoria.idSubTipo}" />
-                        </p:commandLink>
-                    </p:dataList>
-                </h:form>
-                <p:outputPanel rendered="#{ExperimentoController.debugMode}">
-                    <h:form id="formMetrica">
-                        <p:panel style="font-size: 18px !important"  rendered="true" header="Métricas">
-                            <h:panelGrid columns="2">
-                                <h:outputLabel for="contadorClick" value="Click Counter: "/>
-                                <h:outputText id="contadorClick" value="#{ClickCounter.count}"/>
-                            </h:panelGrid>
+        <h:panelGrid>
+            <p:ajax global="false" event="click" update="#{sistema.form_update}," listener="#{ClickCounter.increment()}"/>
+
+            <p:layout fullPage="true">
+                <p:layoutUnit position="east" size="250" header="#{bundle.lblOpciones}" collapsed="#{LoginManager.clientCollapse}" collapsible="true" >
+                    <h:form id="formCarrito">
+                        <p:panel>
+                            <p:commandLink ajax="false" action="#{CarritoFE.doProcesarCarritoFrom()}">
+                                <h:panelGrid columns="3">
+                                    <p:graphicImage width="50" height="50" rendered="#{CarritoFE.listaOrdenCarrito.size()==0}" value="/icono/cart2.gif"/>
+                                    <h:outputText styleClass="texto-carrito" id="listaArticuloCarrito" value="#{CarritoFE.doGetCantidadItemsCarrito()}"/>
+                                    <p:graphicImage width="50" height="50" rendered="#{CarritoFE.listaOrdenCarrito.size()>0}" value="/icono/cart.gif"/>                                   
+                                    <h:outputText value="#{bundle.MiCarrritoBoton}"/>
+                                </h:panelGrid>
+                            </p:commandLink>
                         </p:panel>
                     </h:form>
+                    <h:form id="formCategoriaArticulo">
+                        <p:dataList value="#{SubTipoController.idCategoriaArticuloList}" var="categoria" >
+                            <f:facet name="header">
+                                Categorías
+                            </f:facet>
+                            <p:commandLink styleClass="nav" ajax="false" value="#{categoria}" action="#{ArticuloFE.doListarCategoriaForm()}">
+                                <f:param name="idCategoria" value="#{categoria.idSubTipo}" />
+                            </p:commandLink>
+                        </p:dataList>
+                    </h:form>
+                    <p:outputPanel rendered="#{ExperimentoController.debugMode}">
+                        <h:form id="formMetrica">
+                            <p:panel style="font-size: 18px !important"  rendered="true" header="Métricas">
+                                <h:panelGrid columns="2">
+                                    <h:outputLabel for="contadorClick" value="Click Counter: "/>
+                                    <h:outputText id="contadorClick" value="#{ClickCounter.count}"/>
+                                </h:panelGrid>
+                            </p:panel>
+                        </h:form>
+                        <h:form>
+                            <p:panel style="font-size: 18px !important" header="Usabilidad">
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="Preference: " />
+                                    <p:selectBooleanCheckbox value="#{MUController.muPreference}"/>
+                                    <h:outputText value="AbortOperation: " />
+                                    <p:selectBooleanCheckbox value="#{MUController.muAbortOperation}"/>
+                                    <h:outputText value="ProgressFB: " />
+                                    <p:selectBooleanCheckbox value="#{MUController.muProgressFeedBack}"/>
+                                </h:panelGrid>
+                                <p:commandButton value="#{bundle.AceptarBoton}" ajax="false"/>
+                            </p:panel>
+                        </h:form>
+                        <h:form>
+                            <p:outputPanel id="panelContadorPR">
+                                <h:outputText id="txt_count" value="Contador: #{LoginManager.contadorPR} - (PopupPR #{ExperimentoController.clickPopupPR})" />
+                                <p:poll global="false" interval="3" rendered="#{ExperimentoController.clickPopupPR}" listener="#{LoginManager.incrementarContadorPreference()}" update="panelContadorPR" />
+                            </p:outputPanel>
+                        </h:form>
+                    </p:outputPanel>
+                </p:layoutUnit>
+                <p:layoutUnit position="center" >
                     <h:form>
-                        <p:panel style="font-size: 18px !important" header="Usabilidad">
+                        <p:panel styleClass="header-background">
                             <h:panelGrid columns="2">
-                                <h:outputText value="Preference: " />
-                                <p:selectBooleanCheckbox value="#{MUController.muPreference}"/>
-                                <h:outputText value="AbortOperation: " />
-                                <p:selectBooleanCheckbox value="#{MUController.muAbortOperation}"/>
-                                <h:outputText value="ProgressFB: " />
-                                <p:selectBooleanCheckbox value="#{MUController.muProgressFeedBack}"/>
-                            </h:panelGrid>
-                            <p:commandButton value="#{bundle.AceptarBoton}" ajax="false"/>
-                        </p:panel>
-                    </h:form>
-                    <h:form>
-                        <p:outputPanel id="panelContadorPR">
-                            <h:outputText id="txt_count" value="Contador: #{LoginManager.contadorPR} - (PopupPR #{ExperimentoController.clickPopupPR})" />
-                            <p:poll global="false" interval="3" rendered="#{ExperimentoController.clickPopupPR}" listener="#{LoginManager.incrementarContadorPreference()}" update="panelContadorPR" />
-                        </p:outputPanel>
-                    </h:form>
-                </p:outputPanel>
-            </p:layoutUnit>
-            <p:layoutUnit position="center" >
-                <h:form>
-                    <p:panel styleClass="header-background">
-                        <h:panelGrid columns="2">
-                            <h:panelGrid>
-                                <div class="image">
-                                    <p:link outcome="/frontend/index">
-                                        <p:graphicImage value="/img/logo-admin.png"/>
-                                    </p:link>
-                                </div>
-                            </h:panelGrid>
-                            <h:panelGrid width="100%">
-                                <h:panelGrid style="position: relative; left: 20px" columns="6">
-                                    <p:graphicImage value="/icono/store.png"/>
-                                    <h:outputText value="#{bundle.lblAyuda}"/>
-                                    <p:graphicImage value="/icono/help.png"/>
-                                    <h:outputText value="#{bundle.lblNuestrasTiendas}"/>
-                                    <p:graphicImage value="/icono/call-center.png"/>
-                                    <h:outputText value="#{bundle.lblAtencionCliente}"/>
+                                <h:panelGrid>
+                                    <div class="image">
+                                        <p:link outcome="/frontend/index">
+                                            <p:graphicImage value="/img/logo-admin.png"/>
+                                        </p:link>
+                                    </div>
+                                </h:panelGrid>
+                                <h:panelGrid width="100%">
+                                    <h:panelGrid style="position: relative; left: 20px" columns="6">
+                                        <p:graphicImage value="/icono/store.png"/>
+                                        <h:outputText value="#{bundle.lblAyuda}"/>
+                                        <p:graphicImage value="/icono/help.png"/>
+                                        <h:outputText value="#{bundle.lblNuestrasTiendas}"/>
+                                        <p:graphicImage value="/icono/call-center.png"/>
+                                        <h:outputText value="#{bundle.lblAtencionCliente}"/>
+                                    </h:panelGrid>
                                 </h:panelGrid>
                             </h:panelGrid>
+                            <p:toolbar >
+                                <f:facet name="left">
+                                    <p:outputPanel style="font-size: 16px !important">
+                                        <p:commandButton icon="ui-icon-home" ajax="false" style="font-size: 18px !important" value="#{bundle.lblInicio}" action="/frontend/index"/>
+                                        <h:outputLabel rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.usuarioLogeado.nombres} #{LoginManager.usuarioLogeado.apellidos}"/>
+                                        <!--p:menu style="width: 250px" overlay="true" trigger="cmdUsuarioLogeado" my="left top" at="left bottom">
+                                            <p:submenu label="Acceso">
+                                                <p:menuitem ajax="false" value="#{bundle.CambiarContrasenhaBoton}" action="#{LoginManager.doCambiarContrasenhaForm()}" icon="ui-icon-disk"/>
+                                            </p:submenu>
+                                        </p:menu-->
+                                    </p:outputPanel>
+                                </f:facet>
+                                <f:facet name="right">
+                                    <p:outputPanel style="font-size: 16px !important;" rendered="#{MUController.muPreference and LoginManager.usuarioLogeado!=null}">
+                                        <p:commandButton style="font-size: 18px !important" ajax="false" value="#{bundle.PreferenciaBoton}" action="#{PreferenceController.doCambiarPreferencia(LoginManager.usuarioLogeado.idPreference)}" icon="ui-icon-power"/>
+                                        <p:commandLink value="Español" ajax="false" action="#{LanguageSwitcher.changeLanguage('es')}"/>
+                                        <p:graphicImage width="30" height="25" value="/icono/flag_spain.png"/>
+                                        <p:spacer width="10"/>
+                                        <p:commandLink value="English" ajax="false" action="#{LanguageSwitcher.changeLanguage('en')}"/>
+                                        <p:graphicImage  width="30" height="25" value="/icono/flag_usa.png"/>
+                                    </p:outputPanel>
+                                </f:facet>
+                            </p:toolbar>
+                        </p:panel>
+                    </h:form>
+                    <ui:insert name="content">Content</ui:insert>
+                    <p:panel>
+                        <h:panelGrid width="100%" columns="3">
+                            <h:panelGrid columns="2">
+                                <p:graphicImage value="/icono/store.png"/>
+                                <h:outputText value="#{bundle.lblAyuda}"/>
+                            </h:panelGrid>
+                            <h:panelGrid columns="2">
+                                <p:graphicImage value="/icono/help.png"/>
+                                <h:outputText value="#{bundle.lblNuestrasTiendas}"/>
+                            </h:panelGrid>
+                            <h:panelGrid columns="2">
+                                <p:graphicImage value="/icono/call-center.png"/>
+                                <h:outputText value="#{bundle.lblAtencionCliente}"/>
+                            </h:panelGrid>
                         </h:panelGrid>
-                        <p:toolbar >
-                            <f:facet name="left">
-                                <p:outputPanel style="font-size: 16px !important">
-                                    <p:commandButton icon="ui-icon-home" ajax="false" style="font-size: 18px !important" value="#{bundle.lblInicio}" action="/frontend/index"/>
-                                    <h:outputLabel rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.usuarioLogeado.nombres} #{LoginManager.usuarioLogeado.apellidos}"/>
-                                    <!--p:menu style="width: 250px" overlay="true" trigger="cmdUsuarioLogeado" my="left top" at="left bottom">
-                                        <p:submenu label="Acceso">
-                                            <p:menuitem ajax="false" value="#{bundle.CambiarContrasenhaBoton}" action="#{LoginManager.doCambiarContrasenhaForm()}" icon="ui-icon-disk"/>
-                                        </p:submenu>
-                                    </p:menu-->
-                                </p:outputPanel>
-                            </f:facet>
-                            <f:facet name="right">
-                                <p:outputPanel style="font-size: 16px !important;" rendered="#{MUController.muPreference and LoginManager.usuarioLogeado!=null}">
-                                    <p:commandButton style="font-size: 18px !important" ajax="false" value="#{bundle.PreferenciaBoton}" action="#{PreferenceController.doCambiarPreferencia(LoginManager.usuarioLogeado.idPreference)}" icon="ui-icon-power"/>
-                                    <p:commandLink value="Español" ajax="false" action="#{LanguageSwitcher.changeLanguage('es')}"/>
-                                    <p:graphicImage width="30" height="25" value="/icono/flag_spain.png"/>
-                                    <p:spacer width="10"/>
-                                    <p:commandLink value="English" ajax="false" action="#{LanguageSwitcher.changeLanguage('en')}"/>
-                                    <p:graphicImage  width="30" height="25" value="/icono/flag_usa.png"/>
-                                </p:outputPanel>
-                            </f:facet>
-                        </p:toolbar>
+                        <f:facet name="footer">
+                            <p:graphicImage value="/img/cc-logos.jpeg"/>
+                            <p:graphicImage style="position: absolute; right: 5px" value="/img/social-icon.png"/>
+                        </f:facet>
                     </p:panel>
-                </h:form>
-                <ui:insert name="content">Content</ui:insert>
-                <p:panel>
-                    <h:panelGrid width="100%" columns="3">
-                        <h:panelGrid columns="2">
-                            <p:graphicImage value="/icono/store.png"/>
-                            <h:outputText value="#{bundle.lblAyuda}"/>
-                        </h:panelGrid>
-                        <h:panelGrid columns="2">
-                            <p:graphicImage value="/icono/help.png"/>
-                            <h:outputText value="#{bundle.lblNuestrasTiendas}"/>
-                        </h:panelGrid>
-                        <h:panelGrid columns="2">
-                            <p:graphicImage value="/icono/call-center.png"/>
-                            <h:outputText value="#{bundle.lblAtencionCliente}"/>
-                        </h:panelGrid>
-                    </h:panelGrid>
-                    <f:facet name="footer">
-                        <p:graphicImage value="/img/cc-logos.jpeg"/>
-                        <p:graphicImage style="position: absolute; right: 5px" value="/img/social-icon.png"/>
-                    </f:facet>
-                </p:panel>
-                <ui:insert name="ajax_preference">
-                    <ui:include src="/ajax_preference.xhtml"/>
-                </ui:insert>
-            </p:layoutUnit>
-        </p:layout>
+                    <ui:insert name="ajax_preference">
+                        <ui:include src="/ajax_preference.xhtml"/>
+                    </ui:insert>
+                </p:layoutUnit>
+            </p:layout>
+        </h:panelGrid>
     </h:body>
 </html>

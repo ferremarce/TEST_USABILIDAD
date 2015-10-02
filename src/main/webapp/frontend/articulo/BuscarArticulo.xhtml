@@ -9,7 +9,6 @@
     <ui:define name="content">
         <h2 class="ui-state-default ui-corner-all"><h:outputText value="Buscar Artículos"/></h2>
         <h:form id="formBuscarMain">
-            <p:ajax global="false" event="click" update="#{sistema.form_update}," listener="#{ClickCounter.increment()}"/>
             <h:panelGroup rendered="#{MUController.muProgressFeedBack}">    
                 <ui:include src="/ajax_feedback.xhtml"/>
                 <p:growl globalOnly="true" sticky="true" id="messages"/>

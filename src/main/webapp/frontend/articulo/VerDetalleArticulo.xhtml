@@ -11,7 +11,6 @@
         <h2 class="ui-state-default ui-corner-all"><h:outputText style="color: #000066;" value="#{ArticuloFE.articulo.nombreArticulo}"/></h2>
         <h:form>
             <p:growl life="5000" globalOnly="true" id="messages"/>
-            <p:ajax global="false" event="click" update="#{sistema.form_update}," listener="#{ClickCounter.increment()}"/>
             <p:panel>
                 <p:commandButton immediate="true" ajax="false" title="#{bundle.VolverBoton}" value="#{bundle.VolverBoton}" action="/frontend/articulo/BuscarArticulo" icon="ui-icon-arrowreturnthick-1-w"/>
                 <p:commandButton ajax="false" icon="shoppingcart" title="#{bundle.AgregarCarritoBoton}" value="#{bundle.AgregarCarritoBoton}" action="#{CarritoFE.doAgregarCarrito(ArticuloFE.articulo)}"/>
