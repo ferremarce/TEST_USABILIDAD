@@ -29,7 +29,7 @@ public class MetricaController implements Serializable {
     MetricaFacade metricaFacade;
     private Metrica metrica;
     private List<Metrica> listaMetrica;
-    private Integer tmpClickCounter;
+    private Integer tmpClickCounter = 0;
     private DisenhoExperimental disenhoExperimental;
     private MecanismoUsabilidad idMu;
 

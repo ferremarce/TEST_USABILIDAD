@@ -263,15 +263,15 @@ public class CarritoFE implements Serializable {
     }
 
     public String doOpcionSI() {
-        JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("CambiosOk"));
+        //Restaurar el carrito anterior (perder cambios)
+        this.listaOrdenCarrito = this.clonarLista(listaOrdenCarritoAbort);
+        this.codigoPromocional = this.codigoPromocionalAbort;
+        JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("CambiosNoOk") + ". " + JSFutil.getMyBundle().getString("CarritoNoAlterado"));
         return "/frontend/index";
     }
 
     public String doOpcionNO() {
-        //Restaurar el carrito anterior
-        this.listaOrdenCarrito = this.clonarLista(listaOrdenCarritoAbort);
-        this.codigoPromocional = this.codigoPromocionalAbort;
-        JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("CambiosNoOk")+ ". "+JSFutil.getMyBundle().getString("CarritoNoAlterado"));
+        JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("CambiosOk"));
         return "/frontend/index";
     }
 

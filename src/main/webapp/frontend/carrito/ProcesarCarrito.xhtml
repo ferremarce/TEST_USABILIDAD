@@ -96,10 +96,10 @@
             </p:panel>
             <p:dialog header="Cambios pendientes..." closeOnEscape="true" widgetVar="confirmacionAbort" >
                 <p:panel>
-                    <h:outputText value="#{bundle.ConfirmacionAbort}"/>
+                    <h:outputText style="font-size: 16px !important" value="#{bundle.ConfirmacionAbort}"/>
                     <f:facet name="footer">
-                        <p:commandButton ajax="false" title="#{bundle.SiBoton}" value="#{bundle.SiBoton}" action="#{CarritoFE.doOpcionSI()}"  icon="ui-icon-check" />
-                        <p:commandButton ajax="false" immediate="true" title="#{bundle.NoBoton}" value="#{bundle.NoBoton}" action="#{CarritoFE.doOpcionNO()}"  icon="ui-icon-close" />
+                        <p:commandButton style="font-size: 16px !important" ajax="false" title="#{bundle.SiBoton}" value="#{bundle.SiBoton}" action="#{CarritoFE.doOpcionSI()}"  icon="ui-icon-check" />
+                        <p:commandButton style="font-size: 16px !important" ajax="false" immediate="true" title="#{bundle.NoBoton}" value="#{bundle.NoBoton}" action="#{CarritoFE.doOpcionNO()}"  icon="ui-icon-close" />
                     </f:facet>
                 </p:panel>
             </p:dialog>
