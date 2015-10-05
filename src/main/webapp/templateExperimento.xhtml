@@ -26,7 +26,6 @@
                                 <p:spacer height="20"/>
                                 <h:outputText rendered="#{ExperimentoController.debugMode}" value="Estas en Modo Debug"/>
                                 <h:outputText rendered="#{!ExperimentoController.debugMode}" value="Estas en Modo Normal"/>
-                                <!--p:commandButton rendered="#{LoginManager.usuarioLogeado==null and ExperimentoController.debugMode}" immediate="true" ajax="false" action="#{LoginManager.doAutoLogin()}" value="AutoLogin"/-->
                                 <p:spacer height="20"/>
                                 <p:selectBooleanButton offLabel="Modo Debug" onLabel="Modo Normal" value="#{ExperimentoController.debugMode}">
                                     <p:ajax update="@all"/>
