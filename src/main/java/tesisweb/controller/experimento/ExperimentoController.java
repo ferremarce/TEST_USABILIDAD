@@ -87,7 +87,7 @@ public class ExperimentoController implements Serializable {
     public String gotoNextForm() {
         //Se despliega un mensaje si no se abrió el popup en las tareas
         if (!this.clickPopupAB && !this.clickPopupFB && !this.clickPopupPR && this.indexFormActual != -1) {
-            JSFutil.addErrorMessage("No puedes continuar con la siguiente tarea sin haber abierto la Tienda y hecho la tarea");
+            JSFutil.addErrorMessage("No puedes continuar con la siguiente tarea sin haber abierto la Tienda y haber realizado la tarea que aquí se propone");
             return "";
         }
         this.initPopup();

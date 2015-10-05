@@ -24,7 +24,9 @@
                                 <p:spacer height="20"/>
                                 <h:outputText rendered="#{ExperimentoController.debugMode}" value="ID_SESION: #{LoginManager.doGetSessionID()}"/>
                                 <p:spacer height="20"/>
-                                <p:commandButton rendered="#{LoginManager.usuarioLogeado==null and ExperimentoController.debugMode}" immediate="true" ajax="false" action="#{LoginManager.doAutoLogin()}" value="AutoLogin"/>
+                                <h:outputText rendered="#{ExperimentoController.debugMode}" value="Estas en Modo Debug"/>
+                                <h:outputText rendered="#{!ExperimentoController.debugMode}" value="Estas en Modo Normal"/>
+                                <!--p:commandButton rendered="#{LoginManager.usuarioLogeado==null and ExperimentoController.debugMode}" immediate="true" ajax="false" action="#{LoginManager.doAutoLogin()}" value="AutoLogin"/-->
                                 <p:spacer height="20"/>
                                 <p:selectBooleanButton offLabel="Modo Debug" onLabel="Modo Normal" value="#{ExperimentoController.debugMode}">
                                     <p:ajax update="@all"/>
@@ -37,6 +39,10 @@
                 <p:outputPanel>
                     <p:panel rendered="#{ExperimentoController.debugMode}" toggleable="true">
                         <p:dataTable value="#{MetricaController.doGetListaMetrica()}" var="itemMetrica">
+                            <f:facet name="header">
+                                <h:outputText value="Métricas del Experimento"/>
+                            </f:facet>
+                                
                             <p:column headerText="MU">
                                 <h:outputText value="#{itemMetrica.idMecanismoUsabilidad}"/>
                             </p:column>
