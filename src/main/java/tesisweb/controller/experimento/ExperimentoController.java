@@ -37,7 +37,7 @@ public class ExperimentoController implements Serializable {
     private Boolean clickPopupPR = Boolean.FALSE;
     private Boolean clickPopupAB = Boolean.FALSE;
     private Boolean clickPopupFB = Boolean.FALSE;
-    private Boolean debugMode = Boolean.TRUE;
+    private Boolean debugMode = Boolean.FALSE;
     private Metrica metrica;
 
     /**

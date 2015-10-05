@@ -133,11 +133,7 @@ public class ArticuloFE implements Serializable {
      * @return
      */
     public String doListar() {
-        try { 
-            Thread.sleep(5000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(ArticuloFE.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
         if (this.criterioBusqueda.length() > 0) {
             this.listaArticulo = articuloDAO.findAllbyCriterio(criterioBusqueda);
         } else {
@@ -148,7 +144,12 @@ public class ArticuloFE implements Serializable {
         } else {
             JSFutil.addSuccessMessage("Sin registros");
         }
-        return "/frontend/articulo/BuscarArticulo";
+        try {
+            Thread.sleep(4000);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ArticuloFE.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "/frontend/articulo/BuscarArticulo?faces-redirect=true";
     }
 
     public String doListarCategoriaForm() {
@@ -174,14 +175,14 @@ public class ArticuloFE implements Serializable {
     public List<Articulo> doGetMasVendidos() {
         return articuloDAO.findTopVendidos(5);
     }
-    public List<Articulo> doGetEnPromocion(){
+
+    public List<Articulo> doGetEnPromocion() {
         return articuloDAO.findEnPromocion(10);
     }
 
     //********************************************
 // METODOS DEL LISTENER
 //********************************************
-
     /**
      * Render de la imagen desde el DAO
      *
