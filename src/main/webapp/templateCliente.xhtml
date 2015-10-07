@@ -84,12 +84,6 @@
                                 <p:commandButton value="#{bundle.AceptarBoton}" ajax="false"/>
                             </p:panel>
                         </h:form>
-                        <h:form>
-                            <p:outputPanel id="panelContadorPR">
-                                <h:outputText id="txt_count" value="Contador: #{LoginManager.contadorPR} - (PopupPR #{ExperimentoController.clickPopupPR})" />
-                                <p:poll global="false" interval="3" rendered="#{ExperimentoController.clickPopupPR}" listener="#{LoginManager.incrementarContadorPreference()}" update="panelContadorPR" />
-                            </p:outputPanel>
-                        </h:form>
                     </p:outputPanel>
                 </p:layoutUnit>
                 <p:layoutUnit position="center" >
@@ -161,6 +155,12 @@
                             <p:graphicImage style="position: absolute; right: 5px" value="/img/social-icon.png"/>
                         </f:facet>
                     </p:panel>
+                    <h:form>
+                        <p:outputPanel id="panelContadorPR">
+                            <!--h:outputText style="font-size: 4px !important" id="txt_count" value="Contador: #{LoginManager.contadorPR} - (PopupPR #{ExperimentoController.clickPopupPR})" /-->
+                            <p:poll global="false" interval="3" rendered="#{ExperimentoController.clickPopupPR}" listener="#{LoginManager.incrementarContadorPreference()}" update="panelContadorPR" />
+                        </p:outputPanel>
+                    </h:form>
                     <ui:insert name="ajax_preference">
                         <ui:include src="/ajax_preference.xhtml"/>
                     </ui:insert>
