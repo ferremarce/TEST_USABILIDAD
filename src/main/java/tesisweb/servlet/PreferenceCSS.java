@@ -45,11 +45,11 @@ public class PreferenceCSS extends HttpServlet {
             Preference p = preferenceDAO.find(Integer.parseInt(parametro));
             String size = p.getTamanho() + "%";
             String family = "'" + p.getFuente() + "'";
-            cadena = "h1, h2, h3, span, .ui-layout \n"
+            cadena = "body, h1, h2, h3, span, .ui-layout \n"
                     + "{\n"
                     + "    font-family: " + family + " !important; \n"
                     + "}\n"
-                    + "td \n"
+                    + "table, td, tr \n"
                     + "{\n"
                     + "    font-size: " + size + " !important;\n"
                     + "    font-family: " + family + " !important; \n"

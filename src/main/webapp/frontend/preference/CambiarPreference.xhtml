@@ -40,10 +40,10 @@
                 </p:selectOneMenu>
                 <p:message for="fuente"/>
                 <p:outputLabel value="Tamaño de la Letra:" for="tamanho" />
-                <h:panelGrid columns="1" style="margin-bottom: 10px">
-                    <p:outputLabel id="tamanho" value="#{PreferenceController.sizeFont}%" />
+                <h:panelGrid columns="1" style="margin-bottom: 10px;" >
+                    <p:outputLabel style="font-size: 14px !important" id="tamanho" value="#{PreferenceController.sizeFont}%" />
                     <h:inputHidden id="txt2" value="#{PreferenceController.sizeFont}" />
-                    <p:slider for="txt2" display="tamanho" maxValue="120" style="width: 500px" minValue="60" displayTemplate="Ajustar al {value}%" />
+                    <p:slider for="txt2" display="tamanho" maxValue="120" style="width: 500px;" minValue="60" displayTemplate="Ajustar al {value}%" />
                 </h:panelGrid>
                 <p:message for="tamanho"/>
                 <p:outputLabel value="Idioma:" for="idioma" />

@@ -145,7 +145,7 @@ public class ArticuloFE implements Serializable {
             JSFutil.addSuccessMessage("Sin registros");
         }
         try {
-            Thread.sleep(4000);
+            Thread.sleep(8000);
         } catch (InterruptedException ex) {
             Logger.getLogger(ArticuloFE.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -39,7 +39,7 @@
                     <h:form id="formCategoriaArticulo">
                         <p:dataList value="#{SubTipoController.idCategoriaArticuloList}" var="categoria" >
                             <f:facet name="header">
-                                Categorías
+                                #{bundle.lblCategoria}
                             </f:facet>
                             <p:commandLink styleClass="nav" ajax="false" value="#{categoria}" action="#{ArticuloFE.doListarCategoriaForm()}">
                                 <f:param name="idCategoria" value="#{categoria.idSubTipo}" />
@@ -47,20 +47,24 @@
                         </p:dataList>
                     </h:form>
                     <p:outputPanel>
-                        <p:panel>
-                            <f:facet name="header">
-                                <p:graphicImage value="/icono/sello-garantia.png"/>
-                                <h:outputText value="#{bundle.lblTituloGarantia}"/>
-                            </f:facet>
-                            <h:panelGrid columns="2">
-                                <p:graphicImage value="/icono/sticker1.png"/>
-                                <h:outputText value="#{bundle.lblGarantiaSeguridad}"/>
-                                <p:graphicImage value="/icono/sticker1.png"/>
-                                <h:outputText value="#{bundle.lblGarantiaDevolucion}"/>
-                                <p:graphicImage value="/icono/sticker1.png"/>
-                                <h:outputText value="#{bundle.lblGarantiaPrivacidad}"/>
-                            </h:panelGrid>
-                        </p:panel>
+                        <h:form>
+                            <p:panel>
+                                <f:facet name="header">
+                                    <h:panelGrid columns="2">
+                                        <p:graphicImage value="/icono/sello-garantia.png"/>
+                                        <h:outputText value="#{bundle.lblTituloGarantia}"/>
+                                    </h:panelGrid>
+                                </f:facet>
+                                <h:panelGrid columns="2">
+                                    <p:graphicImage value="/icono/sticker1.png"/>
+                                    <p:commandLink ajax="false" value="#{bundle.lblGarantiaSeguridad}" action="#{TiendaController.doGarantiaForm(1)}"/>
+                                    <p:graphicImage value="/icono/sticker1.png"/>
+                                    <p:commandLink ajax="false" value="#{bundle.lblGarantiaDevolucion}" action="#{TiendaController.doGarantiaForm(2)}"/>
+                                    <p:graphicImage value="/icono/sticker1.png"/>
+                                    <p:commandLink ajax="false" value="#{bundle.lblGarantiaPrivacidad}" action="#{TiendaController.doGarantiaForm(3)}"/>
+                                </h:panelGrid>
+                            </p:panel>
+                        </h:form>
                     </p:outputPanel>
                     <p:outputPanel rendered="#{ExperimentoController.debugMode}">
                         <h:form id="formMetrica">
@@ -128,6 +132,9 @@
                                         <p:spacer width="10"/>
                                         <p:commandLink value="English" ajax="false" action="#{LanguageSwitcher.changeLanguage('en')}"/>
                                         <p:graphicImage  width="30" height="25" value="/icono/flag_usa.png"/>
+                                        <p:spacer width="10"/>
+                                        <p:commandLink value="Zulú" ajax="false" action="#{LanguageSwitcher.changeLanguage('zu')}"/>
+                                        <p:graphicImage  width="30" height="25" value="/icono/flag_zu.png"/>
                                     </p:outputPanel>
                                 </f:facet>
                             </p:toolbar>
