@@ -46,6 +46,14 @@ public class ExperimentoController implements Serializable {
     public ExperimentoController() {
     }
 
+    public int getIndexFormActual() {
+        return indexFormActual;
+    }
+
+    public void setIndexFormActual(int indexFormActual) {
+        this.indexFormActual = indexFormActual;
+    }
+
     public Boolean getDebugMode() {
         return debugMode;
     }
@@ -112,6 +120,16 @@ public class ExperimentoController implements Serializable {
         } else {
             return "/experimento/agradecimiento";
         }
+    }
+
+    public String gotoCuestionarioPRForm() {
+        return "/experimento/cuestionarioPR";
+    }
+    public String gotoCuestionarioABForm() {
+        return "/experimento/cuestionarioAB";
+    }
+    public String gotoCuestionarioFBForm() {
+        return "/experimento/cuestionarioFB";
     }
 
     public String doGetURLAPP() {

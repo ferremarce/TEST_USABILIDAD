@@ -10,20 +10,29 @@
 
     <ui:define name="content">
         <f:metadata>
-            <f:event type="preRenderView" listener="#{CuestionarioUsabilidadController.initCuestionarioSUS()}"/>
+            <f:event type="preRenderView" listener="#{CuestionarioUsabilidadController.initCuestionarioAB()}"/>
         </f:metadata>
         <h:form>
             <p:growl globalOnly="true" id="messages"/>
-            <h2 class="ui-state-default ui-corner-all"><h:outputText styleClass="itemResaltado3" value="Cuestionario Final"/></h2>
-            <p:dataTable rowIndexVar="index4" value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidadSUS}" var="item4">
+            <h2 class="ui-state-default ui-corner-all"><h:outputText styleClass="itemResaltado3" value="Cuestionario sobre las Tareas"/></h2>
+            <p:panel rendered="#{ExperimentoController.indexFormActual==0}">
+                Este cuestionario te ofrece la oportunidad de expresar la satisfacción que has experimentado en las tareas que acabas de terminar. 
+                <br/>
+                Tus respuestas nos ayudarán a conocer los aspectos con los que está conforme así como aquellos con los que está disconforme. 
+                <br/>
+                Piense en las tareas que has realizado y evalúa las siguientes sentencias. 
+                <br/>
+            </p:panel>
+
+            <p:dataTable rowIndexVar="indexAB" value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidadAB}" var="item2">
                 <f:facet name="header">
-                    <h:outputText value="SUS"/>
+                    <h:outputText value="ABORT OPERATION"/>
                 </f:facet>
                 <p:column>
                     <f:facet name="header">
                         <h:outputText value="Sentencias"/>
                     </f:facet>
-                    <h:outputText escape="false" value="#{index4+1}. #{item4.idPreguntaUsabilidad.preguntaPositivo}"/>
+                    <h:outputText escape="false" value="#{indexAB+1}. #{item2.idPreguntaUsabilidad.preguntaPositivo}"/>
                 </p:column>
                 <p:column>
                     <f:facet name="header">
@@ -35,25 +44,25 @@
                             <h:outputText value="Totalmente en desacuerdo"/>
                         </h:panelGrid>
                     </f:facet>
-                    <p:selectOneRadio id="idSUS" required="true" requiredMessage="#{bundle.Requerido}" value="#{item4.valorPregunta}">
+                    <p:selectOneRadio id="idAB" required="true" requiredMessage="#{bundle.Requerido}" value="#{item2.valorPregunta}">
                         <f:selectItem itemValue="5" />
                         <f:selectItem itemValue="4" />
                         <f:selectItem itemValue="3" />
                         <f:selectItem itemValue="2" />
                         <f:selectItem itemValue="1" />
                     </p:selectOneRadio>
-                    <p:message for="idSUS"/>
-                </p:column>                    
+                    <p:message for="idAB"/>
+                </p:column>  
                 <p:column style="width: 300px">
                     <f:facet name="header">
                         <h:outputText value="Comentarios"/>
                     </f:facet>
-                    <p:inputTextarea rows="2" cols="30" value="#{item4.comentario}"/>
+                    <p:inputTextarea rows="2" cols="30" value="#{item2.comentario}"/>
                 </p:column>
-            </p:dataTable>
+            </p:dataTable>         
             <p:panel>
                 <f:facet name="footer">
-                    <p:commandButton ajax="false" action="#{CuestionarioUsabilidadController.doGuardar()}" value="Siguiente"/>
+                    <p:commandButton ajax="false" action="#{ExperimentoController.gotoNextForm()}" value="Siguiente"/>
                 </f:facet>
             </p:panel>
 

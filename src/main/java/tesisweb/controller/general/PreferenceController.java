@@ -227,6 +227,7 @@ public class PreferenceController implements Serializable {
         Map<String, String> langs = new TreeMap<>();
         langs.put("Español", "es");
         langs.put("English", "en");
+        langs.put("Zulú", "zu");
         return langs;
     }
     //********************************************

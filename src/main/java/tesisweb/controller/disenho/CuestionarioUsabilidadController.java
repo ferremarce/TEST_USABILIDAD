@@ -103,35 +103,44 @@ public class CuestionarioUsabilidadController implements Serializable {
         this.listaCuestionarioUsabilidadSUS = listaCuestionarioUsabilidadSUS;
     }
 
-    public void init() {
-        this.listaCuestionarioUsabilidadAB = new ArrayList<>();
+    public void initCuestionarioPR() {
         this.listaCuestionarioUsabilidadPR = new ArrayList<>();
-        this.listaCuestionarioUsabilidadFB = new ArrayList<>();
-        this.listaCuestionarioUsabilidadSUS = new ArrayList<>();
-
-        for (PreguntaUsabilidad preg : cuestionarioUsabilidadFacade.findAllPreguntasUsabilidad(0)) {
-            this.cuestionarioUsabilidad = new CuestionarioUsabilidad();
-            this.cuestionarioUsabilidad.setIdPreguntaUsabilidad(preg);
-            this.cuestionarioUsabilidad.setIdUsuario(JSFutil.getUsuarioConectado());
-            this.listaCuestionarioUsabilidadSUS.add(cuestionarioUsabilidad);
-        }
         for (PreguntaUsabilidad preg : cuestionarioUsabilidadFacade.findAllPreguntasUsabilidad(1)) {
             this.cuestionarioUsabilidad = new CuestionarioUsabilidad();
             this.cuestionarioUsabilidad.setIdPreguntaUsabilidad(preg);
             this.cuestionarioUsabilidad.setIdUsuario(JSFutil.getUsuarioConectado());
             this.listaCuestionarioUsabilidadPR.add(cuestionarioUsabilidad);
         }
+    }
+
+    public void initCuestionarioAB() {
+        this.listaCuestionarioUsabilidadAB = new ArrayList<>();
         for (PreguntaUsabilidad preg : cuestionarioUsabilidadFacade.findAllPreguntasUsabilidad(2)) {
             this.cuestionarioUsabilidad = new CuestionarioUsabilidad();
             this.cuestionarioUsabilidad.setIdPreguntaUsabilidad(preg);
             this.cuestionarioUsabilidad.setIdUsuario(JSFutil.getUsuarioConectado());
             this.listaCuestionarioUsabilidadAB.add(cuestionarioUsabilidad);
         }
+    }
+
+    public void initCuestionarioFB() {
+        this.listaCuestionarioUsabilidadFB = new ArrayList<>();
         for (PreguntaUsabilidad preg : cuestionarioUsabilidadFacade.findAllPreguntasUsabilidad(3)) {
             this.cuestionarioUsabilidad = new CuestionarioUsabilidad();
             this.cuestionarioUsabilidad.setIdPreguntaUsabilidad(preg);
             this.cuestionarioUsabilidad.setIdUsuario(JSFutil.getUsuarioConectado());
             this.listaCuestionarioUsabilidadFB.add(cuestionarioUsabilidad);
+        }
+
+    }
+
+    public void initCuestionarioSUS() {
+        this.listaCuestionarioUsabilidadSUS = new ArrayList<>();
+        for (PreguntaUsabilidad preg : cuestionarioUsabilidadFacade.findAllPreguntasUsabilidad(0)) {
+            this.cuestionarioUsabilidad = new CuestionarioUsabilidad();
+            this.cuestionarioUsabilidad.setIdPreguntaUsabilidad(preg);
+            this.cuestionarioUsabilidad.setIdUsuario(JSFutil.getUsuarioConectado());
+            this.listaCuestionarioUsabilidadSUS.add(cuestionarioUsabilidad);
         }
     }
 
