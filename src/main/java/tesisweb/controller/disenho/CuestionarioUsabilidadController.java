@@ -16,6 +16,7 @@ import javax.ejb.EJBException;
 import javax.inject.Inject;
 import tesisweb.controller.frontend.LoginManager;
 import tesisweb.ejb.experimento.entity.CuestionarioUsabilidad;
+import tesisweb.ejb.experimento.entity.MecanismoUsabilidad;
 import tesisweb.ejb.experimento.entity.PreguntaUsabilidad;
 import tesisweb.ejb.experimento.facade.CuestionarioUsabilidadFacade;
 import tesisweb.util.JSFutil;
@@ -45,10 +46,29 @@ public class CuestionarioUsabilidadController implements Serializable {
     private List<CuestionarioUsabilidad> listaCuestionarioUsabilidadSUS;
     private List<PreguntaUsabilidad> listaPreguntaUsabilidad;
 
+    private List<CuestionarioUsabilidad> listaCuestionarioUsabilidad;
+    private MecanismoUsabilidad idMu;
+
     /**
      * Creates a new instance of CuestionarioUsabilidadController
      */
     public CuestionarioUsabilidadController() {
+    }
+
+    public MecanismoUsabilidad getIdMu() {
+        return idMu;
+    }
+
+    public void setIdMu(MecanismoUsabilidad idMu) {
+        this.idMu = idMu;
+    }
+
+    public List<CuestionarioUsabilidad> getListaCuestionarioUsabilidad() {
+        return listaCuestionarioUsabilidad;
+    }
+
+    public void setListaCuestionarioUsabilidad(List<CuestionarioUsabilidad> listaCuestionarioUsabilidad) {
+        this.listaCuestionarioUsabilidad = listaCuestionarioUsabilidad;
     }
 
     public List<CuestionarioUsabilidad> getListaCuestionarioUsabilidadPR() {
@@ -144,6 +164,14 @@ public class CuestionarioUsabilidadController implements Serializable {
                 JSFutil.addErrorMessage(ex, JSFutil.getMyBundle().getString("UpdateError"));
             }
             return "";
+        }
+    }
+
+    public void doListaDisenhoCuestionario(Integer idDise) {
+        if (this.idMu != null) {
+            this.listaCuestionarioUsabilidad = cuestionarioUsabilidadFacade.findAllCuestionarioMuDisenho(idDise, this.idMu.getIdMu());
+        } else {
+            this.listaCuestionarioUsabilidad = cuestionarioUsabilidadFacade.findAllCuestionarioMuDisenho(idDise, 0);
         }
     }
 

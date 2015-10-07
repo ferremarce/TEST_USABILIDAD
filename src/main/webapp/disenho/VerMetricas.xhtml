@@ -9,64 +9,136 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
-        <h:form>
-            <h:outputText style="font-size: 22px !important;font-weight: bold" value="#{MetricaController.disenhoExperimental.descripcionDisenho}-#{MetricaController.disenhoExperimental.contexto}"/>
-            <p:panel header="Filtrar">
-                <h:panelGrid columns="2">
-                    <p:selectOneMenu converter="MecanismoUsabilidadConverter" id="idMu" value="#{MetricaController.idMu}" >
-                        <f:selectItems value="#{MecanismoUsabilidadController.mecanismoUsabilidadSet}"/>
-                    </p:selectOneMenu>
-                    <p:commandButton value="Aceptar" action="#{MetricaController.doUpdateListaMetricaDiseǹoMecanismo()}" update="@form"/>
-                </h:panelGrid>
-            </p:panel>
-            <p:dataTable id="tablaMetrica" rowIndexVar="index" value="#{MetricaController.listaMetrica}" var="item">
-                <f:facet name="header">
-                    <h:commandLink value="Exportar">
-                        <p:graphicImage value="/icono/csv.png" width="24"/>
-                        <p:dataExporter type="csv" target="tablaMetrica" fileName="tablaMetrica-#{MetricaController.idMu.nombreMecanismo}" />
-                    </h:commandLink>
-                </f:facet>
-                <p:column sortBy="#{item.idMecanismoUsabilidad.nombreMecanismo}">
-                    <f:facet name="header">
-                        <h:outputText value="MU"/>
-                    </f:facet>
-                    <h:outputText value="#{index+1}. #{item.idMecanismoUsabilidad}"/>
-                </p:column>
-                <p:column headerText="Sujeto" sortBy="#{item.idUsuario.cuenta}">
-                    <h:outputText value="#{item.idUsuario.cuenta}"/>
-                </p:column>
-                <p:column sortBy="#{item.idUsuario.ipConexion}">
-                    <f:facet name="header">
-                        <h:outputText value="IP"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idUsuario.ipConexion}"/>
-                </p:column>
-                <p:column sortBy="#{item.idUsuario.fechaHoraConexion}">
-                    <f:facet name="header">
-                        <h:outputText value="Fecha-Hora"/>
-                    </f:facet>
-                    <h:outputText value="#{item.idUsuario.fechaHoraConexion}">
-                        <f:convertDateTime timeZone="#{UsuarioController.myTimeZone}" pattern="dd/MM/yyyy HH:mm" />
-                    </h:outputText>
-                </p:column>
 
-                <p:column sortBy="#{(item.stopTime-item.startTime)/1000}">
-                    <f:facet name="header">
-                        <h:outputText value="elapsedTime (seg)"/>
-                    </f:facet>
-                    <h:outputText value="#{(item.stopTime-item.startTime)/1000}"/>
-                </p:column>
-                <p:column rendered="false"> 
-                    <f:facet name="header">
-                        <h:outputText value="PartialTime"/>
-                    </f:facet>
-                    <h:outputText value="#{item.partialTime}"/>
-                </p:column>
-                <p:column headerText="ClickCounter" sortable="true" sortBy="#{item.clickCounter}">
-                    <h:outputText value="#{item.clickCounter}"/>
-                </p:column>
-            </p:dataTable>
-        </h:form>
+        <h:outputText style="font-size: 22px !important;font-weight: bold" value="#{MetricaController.disenhoExperimental.descripcionDisenho}-#{MetricaController.disenhoExperimental.contexto}"/>
+        <p:tabView>
+            <p:tab title="Tiempos y Clicks">
+                <h:form>
+                    <p:panel header="Filtrar">
+                        <h:panelGrid columns="2">
+                            <p:selectOneMenu converter="MecanismoUsabilidadConverter" id="idMu" value="#{MetricaController.idMu}" >
+                                <f:selectItems value="#{MecanismoUsabilidadController.mecanismoUsabilidadSet}"/>
+                            </p:selectOneMenu>
+                            <p:commandButton value="Aceptar" action="#{MetricaController.doUpdateListaMetricaDiseǹoMecanismo()}" update="@form"/>
+                        </h:panelGrid>
+                    </p:panel>
+                    <p:dataTable id="tablaMetrica" rowIndexVar="index" value="#{MetricaController.listaMetrica}" var="item">
+                        <f:facet name="header">
+                            <h:commandLink value="Exportar">
+                                <p:graphicImage value="/icono/csv.png" width="24"/>
+                                <p:dataExporter type="csv" target="tablaMetrica" fileName="tablaMetrica-#{MetricaController.idMu.nombreMecanismo}" />
+                            </h:commandLink>
+                        </f:facet>
+                        <p:column sortBy="#{item.idMecanismoUsabilidad.nombreMecanismo}">
+                            <f:facet name="header">
+                                <h:outputText value="MU"/>
+                            </f:facet>
+                            <h:outputText value="#{index+1}. #{item.idMecanismoUsabilidad}"/>
+                        </p:column>
+                        <p:column headerText="Sujeto" sortBy="#{item.idUsuario.cuenta}">
+                            <h:outputText value="#{item.idUsuario.cuenta}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.idUsuario.ipConexion}">
+                            <f:facet name="header">
+                                <h:outputText value="IP"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUsuario.ipConexion}"/>
+                        </p:column>
+                        <p:column sortBy="#{item.idUsuario.fechaHoraConexion}">
+                            <f:facet name="header">
+                                <h:outputText value="Fecha-Hora"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUsuario.fechaHoraConexion}">
+                                <f:convertDateTime timeZone="#{UsuarioController.myTimeZone}" pattern="dd/MM/yyyy HH:mm" />
+                            </h:outputText>
+                        </p:column>
+
+                        <p:column sortBy="#{(item.stopTime-item.startTime)/1000}">
+                            <f:facet name="header">
+                                <h:outputText value="elapsedTime (seg)"/>
+                            </f:facet>
+                            <h:outputText value="#{(item.stopTime-item.startTime)/1000}"/>
+                        </p:column>
+                        <p:column rendered="false"> 
+                            <f:facet name="header">
+                                <h:outputText value="PartialTime"/>
+                            </f:facet>
+                            <h:outputText value="#{item.partialTime}"/>
+                        </p:column>
+                        <p:column headerText="ClickCounter" sortable="true" sortBy="#{item.clickCounter}">
+                            <h:outputText value="#{item.clickCounter}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </p:tab>
+            <p:tab title="Cuestionarios AB/FB/PR/SUS">
+                <h:form>
+                    <p:panel header="Filtrar">
+                        <h:panelGrid columns="2">
+                            <p:selectOneMenu converter="MecanismoUsabilidadConverter" id="idMu" value="#{CuestionarioUsabilidadController.idMu}" >
+                                <f:selectItems value="#{MecanismoUsabilidadController.mecanismoUsabilidadSet}"/>
+                            </p:selectOneMenu>
+                            <p:commandButton value="Aceptar" action="#{CuestionarioUsabilidadController.doListaDisenhoCuestionario(MetricaController.disenhoExperimental.idDisenho)}" update="@form"/>
+                        </h:panelGrid>
+                    </p:panel>
+                    <p:dataTable id="tablaCuestionario" rowIndexVar="index2" value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidad}" var="item2">
+                         <f:facet name="header">
+                            <h:commandLink value="Exportar">
+                                <p:graphicImage value="/icono/csv.png" width="24"/>
+                                <p:dataExporter type="csv" target="tablaCuestionario" fileName="tablaCuestionario-#{CuestionarioUsabilidadController.idMu}" />
+                            </h:commandLink>
+                        </f:facet>
+                        <p:column >
+                            <f:facet name="header">
+                                <h:outputText value="Mecanismo"/>
+                            </f:facet>
+                            <h:outputText rendered="#{item2.idPreguntaUsabilidad.idMecanismoUsabilidad!=null}" value="#{index2+1}. #{item2.idPreguntaUsabilidad.idMecanismoUsabilidad}"/>
+                            <h:outputText rendered="#{item2.idPreguntaUsabilidad.idMecanismoUsabilidad==null}" value="#{index2+1}. SUS"/>
+                        </p:column>
+                        <p:column sortBy="#{item2.idPreguntaUsabilidad.preguntaPositivo}">
+                            <f:facet name="header">
+                                <h:outputText value="Pregunta"/>
+                            </f:facet>
+                            <h:outputText escape="false" value="#{item2.idPreguntaUsabilidad.preguntaPositivo}"/>
+                        </p:column>
+                        <p:column sortBy="#{item2.idUsuario.cuenta}">
+                            <f:facet name="header">
+                                <h:outputText value="Sujeto"/>
+                            </f:facet>
+                            <h:outputText value="#{item2.idUsuario.cuenta}"/>
+                        </p:column>
+                        <p:column sortBy="#{item2.idUsuario.ipConexion}">
+                            <f:facet name="header">
+                                <h:outputText value="IP"/>
+                            </f:facet>
+                            <h:outputText value="#{item2.idUsuario.ipConexion}"/>
+                        </p:column>
+                        <p:column sortBy="#{item2.idUsuario.fechaHoraConexion}">
+                            <f:facet name="header">
+                                <h:outputText value="Fecha-Hora"/>
+                            </f:facet>
+                            <h:outputText value="#{item2.idUsuario.fechaHoraConexion}">
+                                <f:convertDateTime timeZone="#{UsuarioController.myTimeZone}" pattern="dd/MM/yyyy HH:mm" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item2.valorPregunta}">
+                            <f:facet name="header">
+                                <h:outputText value="Valor"/>
+                            </f:facet>
+                            <h:outputText value="#{item2.valorPregunta}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Comentario"/>
+                            </f:facet>
+                            <h:outputText value="#{item2.comentario}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </p:tab>
+        </p:tabView>
+
+
     </ui:define>
 
 </ui:composition>

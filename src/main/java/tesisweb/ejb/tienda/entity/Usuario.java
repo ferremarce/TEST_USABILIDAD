@@ -76,7 +76,7 @@ public class Usuario implements Serializable {
     @JoinColumn(name = "ID_GRUPO_EXPERIMENTAL", referencedColumnName = "ID_GRUPO")
     @ManyToOne
     private GrupoMatrizExperimental idGrupoExperimental;
-    @OneToMany(mappedBy = "idUsuario")
+    @OneToMany(mappedBy = "idUsuario", cascade = CascadeType.REMOVE)
     private List<CuestionarioUsabilidad> cuestionarioUsabilidadList;
     @Column(name = "FECHA_HORA_CONEXION")
     @Temporal(TemporalType.TIMESTAMP)
@@ -84,7 +84,7 @@ public class Usuario implements Serializable {
     @Size(max = 255)
     @Column(name = "IP_CONEXION")
     private String ipConexion;
-    @OneToMany(mappedBy = "idUsuario")
+    @OneToMany(mappedBy = "idUsuario", cascade = CascadeType.REMOVE)
     private List<Metrica> metricaList;
 
     public Usuario() {

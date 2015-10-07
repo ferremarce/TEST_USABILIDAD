@@ -44,4 +44,18 @@ public class CuestionarioUsabilidadFacade extends AbstractFacade<CuestionarioUsa
         List<PreguntaUsabilidad> tr = q.getResultList();
         return tr;
     }
+
+    public List<CuestionarioUsabilidad> findAllCuestionarioMuDisenho(Integer idDise, Integer idMU) {
+        Query q;
+        if (idMU.compareTo(0) == 0) {
+            q = em.createQuery("SELECT a FROM CuestionarioUsabilidad a WHERE a.idUsuario.idGrupoExperimental.idDisenho.idDisenho=:xIdDise ORDER BY a.idPreguntaUsabilidad.idMecanismoUsabilidad DESC");
+        } else {
+            q = em.createQuery("SELECT a FROM CuestionarioUsabilidad a WHERE a.idPreguntaUsabilidad.idMecanismoUsabilidad.idMu=:xIdMU AND a.idUsuario.idGrupoExperimental.idDisenho.idDisenho=:xIdDise ORDER BY a.idPreguntaUsabilidad.idMecanismoUsabilidad DESC");
+            q.setParameter("xIdMU", idMU);
+        }
+        q.setParameter("xIdDise", idDise);
+        //LOG.log(Level.INFO, "findAllbyTipo: {0}", sql);
+        List<CuestionarioUsabilidad> tr = q.getResultList();
+        return tr;
+    }
 }
