@@ -117,16 +117,11 @@
                                     <p:outputPanel style="font-size: 16px !important">
                                         <p:commandButton icon="ui-icon-home" ajax="false" style="font-size: 18px !important" value="#{bundle.lblInicio}" action="/frontend/index"/>
                                         <h:outputLabel rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.usuarioLogeado.nombres} #{LoginManager.usuarioLogeado.apellidos}"/>
-                                        <!--p:menu style="width: 250px" overlay="true" trigger="cmdUsuarioLogeado" my="left top" at="left bottom">
-                                            <p:submenu label="Acceso">
-                                                <p:menuitem ajax="false" value="#{bundle.CambiarContrasenhaBoton}" action="#{LoginManager.doCambiarContrasenhaForm()}" icon="ui-icon-disk"/>
-                                            </p:submenu>
-                                        </p:menu-->
                                     </p:outputPanel>
                                 </f:facet>
                                 <f:facet name="right">
                                     <p:outputPanel style="font-size: 16px !important;" rendered="#{MUController.muPreference and LoginManager.usuarioLogeado!=null}">
-                                        <p:commandButton style="font-size: 18px !important" ajax="false" value="#{bundle.PreferenciaBoton}" action="#{PreferenceController.doCambiarPreferencia(LoginManager.usuarioLogeado.idPreference)}" icon="ui-icon-power"/>
+                                        <p:commandButton style="font-size: 18px !important" ajax="false" global="false" value="#{bundle.PreferenciaBoton}" action="#{PreferenceController.doCambiarPreferenciaUsuario()}" icon="ui-icon-power"/>
                                         <p:commandLink value="Español" ajax="false" action="#{LanguageSwitcher.changeLanguage('es')}"/>
                                         <p:graphicImage width="30" height="25" value="/icono/flag_spain.png"/>
                                         <p:spacer width="10"/>
@@ -140,6 +135,32 @@
                             </p:toolbar>
                         </p:panel>
                     </h:form>
+                    <p:dialog header="#{bundle.lblPreferencias}" widgetVar="dlgPreference" minHeight="40" modal="true" appendTo="@(body)" >
+                        <h:form style="font-size: 18px !important; font-family: 'Droid Sans', arial, serif !important;" id="formDialogPreference">
+                            <p:panelGrid id="panelPreference" columns="3">
+                                <p:outputLabel value="Familia de la Letra:" for="fuente" />
+                                <p:selectOneMenu id="fuente" value="#{PreferenceController.preference.fuente}" required="true" requiredMessage="#{bundle.Requerido}" >
+                                    <f:selectItems  value="#{PreferenceController.doGetFonts()}"/>
+                                </p:selectOneMenu>
+                                <p:message for="fuente"/>
+                                <p:outputLabel value="Tamaño de la Letra:" for="tamanho" />
+                                <h:panelGrid columns="1" style="margin-bottom: 10px;" >
+                                    <p:outputLabel style="font-size: 14px !important" id="tamanho" value="#{PreferenceController.sizeFont}%" />
+                                    <h:inputHidden id="txt2" value="#{PreferenceController.sizeFont}" />
+                                    <p:slider for="txt2" display="tamanho" maxValue="120" style="width: 500px;" minValue="60" displayTemplate="Ajustar al {value}%" />
+                                </h:panelGrid>
+                                <p:message for="tamanho"/>
+                                <p:outputLabel value="Idioma:" for="idioma" />
+                                <p:selectOneMenu id="idioma" value="#{PreferenceController.preference.idioma}" required="true" requiredMessage="#{bundle.Requerido}" >
+                                    <f:selectItems value="#{PreferenceController.doGetLanguages()}"/>
+                                </p:selectOneMenu>
+                                <p:message for="idioma"/>
+                            </p:panelGrid>
+                            <p:panel>
+                                <p:commandButton ajax="false" title="Aplicar" value="Aplicar" action="#{PreferenceController.doGuardar()}" icon="ui-icon-disk"/>
+                            </p:panel>
+                        </h:form>
+                    </p:dialog>
                     <ui:insert name="content">Content</ui:insert>
                     <p:panel>
                         <h:panelGrid width="100%" columns="4">

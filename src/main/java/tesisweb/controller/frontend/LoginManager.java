@@ -38,7 +38,7 @@ import tesisweb.util.JSFutil;
 @SessionScoped
 @Named("LoginManager")
 public class LoginManager implements Serializable {
-
+    
     @Inject
     UsuarioDAO usuarioDAO;
     @Inject
@@ -67,35 +67,35 @@ public class LoginManager implements Serializable {
      */
     public LoginManager() {
     }
-
+    
     public Integer getContadorPR() {
         return contadorPR;
     }
-
+    
     public void setContadorPR(Integer contadorPR) {
         this.contadorPR = contadorPR;
     }
-
+    
     public Boolean getContadorPRhabilitado() {
         return contadorPRhabilitado;
     }
-
+    
     public void setContadorPRhabilitado(Boolean contadorPRhabilitado) {
         this.contadorPRhabilitado = contadorPRhabilitado;
     }
-
+    
     public Integer getIntento() {
         return intento;
     }
-
+    
     public void setIntento(Integer intento) {
         this.intento = intento;
     }
-
+    
     public Integer getCantidadClick() {
         return cantidadClick;
     }
-
+    
     public void setCantidadClick(Integer cantidadClick) {
         this.cantidadClick = cantidadClick;
     }
@@ -153,19 +153,19 @@ public class LoginManager implements Serializable {
     public void setContrasenha2(String contrasenha2) {
         this.contrasenha2 = contrasenha2;
     }
-
+    
     public Boolean getAdminCollapse() {
         return adminCollapse;
     }
-
+    
     public void setAdminCollapse(Boolean adminCollapse) {
         this.adminCollapse = adminCollapse;
     }
-
+    
     public Boolean getClientCollapse() {
         return clientCollapse;
     }
-
+    
     public void setClientCollapse(Boolean clientCollapse) {
         this.clientCollapse = clientCollapse;
     }
@@ -199,15 +199,15 @@ public class LoginManager implements Serializable {
             return null;
         }
     }
-
+    
     public String doAutoLogin() {
         this.doLogout();
         this.cuenta = "jmferreira";
         this.doLoginNoPass();
-
+        
         return "/experimento/inicio?faces-redirect=true";
     }
-
+    
     public String doLoginNoPass() {
         try {
             Usuario usuario = usuarioDAO.getUsuario(cuenta);
@@ -243,7 +243,7 @@ public class LoginManager implements Serializable {
             return null;
         }
     }
-
+    
     public void gotoMain() {
         try {
             FacesContext context = FacesContext.getCurrentInstance();
@@ -254,7 +254,7 @@ public class LoginManager implements Serializable {
             Logger.getLogger(LoginManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     public String doLoginTienda() {
         try {
             Usuario usuario = usuarioDAO.getUsuario(cuenta);
@@ -278,7 +278,7 @@ public class LoginManager implements Serializable {
             return "";
         }
     }
-
+    
     private Boolean puedeLogearse(Usuario u) {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         String ip = JSFutil.getClientIpAddr(request);
@@ -290,7 +290,7 @@ public class LoginManager implements Serializable {
         } else {
             return Boolean.FALSE;
         }
-
+        
     }
 
     /**
@@ -305,7 +305,7 @@ public class LoginManager implements Serializable {
         }
         return "";
     }
-
+    
     public String doLogoutTienda() {
         JSFutil.removeSessionVariable(this.USER_SESSION_KEY);
         JSFutil.addSuccessMessage("Ha cerrado exitosamente la sesión");
@@ -320,7 +320,7 @@ public class LoginManager implements Serializable {
     public Usuario getUsuarioLogeado() {
         return JSFutil.getUsuarioConectado();
     }
-
+    
     public Integer getIdPreferenciaUsuario() {
         try {
             if (JSFutil.getUsuarioConectado() != null) {
@@ -332,13 +332,13 @@ public class LoginManager implements Serializable {
             return 0;
         }
     }
-
+    
     public String doCambiarContrasenhaForm() {
         this.contrasenha = "";
         this.contrasenha2 = "";
         return "/backend/usuario/CambiarContrasenha";
     }
-
+    
     public String doCambiarContrasenha() {
         if (this.getContrasenha().length() < 8) {
             JSFutil.addErrorMessage("Contraseña insegura. Debe proporcionar una contraseña de al menos 8 letras/numeros");
@@ -348,7 +348,7 @@ public class LoginManager implements Serializable {
             JSFutil.addErrorMessage("Las contraseñas no coinciden. Por favor verifique y vuelva a intentar");
             return "";
         }
-
+        
         try {
             Usuario u = JSFutil.getUsuarioConectado();
             u.setContrasenha(JSFutil.getSecurePassword(this.contrasenha));
@@ -368,11 +368,11 @@ public class LoginManager implements Serializable {
     public TimeZone getMyTimeZone() {
         return JSFutil.getMyTimeZone();
     }
-
+    
     public String doLoginFrom() {
         return "/login";
     }
-
+    
     public void doToggleHandler(ToggleEvent event) {
         String idLayout = event.getComponent().getId();
         if (idLayout.compareTo("admin") == 0) {
@@ -381,21 +381,21 @@ public class LoginManager implements Serializable {
             } else {
                 this.adminCollapse = Boolean.TRUE;
             }
-
+            
         } else if (idLayout.compareTo("client") == 0) {
             if (this.clientCollapse) {
                 this.clientCollapse = Boolean.FALSE;
             } else {
                 this.clientCollapse = Boolean.TRUE;
             }
-
+            
         }
     }
-
+    
     public void incrementar() {
         this.cantidadClick++;
     }
-
+    
     public void incrementarContadorPreference() {
         if (this.contadorPR == null) {
             this.contadorPR = 0;
@@ -408,15 +408,15 @@ public class LoginManager implements Serializable {
         }
         //System.out.println("Contador: " + this.contadorPR);
     }
-
+    
     public void doDetenerContadorPreference() {
         this.contadorPRhabilitado = Boolean.FALSE;
     }
-
+    
     public String doGetSessionID() {
         return JSFutil.doGetSessionID();
     }
-
+    
     public void init() {
         try {
             /**
@@ -427,8 +427,6 @@ public class LoginManager implements Serializable {
             String usuarioSujeto = paramMap.get("q");
             HttpServletRequest req = (HttpServletRequest) context.getExternalContext().getRequest();
             HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
-            String userAgent = req.getHeader("user-agent");
-            String accept = req.getHeader("Accept");
             //Agregar prodcutos al carrito
             if (carritoFE.getListaOrdenCarrito().isEmpty()) {
                 for (Articulo art : articuloDAO.findAll()) {
@@ -438,11 +436,15 @@ public class LoginManager implements Serializable {
                     }
                 }
             }
-
+            
             if (usuarioSujeto != null) {
                 this.cuenta = usuarioSujeto;
                 this.contrasenha = "123456789";
                 this.doLoginNoPass();
+                
+                this.muController.setMuAbortOperation(Boolean.TRUE);
+                this.muController.setMuPreference(Boolean.TRUE);
+                this.muController.setMuProgressFeedBack(Boolean.TRUE);
                 //Redirect al main
                 //response.sendRedirect(req.getContextPath() + "/frontend/index.xhtml");
             } else if (JSFutil.getUsuarioConectado() == null) {

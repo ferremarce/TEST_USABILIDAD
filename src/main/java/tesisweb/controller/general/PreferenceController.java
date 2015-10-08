@@ -14,6 +14,7 @@ import java.util.TreeMap;
 import java.util.logging.Logger;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
+import org.primefaces.context.RequestContext;
 import tesisweb.ejb.tienda.entity.Preference;
 import tesisweb.ejb.tienda.facade.PreferenceDAO;
 import tesisweb.util.JSFutil;
@@ -34,7 +35,7 @@ public class PreferenceController implements Serializable {
 
     @Inject
     private PreferenceDAO preferenceDAO;
-    private Preference preference;
+    private Preference preference=new Preference();
     private List<Preference> listaPreference;
     private int sizeFont = 100;
 
@@ -137,6 +138,12 @@ public class PreferenceController implements Serializable {
         this.preference = preferenceDAO.find(u.getIdPreference());
         this.sizeFont = Integer.parseInt(this.preference.getTamanho());
         return "/frontend/preference/CambiarPreference";
+    }
+
+    public void doCambiarPreferenciaUsuario() {
+        this.doCambiarPreferencia(JSFutil.getUsuarioConectado().getIdPreference());
+         RequestContext context = RequestContext.getCurrentInstance();
+            context.execute("PF('dlgPreference').show();");
     }
 
     public void doBorrar(Preference u) {
