@@ -140,9 +140,9 @@ public class ArticuloFE implements Serializable {
             this.listaArticulo = articuloDAO.findAll();
         }
         if (this.listaArticulo.size() > 0) {
-            JSFutil.addSuccessMessage(this.listaArticulo.size() + " registro/s recuperado/s");
+            JSFutil.addSuccessMessage(this.listaArticulo.size() + " "+JSFutil.getMyBundle().getString("RegistrosRecuperadosMensaje"));
         } else {
-            JSFutil.addSuccessMessage("Sin registros");
+            JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("SinRegistrosMensaje"));
         }
         try {
             Thread.sleep(8000);
@@ -159,10 +159,10 @@ public class ArticuloFE implements Serializable {
         this.categoriaSeleccionada = subTipoDAO.find(Integer.parseInt(idCategoria));
         if (this.listaArticulo.size() > 0) {
 
-            JSFutil.addSuccessMessage(this.listaArticulo.size() + " registro/s recuperado/s");
+            JSFutil.addSuccessMessage(this.listaArticulo.size() + " "+JSFutil.getMyBundle().getString("RegistrosRecuperadosMensaje"));
         } else {
 
-            JSFutil.addSuccessMessage("Sin registros");
+            JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("SinRegistrosMensaje"));
         }
         return "/frontend/articulo/ListarArticuloCategoria";
     }

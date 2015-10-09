@@ -42,9 +42,6 @@ public class LanguageSwitcher implements Serializable {
     }
 
     public void changeLanguage(String language) {
-        if(JSFutil.getIdiomaSesion().compareTo(language)==0){
-            return;
-        }
         locale = new Locale(language);
         FacesContext.getCurrentInstance().getViewRoot().setLocale(locale);
         if (JSFutil.getUsuarioConectado() != null) {
@@ -55,12 +52,12 @@ public class LanguageSwitcher implements Serializable {
                 System.out.println("------ Actualizando idioma del usuario desde LanguageSwitcher...");
             }
         }
-        System.out.println("------ Cambiando idioma desde LanguageSwitcher..."+language);
+        System.out.println("------ Cambiando idioma desde LanguageSwitcher..." + language);
         JSFutil.putSessionVariable("language", language);
         JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("IdiomaSuccess"));
     }
 
     public void changeUserLanguage() {
-        this.changeLanguage(JSFutil.getIdiomaSesion());
+        FacesContext.getCurrentInstance().getViewRoot().setLocale(new Locale(JSFutil.getIdiomaSesion()));
     }
 }

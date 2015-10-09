@@ -158,7 +158,7 @@ public class SubTipoController implements Serializable {
         if (this.listaSubTipo.isEmpty()) {
             JSFutil.addErrorMessage("No hay resultados...");
         } else {
-            JSFutil.addSuccessMessage(listaSubTipo.size() + " registros recuperados");
+            JSFutil.addSuccessMessage(listaSubTipo.size() + " "+JSFutil.getMyBundle().getString("RegistrosRecuperadosMensaje"));
         }
     }
 

@@ -6,6 +6,8 @@
     <application>
         <locale-config>
             <default-locale>es</default-locale>
+            <supported-locale>en</supported-locale> 
+            <supported-locale>zu</supported-locale> 
         </locale-config>
         <resource-bundle>
             <base-name>tesisweb.properties.bundle</base-name>
