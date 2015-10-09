@@ -157,3 +157,7 @@
 .myRadioCtrl td {
     width:80px !important; 
 }
+.normalFont{
+    font-size: 16px !important;
+    font-family: 'Droid Sans', arial, serif !important;
+}
