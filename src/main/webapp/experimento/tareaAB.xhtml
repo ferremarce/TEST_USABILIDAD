@@ -15,7 +15,7 @@
             <p:growl globalOnly="true" id="messages"/>
             <p:panel>
                 <f:facet name="header">
-                    <h:outputText value="TAREA ABORT OPERATION"/>
+                    <h:outputText value="TAREA #{ExperimentoController.indexFormActual+1}"/>
                 </f:facet>
                 <p:panel>
                     <p:outputPanel>
@@ -25,7 +25,6 @@
                         <p/>
                         Ahora te das cuenta de que el precio total supera tus expectativas y te arrepientes, por lo que decides comprar en otro momento y <b>cancelas la operación para ignorar los cambios</b>.
                         <p:separator/>
-                        <span style="font-weight: bold">Observación: </span>Si te sientes imposibilitado de realizar alguna de las acciones solicitadas, por favor cierra la ventana de la Tienda Virtual y continúa con la siguiente tarea.
                         <p/>
                         Para hacer esta tarea accede a la Tienda Virtual haciendo click 
                         <p:commandButton value="Aquí" onclick="openWin('#{ExperimentoController.doGetURLAPP()}')">

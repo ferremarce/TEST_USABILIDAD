@@ -122,12 +122,18 @@ public class ExperimentoController implements Serializable {
         }
     }
 
+    public String gotoTareaFicticiaPRForm() {
+        return "/experimento/tareaFicticaPR";
+    }
+
     public String gotoCuestionarioPRForm() {
         return "/experimento/cuestionarioPR";
     }
+
     public String gotoCuestionarioABForm() {
         return "/experimento/cuestionarioAB";
     }
+
     public String gotoCuestionarioFBForm() {
         return "/experimento/cuestionarioFB";
     }

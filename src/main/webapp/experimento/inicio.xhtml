@@ -23,6 +23,10 @@
                         Estás a punto de evaluar la usabilidad de la Aplicación Web de una tienda virtual.
                         <p/>
                         Durante la realización de las 3 tareas, <b>la tienda virtual a ser evaluada será desplegada en una ventana emergente</b> y cada vez que finalizas una tarea debes cerrar dicha ventana para continuar con la siguiente.
+                        <p/>
+                        Algunas de las tareas se podrán hacer y otras que no. Para cada tarea <b>invierte el tiempo</b> en buscar de cómo hacer por el interfaz porque eso es parte de esta evaluación. 
+                        <br/>
+                        <b>Intenta jugar todo lo que puedas</b> con el interfaz hasta que el sistema te avise o cuando estes aburrido o simplemente cuando crees que ya has hecho lo suficiente.
                     </p:outputPanel>
                     <p:panel style="width: 700px" collapsed="true" rendered="#{LoginManager.usuarioLogeado!=null and ExperimentoController.debugMode}" header="Ver detalle del Entorno Experimental asignado" toggleable="true">
                         <h:outputLabel for="usuarioExperimental"  value="Experimento de:&nbsp;"/>
@@ -33,7 +37,7 @@
                     </p:panel>
                 </h:panelGrid>
                 <hr/>
-                <h:outputText styleClass="itemResaltado3" value="Para iniciar la tarea, haga click en el botón 'INICIAR TAREA'."/>
+                <h:outputText styleClass="itemResaltado3" value="Para iniciar la primera tarea, haga click en el botón 'INICIAR TAREA'."/>
                 <f:facet name="footer">
                     <p:commandButton ajax="false" action="#{ExperimentoController.gotoFirstForm()}" value="Iniciar Tarea"/>
                 </f:facet>

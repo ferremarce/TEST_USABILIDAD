@@ -23,10 +23,10 @@
             <p:growl globalOnly="true" id="messages"/>
             <p:panel>
                 <f:facet name="header">
-                    <h:outputText value="TAREA PREFERENCE"/>
+                    <h:outputText value="TAREA #{ExperimentoController.indexFormActual+1}"/>
                 </f:facet>
                 <p:panel>
-                    <b>Revisa la apariencia de la Tienda Virtual</b> y comprueba que estás cómodo con sus características: idioma, tamaño de la letra, tipo de letra, colores... <b>Si necesitas cambiar algo, ahora es el momento</b>. Proceda, por favor, a hacerlo.
+                    <b>Revisa la apariencia de la Tienda Virtual</b> y comprueba que estás cómodo con sus características: idioma, tamaño de la letra, tipo de letra... <b>Si necesitas cambiar algo, ahora es el momento</b>. Proceda, por favor, a hacerlo.
                     <p:separator/>
                     Para hacer esta tarea acceda a la Tienda Virtual haciendo click 
                     <p:commandButton value="Aquí" onclick="openWin('#{ExperimentoController.doGetURLAPP()}')">
@@ -36,7 +36,7 @@
                     <h:outputText styleClass="itemResaltado3" value="Cuando acabes, cierra la ventana de la Tienda y haz click en el botón 'SIGUIENTE'."/>
                 </p:panel>
                 <f:facet name="footer">
-                    <p:commandButton ajax="false" onmouseup="closeWin()"  action="#{ExperimentoController.gotoCuestionarioPRForm()}" value="Siguiente"/>
+                    <p:commandButton ajax="false" onmouseup="closeWin()"  action="#{ExperimentoController.gotoTareaFicticiaPRForm()}" value="Siguiente"/>
                 </f:facet>
             </p:panel>
             <!--p:commandButton value="Modal" type="button" onmousedown="PF('dlg2').show();" onmouseup="PF('dlg2').toggleMaximize();"/-->
