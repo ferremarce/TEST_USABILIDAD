@@ -401,7 +401,7 @@ public class LoginManager implements Serializable {
             this.contadorPR = 0;
         }
         this.contadorPR++;
-        if (this.contadorPR > 13 && this.contadorPRhabilitado) {
+        if (this.contadorPR > 10 && this.contadorPRhabilitado) {
             this.contadorPR = 0;
             RequestContext context = RequestContext.getCurrentInstance();
             context.execute("PF('msgPreference').show();");

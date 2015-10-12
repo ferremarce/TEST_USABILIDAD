@@ -41,9 +41,11 @@
                             <f:facet name="header">
                                 <h:outputText value="Métricas del Experimento"/>
                             </f:facet>
-                                
                             <p:column headerText="MU">
                                 <h:outputText value="#{itemMetrica.idMecanismoUsabilidad}"/>
+                            </p:column>
+                            <p:column headerText="Info">
+                                <h:outputText value="#{itemMetrica.informacion}"/>
                             </p:column>
                             <p:column headerText="Usuario">
                                 <h:outputText value="#{itemMetrica.idUsuario}"/>

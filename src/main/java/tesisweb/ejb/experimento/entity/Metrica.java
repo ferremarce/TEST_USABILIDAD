@@ -43,6 +43,9 @@ public class Metrica implements Serializable {
     @Size(max = 3000)
     @Column(name = "PARTIAL_TIME")
     private String partialTime;
+     @Size(max = 255)
+    @Column(name = "INFORMACION")
+    private String informacion;
     @Column(name = "STOP_TIME")
     private long stopTime;
     @Column(name = "CLICK_COUNTER")
@@ -115,6 +118,14 @@ public class Metrica implements Serializable {
 
     public void setIdMecanismoUsabilidad(MecanismoUsabilidad idMecanismoUsabilidad) {
         this.idMecanismoUsabilidad = idMecanismoUsabilidad;
+    }
+
+    public String getInformacion() {
+        return informacion;
+    }
+
+    public void setInformacion(String informacion) {
+        this.informacion = informacion;
     }
 
     @Override
