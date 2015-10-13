@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -43,6 +44,9 @@ public class CuestionarioUsabilidad implements Serializable {
     @Size(max = 1000)
     @Column(name = "COMENTARIO")
     private String comentario;
+    @Lob
+    @Column(name = "COMENTARIO_FINAL")
+    private String comentarioFinal;
     @JoinColumn(name = "ID_PREGUNTA_USABILIDAD", referencedColumnName = "ID_PREGUNTA_USABILIDAD")
     @ManyToOne
     private PreguntaUsabilidad idPreguntaUsabilidad;
@@ -102,6 +106,14 @@ public class CuestionarioUsabilidad implements Serializable {
         int hash = 0;
         hash += (idCuestionarioUsabilidad != null ? idCuestionarioUsabilidad.hashCode() : 0);
         return hash;
+    }
+
+    public String getComentarioFinal() {
+        return comentarioFinal;
+    }
+
+    public void setComentarioFinal(String comentarioFinal) {
+        this.comentarioFinal = comentarioFinal;
     }
 
     @Override

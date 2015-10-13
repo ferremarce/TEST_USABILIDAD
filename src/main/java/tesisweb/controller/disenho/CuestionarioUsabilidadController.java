@@ -48,11 +48,20 @@ public class CuestionarioUsabilidadController implements Serializable {
 
     private List<CuestionarioUsabilidad> listaCuestionarioUsabilidad;
     private MecanismoUsabilidad idMu;
+    private String comentarioFinal;
 
     /**
      * Creates a new instance of CuestionarioUsabilidadController
      */
     public CuestionarioUsabilidadController() {
+    }
+
+    public String getComentarioFinal() {
+        return comentarioFinal;
+    }
+
+    public void setComentarioFinal(String comentarioFinal) {
+        this.comentarioFinal = comentarioFinal;
     }
 
     public MecanismoUsabilidad getIdMu() {
@@ -157,6 +166,13 @@ public class CuestionarioUsabilidadController implements Serializable {
             }
             for (CuestionarioUsabilidad cu : this.listaCuestionarioUsabilidadSUS) {
                 cuestionarioUsabilidadFacade.create(cu);
+            }
+            //Guardar el comentario Final de usabilidad si existe
+            if (this.comentarioFinal.length()>0){
+                this.cuestionarioUsabilidad=new CuestionarioUsabilidad();
+                this.cuestionarioUsabilidad.setComentarioFinal(comentarioFinal);
+                this.cuestionarioUsabilidad.setIdUsuario(JSFutil.getUsuarioConectado());
+                cuestionarioUsabilidadFacade.create(cuestionarioUsabilidad);
             }
             //Invalidar la sesión
             this.loginManager.doLogout();

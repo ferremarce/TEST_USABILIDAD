@@ -51,6 +51,12 @@
                     <p:inputTextarea rows="2" cols="30" value="#{item4.comentario}"/>
                 </p:column>
             </p:dataTable>
+            <hr/>
+            <p:panel header="Comentarios finales sobre el experimento">
+                <h:outputText style="font-size: 18px; color: #006633" value="Siéntete libre de expresar tus ideas con relación a cualquier aspecto del experimento que has ejecutado: tareas, cuestionarios, sentimientos, reacciones, dificultades, etc."/>
+                <p/>
+                <p:editor value="#{CuestionarioUsabilidadController.comentarioFinal}"/>
+            </p:panel>
             <p:panel>
                 <f:facet name="footer">
                     <p:commandButton ajax="false" action="#{CuestionarioUsabilidadController.doGuardar()}" value="Siguiente"/>
