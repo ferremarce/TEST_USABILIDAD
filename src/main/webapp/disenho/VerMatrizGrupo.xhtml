@@ -11,7 +11,10 @@
         <h:form id="formMatriz">
             <p:growl globalOnly="true" id="messages"/>
             <h:outputText style="font-size: 22px !important;font-weight: bold" value="#{GrupoMatrizExperimentalController.disenhoExperimental.descripcionDisenho}-#{GrupoMatrizExperimentalController.disenhoExperimental.contexto}"/>
-            
+            <p/>
+            <p:commandButton immediate="true" value="Cerar Contador de Participantes" ajax="true" update="@form" action="#{GrupoMatrizExperimentalController.doCerarContadorParticipantes()}" >
+                <p:confirm header="Confirmación" message="#{bundle.ConfirmacionMensaje}" icon="ui-icon-alert" />
+            </p:commandButton>
             <p:dataTable id="dataTableGrupo" value="#{GrupoMatrizExperimentalController.listaGrupoMatrizExperimental}" var="item" emptyMessage="#{bundle.SinRegistrosMensaje}">
                 <p:column style="width:16px">
                     <p:rowToggler />

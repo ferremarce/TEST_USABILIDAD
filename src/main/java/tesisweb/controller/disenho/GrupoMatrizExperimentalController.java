@@ -10,7 +10,9 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJBException;
 import javax.inject.Inject;
 import tesisweb.ejb.experimento.entity.DisenhoExperimental;
 import tesisweb.ejb.experimento.entity.GrupoMatrizExperimental;
@@ -21,6 +23,8 @@ import tesisweb.util.JSFutil;
  *
  * @author root
  */
+
+
 @Named(value = "GrupoMatrizExperimentalController")
 @SessionScoped
 public class GrupoMatrizExperimentalController implements Serializable {
@@ -89,6 +93,31 @@ public class GrupoMatrizExperimentalController implements Serializable {
         this.listaGrupoMatrizExperimental = grupoMatrizExperimentalFacade.findAllbyDisenho(1);
         for (GrupoMatrizExperimental grupo : this.listaGrupoMatrizExperimental) {
 
+        }
+    }
+
+    public void doCerarContadorParticipantes() {
+        try {
+            for (GrupoMatrizExperimental grupo : this.disenhoExperimental.getGrupoMatrizExperimentalList()) {
+                grupo.setCantidadParticipante(0);
+                grupoMatrizExperimentalFacade.edit(grupo);
+            }
+            this.doListar();
+            JSFutil.addSuccessMessage("La cantidad de participantes ha sido reinicializada");
+        } catch (EJBException ex) {
+            String msg = "";
+            Throwable cause = ex.getCause();
+            if (cause != null) {
+                msg = cause.getLocalizedMessage();
+            }
+            if (msg.length() > 0) {
+                JSFutil.addErrorMessage(msg);
+            } else {
+                JSFutil.addErrorMessage(ex, JSFutil.getMyBundle().getString("UpdateError"));
+            }
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, null, ex);
+            JSFutil.addErrorMessage(ex, JSFutil.getMyBundle().getString("UpdateError"));
         }
     }
     //METODOS LISTENER
