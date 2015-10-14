@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "OrdenExposicionMuGrupo.findAll", query = "SELECT o FROM OrdenExposicionMuGrupo o")})
 public class OrdenExposicionMuGrupo implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -115,7 +116,7 @@ public class OrdenExposicionMuGrupo implements Serializable {
 
     @Override
     public String toString() {
-        return "tesisweb.ejb.experimento.entity.OrdenExposicionMuGrupo[ idOrdenExposicion=" + idOrdenExposicion + " ]";
+        return this.orden + ". " + this.idMu.getNombreMecanismo() + " - " + this.estado;
     }
-    
+
 }

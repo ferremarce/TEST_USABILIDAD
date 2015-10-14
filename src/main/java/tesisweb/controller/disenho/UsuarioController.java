@@ -36,12 +36,12 @@ public class UsuarioController implements Serializable {
      */
     private static final Logger LOG = Logger.getLogger(UsuarioController.class.getName());
     ResourceBundle bundle = ResourceBundle.getBundle("tesisweb.properties.bundle", JSFutil.getmyLocale());
-    
+
     @Inject
     UsuarioDAO usuarioDAO;
     @Inject
     PreferenceDAO preferenceDAO;
-    
+
     private List<Usuario> listaUsuario;
     private Usuario usuario;
     private String tmpPasswd;
@@ -114,6 +114,11 @@ public class UsuarioController implements Serializable {
     public String doListarForm() {
         this.listaUsuario = usuarioDAO.findAll();
         return "/disenho/ListarUsuario";
+    }
+
+    public String doListarSujetosForm(Integer idDise) {
+        this.listaUsuario = usuarioDAO.getAllUsuarioExperimento(idDise);
+        return "/disenho/VerSujetos";
     }
 
     /**
@@ -191,7 +196,7 @@ public class UsuarioController implements Serializable {
             JSFutil.addErrorMessage(ex, JSFutil.getMyBundle().getString("UpdateError"));
         }
         return doListarForm();
-        
+
     }
 
     /**
@@ -219,13 +224,15 @@ public class UsuarioController implements Serializable {
             JSFutil.addErrorMessage(ex, JSFutil.getMyBundle().getString("UpdateError"));
         }
         doListarForm();
-        
+
     }
+
     public TimeZone getMyTimeZone() {
         return JSFutil.getMyTimeZone();
     }
+
     public HttpServletRequest getRequest() {
         return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-        
+
     }
 }

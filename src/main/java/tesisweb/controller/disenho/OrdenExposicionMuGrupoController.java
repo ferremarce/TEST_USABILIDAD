@@ -112,7 +112,16 @@ public class OrdenExposicionMuGrupoController implements Serializable {
         }
     }
 
+    public String doStringOrdenExposicionMU(GrupoMatrizExperimental g) {
+        String exposicion = "";
+        for (OrdenExposicionMuGrupo orden : g.getOrdenExposicionMuGrupoList()) {
+            exposicion += orden.toString()+"\n";
+        }
+        return exposicion;
+    }
+
     //METODOS LISTENER
+
     public void doCrearFormDialog(GrupoMatrizExperimental g) {
         this.ordenExposicionMuGrupo = new OrdenExposicionMuGrupo();
         this.ordenExposicionMuGrupo.setIdGrupo(g);

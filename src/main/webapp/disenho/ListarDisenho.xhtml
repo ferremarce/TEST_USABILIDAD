@@ -27,6 +27,7 @@
                 <p:column>
                     <p:commandButton ajax="false" value="Ver Matriz" action="#{GrupoMatrizExperimentalController.doVerMatrizGrupo(item)}"/>
                     <p:commandButton ajax="false" value="Ver Métricas" action="#{MetricaController.doListMetricaDisenho(item)}"/>
+                    <p:commandButton ajax="false" value="Ver Sujetos Exp." action="#{UsuarioController.doListarSujetosForm(item.idDisenho)}"/>
                 </p:column>
             </p:dataTable>
         </h:form>

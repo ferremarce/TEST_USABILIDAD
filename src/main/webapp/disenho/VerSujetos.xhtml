@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateDisenho.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h2 class="ui-state-default ui-corner-all"><h:outputText value="Listar Usuarios"/></h2>
+        <h:form id="mainForm">
+            <p:growl life="5000" globalOnly="true" id="messages"/>
+            <p:dataTable id="tablaSujetos" rowIndexVar="index" value="#{UsuarioController.listaUsuario}" var="item" emptyMessage="#{bundle.SinRegistrosMensaje}">
+                <f:facet name="header">
+                    <h:commandLink value="Exportar">
+                        <p:graphicImage value="/icono/csv.png" width="24"/>
+                        <p:dataExporter type="csv" target="tablaSujetos" fileName="tablaSujetos" />
+                    </h:commandLink>
+                </f:facet>
+                <p:column sortBy="#{item.cuenta}">
+                    <f:facet name="header">
+                        <h:outputText value="Cuenta"/>
+                    </f:facet>
+                    <h:outputText value="#{index+1}. #{item.cuenta}"/>
+                </p:column>
+                <p:column sortBy="#{item.apellidos}">
+                    <f:facet name="header">
+                        <h:outputText value="Apellidos"/>
+                    </f:facet>
+                    <h:outputText value="#{item.apellidos}, #{item.nombres}"/>
+                </p:column>
+                <p:column sortBy="#{item.idGrupoExperimental.nombreGrupo}">
+                    <f:facet name="header">
+                        <h:outputText value="Grupo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idGrupoExperimental.nombreGrupo}"/>
+                </p:column>
+                <p:column headerText="MU1">
+                    <h:outputText value="#{item.idGrupoExperimental.ordenExposicionMuGrupoList.get(0)}"/>
+                </p:column>
+                <p:column headerText="MU2">
+                    <h:outputText value="#{item.idGrupoExperimental.ordenExposicionMuGrupoList.get(1)}"/>
+                </p:column>
+                <p:column headerText="MU3">
+                    <h:outputText value="#{item.idGrupoExperimental.ordenExposicionMuGrupoList.get(2)}"/>
+                </p:column>
+                <p:column rendered="false">
+                    <f:facet name="header">
+                        <h:outputText value="Orden MU"/>
+                    </f:facet>
+                    <h:outputText escape="false" value="#{OrdenExposicionMuGrupoController.doStringOrdenExposicionMU(item.idGrupoExperimental)}"/>
+                </p:column>
+                <p:column sortBy="#{item.ipConexion}">
+                    <f:facet name="header">
+                        <h:outputText value="IP"/>
+                    </f:facet>
+                    <h:outputText value="#{item.ipConexion}"/>
+                </p:column>
+                <p:column sortBy="#{item.fechaHoraConexion}">
+                    <f:facet name="header">
+                        <h:outputText value="Fecha-Hora"/>
+                    </f:facet>
+                    <h:outputText value="#{item.fechaHoraConexion}">
+                        <f:convertDateTime timeZone="#{UsuarioController.myTimeZone}" pattern="dd/MM/yyyy HH:mm" />
+                    </h:outputText>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

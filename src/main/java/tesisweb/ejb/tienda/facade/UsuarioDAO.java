@@ -19,7 +19,8 @@ import tesisweb.ejb.tienda.entity.Usuario;
  * @author jmferreira1978@gmail.com
  */
 @Stateless
-public class UsuarioDAO extends AbstractFacade<Usuario>  {
+public class UsuarioDAO extends AbstractFacade<Usuario> {
+
     @PersistenceContext(unitName = "tesisweb_tesisweb_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -31,6 +32,7 @@ public class UsuarioDAO extends AbstractFacade<Usuario>  {
     public UsuarioDAO() {
         super(Usuario.class);
     }
+
     /**
      * Obtiene una Lista de Usuarios.
      *
@@ -44,6 +46,14 @@ public class UsuarioDAO extends AbstractFacade<Usuario>  {
         } else {
             q.setParameter("xCriterio", "123456");
         }
+        List<Usuario> tr = q.getResultList();
+        return tr;
+
+    }
+
+    public List<Usuario> getAllUsuarioExperimento(Integer idDise) {
+        Query q = em.createQuery("SELECT a FROM Usuario a WHERE a.idRol.idRol=5 and a.idGrupoExperimental.idDisenho.idDisenho=:xIdDise ORDER BY a.apellidos, a.nombres");
+        q.setParameter("xIdDise", idDise);
         List<Usuario> tr = q.getResultList();
         return tr;
 
