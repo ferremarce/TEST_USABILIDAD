@@ -49,11 +49,20 @@ public class CuestionarioUsabilidadController implements Serializable {
     private List<CuestionarioUsabilidad> listaCuestionarioUsabilidad;
     private MecanismoUsabilidad idMu;
     private String comentarioFinal;
+    private Integer tipoCuestionario;
 
     /**
      * Creates a new instance of CuestionarioUsabilidadController
      */
     public CuestionarioUsabilidadController() {
+    }
+
+    public Integer getTipoCuestionario() {
+        return tipoCuestionario;
+    }
+
+    public void setTipoCuestionario(Integer tipoCuestionario) {
+        this.tipoCuestionario = tipoCuestionario;
     }
 
     public String getComentarioFinal() {
@@ -168,8 +177,8 @@ public class CuestionarioUsabilidadController implements Serializable {
                 cuestionarioUsabilidadFacade.create(cu);
             }
             //Guardar el comentario Final de usabilidad si existe
-            if (this.comentarioFinal.length()>0){
-                this.cuestionarioUsabilidad=new CuestionarioUsabilidad();
+            if (this.comentarioFinal.length() > 0) {
+                this.cuestionarioUsabilidad = new CuestionarioUsabilidad();
                 this.cuestionarioUsabilidad.setComentarioFinal(comentarioFinal);
                 this.cuestionarioUsabilidad.setIdUsuario(JSFutil.getUsuarioConectado());
                 cuestionarioUsabilidadFacade.create(cuestionarioUsabilidad);
@@ -193,11 +202,12 @@ public class CuestionarioUsabilidadController implements Serializable {
     }
 
     public void doListaDisenhoCuestionario(Integer idDise) {
-        if (this.idMu != null) {
-            this.listaCuestionarioUsabilidad = cuestionarioUsabilidadFacade.findAllCuestionarioMuDisenho(idDise, this.idMu.getIdMu());
-        } else {
-            this.listaCuestionarioUsabilidad = cuestionarioUsabilidadFacade.findAllCuestionarioMuDisenho(idDise, 0);
-        }
+        this.listaCuestionarioUsabilidad = cuestionarioUsabilidadFacade.findAllCuestionarioMuDisenho(idDise, this.idMu.getIdMu());
+    }
+
+    public void doListaDisenhoCuestionarioSUS(Integer idDise) {
+
+        this.listaCuestionarioUsabilidad = cuestionarioUsabilidadFacade.findAllCuestionarioMuDisenho(idDise, this.tipoCuestionario);
     }
 
 }

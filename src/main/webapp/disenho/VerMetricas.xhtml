@@ -16,7 +16,7 @@
                 <h:form>
                     <p:panel header="Filtrar">
                         <h:panelGrid columns="2">
-                            <p:selectOneMenu converter="MecanismoUsabilidadConverter" id="idMu" value="#{MetricaController.idMu}" >
+                            <p:selectOneMenu converter="MecanismoUsabilidadConverter" id="idMu" value="#{MetricaController.idMu}" required="true" requiredMessage="#{bundle.Requerido}">
                                 <f:selectItems value="#{MecanismoUsabilidadController.mecanismoUsabilidadSet}"/>
                             </p:selectOneMenu>
                             <p:commandButton value="Aceptar" action="#{MetricaController.doUpdateListaMetricaDiseǹoMecanismo()}" update="@form"/>
@@ -37,6 +37,9 @@
                         </p:column>
                         <p:column headerText="Sujeto" sortBy="#{item.idUsuario.cuenta}">
                             <h:outputText value="#{item.idUsuario.cuenta}"/>
+                        </p:column>
+                        <p:column headerText="Grupo" sortBy="#{item.idUsuario.idGrupoExperimental.nombreGrupo}">
+                            <h:outputText value="#{item.idUsuario.idGrupoExperimental.nombreGrupo}"/>
                         </p:column>
                         <p:column sortBy="#{item.idUsuario.ipConexion}">
                             <f:facet name="header">
@@ -71,18 +74,18 @@
                     </p:dataTable>
                 </h:form>
             </p:tab>
-            <p:tab title="Cuestionarios AB/FB/PR/SUS">
+            <p:tab title="Cuestionarios AB/FB/PR">
                 <h:form>
                     <p:panel header="Filtrar">
                         <h:panelGrid columns="2">
-                            <p:selectOneMenu converter="MecanismoUsabilidadConverter" id="idMu" value="#{CuestionarioUsabilidadController.idMu}" >
+                            <p:selectOneMenu converter="MecanismoUsabilidadConverter" id="idMu" value="#{CuestionarioUsabilidadController.idMu}" required="true" requiredMessage="#{bundle.Requerido}">
                                 <f:selectItems value="#{MecanismoUsabilidadController.mecanismoUsabilidadSet}"/>
                             </p:selectOneMenu>
                             <p:commandButton value="Aceptar" action="#{CuestionarioUsabilidadController.doListaDisenhoCuestionario(MetricaController.disenhoExperimental.idDisenho)}" update="@form"/>
                         </h:panelGrid>
                     </p:panel>
                     <p:dataTable id="tablaCuestionario" rowIndexVar="index2" value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidad}" var="item2">
-                         <f:facet name="header">
+                        <f:facet name="header">
                             <h:commandLink value="Exportar">
                                 <p:graphicImage value="/icono/csv.png" width="24"/>
                                 <p:dataExporter type="csv" target="tablaCuestionario" fileName="tablaCuestionario-#{CuestionarioUsabilidadController.idMu}" />
@@ -106,6 +109,12 @@
                                 <h:outputText value="Sujeto"/>
                             </f:facet>
                             <h:outputText value="#{item2.idUsuario.cuenta}"/>
+                        </p:column>
+                        <p:column sortBy="#{item2.idUsuario.idGrupoExperimental.nombreGrupo}">
+                            <f:facet name="header">
+                                <h:outputText value="Grupo"/>
+                            </f:facet>
+                            <h:outputText value="#{item2.idUsuario.idGrupoExperimental.nombreGrupo}"/>
                         </p:column>
                         <p:column sortBy="#{item2.idUsuario.ipConexion}">
                             <f:facet name="header">
@@ -132,6 +141,77 @@
                                 <h:outputText value="Comentario"/>
                             </f:facet>
                             <h:outputText value="#{item2.comentario}"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </p:tab>
+            <p:tab title="Cuestionarios SUS">
+                <h:form>
+                    <p:panel>
+                        <p:selectOneRadio value="#{CuestionarioUsabilidadController.tipoCuestionario}" required="true" requiredMessage="#{bundle.Requerido}">
+                            <f:selectItem itemLabel="CUESTIONARIO FINAL SUS" itemValue="0" />
+                            <f:selectItem itemLabel="CUESTIONARIO RETROALIMENTACION" itemValue="-1" />
+                        </p:selectOneRadio>
+                        <p:commandButton value="Refrescar" action="#{CuestionarioUsabilidadController.doListaDisenhoCuestionarioSUS(MetricaController.disenhoExperimental.idDisenho)}" update="@form"/>
+                    </p:panel>
+                    <p:dataTable id="tablaCuestionario" rowIndexVar="index2" value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidad}" var="item3">
+                        <f:facet name="header">
+                            <h:commandLink value="Exportar">
+                                <p:graphicImage value="/icono/csv.png" width="24"/>
+                                <p:dataExporter type="csv" target="tablaCuestionario" fileName="tablaCuestionario-#{CuestionarioUsabilidadController.idMu}" />
+                            </h:commandLink>
+                        </f:facet>
+                        <p:column >
+                            <f:facet name="header">
+                                <h:outputText value="Mecanismo"/>
+                            </f:facet>
+                            <h:outputText rendered="#{item3.idPreguntaUsabilidad.idMecanismoUsabilidad!=null}" value="#{index2+1}. #{item3.idPreguntaUsabilidad.idMecanismoUsabilidad}"/>
+                            <h:outputText rendered="#{item3.idPreguntaUsabilidad.idMecanismoUsabilidad==null and item3.idPreguntaUsabilidad!=null}" value="#{index2+1}. SUS"/>
+                        </p:column>
+                        <p:column sortBy="#{item3.idPreguntaUsabilidad.preguntaPositivo}">
+                            <f:facet name="header">
+                                <h:outputText value="Pregunta"/>
+                            </f:facet>
+                            <h:outputText escape="false" value="#{item3.idPreguntaUsabilidad.preguntaPositivo}"/>
+                        </p:column>
+                        <p:column sortBy="#{item3.idUsuario.cuenta}">
+                            <f:facet name="header">
+                                <h:outputText value="Sujeto"/>
+                            </f:facet>
+                            <h:outputText value="#{item3.idUsuario.cuenta}"/>
+                        </p:column>
+                        <p:column sortBy="#{item3.idUsuario.idGrupoExperimental.nombreGrupo}">
+                            <f:facet name="header">
+                                <h:outputText value="Grupo"/>
+                            </f:facet>
+                            <h:outputText value="#{item3.idUsuario.idGrupoExperimental.nombreGrupo}"/>
+                        </p:column>
+                        <p:column sortBy="#{item3.idUsuario.ipConexion}">
+                            <f:facet name="header">
+                                <h:outputText value="IP"/>
+                            </f:facet>
+                            <h:outputText value="#{item3.idUsuario.ipConexion}"/>
+                        </p:column>
+                        <p:column sortBy="#{item3.idUsuario.fechaHoraConexion}">
+                            <f:facet name="header">
+                                <h:outputText value="Fecha-Hora"/>
+                            </f:facet>
+                            <h:outputText value="#{item3.idUsuario.fechaHoraConexion}">
+                                <f:convertDateTime timeZone="#{UsuarioController.myTimeZone}" pattern="dd/MM/yyyy HH:mm" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column sortBy="#{item3.valorPregunta}">
+                            <f:facet name="header">
+                                <h:outputText value="Valor"/>
+                            </f:facet>
+                            <h:outputText value="#{item3.valorPregunta}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Comentario"/>
+                            </f:facet>
+                            <h:outputText value="#{item3.comentario}"/>
+                            <h:outputText value="#{item3.comentarioFinal}"/>
                         </p:column>
                     </p:dataTable>
                 </h:form>
