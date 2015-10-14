@@ -63,12 +63,39 @@ public class CuestionarioFamiliaridadController implements Serializable {
     private CuestionarioFamiliaridad cuestionarioFamiliaridad;
     private List<CuestionarioFamiliaridad> listaCuestionarioFamiliaridad;
     private GrupoMatrizExperimental grupoUsuarioLogin;
+    private List<String> listAppUsadasFrecuente;
+    private List<String> listParaQueUsasInternet;
+    private List<String> listIdiomas;
 
     /**
      * Creates a new instance of CuestionarioFamiliaridadController
      */
     public CuestionarioFamiliaridadController() {
         this.cuestionarioFamiliaridad = new CuestionarioFamiliaridad();
+    }
+
+    public List<String> getListIdiomas() {
+        return listIdiomas;
+    }
+
+    public void setListIdiomas(List<String> listIdiomas) {
+        this.listIdiomas = listIdiomas;
+    }
+
+    public List<String> getListParaQueUsasInternet() {
+        return listParaQueUsasInternet;
+    }
+
+    public void setListParaQueUsasInternet(List<String> listParaQueUsasInternet) {
+        this.listParaQueUsasInternet = listParaQueUsasInternet;
+    }
+
+    public List<String> getListAppUsadasFrecuente() {
+        return listAppUsadasFrecuente;
+    }
+
+    public void setListAppUsadasFrecuente(List<String> listAppUsadasFrecuente) {
+        this.listAppUsadasFrecuente = listAppUsadasFrecuente;
     }
 
     public CuestionarioFamiliaridad getCuestionarioFamiliaridad() {
@@ -94,6 +121,11 @@ public class CuestionarioFamiliaridadController implements Serializable {
      */
     public String doGuardar() {
         try {
+            //Guardar las opciones que tienen multiples selecciones
+            this.cuestionarioFamiliaridad.setParaqueUsasInternet(this.listParaQueUsasInternet.toString());
+            this.cuestionarioFamiliaridad.setQueAppUsa(this.listAppUsadasFrecuente.toString());
+            this.cuestionarioFamiliaridad.setIdioma(this.listIdiomas.toString());
+            //Logout si existise ya un usuario
             loginManager.doLogout();
             Usuario u = new Usuario();
             u.setCuenta(this.cuestionarioFamiliaridad.getAlias());

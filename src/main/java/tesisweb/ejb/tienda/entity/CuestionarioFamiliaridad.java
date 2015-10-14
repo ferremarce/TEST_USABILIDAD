@@ -58,8 +58,8 @@ public class CuestionarioFamiliaridad implements Serializable {
     @Column(name = "DONDE_USAS_INTERNET")
     private String dondeUsasInternet;
     @Size(max = 255)
-    @Column(name = "PORQUE_USAS_INTERNET")
-    private String porqueUsasInternet;
+    @Column(name = "PARAQUE_USAS_INTERNET")
+    private String paraqueUsasInternet;
     @Size(max = 255)
     @Column(name = "QUE_APP_USA")
     private String queAppUsa;
@@ -153,13 +153,15 @@ public class CuestionarioFamiliaridad implements Serializable {
         this.dondeUsasInternet = dondeUsasInternet;
     }
 
-    public String getPorqueUsasInternet() {
-        return porqueUsasInternet;
+    public String getParaqueUsasInternet() {
+        return paraqueUsasInternet;
     }
 
-    public void setPorqueUsasInternet(String porqueUsasInternet) {
-        this.porqueUsasInternet = porqueUsasInternet;
+    public void setParaqueUsasInternet(String paraqueUsasInternet) {
+        this.paraqueUsasInternet = paraqueUsasInternet;
     }
+
+    
 
     public String getQueAppUsa() {
         return queAppUsa;
