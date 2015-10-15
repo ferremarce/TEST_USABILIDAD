@@ -216,8 +216,8 @@
                             <f:facet name="header">
                                 <h:outputText value="Comentario"/>
                             </f:facet>
-                            <h:outputText value="#{item3.comentario}"/>
-                            <h:outputText value="#{item3.comentarioFinal}"/>
+                            <h:outputText escape="false" value="#{item3.comentario}"/>
+                            <h:outputText escape="false" value="#{item3.comentarioFinal}"/>
                         </p:column>
                     </p:dataTable>
                 </h:form>
