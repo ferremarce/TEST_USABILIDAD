@@ -23,6 +23,7 @@
         </f:metadata>
         <h:panelGrid>
             <p:ajax global="false" event="click" update="#{sistema.form_update}," listener="#{MetricaController.increment()}"/>
+            <p:ajax global="false" event="dblclick" update="#{sistema.form_update}," listener="#{MetricaController.increment()}"/>
             <p:layout fullPage="true">
                 <p:layoutUnit position="east" size="250" header="#{bundle.lblOpciones}" collapsed="#{LoginManager.clientCollapse}" collapsible="true" >
                     <h:form id="formCarrito">

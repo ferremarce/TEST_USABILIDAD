@@ -21,7 +21,7 @@
                     </f:facet>
                     <h:outputText value="#{index+1}"/>
                 </p:column>
-                <p:column>
+                <p:column style="#{item.esActivo?'background-color: #ccffcc': ''}">
                     <f:facet name="header">
                         <h:outputText value="PreguntaPositivo"/>
                     </f:facet>

@@ -9,11 +9,11 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
-
         <h:outputText style="font-size: 22px !important;font-weight: bold" value="#{MetricaController.disenhoExperimental.descripcionDisenho}-#{MetricaController.disenhoExperimental.contexto}"/>
         <p:tabView>
             <p:tab title="Tiempos y Clicks">
                 <h:form>
+                    <p:growl globalOnly="true" id="messages"/>
                     <p:panel header="Filtrar">
                         <h:panelGrid columns="2">
                             <p:selectOneMenu converter="MecanismoUsabilidadConverter" id="idMu" value="#{MetricaController.idMu}" required="true" requiredMessage="#{bundle.Requerido}">

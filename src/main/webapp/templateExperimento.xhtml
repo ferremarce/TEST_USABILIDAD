@@ -27,7 +27,7 @@
                                 <h:outputText rendered="#{ExperimentoController.debugMode}" value="Estas en Modo Debug"/>
                                 <h:outputText rendered="#{!ExperimentoController.debugMode}" value="Estas en Modo Normal"/>
                                 <p:spacer height="20"/>
-                                <p:selectBooleanButton offLabel="Modo Debug" onLabel="Modo Normal" value="#{ExperimentoController.debugMode}">
+                                <p:selectBooleanButton rendered="false" offLabel="Modo Debug" onLabel="Modo Normal" value="#{ExperimentoController.debugMode}">
                                     <p:ajax update="@all"/>
                                 </p:selectBooleanButton>
                             </p:outputPanel>

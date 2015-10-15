@@ -3,16 +3,16 @@
 <!-- More information http://zeroturnaround.com/software/jrebel/how-to-configure-rebel-xml/ -->
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.zeroturnaround.com"
              xsi:schemaLocation="http://www.zeroturnaround.com http://www.zeroturnaround.com/alderaan/rebel-2_0.xsd">
-    <classpath>
-        <dir name="/root/Documents/WEB/tesisweb/target/classes"/>
+	<classpath>
+		<dir name="/root/Documents/WEB/tesisweb/target/classes"/>
 
-    </classpath>
-    <web>
-        <link target="/">
-            <dir name="/root/Documents/WEB/tesisweb/src/main/webapp"/>
-        </link>
-        <link target="/">
-            <dir name="/attach/"/>
-        </link>
-    </web>  
+	</classpath>
+	<web>
+		<link target="/">
+			<dir name="/root/Documents/WEB/tesisweb/src/main/webapp"/>
+		</link>
+                <link target="/">
+			<dir name="/attach"/>
+		</link>
+	</web>  
 </application>  

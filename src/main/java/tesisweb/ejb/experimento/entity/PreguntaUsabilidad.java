@@ -33,6 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "PreguntaUsabilidad.findAll", query = "SELECT p FROM PreguntaUsabilidad p")})
 public class PreguntaUsabilidad implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,8 +51,18 @@ public class PreguntaUsabilidad implements Serializable {
     @JoinColumn(name = "ID_MECANISMO_USABILIDAD", referencedColumnName = "ID_MU")
     @ManyToOne
     private MecanismoUsabilidad idMecanismoUsabilidad;
+    @Column(name = "ES_ACTIVO")
+    private Boolean esActivo;
 
     public PreguntaUsabilidad() {
+    }
+
+    public Boolean getEsActivo() {
+        return esActivo;
+    }
+
+    public void setEsActivo(Boolean esActivo) {
+        this.esActivo = esActivo;
     }
 
     public PreguntaUsabilidad(Integer idPreguntaUsabilidad) {
@@ -81,8 +92,6 @@ public class PreguntaUsabilidad implements Serializable {
     public void setPreguntaNegativo(String preguntaNegativo) {
         this.preguntaNegativo = preguntaNegativo;
     }
-
-   
 
     @XmlTransient
     public List<CuestionarioUsabilidad> getCuestionarioUsabilidadList() {
@@ -125,5 +134,5 @@ public class PreguntaUsabilidad implements Serializable {
     public String toString() {
         return "modelo.PreguntaUsabilidad[ idPreguntaUsabilidad=" + idPreguntaUsabilidad + " ]";
     }
-    
+
 }

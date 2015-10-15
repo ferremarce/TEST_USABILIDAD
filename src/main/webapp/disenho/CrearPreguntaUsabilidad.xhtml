@@ -20,6 +20,8 @@
                     <p:selectOneMenu converter="MecanismoUsabilidadConverter" id="idMu" value="#{PreguntaUsabilidadController.preguntaUsabilidad.idMecanismoUsabilidad}" >
                         <f:selectItems value="#{MecanismoUsabilidadController.mecanismoUsabilidadSet}"/>
                     </p:selectOneMenu>
+                    <p:outputLabel value="Es una pregunta activa?:" for="activo" />
+                    <p:selectBooleanCheckbox id="activo" value="#{PreguntaUsabilidadController.preguntaUsabilidad.esActivo}" />
                 </h:panelGrid>
                 <f:facet name="footer">
                     <p:outputPanel id="panelAccion">
