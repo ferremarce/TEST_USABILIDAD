@@ -35,6 +35,12 @@
                             </f:facet>
                             <h:outputText value="#{index+1}. #{item.idMecanismoUsabilidad}"/>
                         </p:column>
+                        <p:column sortBy="#{item.informacion}">
+                            <f:facet name="header">
+                                <h:outputText value="Info_Tarea"/>
+                            </f:facet>
+                            <h:outputText value="#{item.informacion}"/>
+                        </p:column>
                         <p:column headerText="Sujeto" sortBy="#{item.idUsuario.cuenta}">
                             <h:outputText value="#{item.idUsuario.cuenta}"/>
                         </p:column>

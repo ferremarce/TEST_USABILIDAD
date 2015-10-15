@@ -42,7 +42,7 @@ import tesisweb.ejb.tienda.entity.Usuario;
 public class JSFutil implements Serializable {
 
     private Integer tiempoDespacho = 15;
-    private static final String folderImagen = "/tesisweb/images/";
+    private static final String folderImagen = "/attach/fotos/";
 
     public Integer getTiempoDespacho() {
         return tiempoDespacho;
