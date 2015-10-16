@@ -30,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "CuestionarioFamiliaridad.findAll", query = "SELECT c FROM CuestionarioFamiliaridad c")})
 public class CuestionarioFamiliaridad implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -58,11 +59,20 @@ public class CuestionarioFamiliaridad implements Serializable {
     @Column(name = "DONDE_USAS_INTERNET")
     private String dondeUsasInternet;
     @Size(max = 255)
+    @Column(name = "DONDE_USAS_INTERNET_OTROS")
+    private String dondeUsasInternetOtros;
+    @Size(max = 255)
     @Column(name = "PARAQUE_USAS_INTERNET")
     private String paraqueUsasInternet;
     @Size(max = 255)
+    @Column(name = "PARAQUE_USAS_INTERNET_OTROS")
+    private String paraqueUsasInternetOtros;
+    @Size(max = 255)
     @Column(name = "QUE_APP_USA")
     private String queAppUsa;
+    @Size(max = 255)
+    @Column(name = "QUE_APP_USA_OTROS")
+    private String queAppUsaOtros;
     @Size(max = 255)
     @Column(name = "COMPRAS_PERSONALES")
     private String comprasPersonales;
@@ -75,6 +85,9 @@ public class CuestionarioFamiliaridad implements Serializable {
     @Size(max = 255)
     @Column(name = "PROBLEMAS_PERCIBIDOS")
     private String problemasPercibidos;
+    @Size(max = 255)
+    @Column(name = "PROBLEMAS_PERCIBIDOS_OTROS")
+    private String problemasPercibidosOtros;
     @Size(max = 255)
     @Column(name = "ES_ATRACTIVO_COMPRA")
     private String esAtractivoCompra;
@@ -161,8 +174,6 @@ public class CuestionarioFamiliaridad implements Serializable {
         this.paraqueUsasInternet = paraqueUsasInternet;
     }
 
-    
-
     public String getQueAppUsa() {
         return queAppUsa;
     }
@@ -219,6 +230,38 @@ public class CuestionarioFamiliaridad implements Serializable {
         this.idUsuario = idUsuario;
     }
 
+    public String getDondeUsasInternetOtros() {
+        return dondeUsasInternetOtros;
+    }
+
+    public void setDondeUsasInternetOtros(String dondeUsasInternetOtros) {
+        this.dondeUsasInternetOtros = dondeUsasInternetOtros;
+    }
+
+    public String getParaqueUsasInternetOtros() {
+        return paraqueUsasInternetOtros;
+    }
+
+    public void setParaqueUsasInternetOtros(String paraqueUsasInternetOtros) {
+        this.paraqueUsasInternetOtros = paraqueUsasInternetOtros;
+    }
+
+    public String getQueAppUsaOtros() {
+        return queAppUsaOtros;
+    }
+
+    public void setQueAppUsaOtros(String queAppUsaOtros) {
+        this.queAppUsaOtros = queAppUsaOtros;
+    }
+
+    public String getProblemasPercibidosOtros() {
+        return problemasPercibidosOtros;
+    }
+
+    public void setProblemasPercibidosOtros(String problemasPercibidosOtros) {
+        this.problemasPercibidosOtros = problemasPercibidosOtros;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -243,5 +286,5 @@ public class CuestionarioFamiliaridad implements Serializable {
     public String toString() {
         return "modelo.CuestionarioFamiliariodad[ idCuestionario=" + idCuestionario + " ]";
     }
-    
+
 }

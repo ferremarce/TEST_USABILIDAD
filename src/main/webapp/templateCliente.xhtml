@@ -191,7 +191,7 @@
                     </p:panel>
                     <h:form>
                         <p:outputPanel id="panelContadorPR">
-                            <!--h:outputText style="font-size: 4px !important" id="txt_count" value="Contador: #{LoginManager.contadorPR} - (PopupPR #{ExperimentoController.clickPopupPR})" /-->
+                            <h:outputText rendered="false" style="font-size: 4px !important" id="txt_count" value="Contador: #{LoginManager.contadorPR} - (PopupPR #{ExperimentoController.clickPopupPR})" />
                             <p:poll global="false" interval="3" rendered="#{ExperimentoController.clickPopupPR}" listener="#{LoginManager.incrementarContadorPreference()}" update="panelContadorPR" />
                         </p:outputPanel>
                     </h:form>

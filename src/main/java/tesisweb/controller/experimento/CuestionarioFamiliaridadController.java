@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJBException;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -71,7 +72,7 @@ public class CuestionarioFamiliaridadController implements Serializable {
      * Creates a new instance of CuestionarioFamiliaridadController
      */
     public CuestionarioFamiliaridadController() {
-        this.cuestionarioFamiliaridad = new CuestionarioFamiliaridad();
+
     }
 
     public List<String> getListIdiomas() {
@@ -182,5 +183,10 @@ public class CuestionarioFamiliaridadController implements Serializable {
             }
             return "";
         }
+    }
+
+    @PostConstruct
+    public void init() {
+        this.cuestionarioFamiliaridad = new CuestionarioFamiliaridad();
     }
 }
