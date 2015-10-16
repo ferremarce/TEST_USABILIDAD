@@ -58,7 +58,7 @@
                         </h:panelGrid>
                         <p:outputLabel value="Idioma conocidos" for="idioma" />
                         <h:panelGrid>
-                            <h:outputText style="font-style: italic; color: #8F8F8F" value="(Varias selecciones)"/>
+                            <h:outputText style="font-style: italic; color: #8F8F8F" value="(Una o más selecciones)"/>
                             <p:selectManyCheckbox  id="idioma" value="#{CuestionarioFamiliaridadController.listIdiomas}" required="true" requiredMessage="#{bundle.Requerido}">
                                 <f:selectItem itemLabel="CASTELLANO&nbsp;&nbsp;&nbsp;" itemValue="CASTELLANO" />
                                 <f:selectItem itemLabel="INGLÉS&nbsp;&nbsp;&nbsp;" itemValue="INGLES" />
@@ -90,12 +90,12 @@
                                     <f:selectItem itemLabel="OTROS&nbsp;&nbsp;&nbsp;" itemValue="OTROS" />
                                 </p:selectOneRadio>
                                 <p:inputText size="30" id="dondeUsasInternetOtros" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.dondeUsasInternetOtros}" title="Otros" />
-                                <p:watermark for="dondeUsasInternetOtros" value="Otros"/>
+                                <p:watermark for="dondeUsasInternetOtros" value="Otros usos"/>
                             </h:panelGrid>
                         </h:panelGrid>
                         <p:outputLabel value="¿Para qué usas internet?" for="paraqueUsasInternet" />
                         <h:panelGrid>
-                            <h:outputText style="font-style: italic; color: #8F8F8F" value="(Varias selecciones con opción de texto adicional)"/>
+                            <h:outputText style="font-style: italic; color: #8F8F8F" value="(Una o más selecciones con opción de texto adicional)"/>
                             <h:panelGrid columns="2">
                                 <p:selectManyCheckbox id="paraqueUsasInternet" value="#{CuestionarioFamiliaridadController.listParaQueUsasInternet}" required="true" requiredMessage="#{bundle.Requerido}" >
                                     <f:selectItem itemLabel="COMPRAS&nbsp;&nbsp;&nbsp;" itemValue="COMPRAS" />
@@ -109,7 +109,7 @@
                         </h:panelGrid>
                         <p:outputLabel value="¿Qué aplicaciones web usas con mayor frecuencia?" for="queAppUsa" />
                         <h:panelGrid>
-                            <h:outputText style="font-style: italic; color: #8F8F8F" value="(Varias selecciones con opción de texto adicional)"/>
+                            <h:outputText style="font-style: italic; color: #8F8F8F" value="(Una o más selecciones con opción de texto adicional)"/>
                             <h:panelGrid columns="2">
                                 <h:panelGrid columns="2">
                                     <p:selectManyCheckbox   id="queAppUsa" value="#{CuestionarioFamiliaridadController.listAppUsadasFrecuente}" required="true" requiredMessage="#{bundle.Requerido}" >
