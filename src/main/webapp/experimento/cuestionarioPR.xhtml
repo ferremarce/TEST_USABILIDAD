@@ -17,17 +17,14 @@
             <h2 class="ui-state-default ui-corner-all"><h:outputText styleClass="itemResaltado3" value="Cuestionario sobre las Tareas"/></h2>
             <p:panel rendered="#{ExperimentoController.indexFormActual==0}">
                 Este cuestionario te ofrece la oportunidad de expresar la satisfacción que has experimentado en las tareas que acabas de terminar. 
-                <br/>
+                <p/>
                 Tus respuestas nos ayudarán a conocer los aspectos con los que está conforme así como aquellos con los que está disconforme. 
-                <br/>
+                <p/>
                 Piense en las tareas que has realizado y evalúa las siguientes sentencias. 
                 <br/>
             </p:panel>
 
             <p:dataTable id="datatablePR" rowIndexVar="indexPR" value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidadPR}" var="item">
-                <f:facet name="header">
-                    <h:outputText value="PREFERENCES"/>
-                </f:facet>                      
                 <p:column>
                     <f:facet name="header">
                         <h:outputText value="Sentencias"/>
