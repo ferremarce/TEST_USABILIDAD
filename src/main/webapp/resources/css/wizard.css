@@ -10,7 +10,7 @@ and open the template in the editor.
 @import url(LocalFonts.css);
 
 * {
-    font-family: 'Droid Sans', arial, serif !important;
+    font-family: Arial, serif !important;
 }
 body{
     font-size: 1em !important;

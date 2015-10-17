@@ -67,12 +67,21 @@ public class CuestionarioFamiliaridadController implements Serializable {
     private List<String> listAppUsadasFrecuente;
     private List<String> listParaQueUsasInternet;
     private List<String> listIdiomas;
+    private List<String> listTiendasPreferidas;
 
     /**
      * Creates a new instance of CuestionarioFamiliaridadController
      */
     public CuestionarioFamiliaridadController() {
 
+    }
+
+    public List<String> getListTiendasPreferidas() {
+        return listTiendasPreferidas;
+    }
+
+    public void setListTiendasPreferidas(List<String> listTiendasPreferidas) {
+        this.listTiendasPreferidas = listTiendasPreferidas;
     }
 
     public List<String> getListIdiomas() {
@@ -126,6 +135,7 @@ public class CuestionarioFamiliaridadController implements Serializable {
             this.cuestionarioFamiliaridad.setParaqueUsasInternet(this.listParaQueUsasInternet.toString());
             this.cuestionarioFamiliaridad.setQueAppUsa(this.listAppUsadasFrecuente.toString());
             this.cuestionarioFamiliaridad.setIdioma(this.listIdiomas.toString());
+            this.cuestionarioFamiliaridad.setTiendasPreferidas(this.listTiendasPreferidas.toString());
             //Logout si existise ya un usuario
             loginManager.doLogout();
             Usuario u = new Usuario();

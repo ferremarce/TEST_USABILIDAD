@@ -56,7 +56,7 @@
                                 <f:selectItem itemLabel="55 O MAS&nbsp;&nbsp;&nbsp;" itemValue="55 O MAS" />
                             </p:selectOneRadio>
                         </h:panelGrid>
-                        <p:outputLabel value="Idioma conocidos" for="idioma" />
+                        <p:outputLabel value="Idiomas conocidos" for="idioma" />
                         <h:panelGrid>
                             <h:outputText style="font-style: italic; color: #8F8F8F" value="(Una o más selecciones)"/>
                             <p:selectManyCheckbox  id="idioma" value="#{CuestionarioFamiliaridadController.listIdiomas}" required="true" requiredMessage="#{bundle.Requerido}">
@@ -79,12 +79,12 @@
                             <p:inputText size="50" id="profesion" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.profesion}" title="Profesion" />
                             <p:watermark for="profesion" value="Escribe tu profesión"/>
                         </h:panelGrid>
-                        <p:outputLabel value="¿Dónde usas internet mayormente?" for="dondeUsasInternet" />
+                        <p:outputLabel value="¿Dónde usas internet con más frecuencia?" for="dondeUsasInternet" />
                         <h:panelGrid>
                             <h:outputText style="font-style: italic; color: #8F8F8F" value="(Una selección con opción de texto adicional)"/>
                             <h:panelGrid id="panelDondeUsasInternet" columns="2">
                                 <p:selectOneRadio id="dondeUsasInternet" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.dondeUsasInternet}" required="true" requiredMessage="#{bundle.Requerido}" >
-                                    <f:selectItem itemLabel="EN LA CASA&nbsp;&nbsp;&nbsp;" itemValue="EN LA CASA" />
+                                    <f:selectItem itemLabel="EN CASA&nbsp;&nbsp;&nbsp;" itemValue="EN CASA" />
                                     <f:selectItem itemLabel="EN EL TRABAJO&nbsp;&nbsp;&nbsp;" itemValue="EN EL TRABAJO" />
                                     <f:selectItem itemLabel="NO USO INTERNET&nbsp;&nbsp;&nbsp;" itemValue="NO USO INTERNET" />
                                     <f:selectItem itemLabel="OTROS&nbsp;&nbsp;&nbsp;" itemValue="OTROS" />
@@ -115,7 +115,8 @@
                                     <p:selectManyCheckbox   id="queAppUsa" value="#{CuestionarioFamiliaridadController.listAppUsadasFrecuente}" required="true" requiredMessage="#{bundle.Requerido}" >
                                         <f:selectItem itemLabel="FACEBOOK&nbsp;&nbsp;&nbsp;" itemValue="FACEBOOK" />
                                         <f:selectItem itemLabel="TWITTER&nbsp;&nbsp;&nbsp;" itemValue="TWITTER" />
-                                        <f:selectItem itemLabel="GOOGLE+&nbsp;&nbsp;&nbsp;" itemValue="GOOGLE" />
+                                        <f:selectItem itemLabel="GOOGLE&nbsp;&nbsp;&nbsp;" itemValue="GOOGLE" />
+                                        <f:selectItem itemLabel="YAHOO&nbsp;&nbsp;&nbsp;" itemValue="YAHOO" />
                                     </p:selectManyCheckbox>
                                     <p:inputText size="30" id="queAppUsaOtros"  value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.queAppUsaOtros}" title="Otros" />
                                     <p:watermark for="queAppUsaOtros" value="Otros"/>
@@ -144,17 +145,17 @@
                                 <f:selectItem itemLabel="SIEMPRE&nbsp;&nbsp;&nbsp;" itemValue="SIEMPRE" />
                             </p:selectOneRadio>
                         </h:panelGrid>
-                        <p:outputLabel value="¿Cuáles de las tiendas en internet has usado para buscar o comprar artículos?" for="tiendasPreferidas" />
+                        <p:outputLabel value="¿Qué tiendas en internet has usado para buscar o comprar artículos?" for="tiendasPreferidas" />
                         <h:panelGrid>
                             <h:outputText style="font-style: italic; color: #8F8F8F" value="(Una selección)"/>
-                            <p:selectOneRadio  id="tiendasPreferidas" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.tiendasPreferidas}" required="true" requiredMessage="#{bundle.Requerido}" >
+                            <p:selectManyCheckbox  id="tiendasPreferidas" value="#{CuestionarioFamiliaridadController.listTiendasPreferidas}" required="true" requiredMessage="#{bundle.Requerido}" >
                                 <f:selectItem itemLabel="AMAZON&nbsp;&nbsp;&nbsp;" itemValue="AMAZON" />
                                 <f:selectItem itemLabel="eBAY&nbsp;&nbsp;&nbsp;" itemValue="eBAY" />
                                 <f:selectItem itemLabel="OTRAS TIENDAS&nbsp;&nbsp;&nbsp;" itemValue="OTRAS TIENDAS" />
                                 <f:selectItem itemLabel="NINGUNO&nbsp;&nbsp;&nbsp;" itemValue="NINGUNO" />
-                            </p:selectOneRadio>
+                            </p:selectManyCheckbox>
                         </h:panelGrid>
-                        <p:outputLabel value="¿Cuál problema percibes cuando compras o quieres comprar por internet?" for="problemasPercibidos" />
+                        <p:outputLabel value="¿Qué problema percibes cuando compras o quieres comprar por internet?" for="problemasPercibidos" />
                         <h:panelGrid>
                             <h:outputText style="font-style: italic; color: #8F8F8F" value="(Una selección con opción de texto adicional)"/>
                             <h:panelGrid id="panelProblemasPercibidosOtros" columns="2">
@@ -163,13 +164,14 @@
                                     <f:selectItem itemLabel="Las tiendas físicas ofrecen mejores precios y promociones&nbsp;&nbsp;&nbsp;" itemValue="TIENDA FISICA MEJOR" />
                                     <f:selectItem itemLabel="Siento inseguridad en el pago (tarjetas de crédito, etc.)&nbsp;&nbsp;&nbsp;" itemValue="INSEGURIDAD EN EL PAGO" />
                                     <f:selectItem itemLabel="Tengo dudas sobre el soporte y la garantía de los artículos&nbsp;&nbsp;&nbsp;" itemValue="DUDAS SOBRE EL PRODUCTO" />
+                                    <f:selectItem itemLabel="No encuentro problemas&nbsp;&nbsp;&nbsp;" itemValue="NO ENCUENTRO PROBLEMAS" />
                                     <f:selectItem itemLabel="OTROS&nbsp;&nbsp;&nbsp;" itemValue="OTROS" />
                                 </p:selectOneRadio>
                                 <p:inputTextarea cols="30" id="problemasPercibidosOtros"  value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.problemasPercibidosOtros}" title="Otros" />
                                 <p:watermark for="problemasPercibidosOtros" value="Otros problemas"/>
                             </h:panelGrid>
                         </h:panelGrid>
-                        <p:outputLabel value="En líneas generales, ¿considera una opción atractiva las compras por internet?" for="esAtractivoCompra" />
+                        <p:outputLabel value="En líneas generales, ¿consideras una opción atractiva las compras por internet?" for="esAtractivoCompra" />
                         <h:panelGrid>
                             <h:outputText style="font-style: italic; color: #8F8F8F" value="(Una selección)"/>
                             <p:selectOneRadio   id="esAtractivoCompra" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.esAtractivoCompra}" required="true" requiredMessage="#{bundle.Requerido}" >
