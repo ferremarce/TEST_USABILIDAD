@@ -461,4 +461,9 @@ public class LoginManager implements Serializable {
             Logger.getLogger(LoginManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+    public String doGetURLServer() {
+        return JSFutil.getServerUrl();
+    }
+
 }
