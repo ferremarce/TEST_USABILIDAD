@@ -91,6 +91,9 @@ public class PreferenceController implements Serializable {
         }
         return "/frontend/index";
     }
+    public String doCancelar() {
+        return "/frontend/index";
+    }
 
     public String doAsignarStandarPreference() {
         this.preference.setFuente("Droid Sans");

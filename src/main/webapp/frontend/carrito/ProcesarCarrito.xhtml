@@ -64,8 +64,10 @@
                     </p:row>
                 </p:columnGroup>
             </p:dataTable>
-            <p:panel header="#{bundle.lblInfoPago}">
-                <p:panelGrid columns="3">
+            <p:panel>
+                <h:outputLabel value="#{bundle.lblInfoPago}"/>
+                <hr/>
+                <h:panelGrid columns="3">
                     <h:outputLabel for="codigoPromocional" value="#{bundle.lblCodigoPromo} "/>
                     <p:inputText id="codigoPromocional" value="#{CarritoFE.codigoPromocional}">
                         <p:ajax global="no" listener="#{CarritoFE.siHayCambios()}"/>
@@ -73,7 +75,7 @@
                     <p:commandButton styleClass="boton2x" title="#{bundle.ValidarBoton}" value="#{bundle.ValidarBoton}">
                         <p:ajax update="@form" listener="#{CarritoFE.mensajeCodigo()}"/>
                     </p:commandButton>
-                </p:panelGrid>
+                </h:panelGrid>
                 <f:facet name="footer">
                     <h:panelGrid id="panelTotal" style="text-align: right !important;" columns="2">
                         <h:outputLabel styleClass="itemResaltado1" value="#{bundle.lblDescuentos} "/>

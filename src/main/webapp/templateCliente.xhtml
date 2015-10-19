@@ -164,7 +164,7 @@
                             </h:panelGrid>
                             <p:panel >
                                 <p:commandButton style="font-size: 20px !important; font-family: 'Droid Sans' !important" ajax="false" title="Aplicar" value="Aplicar" action="#{PreferenceController.doGuardar()}" icon="ui-icon-disk"/>
-                                <p:commandButton style="font-size: 20px !important; font-family: 'Droid Sans' !important" global="false" ajax="false" title="Cerrar" value="Cerrar" onclick="PF('dlgPreference').hide();" icon="ui-icon-disk"/>
+                                <p:commandButton style="font-size: 20px !important; font-family: 'Droid Sans' !important" global="false" ajax="false" title="Cerrar" value="Cerrar" action="#{PreferenceController.doCancelar()}" icon="ui-icon-disk"/>
                             </p:panel>
                         </h:form>
                     </p:dialog>
