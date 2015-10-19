@@ -23,7 +23,7 @@
                                         <f:facet name="header">
                                             <h:outputText styleClass="titulo2" value="#{articulo.nombreArticulo}"/>
                                         </f:facet>
-                                        <p:graphicImage rendered="#{articulo.articuloAdjuntoList.size()>0}" styleClass="texto-centrado" width="150" height="150" value="/ImageServlet?file=#{articulo.articuloAdjuntoList.get(0).toNameDownload()}" cache="true" />
+                                        <p:graphicImage rendered="#{articulo.articuloAdjuntoList.size()>0}" styleClass="texto-centrado" width="150" height="150" value="#{LoginManager.doGetURLServer()}/fotos/#{articulo.articuloAdjuntoList.get(0).toNameDownload()}" cache="true" />
                                         <br/>
                                         <h:outputText styleClass="#{articulo.esPromocion?'texto-tachado':'texto-no-tachado'}" value="#{articulo.precio}">
                                             <f:convertNumber currencySymbol="USD " type="currency"/>

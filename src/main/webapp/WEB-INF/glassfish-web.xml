@@ -8,5 +8,9 @@
       <description>Keep a copy of the generated servlet class' java code.</description>
     </property>
     <property name="alternatedocroot_2" value="from=/fotos/* dir=/attach"/>
+    <!--
+    AGREGAR DENTRO DE CONFIGURATION->VIRTUALSEVER->SERVER-> PROPIEDADES
+    alternatedocroot_1 CON VALUE from=/fotos/* dir=/attach
+    -->
   </jsp-config>
 </glassfish-web-app>
