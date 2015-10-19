@@ -19,17 +19,17 @@
                     <p:panel styleClass="header-background">
                         <h:panelGrid width="100%" columns="2">
                             <h:outputText style="font-size: 30px; font-weight: bold" value="TEST"/>
-                            <p:outputPanel>
+                            <p:outputPanel style="position: absolute; right: 10px">
                                 <h:outputText rendered="#{LoginManager.usuarioLogeado!=null}" value="[#{LoginManager.usuarioLogeado}]"/>
                                 <p:spacer height="20"/>
                                 <h:outputText rendered="#{ExperimentoController.debugMode}" value="ID_SESION: #{LoginManager.doGetSessionID()}"/>
                                 <p:spacer height="20"/>
-                                <h:outputText rendered="#{ExperimentoController.debugMode}" value="Estás en Modo Debug"/>
-                                <h:outputText rendered="#{!ExperimentoController.debugMode}" value="Estás en Modo Normal"/>
-                                <p:spacer height="20"/>
                                 <p:selectBooleanButton rendered="false" offLabel="Modo Debug" onLabel="Modo Normal" value="#{ExperimentoController.debugMode}">
                                     <p:ajax update="@all"/>
                                 </p:selectBooleanButton>
+                                <p:spacer height="20"/>
+                                <h:outputText rendered="#{ExperimentoController.debugMode}" value="Estás en Modo Debug"/>
+                                <h:outputText rendered="#{!ExperimentoController.debugMode}" value="Estás en Modo Normal"/>
                             </p:outputPanel>
                         </h:panelGrid>
                     </p:panel>

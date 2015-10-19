@@ -7,7 +7,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html">
 
     <ui:define name="content">
-        <p:panel rendered="#{TiendaController.tipoGarantia==1}">
+        <h:panelGrid rendered="#{TiendaController.tipoGarantia==1}">
             <f:facet name="header">
                 <h:outputText value="#{bundle.lblGarantiaSeguridad}"/>
             </f:facet>
@@ -17,8 +17,8 @@
                 <p/>
                 <h:outputText value="#{bundle.txtGarantiaSeguridad}" escape="false"/>
             </p:outputPanel>
-        </p:panel>
-        <p:panel rendered="#{TiendaController.tipoGarantia==2}">
+        </h:panelGrid>
+        <h:panelGrid rendered="#{TiendaController.tipoGarantia==2}">
             <f:facet name="header">
                 <h:outputText value="#{bundle.lblGarantiaDevolucion}"/>
             </f:facet>
@@ -28,8 +28,8 @@
                 <p/>
                 <h:outputText value="#{bundle.txtGarantiaDevolucion}" escape="false"/>
             </p:outputPanel>
-        </p:panel>
-        <p:panel rendered="#{TiendaController.tipoGarantia==3}">
+        </h:panelGrid>
+        <h:panelGrid rendered="#{TiendaController.tipoGarantia==3}">
             <f:facet name="header">
                 <h:outputText value=" #{bundle.lblGarantiaPrivacidad}"/>
             </f:facet>
@@ -39,7 +39,7 @@
                 <p/>
                 <h:outputText value="#{bundle.txtGarantiaPrivacidad}" escape="false"/>
             </p:outputPanel>
-        </p:panel>
+        </h:panelGrid>
 
 
     </ui:define>
