@@ -46,7 +46,7 @@ public class PreferenceCSS extends HttpServlet {
             String size = p.getTamanho() + "%";
             String family = "'" + p.getFuente() + "'";
             
-            cadena = "label"
+            cadena = "label, .texto-no-tachado"
                     + "{\n"
                     + "    font-size: " + size + " !important;\n"
                     + "    font-family: " + family + " !important; \n"

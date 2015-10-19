@@ -22,7 +22,7 @@
                 </p:column>
                 <p:column >
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.lblArticulo}"/>
+                        <p:outputLabel value="#{bundle.lblArticulo}"/>
                     </f:facet>
                     <p:outputPanel rendered="#{item.idArticulo!=null}">                                        
                         <p:graphicImage rendered="#{item.idArticulo.articuloAdjuntoList.size()>0}" styleClass="texto-centrado" width="50" height="50" value="/ImageServlet?file=#{item.idArticulo.articuloAdjuntoList.get(0).toNameDownload()}" />                        
@@ -32,7 +32,7 @@
                 </p:column>
                 <p:column style="width: 150px;">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.lblCantidad}"/>
+                        <p:outputLabel value="#{bundle.lblCantidad}"/>
                     </f:facet>
                     <p:spinner min="1" max="10" value="#{item.cantidad}">
                         <p:ajax global="no" update="#{sistema.form_update},dataTableOrdenCarrito" />
@@ -41,7 +41,7 @@
                 </p:column>
                 <p:column style="width: 250px; text-align: right">
                     <f:facet name="header">
-                        <h:outputText value="#{bundle.lblPrecio}"/>
+                        <p:outputLabel value="#{bundle.lblPrecio}"/>
                     </f:facet>
                     <h:outputText style="color: green !important" styleClass="texto-no-tachado" value="#{CarritoFE.calcularPrecioFinal(item.idArticulo)}">
                         <f:convertNumber currencySymbol="USD " type="currency"/>
@@ -51,7 +51,7 @@
                     <p:row>
                         <p:column style="text-align: right" colspan="3">
                             <f:facet name="footer">
-                                <h:outputText value="#{bundle.lblSubtotal} #{bundle.lblSinDescuento} "/>
+                                <p:outputLabel value="#{bundle.lblSubtotal} #{bundle.lblSinDescuento} "/>
                             </f:facet>
                         </p:column>
                         <p:column style="text-align: right">

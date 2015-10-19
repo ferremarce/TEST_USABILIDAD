@@ -51,7 +51,7 @@ public class Articulo implements Serializable {
     @Column(name = "NOMBRE_ARTICULO")
     private String nombreArticulo;
     @Size(max = 255)
-    @Column(name = "ALIAS_ARTICULO",unique = true)
+    @Column(name = "ALIAS_ARTICULO", unique = true)
     private String aliasArticulo;
     @Size(max = 255)
     @Column(name = "BREVE_DESCRIPCION")
@@ -200,6 +200,14 @@ public class Articulo implements Serializable {
     @Override
     public String toString() {
         return "tesisweb.ejb.entity.Articulo_1[ idArticulo=" + idArticulo + " ]";
+    }
+
+    public String toShortName() {
+        if (this.nombreArticulo.length() > 40) {
+            return this.nombreArticulo.substring(0, 40) + "...";
+        } else {
+            return this.nombreArticulo;
+        }
     }
 
 }

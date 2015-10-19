@@ -6,14 +6,6 @@
 @import url(https://fonts.googleapis.com/css?family=Exo);
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans);
 
-
-.ui-carousel{
-    width: 95% !important;
-    overflow-y: auto;
-    height: 450px !important;
-
-}
-
 .ui-spinner-input{
     width: 90%;
 }

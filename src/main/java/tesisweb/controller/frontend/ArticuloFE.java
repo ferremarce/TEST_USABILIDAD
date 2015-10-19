@@ -149,7 +149,7 @@ public class ArticuloFE implements Serializable {
         } catch (InterruptedException ex) {
             Logger.getLogger(ArticuloFE.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "/frontend/articulo/BuscarArticulo?faces-redirect=true";
+        return "/frontend/articulo/BuscarArticulo";
     }
 
     public String doListarCategoriaForm() {

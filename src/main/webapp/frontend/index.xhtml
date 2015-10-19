@@ -21,17 +21,16 @@
             <ui:include src="/panelBuscar.xhtml"/>
             <p:carousel circular="true" numVisible="3" value="#{ArticuloFE.doGetEnPromocion()}" var="articulo" autoPlayInterval="5000">
                 <f:facet name="header">
-                    <p:outputPanel>
-                        #{bundle.lblEnPromocion}
-                    </p:outputPanel>
+                    <h:panelGrid>
+                        <p:outputLabel value="#{bundle.lblEnPromocion}"/>
+                    </h:panelGrid>
                 </f:facet>
-                <h:panelGrid columns="1">
+                <h:panelGrid>
                     <f:facet name="header">
                         <p:graphicImage rendered="#{articulo.articuloAdjuntoList.size()>0}" width="300" height="250" value="/ImageServlet?file=#{articulo.articuloAdjuntoList.get(0).toNameDownload()}" alt="#{articulo.nombreArticulo}" title=""/>
                     </f:facet>
-                    <p:separator/>
                     <p:outputPanel style="width: 250px;">
-                        <h:outputText styleClass="itemResaltado1" value="#{articulo.nombreArticulo}"/>
+                        <h:outputText styleClass="itemResaltado1" value="#{articulo.toShortName()}"/>
                         <br/>
                         <h:outputText style="color: red" value="#{articulo.precio}">
                             <f:convertNumber currencySymbol=" USD " type="currency"/>
@@ -42,6 +41,7 @@
                         <h:outputText styleClass="itemResaltado2" value="#{articulo.precio-articulo.precio*articulo.porcentajeDescuento/100}">
                             <f:convertNumber currencySymbol="USD " type="currency"/>
                         </h:outputText>
+                        <p:commandButton ajax="false"  icon="ui-icon-zoomin" value="#{bundle.VerBoton}" action="#{ArticuloFE.doVerDetalleArticulo(articulo)}"/>
                     </p:panel>
                 </h:panelGrid>
             </p:carousel>

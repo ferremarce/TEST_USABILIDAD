@@ -12,7 +12,7 @@
         <h:form>
             <p:growl life="5000" globalOnly="true" id="messages"/>
             <p:panel>
-                <p:commandButton immediate="true" ajax="false" title="#{bundle.VolverBoton}" value="#{bundle.VolverBoton}" action="/frontend/articulo/BuscarArticulo" icon="ui-icon-arrowreturnthick-1-w"/>
+                <p:commandButton immediate="true" ajax="false" title="#{bundle.VolverBoton}" value="#{bundle.VolverBoton}" action="/frontend/index" icon="ui-icon-arrowreturnthick-1-w"/>
                 <p:commandButton ajax="false" icon="shoppingcart" title="#{bundle.AgregarCarritoBoton}" value="#{bundle.AgregarCarritoBoton}" action="#{CarritoFE.doAgregarCarrito(ArticuloFE.articulo)}"/>
             </p:panel>
             <h:panelGrid width="100%" rowClasses="top" columns="2">

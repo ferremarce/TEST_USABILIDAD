@@ -11,8 +11,8 @@
         <h:form id="formBuscarMain">
             <h:panelGroup rendered="#{MUController.muProgressFeedBack}">    
                 <ui:include src="/ajax_feedback.xhtml"/>
-                <p:growl globalOnly="true" sticky="true" id="messages"/>
             </h:panelGroup>     
+            <p:growl globalOnly="true" sticky="true" id="messages"/>
             <ui:include src="/panelBuscar.xhtml"/>
             <p:dataTable var="item" value="#{ArticuloFE.listaArticulo}" rows="5" paginator="true">
                 <f:facet name="header">
