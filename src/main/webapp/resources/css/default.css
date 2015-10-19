@@ -6,22 +6,7 @@
 @import url(https://fonts.googleapis.com/css?family=Exo);
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans);
 
-* {
-    font-family: 'Droid Sans', arial, serif !important;
-}
 
-.ui-widget,
-.ui-widget-header,
-.ui-widget-content,
-.ui-datatable ui-widget,
-.ui-datatable-data ui-widget-content,
-.ui-column-title,
-.ui-toolbar
-.ui-state-default
-.ui-panelgrid-cell
-{
-    font-size: 1em !important;
-}
 .ui-carousel{
     width: 95% !important;
     overflow-y: auto;

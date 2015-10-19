@@ -13,7 +13,7 @@ and open the template in the editor.
     font-family: Arial, serif !important;
 }
 body{
-    font-size: 1em !important;
+    font-size: 100% !important;
 }
 .ui-widget,
 .ui-widget-header,
@@ -23,15 +23,15 @@ body{
 .ui-column-title,
 .ui-toolbar
 {
-    font-size: 14px !important;
+    font-size: 100% !important;
 }
 .ui-button, .ui-button-text {
-    font-size: 1.1em;
+    font-size: 100%;
 }
 .ui-spinner-input{
     height: 50px !important;
-    font-size: 1.1em !important;
-    width: 90%;
+    font-size: 100% !important;
+    width: 100%;
 }
 .top{
     vertical-align: top !important;

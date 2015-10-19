@@ -14,7 +14,7 @@
         </f:metadata>
         <h2 class="ui-state-default ui-corner-all"><h:outputText value="#{bundle.lblBienvenido}"/></h2>
         <h:form id="formIndex">
-            <p:growl sticky="true" globalOnly="true" id="messages"/>
+            <p:growl globalOnly="true" id="messages"/>
             <h:panelGroup rendered="#{MUController.muProgressFeedBack}">    
                 <ui:include src="/ajax_feedback.xhtml"/>
             </h:panelGroup>     

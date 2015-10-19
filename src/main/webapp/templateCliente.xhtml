@@ -33,20 +33,21 @@
                                     <p:graphicImage width="50" height="50" rendered="#{CarritoFE.listaOrdenCarrito.size()==0}" value="/icono/cart2.gif"/>
                                     <h:outputText styleClass="texto-carrito" id="listaArticuloCarrito" value="#{CarritoFE.doGetCantidadItemsCarrito()}"/>
                                     <p:graphicImage width="50" height="50" rendered="#{CarritoFE.listaOrdenCarrito.size()>0}" value="/icono/cart.gif"/>                                   
-                                    <h:outputText value="#{bundle.MiCarrritoBoton}"/>
+                                    <p:outputLabel value="#{bundle.MiCarrritoBoton}"/>
                                 </h:panelGrid>
                             </p:commandLink>
                         </p:panel>
                     </h:form>
                     <h:form id="formCategoriaArticulo">
-                        <p:dataList value="#{SubTipoController.idCategoriaArticuloList}" var="categoria" >
-                            <f:facet name="header">
-                                #{bundle.lblCategoria}
-                            </f:facet>
-                            <p:commandLink styleClass="nav" ajax="false" value="#{categoria}" action="#{ArticuloFE.doListarCategoriaForm()}">
-                                <f:param name="idCategoria" value="#{categoria.idSubTipo}" />
-                            </p:commandLink>
-                        </p:dataList>
+                        <p:panel header="#{bundle.lblCategoria}">
+                            <h:panelGrid columns="1">
+                                <ui:repeat value="#{SubTipoController.idCategoriaArticuloList}" var="categoria" >
+                                    <p:commandLink ajax="false" styleClass="nav" value="» #{categoria}" action="#{ArticuloFE.doListarCategoriaForm()}">
+                                        <f:param name="idCategoria" value="#{categoria.idSubTipo}" />
+                                    </p:commandLink>
+                                </ui:repeat>
+                            </h:panelGrid> 
+                        </p:panel>
                     </h:form>
                     <p:outputPanel>
                         <h:form>
@@ -54,7 +55,7 @@
                                 <f:facet name="header">
                                     <h:panelGrid columns="2">
                                         <p:graphicImage value="/icono/sello-garantia.png"/>
-                                        <h:outputText value="#{bundle.lblTituloGarantia}"/>
+                                        <p:outputLabel value="#{bundle.lblTituloGarantia}"/>
                                     </h:panelGrid>
                                 </f:facet>
                                 <h:panelGrid columns="2">
@@ -106,31 +107,31 @@
                                 <h:panelGrid width="100%">
                                     <h:panelGrid style="position: relative; left: 20px" columns="6">
                                         <p:graphicImage value="/icono/store.png"/>
-                                        <h:outputText value="#{bundle.lblAyuda}"/>
+                                        <p:outputLabel value="#{bundle.lblAyuda}"/>
                                         <p:graphicImage value="/icono/help.png"/>
-                                        <h:outputText value="#{bundle.lblNuestrasTiendas}"/>
+                                        <p:outputLabel value="#{bundle.lblNuestrasTiendas}"/>
                                         <p:graphicImage value="/icono/call-center.png"/>
-                                        <h:outputText value="#{bundle.lblAtencionCliente}"/>
+                                        <p:outputLabel value="#{bundle.lblAtencionCliente}"/>
                                     </h:panelGrid>
                                 </h:panelGrid>
                             </h:panelGrid>
                             <p:toolbar >
                                 <f:facet name="left">
                                     <p:outputPanel style="font-size: 16px !important">
-                                        <p:commandButton icon="ui-icon-home" ajax="false" style="font-size: 18px !important" value="#{bundle.lblInicio}" action="/frontend/index"/>
-                                        <h:outputLabel rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.usuarioLogeado.nombres} #{LoginManager.usuarioLogeado.apellidos}"/>
+                                        <p:commandButton icon="ui-icon-home" ajax="false" style="font-size: 16px !important" value="#{bundle.lblInicio}" action="#{LoginManager.gotoHome()}"/>
+                                        <h:outputLabel style="font-size: 16px !important" rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.usuarioLogeado.nombres} #{LoginManager.usuarioLogeado.apellidos}"/>
                                     </p:outputPanel>
                                 </f:facet>
                                 <f:facet name="right">
                                     <p:outputPanel style="font-size: 16px !important;" rendered="#{MUController.muPreference and LoginManager.usuarioLogeado!=null}">
-                                        <p:commandButton style="font-size: 18px !important" ajax="false" value="#{bundle.PreferenciaBoton}" action="#{PreferenceController.doCambiarPreferenciaUsuario()}" icon="ui-icon-power"/>
-                                        <p:commandLink value="Español" ajax="false" action="#{LanguageSwitcher.changeLanguage('es')}"/>
+                                        <p:commandButton style="font-size: 16px !important" ajax="false" value="#{bundle.PreferenciaBoton}" action="#{PreferenceController.doCambiarPreferenciaUsuario()}" icon="ui-icon-power"/>
+                                        <p:commandLink style="font-size: 14px !important" value="Español" ajax="false" action="#{LanguageSwitcher.changeLanguage('es')}"/>
                                         <p:graphicImage width="30" height="25" value="/icono/flag_spain.png"/>
                                         <p:spacer width="10"/>
-                                        <p:commandLink value="English" ajax="false" action="#{LanguageSwitcher.changeLanguage('en')}"/>
+                                        <p:commandLink style="font-size: 14px !important" value="English" ajax="false" action="#{LanguageSwitcher.changeLanguage('en')}"/>
                                         <p:graphicImage  width="30" height="25" value="/icono/flag_usa.png"/>
                                         <p:spacer width="10"/>
-                                        <p:commandLink value="Zulú" ajax="false" action="#{LanguageSwitcher.changeLanguage('zu')}"/>
+                                        <p:commandLink style="font-size: 14px !important" value="Zulú" ajax="false" action="#{LanguageSwitcher.changeLanguage('zu')}"/>
                                         <p:graphicImage  width="30" height="25" value="/icono/flag_zu.png"/>
                                     </p:outputPanel>
                                 </f:facet>
@@ -152,7 +153,7 @@
                                 <h:panelGrid columns="1" style="margin-bottom: 10px;" >
                                     <p:outputLabel style="font-size: 16px !important; font-family: 'Droid Sans' !important" id="tamanho" value="#{PreferenceController.sizeFont}%" />
                                     <h:inputHidden id="txt2" value="#{PreferenceController.sizeFont}" />
-                                    <p:slider style="width: 300px;" for="txt2" display="tamanho" maxValue="120" minValue="60" displayTemplate="Ajustar al {value}%" />
+                                    <p:slider style="width: 300px;" for="txt2" display="tamanho" maxValue="120" minValue="40" displayTemplate="Ajustar al {value}%" />
                                 </h:panelGrid>
                                 <p:message for="tamanho"/>
                                 <p:outputLabel style="font-size: 16px !important; font-family: 'Droid Sans' !important" value="Idioma:" for="idioma" />
@@ -172,15 +173,15 @@
                         <h:panelGrid width="100%" columns="4">
                             <h:panelGrid columns="2">
                                 <p:graphicImage value="/icono/store.png"/>
-                                <h:outputText value="#{bundle.lblAyuda}"/>
+                                <p:outputLabel value="#{bundle.lblAyuda}"/>
                             </h:panelGrid>
                             <h:panelGrid columns="2">
                                 <p:graphicImage value="/icono/help.png"/>
-                                <h:outputText value="#{bundle.lblNuestrasTiendas}"/>
+                                <p:outputLabel value="#{bundle.lblNuestrasTiendas}"/>
                             </h:panelGrid>
                             <h:panelGrid columns="2">
                                 <p:graphicImage value="/icono/call-center.png"/>
-                                <h:outputText value="#{bundle.lblAtencionCliente}"/>
+                                <p:outputLabel value="#{bundle.lblAtencionCliente}"/>
                             </h:panelGrid>
                             <p:graphicImage value="/icono/sello-garantia.png"/>
                         </h:panelGrid>

@@ -140,7 +140,7 @@ public class ArticuloFE implements Serializable {
             this.listaArticulo = articuloDAO.findAll();
         }
         if (this.listaArticulo.size() > 0) {
-            JSFutil.addSuccessMessage(this.listaArticulo.size() + " "+JSFutil.getMyBundle().getString("RegistrosRecuperadosMensaje"));
+            JSFutil.addSuccessMessage(this.listaArticulo.size() + " " + JSFutil.getMyBundle().getString("RegistrosRecuperadosMensaje"));
         } else {
             JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("SinRegistrosMensaje"));
         }
@@ -153,18 +153,20 @@ public class ArticuloFE implements Serializable {
     }
 
     public String doListarCategoriaForm() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        String idCategoria = context.getExternalContext().getRequestParameterMap().get("idCategoria");
-        this.listaArticulo = articuloDAO.findAllbyCategoria(Integer.parseInt(idCategoria));
-        this.categoriaSeleccionada = subTipoDAO.find(Integer.parseInt(idCategoria));
-        if (this.listaArticulo.size() > 0) {
+        
+            FacesContext context = FacesContext.getCurrentInstance();
+            String idCategoria = context.getExternalContext().getRequestParameterMap().get("idCategoria");
+            this.listaArticulo = articuloDAO.findAllbyCategoria(Integer.parseInt(idCategoria));
+            this.categoriaSeleccionada = subTipoDAO.find(Integer.parseInt(idCategoria));
+            if (this.listaArticulo.size() > 0) {
 
-            JSFutil.addSuccessMessage(this.listaArticulo.size() + " "+JSFutil.getMyBundle().getString("RegistrosRecuperadosMensaje"));
-        } else {
+                JSFutil.addSuccessMessage(this.listaArticulo.size() + " " + JSFutil.getMyBundle().getString("RegistrosRecuperadosMensaje"));
+            } else {
 
-            JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("SinRegistrosMensaje"));
-        }
-        return "/frontend/articulo/ListarArticuloCategoria";
+                JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("SinRegistrosMensaje"));
+            }
+            return "/frontend/articulo/ListarArticuloCategoria";
+        
     }
 
     public String doVerDetalleArticulo(Articulo u) {
