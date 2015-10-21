@@ -38,8 +38,8 @@ public class CuestionarioFamiliaridad implements Serializable {
     @Column(name = "ID_CUESTIONARIO")
     private Integer idCuestionario;
     @Size(max = 255)
-    @Column(name = "ALIAS")
-    private String alias;
+    @Column(name = "ALIASES")
+    private String aliases;
     @Size(max = 255)
     @Column(name = "SEXO")
     private String sexo;
@@ -110,12 +110,12 @@ public class CuestionarioFamiliaridad implements Serializable {
         this.idCuestionario = idCuestionario;
     }
 
-    public String getAlias() {
-        return alias;
+    public String getAliases() {
+        return aliases;
     }
 
-    public void setAlias(String alias) {
-        this.alias = alias;
+    public void setAliases(String aliases) {
+        this.aliases = aliases;
     }
 
     public String getSexo() {

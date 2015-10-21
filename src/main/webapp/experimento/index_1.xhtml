@@ -31,7 +31,7 @@
                 <p:panel header="Cuestionario">
                     <p:panelGrid columns="2">
                         <p:outputLabel value="Nombre o Alias" for="alias" />
-                        <p:inputText size="30" id="alias" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.alias}" title="Alias" required="true" requiredMessage="#{bundle.Requerido}"/>
+                        <p:inputText size="30" id="alias" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.aliases}" title="Alias" required="true" requiredMessage="#{bundle.Requerido}"/>
                         <p:outputLabel value="Sexo:" for="sexo" />
                         <p:selectOneRadio  id="sexo" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.sexo}" required="true" requiredMessage="#{bundle.Requerido}">
                             <f:selectItem itemLabel="MASCULINO&nbsp;&nbsp;&nbsp;" itemValue="MASCULINO" />

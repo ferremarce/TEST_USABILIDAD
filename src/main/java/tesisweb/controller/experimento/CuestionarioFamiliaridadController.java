@@ -29,7 +29,6 @@ import tesisweb.ejb.tienda.facade.RolDAO;
 import tesisweb.ejb.tienda.facade.UsuarioDAO;
 import tesisweb.usabilidad.MUController;
 import tesisweb.util.JSFutil;
-import tesisweb.util.JSFutil.PersistAction;
 
 /**
  *
@@ -139,7 +138,7 @@ public class CuestionarioFamiliaridadController implements Serializable {
             //Logout si existise ya un usuario
             loginManager.doLogout();
             Usuario u = new Usuario();
-            u.setCuenta(this.cuestionarioFamiliaridad.getAlias());
+            u.setCuenta(this.cuestionarioFamiliaridad.getAliases());
             u.setEsActivo(Boolean.TRUE);
 
             Preference p = preferenceDAO.find(0);
@@ -147,7 +146,7 @@ public class CuestionarioFamiliaridadController implements Serializable {
             preferenceDAO.create(p);
             u.setIdPreference(p); //PREFERENCIA SUCIA
             u.setIdRol(rolDAO.find(5)); //SUJETO EXPERIMENTAL
-            u.setNombres(this.cuestionarioFamiliaridad.getAlias());
+            u.setNombres(this.cuestionarioFamiliaridad.getAliases());
             u.setApellidos("SUJETO EXPERIMENTAL");
             u.setFechaHoraConexion(JSFutil.getFechaHoraActual());
             HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
