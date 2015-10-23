@@ -162,9 +162,13 @@
                     </p:panel>
                     <p:dataTable id="tablaCuestionario" rowIndexVar="index2" value="#{CuestionarioUsabilidadController.listaCuestionarioUsabilidad}" var="item3">
                         <f:facet name="header">
-                            <h:commandLink value="Exportar">
+                            <h:commandLink rendered="#{CuestionarioUsabilidadController.tipoCuestionario==0}" value="Exportar">
                                 <p:graphicImage value="/icono/csv.png" width="24"/>
-                                <p:dataExporter type="csv" target="tablaCuestionario" fileName="tablaCuestionario-#{CuestionarioUsabilidadController.tipoCuestionario}" />
+                                <p:dataExporter type="csv" target="tablaCuestionario" fileName="tablaCuestionario-SUS" />
+                            </h:commandLink>
+                            <h:commandLink rendered="#{CuestionarioUsabilidadController.tipoCuestionario==-1}" value="Exportar">
+                                <p:graphicImage value="/icono/csv.png" width="24"/>
+                                <p:dataExporter type="csv" target="tablaCuestionario" fileName="tablaCuestionario-RETROALIMENTACION" />
                             </h:commandLink>
                         </f:facet>
                         <p:column >
