@@ -108,7 +108,7 @@
                             <f:facet name="header">
                                 <h:outputText value="Pregunta"/>
                             </f:facet>
-                            <h:outputText escape="false" value="#{item2.idPreguntaUsabilidad.preguntaPositivo}"/>
+                            <h:outputText escape="false" value="#{PreguntaUsabilidadController.doHtmlToText(item2.idPreguntaUsabilidad.preguntaPositivo)}"/>
                         </p:column>
                         <p:column sortBy="#{item2.idUsuario.cuenta}">
                             <f:facet name="header">
@@ -164,7 +164,7 @@
                         <f:facet name="header">
                             <h:commandLink value="Exportar">
                                 <p:graphicImage value="/icono/csv.png" width="24"/>
-                                <p:dataExporter type="csv" target="tablaCuestionario" fileName="tablaCuestionario-#{CuestionarioUsabilidadController.idMu}" />
+                                <p:dataExporter type="csv" target="tablaCuestionario" fileName="tablaCuestionario-#{CuestionarioUsabilidadController.tipoCuestionario}" />
                             </h:commandLink>
                         </f:facet>
                         <p:column >
@@ -178,7 +178,7 @@
                             <f:facet name="header">
                                 <h:outputText value="Pregunta"/>
                             </f:facet>
-                            <h:outputText escape="false" value="#{item3.idPreguntaUsabilidad.preguntaPositivo}"/>
+                            <h:outputText escape="false" value="#{PreguntaUsabilidadController.doHtmlToText(item3.idPreguntaUsabilidad.preguntaPositivo)}"/>
                         </p:column>
                         <p:column sortBy="#{item3.idUsuario.cuenta}">
                             <f:facet name="header">

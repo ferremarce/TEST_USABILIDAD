@@ -133,4 +133,8 @@ public class PreguntaUsabilidadController implements Serializable {
             }
         }
     }
+
+    public String doHtmlToText(String html) {
+        return JSFutil.html2text(html);
+    }
 }

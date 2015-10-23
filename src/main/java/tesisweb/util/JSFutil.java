@@ -30,6 +30,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import org.jsoup.Jsoup;
 import org.mindrot.jbcrypt.BCrypt;
 import tesisweb.ejb.tienda.entity.Cliente;
 import tesisweb.ejb.tienda.entity.Usuario;
@@ -626,5 +627,9 @@ public class JSFutil implements Serializable {
             Logger.getLogger(JSFutil.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public static String html2text(String html) {
+        return Jsoup.parse(html).text();
     }
 }
