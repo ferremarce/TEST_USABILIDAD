@@ -251,4 +251,8 @@ public class Usuario implements Serializable {
     public String toString() {
         return this.getNombres() + "-" + this.getApellidos();
     }
+
+    public String toUsuarioString() {
+        return this.cuenta + "-" + this.idUsuario;
+    }
 }

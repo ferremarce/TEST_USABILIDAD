@@ -22,7 +22,7 @@
                     <f:facet name="header">
                         <h:outputText value="Cuenta"/>
                     </f:facet>
-                    <h:outputText value="#{index+1}. #{item.cuenta}"/>
+                    <h:outputText value="#{index+1}. #{item.toUsuarioString()}"/>
                 </p:column>
                 <p:column sortBy="#{item.apellidos}">
                     <f:facet name="header">
