@@ -104,6 +104,12 @@
                             <h:outputText rendered="#{item2.idPreguntaUsabilidad.idMecanismoUsabilidad!=null}" value="#{index2+1}. #{item2.idPreguntaUsabilidad.idMecanismoUsabilidad}"/>
                             <h:outputText rendered="#{item2.idPreguntaUsabilidad.idMecanismoUsabilidad==null}" value="#{index2+1}. SUS"/>
                         </p:column>
+                        <p:column sortBy="#{item2.idPreguntaUsabilidad.idPreguntaUsabilidad}">
+                            <f:facet name="header">
+                                <h:outputText value="idPregunta"/>
+                            </f:facet>
+                            <h:outputText value="#{item2.idPreguntaUsabilidad.idPreguntaUsabilidad}"/>
+                        </p:column>
                         <p:column sortBy="#{item2.idPreguntaUsabilidad.preguntaPositivo}">
                             <f:facet name="header">
                                 <h:outputText value="Pregunta"/>
@@ -177,6 +183,12 @@
                             </f:facet>
                             <h:outputText rendered="#{item3.idPreguntaUsabilidad.idMecanismoUsabilidad!=null}" value="#{index2+1}. #{item3.idPreguntaUsabilidad.idMecanismoUsabilidad}"/>
                             <h:outputText rendered="#{item3.idPreguntaUsabilidad.idMecanismoUsabilidad==null and item3.idPreguntaUsabilidad!=null}" value="#{index2+1}. SUS"/>
+                        </p:column>
+                        <p:column sortBy="#{item3.idPreguntaUsabilidad.idPreguntaUsabilidad}">
+                            <f:facet name="header">
+                                <h:outputText value="idPregunta"/>
+                            </f:facet>
+                            <h:outputText value="#{item3.idPreguntaUsabilidad.idPreguntaUsabilidad}"/>
                         </p:column>
                         <p:column sortBy="#{item3.idPreguntaUsabilidad.preguntaPositivo}">
                             <f:facet name="header">

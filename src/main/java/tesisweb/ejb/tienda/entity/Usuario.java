@@ -215,7 +215,7 @@ public class Usuario implements Serializable {
     }
 
     public String getIpConexion() {
-        return ipConexion;
+        return ipConexion.replace(",", " ");
     }
 
     public void setIpConexion(String ipConexion) {
