@@ -215,7 +215,11 @@ public class Usuario implements Serializable {
     }
 
     public String getIpConexion() {
-        return ipConexion.replace(",", " ");
+        String cadena="";
+        if (this.ipConexion!=null){
+            cadena=ipConexion.replace(",", " ");
+        }
+        return cadena;
     }
 
     public void setIpConexion(String ipConexion) {
