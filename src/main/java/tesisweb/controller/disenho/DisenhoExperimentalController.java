@@ -16,9 +16,12 @@ import javax.ejb.EJBException;
 import javax.inject.Inject;
 import tesisweb.ejb.experimento.entity.DisenhoExperimental;
 import tesisweb.ejb.experimento.entity.GrupoMatrizExperimental;
+import tesisweb.ejb.experimento.entity.MecanismoUsabilidad;
 import tesisweb.ejb.experimento.entity.OrdenExposicionMuGrupo;
 import tesisweb.ejb.experimento.facade.DisenhoExperimentalFacade;
 import tesisweb.ejb.experimento.facade.GrupoMatrizExperimentalFacade;
+import tesisweb.ejb.experimento.facade.MecanismoUsabilidadFacade;
+import tesisweb.ejb.experimento.facade.OrdenExposicionMuGrupoFacade;
 import tesisweb.util.JSFutil;
 
 /**
@@ -39,6 +42,10 @@ public class DisenhoExperimentalController implements Serializable {
     private DisenhoExperimentalFacade disenhoExperimentalFacade;
     @Inject
     private GrupoMatrizExperimentalFacade grupoMatrizExperimentalFacade;
+    @Inject
+    MecanismoUsabilidadFacade mecanismoUsabilidadFacade;
+    @Inject
+    OrdenExposicionMuGrupoFacade ordenExposicionMuGrupoFacade;
     private DisenhoExperimental disenhoExperimental;
     private List<DisenhoExperimental> listaDisenhoExperimental;
     private Integer cantidadGrupo;
@@ -108,12 +115,21 @@ public class DisenhoExperimentalController implements Serializable {
                 }
                 this.disenhoExperimentalFacade.create(disenhoExperimental);
                 GrupoMatrizExperimental gme;
+                OrdenExposicionMuGrupo orden;
                 for (int i = 1; i <= this.cantidadGrupo; i++) {
                     gme = new GrupoMatrizExperimental();
                     gme.setCantidadParticipante(0);
                     gme.setIdDisenho(disenhoExperimental);
                     gme.setNombreGrupo("GRUPO " + i);
                     this.grupoMatrizExperimentalFacade.create(gme);
+                    for(MecanismoUsabilidad mu: this.mecanismoUsabilidadFacade.findAll()){
+                        orden=new OrdenExposicionMuGrupo();
+                        orden.setEstado(Boolean.TRUE);
+                        orden.setIdGrupo(gme);
+                        orden.setIdMu(mu);
+                        orden.setOrden(0);
+                        this.ordenExposicionMuGrupoFacade.create(orden);
+                    }
                 }
             }
             JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("UpdateSuccess"));

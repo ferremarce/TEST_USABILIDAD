@@ -23,8 +23,6 @@ import tesisweb.util.JSFutil;
  *
  * @author root
  */
-
-
 @Named(value = "GrupoMatrizExperimentalController")
 @SessionScoped
 public class GrupoMatrizExperimentalController implements Serializable {
@@ -85,6 +83,11 @@ public class GrupoMatrizExperimentalController implements Serializable {
 
     public String doVerMatrizGrupo(DisenhoExperimental de) {
         this.disenhoExperimental = de;
+        this.doListar();
+        return "/disenho/VerMatrizGrupo";
+    }
+
+    public String doRefreshMatrizGrupo() {
         this.doListar();
         return "/disenho/VerMatrizGrupo";
     }

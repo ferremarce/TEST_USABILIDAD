@@ -112,16 +112,34 @@ public class OrdenExposicionMuGrupoController implements Serializable {
         }
     }
 
+    public void doUpdate(OrdenExposicionMuGrupo o) {
+        try {
+            ordenExposicionMuGrupoFacade.edit(o);
+            //this.grupoMatrizExperimentalController.doListar();
+            JSFutil.addSuccessMessage("Orden actualizado exitosamente");
+        } catch (EJBException ex) {
+            String msg = "";
+            Throwable cause = ex.getCause();
+            if (cause != null) {
+                msg = cause.getLocalizedMessage();
+            }
+            if (msg.length() > 0) {
+                JSFutil.addErrorMessage(msg);
+            } else {
+                JSFutil.addErrorMessage(ex, JSFutil.getMyBundle().getString("UpdateError"));
+            }
+        }
+    }
+
     public String doStringOrdenExposicionMU(GrupoMatrizExperimental g) {
         String exposicion = "";
         for (OrdenExposicionMuGrupo orden : g.getOrdenExposicionMuGrupoList()) {
-            exposicion += orden.toString()+"\n";
+            exposicion += orden.toString() + "\n";
         }
         return exposicion;
     }
 
     //METODOS LISTENER
-
     public void doCrearFormDialog(GrupoMatrizExperimental g) {
         this.ordenExposicionMuGrupo = new OrdenExposicionMuGrupo();
         this.ordenExposicionMuGrupo.setIdGrupo(g);

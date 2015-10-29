@@ -12,9 +12,12 @@
             <p:growl globalOnly="true" id="messages"/>
             <h:outputText style="font-size: 22px !important;font-weight: bold" value="#{GrupoMatrizExperimentalController.disenhoExperimental.descripcionDisenho}-#{GrupoMatrizExperimentalController.disenhoExperimental.contexto}"/>
             <p/>
-            <p:commandButton immediate="true" value="Cerar Contador de Participantes" ajax="true" update="@form" action="#{GrupoMatrizExperimentalController.doCerarContadorParticipantes()}" >
-                <p:confirm header="Confirmación" message="#{bundle.ConfirmacionMensaje}" icon="ui-icon-alert" />
-            </p:commandButton>
+            <p:panel>
+                <p:commandButton immediate="true" value="Cerar Contador de Participantes" ajax="true" update="@form" action="#{GrupoMatrizExperimentalController.doCerarContadorParticipantes()}" >
+                    <p:confirm header="Confirmación" message="#{bundle.ConfirmacionMensaje}" icon="ui-icon-alert" />
+                </p:commandButton>
+                <p:commandButton immediate="true" ajax="true" update="@form" value="Refrescar" action="#{GrupoMatrizExperimentalController.doRefreshMatrizGrupo()}"  />
+            </p:panel>
             <p:dataTable id="dataTableGrupo" value="#{GrupoMatrizExperimentalController.listaGrupoMatrizExperimental}" var="item" emptyMessage="#{bundle.SinRegistrosMensaje}">
                 <p:column style="width:16px">
                     <p:rowToggler />
@@ -25,32 +28,40 @@
                     </f:facet>
                     <h:outputText value="#{item.nombreGrupo} - [Participantes: #{item.cantidadParticipante}]" />
                     <br/>
-                    <ui:repeat value="#{item.ordenExposicionMuGrupoList}" var="ord">
-                        <h:panelGrid columns="3">
-                            <h:outputText value="#{ord.orden}-#{ord.idMu}-#{ord.estado}"/>
-                        </h:panelGrid>
-                    </ui:repeat>
+                    <table class="panelNoBorder">
+                        <tr>
+                            <ui:repeat value="#{item.ordenExposicionMuGrupoList}" var="ord">
+                                <td>#{ord.orden}-#{ord.idMu}<br/>#{ord.estado?'1':'0'}</td>
+                            </ui:repeat>
+                        </tr>
+                    </table>
                 </p:column>
                 <p:column style="width: 150px">
-                    <p:commandButton immediate="true" value="Agregar Orden" update=":formMatriz:panelOrdenExposicion" action="#{OrdenExposicionMuGrupoController.doCrearFormDialog(item)}" oncomplete="PF('ordenExposicionMU').show();"/>
+                    <p:commandButton immediate="true" value="Agregar Orden" update=":formDlg:panelOrdenExposicion" action="#{OrdenExposicionMuGrupoController.doCrearFormDialog(item)}" oncomplete="PF('ordenExposicionMU').show();"/>
                 </p:column>
                 <p:rowExpansion>
                     <p:dataTable id="dataTableOrdenExposicion" var="ordenExposicion" value="#{item.ordenExposicionMuGrupoList}">
                         <p:column headerText="Orden">
-                            <h:outputText value="#{ordenExposicion.orden}" />
+                            <p:inputText size="5" value="#{ordenExposicion.orden}" >
+                                <p:ajax event="change" update=":formMatriz:messages" listener="#{OrdenExposicionMuGrupoController.doUpdate(ordenExposicion)}"/>
+                            </p:inputText>
                         </p:column>
                         <p:column headerText="Mecanismo de Usabilidad">
                             <h:outputText value="#{ordenExposicion.idMu.nombreMecanismo}" />
                         </p:column>
                         <p:column headerText="Activado?">
-                            <h:outputText value="#{ordenExposicion.estado}" />
+                            <p:selectBooleanCheckbox value="#{ordenExposicion.estado}">
+                                <p:ajax update=":formMatriz:messages" listener="#{OrdenExposicionMuGrupoController.doUpdate(ordenExposicion)}"/>
+                            </p:selectBooleanCheckbox>
                         </p:column>
-                        <p:column>
+                        <p:column>                           
                             <p:commandButton immediate="true" value="Borrar" update="dataTableOrdenExposicion" action="#{OrdenExposicionMuGrupoController.doBorrar(ordenExposicion)}"/>
                         </p:column>
                     </p:dataTable>
                 </p:rowExpansion>
             </p:dataTable>
+        </h:form>
+        <h:form id="formDlg">
             <p:dialog header="Orden de Exposición de MUs" widgetVar="ordenExposicionMU" minHeight="40">
                 <h:panelGrid id="panelOrdenExposicion">
                     <h:outputText value="Grupo: #{OrdenExposicionMuGrupoController.ordenExposicionMuGrupo.idGrupo.nombreGrupo}"/>
@@ -68,7 +79,7 @@
                         <p:message for="estado"/>
                     </p:panelGrid>
                     <p:panel>
-                        <p:commandButton value="Aceptar" update="@form" action="#{OrdenExposicionMuGrupoController.doGuardar()}"/>
+                        <p:commandButton value="Aceptar" update=":formMatriz" action="#{OrdenExposicionMuGrupoController.doGuardar()}"/>
                     </p:panel>
                 </h:panelGrid>
             </p:dialog>
