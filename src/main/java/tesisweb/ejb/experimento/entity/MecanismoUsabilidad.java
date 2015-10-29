@@ -13,9 +13,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -44,6 +42,9 @@ public class MecanismoUsabilidad implements Serializable {
     @Size(max = 255)
     @Column(name = "NOMBRE_MECANISMO")
     private String nombreMecanismo;
+    @Size(max = 10)
+    @Column(name = "ABREVIATURA")
+    private String abreviatura;
     @Lob
     @Column(name = "INFORMACION_ADICIONAL")
     private byte[] informacionAdicional;
@@ -75,6 +76,14 @@ public class MecanismoUsabilidad implements Serializable {
 
     public void setNombreMecanismo(String nombreMecanismo) {
         this.nombreMecanismo = nombreMecanismo;
+    }
+
+    public String getAbreviatura() {
+        return abreviatura;
+    }
+
+    public void setAbreviatura(String abreviatura) {
+        this.abreviatura = abreviatura;
     }
 
     public byte[] getInformacionAdicional() {

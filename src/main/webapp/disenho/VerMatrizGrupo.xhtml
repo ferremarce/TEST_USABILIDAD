@@ -28,10 +28,10 @@
                     </f:facet>
                     <h:outputText value="#{item.nombreGrupo} - [Participantes: #{item.cantidadParticipante}]" />
                     <br/>
-                    <table class="panelNoBorder">
+                    <table>
                         <tr>
                             <ui:repeat value="#{item.ordenExposicionMuGrupoList}" var="ord">
-                                <td>#{ord.orden}-#{ord.idMu}<br/>#{ord.estado?'1':'0'}</td>
+                                <td style="text-align: center">#{ord.orden}-#{ord.idMu.abreviatura}<br/>#{ord.estado?'1':'0'}</td>
                             </ui:repeat>
                         </tr>
                     </table>
