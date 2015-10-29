@@ -45,13 +45,13 @@ public class PreferenceCSS extends HttpServlet {
             Preference p = preferenceDAO.find(Integer.parseInt(parametro));
             String size = p.getTamanho() + "%";
             String family = "'" + p.getFuente() + "'";
-            
+
             cadena = "label, .texto-no-tachado"
                     + "{\n"
                     + "    font-size: " + size + " !important;\n"
                     + "    font-family: " + family + " !important; \n"
                     + "}\n"
-                    +".ui-widget,"
+                    + ".ui-widget,"
                     + ".ui-widget .ui-widget,"
                     + ".ui-datalist-item,"
                     + ".ui-panel-title "
@@ -60,7 +60,7 @@ public class PreferenceCSS extends HttpServlet {
                     + "    font-family: " + family + " !important; \n"
                     //+ "     background-color: #c2c2c2 ; \n"
                     + "}";
-            
+
 //            cadena = "body, h1, h2, h3, span, .ui-layout \n"
 //                    + "{\n"
 //                    + "    font-family: " + family + " !important; \n"
@@ -95,16 +95,17 @@ public class PreferenceCSS extends HttpServlet {
 //                    
             out.println(cadena);
         } catch (Exception ex) {
-            cadena = ".ui-widget,\n"
-                    + ".ui-widget-header,\n"
-                    + ".ui-widget-content,\n"
-                    + ".ui-datatable ui-widget,\n"
-                    + ".ui-datatable-data ui-widget-content,\n"
-                    + ".ui-column-title,\n"
-                    + ".ui-toolbar\n"
-                    + "{\n"
-                    + "    font-size: 1em !important;\n"
-                    + "}";
+//            cadena = ".ui-widget,\n"
+//                    + ".ui-widget-header,\n"
+//                    + ".ui-widget-content,\n"
+//                    + ".ui-datatable ui-widget,\n"
+//                    + ".ui-datatable-data ui-widget-content,\n"
+//                    + ".ui-column-title,\n"
+//                    + ".ui-toolbar\n"
+//                    + "{\n"
+//                    + "    font-size: 1em !important;\n"
+//                    + "}";
+            cadena = "";
             out.println(cadena);
         }
         out.close();

@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.ToggleEvent;
 import tesisweb.controller.disenho.GrupoMatrizExperimentalController;
+import tesisweb.controller.experimento.ExperimentoController;
 import tesisweb.ejb.experimento.entity.GrupoMatrizExperimental;
 import tesisweb.ejb.experimento.entity.OrdenExposicionMuGrupo;
 import tesisweb.ejb.experimento.facade.GrupoMatrizExperimentalFacade;
@@ -49,6 +50,8 @@ public class LoginManager implements Serializable {
     CarritoFE carritoFE;
     @Inject
     ArticuloDAO articuloDAO;
+    @Inject
+    ExperimentoController experimentoController;
     private final String USER_SESSION_KEY = "user";
     private final String USER_SESSION_LANGUAGE = "language";
     private String cuenta;
@@ -327,13 +330,17 @@ public class LoginManager implements Serializable {
 
     public Integer getIdPreferenciaUsuario() {
         try {
-            if (JSFutil.getUsuarioConectado() != null) {
-                return JSFutil.getUsuarioConectado().getIdPreference().getIdPreference();
+            if (experimentoController.getClickPopupFicticiaPR() || experimentoController.getClickPopupPR()) {
+                if (JSFutil.getUsuarioConectado() != null) {
+                    return JSFutil.getUsuarioConectado().getIdPreference().getIdPreference();
+                } else {
+                    return -1;
+                }
             } else {
-                return 0;
+                return -1;
             }
         } catch (Exception e) {
-            return 0;
+            return -1;
         }
     }
 
@@ -405,7 +412,7 @@ public class LoginManager implements Serializable {
             this.contadorPR = 0;
         }
         this.contadorPR++;
-        if (this.contadorPR > 10 && this.contadorPRhabilitado) {
+        if (this.contadorPR > 4 && this.contadorPRhabilitado) {
             this.contadorPR = 0;
             RequestContext context = RequestContext.getCurrentInstance();
             context.execute("PF('msgPreference').show();");

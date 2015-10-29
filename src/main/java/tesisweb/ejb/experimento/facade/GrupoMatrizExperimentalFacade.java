@@ -41,7 +41,7 @@ public class GrupoMatrizExperimentalFacade extends AbstractFacade<GrupoMatrizExp
     }
 
     public GrupoMatrizExperimental findSiguienteGrupoExperimental() {
-        Query q = em.createQuery("SELECT a FROM GrupoMatrizExperimental a WHERE a.idDisenho.estado=true AND a.cantidadParticipante NOT IN (SELECT MAX(b.cantidadParticipante) FROM GrupoMatrizExperimental b)");
+        Query q = em.createQuery("SELECT a FROM GrupoMatrizExperimental a WHERE a.idDisenho.estado=true AND a.cantidadParticipante NOT IN (SELECT MAX(b.cantidadParticipante) FROM GrupoMatrizExperimental b WHERE b.idDisenho.estado=true)");
         //LOG.log(Level.INFO, "findAllbyTipo: {0}", sql);
         List<GrupoMatrizExperimental> tr = q.getResultList();
         GrupoMatrizExperimental grupoForUpdate;

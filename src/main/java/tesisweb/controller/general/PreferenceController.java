@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
 import org.primefaces.context.RequestContext;
+import tesisweb.controller.experimento.ExperimentoController;
 import tesisweb.ejb.tienda.entity.Preference;
 import tesisweb.ejb.tienda.facade.PreferenceDAO;
 import tesisweb.util.JSFutil;
@@ -35,7 +36,9 @@ public class PreferenceController implements Serializable {
 
     @Inject
     private PreferenceDAO preferenceDAO;
-    private Preference preference=new Preference();
+    @Inject
+    private ExperimentoController experimentoController;
+    private Preference preference = new Preference();
     private List<Preference> listaPreference;
     private int sizeFont = 100;
 
@@ -91,6 +94,7 @@ public class PreferenceController implements Serializable {
         }
         return "/frontend/index";
     }
+
     public String doCancelar() {
         return "/frontend/index";
     }
@@ -145,8 +149,8 @@ public class PreferenceController implements Serializable {
 
     public void doCambiarPreferenciaUsuario() {
         this.doCambiarPreferencia(JSFutil.getUsuarioConectado().getIdPreference());
-         RequestContext context = RequestContext.getCurrentInstance();
-            context.execute("PF('dlgPreference').show();");
+        RequestContext context = RequestContext.getCurrentInstance();
+        context.execute("PF('dlgPreference').show();");
     }
 
     public void doBorrar(Preference u) {
@@ -156,15 +160,26 @@ public class PreferenceController implements Serializable {
     }
 
     public String obtenerTema() {
+        String tema;
+        //Si hay un error en las preferencias -> blitzer
+        //Si es una tarea PR o PR ficticia -> se usa el theme del usuario
+        //Si es no es una tarea PR/PR ficticia -> redmond
         try {
-            Preference p = preferenceDAO.find(JSFutil.getUsuarioConectado().getIdPreference().getIdPreference());
-            if (p == null) {
-                return "cupertino";
+            System.out.println("Ficticia: " + experimentoController.getClickPopupFicticiaPR() + " PR: " + experimentoController.getClickPopupPR());
+            //Verificamos si es la tarea PR o la ficticia de PR se usa el style guardado del usuario
+            if (experimentoController.getClickPopupFicticiaPR() || experimentoController.getClickPopupPR()) {
+                Preference p = preferenceDAO.find(JSFutil.getUsuarioConectado().getIdPreference().getIdPreference());
+                if (p == null) {
+                    tema = "blitzer";
+                } else {
+                    tema = p.getTema();
+                }
             } else {
-                return p.getTema();
+                tema = "redmond";
             }
+            return tema;
         } catch (Exception ex) {
-            return "cupertino";
+            return "blitzer";
         }
     }
 

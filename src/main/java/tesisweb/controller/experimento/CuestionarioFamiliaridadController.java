@@ -131,10 +131,10 @@ public class CuestionarioFamiliaridadController implements Serializable {
     public String doGuardar() {
         try {
             //Guardar las opciones que tienen multiples selecciones
-            this.cuestionarioFamiliaridad.setParaqueUsasInternet(this.listParaQueUsasInternet.toString());
-            this.cuestionarioFamiliaridad.setQueAppUsa(this.listAppUsadasFrecuente.toString());
-            this.cuestionarioFamiliaridad.setIdioma(this.listIdiomas.toString());
-            this.cuestionarioFamiliaridad.setTiendasPreferidas(this.listTiendasPreferidas.toString());
+            this.cuestionarioFamiliaridad.setParaqueUsasInternet(this.listParaQueUsasInternet != null ? this.listParaQueUsasInternet.toString() : null);
+            this.cuestionarioFamiliaridad.setQueAppUsa(this.listAppUsadasFrecuente != null ? this.listAppUsadasFrecuente.toString() : null);
+            this.cuestionarioFamiliaridad.setIdioma(this.listIdiomas != null ? this.listIdiomas.toString() : null);
+            this.cuestionarioFamiliaridad.setTiendasPreferidas(this.listTiendasPreferidas != null ? this.listTiendasPreferidas.toString() : null);
             //Logout si existise ya un usuario
             loginManager.doLogout();
             Usuario u = new Usuario();
