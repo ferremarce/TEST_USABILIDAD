@@ -20,7 +20,7 @@
                         <h:panelGrid width="100%" columns="2">
                             <h:outputText style="font-size: 30px; font-weight: bold" value="TEST"/>
                             <p:outputPanel style="position: absolute; right: 10px">
-                                <h:outputText rendered="#{LoginManager.usuarioLogeado!=null}" value="[#{LoginManager.usuarioLogeado}]"/>
+                                <h:outputText rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.usuarioLogeado} [#{LoginManager.usuarioLogeado.idGrupoExperimental.idDisenho.contexto}]"/>
                                 <p:spacer height="20"/>
                                 <h:outputText rendered="#{ExperimentoController.debugMode}" value="ID_SESION: #{LoginManager.doGetSessionID()}"/>
                                 <p:spacer height="20"/>
@@ -67,7 +67,12 @@
                     <p:panel>
                         <h:panelGrid width="100%" columns="3">
                             <h:outputText value="&copy; tesisweb"/>
-                            <h:outputText value="Test"/>
+                            <h:outputLink value="mailto:jmferreira1978@gmail.com">
+                                <p:graphicImage height="16" width="16" value="/icono/mail.png"/>
+                                <f:param name="subject" value="Sobre&nbsp;Test&nbsp;Experimental" />
+                                <f:param name="body" value="Describa&nbsp;el&nbsp;error&nbsp;que&nbsp;tiene..." />
+                                <h:outputText value=" Contacte con el Administrador" />
+                            </h:outputLink>
                             <h:outputText value="2015"/>
                         </h:panelGrid>
                     </p:panel>

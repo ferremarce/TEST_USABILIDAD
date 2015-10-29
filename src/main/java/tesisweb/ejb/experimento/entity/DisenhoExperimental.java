@@ -8,6 +8,7 @@ package tesisweb.ejb.experimento.entity;
 import java.io.Serializable;
 import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,7 +50,7 @@ public class DisenhoExperimental implements Serializable {
     @Size(max = 255)
     @Column(name = "INFORMACION_DISENHO")
     private String informacionDisenho;
-    @OneToMany(mappedBy = "idDisenho")
+    @OneToMany(mappedBy = "idDisenho", cascade = CascadeType.REMOVE)
     private List<GrupoMatrizExperimental> grupoMatrizExperimentalList;
 
     public DisenhoExperimental() {

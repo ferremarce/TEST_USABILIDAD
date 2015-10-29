@@ -24,8 +24,14 @@
                         <h:outputText value="Grupo"/>
                     </f:facet>
                     <h:outputText value="#{item.nombreGrupo} - [Participantes: #{item.cantidadParticipante}]" />
+                    <br/>
+                    <ui:repeat value="#{item.ordenExposicionMuGrupoList}" var="ord">
+                        <h:panelGrid columns="3">
+                            <h:outputText value="#{ord.orden}-#{ord.idMu}-#{ord.estado}"/>
+                        </h:panelGrid>
+                    </ui:repeat>
                 </p:column>
-                <p:column>
+                <p:column style="width: 150px">
                     <p:commandButton immediate="true" value="Agregar Orden" update=":formMatriz:panelOrdenExposicion" action="#{OrdenExposicionMuGrupoController.doCrearFormDialog(item)}" oncomplete="PF('ordenExposicionMU').show();"/>
                 </p:column>
                 <p:rowExpansion>

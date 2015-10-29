@@ -151,15 +151,13 @@ public class CuestionarioFamiliaridadController implements Serializable {
             u.setFechaHoraConexion(JSFutil.getFechaHoraActual());
             HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
             u.setIpConexion(JSFutil.getClientIpAddr(request));
+            this.grupoUsuarioLogin = grupoMatrizExperimentalFacade.findSiguienteGrupoExperimental();
+            u.setIdGrupoExperimental(this.grupoUsuarioLogin);
             //Crear el usuario autologeable
             usuarioDAO.create(u);
             this.cuestionarioFamiliaridad.setIdUsuario(u);
             //Crear el cuestionario asociado a este usuario
             cuestionarioFamiliaridadDAO.create(cuestionarioFamiliaridad);
-            //Recuperar un grupo aleatoriamente y asignar al usuario
-            this.grupoUsuarioLogin = grupoMatrizExperimentalFacade.findSiguienteGrupoExperimental();
-            u.setIdGrupoExperimental(this.grupoUsuarioLogin);
-            usuarioDAO.update(u);
             //Activar o desactivar los mecanismos de usabilidad
             for (OrdenExposicionMuGrupo orden : this.grupoUsuarioLogin.getOrdenExposicionMuGrupoList()) {
                 switch (orden.getIdMu().getIdMu()) {
@@ -184,7 +182,7 @@ public class CuestionarioFamiliaridadController implements Serializable {
             if (cause != null) {
                 msg = cause.getLocalizedMessage();
             }
-            JSFutil.addErrorMessage("Se ha producido un error durante la inicialización del experimento. Favor póngase en contacto con el administrador al pie de la página");
+            JSFutil.addErrorMessage("Se ha producido un error durante la inicialización del experimento. Es probable que el Entorno Experimental esté temporalmente inactivo. Favor póngase en contacto con el administrador al pie de la página");
             if (msg.length() > 0) {
                 JSFutil.addErrorMessage(msg);
             } else {

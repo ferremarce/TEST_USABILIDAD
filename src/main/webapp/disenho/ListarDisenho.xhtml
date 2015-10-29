@@ -11,23 +11,56 @@
     <ui:define name="content">
         <h:form>
             <p:growl globalOnly="true" id="messages"/>
+            <p:panel>
+                <p:commandButton ajax="false" value="Nuevo" action="#{DisenhoExperimentalController.doCrearForm()}"/>
+            </p:panel>
             <p:dataTable value="#{DisenhoExperimentalController.listaDisenhoExperimental}" var="item">
+                <p:column style="width: 50px">
+                    <f:facet name="header">
+                        <h:outputText value="estado"/>
+                    </f:facet>
+                    <p:selectBooleanCheckbox value="#{item.estado}">
+                        <p:ajax update="@form" listener="#{DisenhoExperimentalController.doUpdateEstadoDisenho(item)}"/>
+                    </p:selectBooleanCheckbox>
+                </p:column>
                 <p:column>
                     <f:facet name="header">
                         <h:outputText value="DescripcionDisenho"/>
                     </f:facet>
-                    <h:outputText value="#{item.descripcionDisenho}"/>
-                </p:column>
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Contexto"/>
-                    </f:facet>
+                    <h:outputText value="#{item.descripcionDisenho} "/>
+                    <p:commandButton ajax="false" value="Editar" action="#{DisenhoExperimentalController.doEditarForm(item)}"/>
+                    <p:separator/>
                     <h:outputText value="#{item.contexto}"/>
                 </p:column>
-                <p:column>
-                    <p:commandButton ajax="false" value="Ver Matriz" action="#{GrupoMatrizExperimentalController.doVerMatrizGrupo(item)}"/>
-                    <p:commandButton ajax="false" value="Ver Métricas" action="#{MetricaController.doListMetricaDisenho(item)}"/>
-                    <p:commandButton ajax="false" value="Ver Sujetos Exp." action="#{UsuarioController.doListarSujetosForm(item.idDisenho)}"/>
+                <p:column style="width: 150px">
+                    <p:menuButton value="Acción"> 
+                        <p:menuitem>
+                            <p:commandLink styleClass="ui-menuitem-link" ajax="false"  action="#{GrupoMatrizExperimentalController.doVerMatrizGrupo(item)}">
+                                <h:outputText styleClass="ui-menuitem-icon ui-icon ui-icon-pencil" />
+                                <h:outputText styleClass="ui-menuitem-text" value="Ver Matriz" />
+                            </p:commandLink>
+                        </p:menuitem>
+                        <p:menuitem>
+                            <p:commandLink styleClass="ui-menuitem-link" ajax="false"  action="#{MetricaController.doListMetricaDisenho(item)}">
+                                <h:outputText styleClass="ui-menuitem-icon ui-icon ui-icon-pencil" />
+                                <h:outputText styleClass="ui-menuitem-text" value="Ver Métricas" />
+                            </p:commandLink>
+                        </p:menuitem>
+                        <p:menuitem>
+                            <p:commandLink styleClass="ui-menuitem-link" ajax="false"  action="#{UsuarioController.doListarSujetosForm(item.idDisenho)}">
+                                <h:outputText styleClass="ui-menuitem-icon ui-icon ui-icon-pencil" />
+                                <h:outputText styleClass="ui-menuitem-text" value="Ver Sujetos" />
+                            </p:commandLink>
+                        </p:menuitem>
+                        <p:separator/>
+                        <p:menuitem>
+                            <p:commandLink styleClass="ui-menuitem-link" ajax="false" action="#{DisenhoExperimentalController.doBorrar(item)}" >
+                                <h:outputText styleClass="ui-menuitem-icon ui-icon ui-icon-close" />
+                                <h:outputText styleClass="ui-menuitem-text" value="#{bundle.EliminarBoton}" />
+                                <p:confirm header="Confirmación" message="#{bundle.ConfirmacionMensaje}" icon="ui-icon-alert" />
+                            </p:commandLink>
+                        </p:menuitem>
+                    </p:menuButton>
                 </p:column>
             </p:dataTable>
         </h:form>

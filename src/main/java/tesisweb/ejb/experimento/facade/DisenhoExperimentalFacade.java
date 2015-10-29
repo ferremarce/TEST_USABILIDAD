@@ -16,6 +16,7 @@ import tesisweb.ejb.experimento.entity.DisenhoExperimental;
  */
 @Stateless
 public class DisenhoExperimentalFacade extends AbstractFacade<DisenhoExperimental> {
+
     @PersistenceContext(unitName = "tesisweb_tesisweb_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -27,5 +28,5 @@ public class DisenhoExperimentalFacade extends AbstractFacade<DisenhoExperimenta
     public DisenhoExperimentalFacade() {
         super(DisenhoExperimental.class);
     }
-    
+
 }
