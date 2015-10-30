@@ -58,14 +58,14 @@
                                         <p:outputLabel value="#{bundle.lblTituloGarantia}"/>
                                     </h:panelGrid>
                                 </f:facet>
-                                <h:panelGrid columns="2">
+                                <p:panelGrid styleClass="panelNoBorder" columns="2">
                                     <p:graphicImage value="/icono/sticker1.png"/>
                                     <p:commandLink ajax="false" value="#{bundle.lblGarantiaSeguridad}" action="#{TiendaController.doGarantiaForm(1)}"/>
                                     <p:graphicImage value="/icono/sticker1.png"/>
                                     <p:commandLink ajax="false" value="#{bundle.lblGarantiaDevolucion}" action="#{TiendaController.doGarantiaForm(2)}"/>
                                     <p:graphicImage value="/icono/sticker1.png"/>
                                     <p:commandLink ajax="false" value="#{bundle.lblGarantiaPrivacidad}" action="#{TiendaController.doGarantiaForm(3)}"/>
-                                </h:panelGrid>
+                                </p:panelGrid>
                             </p:panel>
                         </h:form>
                     </p:outputPanel>
@@ -107,11 +107,11 @@
                                 <h:panelGrid width="100%">
                                     <h:panelGrid style="position: relative; left: 20px" columns="6">
                                         <p:graphicImage value="/icono/store.png"/>
-                                        <p:outputLabel value="#{bundle.lblAyuda}"/>
+                                        <p:commandLink ajax="false" action="/frontend/legal/noDisponible"  value="#{bundle.lblAyuda}"/>
                                         <p:graphicImage value="/icono/help.png"/>
-                                        <p:outputLabel value="#{bundle.lblNuestrasTiendas}"/>
+                                        <p:commandLink ajax="false" action="/frontend/legal/noDisponible" value="#{bundle.lblNuestrasTiendas}"/>
                                         <p:graphicImage value="/icono/call-center.png"/>
-                                        <p:outputLabel value="#{bundle.lblAtencionCliente}"/>
+                                        <p:commandLink ajax="false" action="/frontend/legal/atencionCliente" value="#{bundle.lblAtencionCliente}"/>
                                     </h:panelGrid>
                                 </h:panelGrid>
                             </h:panelGrid>
@@ -169,29 +169,31 @@
                         </h:form>
                     </p:dialog>
                     <ui:insert name="content">Content</ui:insert>
-                    <p:panel>
-                        <h:panelGrid width="100%" columns="4">
-                            <h:panelGrid columns="2">
-                                <p:graphicImage value="/icono/store.png"/>
-                                <p:outputLabel value="#{bundle.lblAyuda}"/>
+                    <h:form>
+                        <p:panel>
+                            <h:panelGrid width="100%" columns="4">
+                                <h:panelGrid columns="2">
+                                    <p:graphicImage value="/icono/store.png"/>
+                                    <p:commandLink ajax="false" action="/frontend/legal/noDisponible" value="#{bundle.lblAyuda}"/>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2">
+                                    <p:graphicImage value="/icono/help.png"/>
+                                    <p:commandLink ajax="false" action="/frontend/legal/noDisponible" value="#{bundle.lblNuestrasTiendas}"/>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2">
+                                    <p:graphicImage value="/icono/call-center.png"/>
+                                    <p:commandLink ajax="false" action="/frontend/legal/atencionCliente" value="#{bundle.lblAtencionCliente}"/>
+                                </h:panelGrid>
+                                <p:graphicImage value="/icono/sello-garantia.png"/>
                             </h:panelGrid>
-                            <h:panelGrid columns="2">
-                                <p:graphicImage value="/icono/help.png"/>
-                                <p:outputLabel value="#{bundle.lblNuestrasTiendas}"/>
-                            </h:panelGrid>
-                            <h:panelGrid columns="2">
-                                <p:graphicImage value="/icono/call-center.png"/>
-                                <p:outputLabel value="#{bundle.lblAtencionCliente}"/>
-                            </h:panelGrid>
-                            <p:graphicImage value="/icono/sello-garantia.png"/>
-                        </h:panelGrid>
-                        <f:facet name="footer">
-                            <p class="ui-state-default ui-corner-all">
-                                <p:graphicImage value="/img/cc-logos.jpeg"/>
-                                <p:graphicImage style="position: absolute; right: 5px" value="/img/social-icon.png"/>
-                            </p>
-                        </f:facet>
-                    </p:panel>
+                            <f:facet name="footer">
+                                <p class="ui-state-default ui-corner-all">
+                                    <p:graphicImage value="/img/cc-logos.jpeg"/>
+                                    <p:graphicImage style="position: absolute; right: 5px" value="/img/social-icon.png"/>
+                                </p>
+                            </f:facet>
+                        </p:panel>
+                    </h:form>
                     <h:form>
                         <p:outputPanel id="panelContadorPR">
                             <h:outputText rendered="false" style="font-size: 4px !important" id="txt_count" value="Contador: #{LoginManager.contadorPR} - (PopupPR #{ExperimentoController.clickPopupPR})" />

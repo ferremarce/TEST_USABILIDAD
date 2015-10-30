@@ -75,8 +75,8 @@
                         <p:ajax update="panelPago" listener="#{CarritoFE.mensajeCodigo()}"/>
                     </p:commandButton>
                     <p:outputPanel>
-                        <b:alert rendered="#{CarritoFE.codigoPromocional==2015}" severity="success"><h:panelGroup styleClass="ui-icon ui-icon-check" /> </b:alert>
-                        <b:alert rendered="#{CarritoFE.codigoPromocional!=2015 and CarritoFE.codigoPromocional!=null}" severity="danger"><h:panelGroup styleClass="ui-icon ui-icon-close" /></b:alert>
+                        <b:alert rendered="#{CarritoFE.codigoPromocional==2015}" severity="success"><p:graphicImage value="/icono/check.png"/> </b:alert>
+                        <b:alert rendered="#{CarritoFE.codigoPromocional!=2015 and CarritoFE.codigoPromocional!=null}" severity="danger"><p:graphicImage value="/icono/close.png"/></b:alert>
                     </p:outputPanel>
                 </h:panelGrid>
                 <f:facet name="footer">

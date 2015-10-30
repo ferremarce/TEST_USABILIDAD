@@ -238,7 +238,7 @@ public class PreferenceController implements Serializable {
 
     public Map<String, String> doGetFonts() {
         Map<String, String> fonts = new TreeMap<>();
-        fonts.put("Droid Sans", "Droid Sans");
+        fonts.put("Droid Sans (Recomendado)", "Droid Sans");
         fonts.put("Exo", "Exo");
         fonts.put("Times New Roman", "Times New Roman");
         fonts.put("Verdana", "Verdana");

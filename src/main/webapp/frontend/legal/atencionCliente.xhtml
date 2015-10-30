@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/templateCliente.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="content">
+        <h:form>
+            <h:panelGrid width="100%" rowClasses="top" columns="2">
+                <p:panel>
+                    <f:facet name="header">
+                        <h:panelGrid columns="2">
+                            <p:graphicImage value="/icono/sign-in.png"/>
+                            <p:outputLabel value="#{bundle.lblContactos}"/>
+                        </h:panelGrid>
+                    </f:facet>
+                    <p:panelGrid columns="2">
+                        <p:graphicImage width="32" height="32" value="/icono/store.png"/>
+                        <h:outputText value="GRAN VÍA, 29 28013 Madrid"/>
+                        <p:graphicImage width="32" height="32" value="/icono/phone.png"/>
+                        <h:outputText value="902026402 / 915227758"/>
+                        <p:graphicImage width="32" height="32" value="/icono/mail.png"/>
+                        <h:outputText value="atencion@quickstore.com"/>
+                    </p:panelGrid>
+                </p:panel>
+                <p:panel>
+                    <f:facet name="header">
+                        <h:panelGrid columns="2">
+                            <p:graphicImage value="/icono/sello-garantia.png"/>
+                            <p:outputLabel value="#{bundle.lblTituloGarantia}"/>
+                        </h:panelGrid>
+                    </f:facet>
+                    <p:panelGrid columns="2">
+                        <p:graphicImage value="/icono/sticker1.png"/>
+                        <p:commandLink ajax="false" value="#{bundle.lblGarantiaSeguridad}" action="#{TiendaController.doGarantiaForm(1)}"/>
+                        <p:graphicImage value="/icono/sticker1.png"/>
+                        <p:commandLink ajax="false" value="#{bundle.lblGarantiaDevolucion}" action="#{TiendaController.doGarantiaForm(2)}"/>
+                        <p:graphicImage value="/icono/sticker1.png"/>
+                        <p:commandLink ajax="false" value="#{bundle.lblGarantiaPrivacidad}" action="#{TiendaController.doGarantiaForm(3)}"/>
+                    </p:panelGrid>
+                </p:panel>
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
