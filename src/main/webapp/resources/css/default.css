@@ -5,7 +5,10 @@
 @import url(https://fonts.googleapis.com/css?family=Megrim);
 @import url(https://fonts.googleapis.com/css?family=Exo);
 @import url(https://fonts.googleapis.com/css?family=Droid+Sans);
-
+.ui-widget,
+.ui-widget .ui-widget{
+    font-size: 15px;
+}
 .ui-spinner-input{
     width: 90%;
 }
@@ -48,6 +51,12 @@
     background: #ccffcc;
     padding: 5px;
     border-radius: 10px;
+}
+.itemResaltado4 { 
+    font-weight: bold;
+    font-size: x-large;
+    padding: 5px;
+    color: #660000;
 }
 .titulo1 { 
     font-weight: bold;

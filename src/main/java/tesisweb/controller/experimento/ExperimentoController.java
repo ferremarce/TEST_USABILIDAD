@@ -10,6 +10,7 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
+import tesisweb.controller.frontend.CarritoFE;
 import tesisweb.controller.frontend.LoginManager;
 import tesisweb.ejb.experimento.entity.Metrica;
 import tesisweb.ejb.experimento.entity.OrdenExposicionMuGrupo;
@@ -33,6 +34,8 @@ public class ExperimentoController implements Serializable {
     MetricaController metricaController;
     @Inject
     MetricaFacade metricaFacade;
+    @Inject
+    CarritoFE carritoFE;
     private int indexFormActual;
     private Boolean clickPopupPR = Boolean.FALSE;
     private Boolean clickPopupAB = Boolean.FALSE;
@@ -185,21 +188,30 @@ public class ExperimentoController implements Serializable {
 
     public void doActivatePR() {
         this.setClickPopupPR(Boolean.TRUE);
+        this.carritoFE.doCerarCarrito();
+        this.loginManager.setUsarPreferenciaUsuario(Boolean.TRUE);
         this.startMetrica();
     }
 
     public void doActivateFicticiaPR() {
         this.setClickPopupFicticiaPR(Boolean.TRUE);
+        this.carritoFE.doCerarCarrito();
+        this.loginManager.setUsarPreferenciaUsuario(Boolean.TRUE);
         this.startMetrica();
     }
 
     public void doActivateAB() {
         this.setClickPopupAB(Boolean.TRUE);
+        this.carritoFE.doCerarCarrito();
+        this.carritoFE.doAgregarCarritoInit();
+        this.loginManager.setUsarPreferenciaUsuario(Boolean.FALSE);
         this.startMetrica();
     }
 
     public void doActivateFB() {
         this.setClickPopupFB(Boolean.TRUE);
+        this.carritoFE.doCerarCarrito();
+        this.loginManager.setUsarPreferenciaUsuario(Boolean.FALSE);
         this.startMetrica();
     }
 

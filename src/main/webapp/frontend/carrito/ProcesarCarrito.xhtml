@@ -64,26 +64,31 @@
                     </p:row>
                 </p:columnGroup>
             </p:dataTable>
-            <p:panel>
+            <p:panel id="panelPago">
                 <h:outputLabel value="#{bundle.lblInfoPago}"/>
-                <hr/>
-                <h:panelGrid columns="3">
+                <h:panelGrid columns="4">
                     <h:outputLabel for="codigoPromocional" value="#{bundle.lblCodigoPromo} "/>
                     <p:inputText id="codigoPromocional" value="#{CarritoFE.codigoPromocional}">
                         <p:ajax global="no" listener="#{CarritoFE.siHayCambios()}"/>
                     </p:inputText>
                     <p:commandButton styleClass="boton2x" title="#{bundle.ValidarBoton}" value="#{bundle.ValidarBoton}">
-                        <p:ajax update="@form" listener="#{CarritoFE.mensajeCodigo()}"/>
+                        <p:ajax update="panelPago" listener="#{CarritoFE.mensajeCodigo()}"/>
                     </p:commandButton>
+                    <p:outputPanel>
+                        <b:alert rendered="#{CarritoFE.codigoPromocional==2015}" severity="success"><h:panelGroup styleClass="ui-icon ui-icon-check" /> </b:alert>
+                        <b:alert rendered="#{CarritoFE.codigoPromocional!=2015 and CarritoFE.codigoPromocional!=null}" severity="danger"><h:panelGroup styleClass="ui-icon ui-icon-close" /></b:alert>
+                    </p:outputPanel>
                 </h:panelGrid>
                 <f:facet name="footer">
-                    <h:panelGrid id="panelTotal" style="text-align: right !important;" columns="2">
+                    <h:panelGrid id="panelTotal" style="text-align: right !important;" width="100%" columns="2">
                         <h:outputLabel styleClass="itemResaltado1" value="#{bundle.lblDescuentos} "/>
-                        <h:outputText  value="#{CarritoFE.codigoPromocional==2015?'25%':'0'}"/>
+                        <h:outputText styleClass="#{CarritoFE.codigoPromocional==2015?'itemResaltado4':''}"  value="#{CarritoFE.codigoPromocional==2015?'25%':'0'}"/>
                         <h:outputLabel styleClass="itemResaltado1" value="#{bundle.lblGastosEnvio} "/>
                         <h:outputText value="0"/>
+                        <h:outputText value=""/>
+                        <p:separator/>
                         <h:outputLabel styleClass="itemResaltado1" value="#{bundle.lblTotal} "/>
-                        <h:outputText id="totalCarrito" style="color: #006633; font-weight: bold" value="#{CarritoFE.calcularTotal()}">
+                        <h:outputText id="totalCarrito" style="color: #006633; font-weight: bold; font-size: xx-large" value="#{CarritoFE.calcularTotal()}">
                             <f:convertNumber currencySymbol="USD " type="currency"/>
                         </h:outputText>
                     </h:panelGrid>
@@ -92,7 +97,7 @@
 
             <p:panel>
                 <h:panelGrid columns="2">
-                    <p:commandButton styleClass="boton2x" disabled="#{CarritoFE.listaOrdenCarrito.size()==0}" ajax="false" iconPos="right" icon="ui-icon-circle-arrow-e" title="#{bundle.PagarBoton}" value="#{bundle.PagarBoton}" />
+                    <p:commandButton styleClass="boton2x" disabled="#{CarritoFE.listaOrdenCarrito.size()==0}" ajax="true" onclick="PF('dlg1').show();" iconPos="right" icon="ui-icon-circle-arrow-e" title="#{bundle.PagarBoton}" value="#{bundle.PagarBoton}" />
                     <p:commandButton styleClass="boton2x" rendered="#{MUController.muAbortOperation}" global="false" immediate="true" title="#{bundle.CancelarBoton}" value="#{bundle.CancelarBoton}" action="#{CarritoFE.doAbortOperation()}" icon="ui-icon-close"/>
                 </h:panelGrid>
             </p:panel>
@@ -104,6 +109,9 @@
                         <p:commandButton style="font-size: 16px !important" ajax="false" immediate="true" title="#{bundle.NoBoton}" value="#{bundle.NoBoton}" action="#{CarritoFE.doOpcionNO()}"  icon="ui-icon-close" />
                     </f:facet>
                 </p:panel>
+            </p:dialog>
+            <p:dialog header="Información" widgetVar="dlg1" minHeight="40">
+                <h:outputText value="#{bundle.lblFuncionNoImplementada}" />
             </p:dialog>
         </h:form>
     </ui:define>

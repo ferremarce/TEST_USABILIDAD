@@ -16,6 +16,7 @@ import javax.ejb.EJBException;
 import javax.inject.Inject;
 import org.primefaces.context.RequestContext;
 import tesisweb.controller.experimento.ExperimentoController;
+import tesisweb.controller.frontend.LoginManager;
 import tesisweb.ejb.tienda.entity.Preference;
 import tesisweb.ejb.tienda.facade.PreferenceDAO;
 import tesisweb.util.JSFutil;
@@ -37,7 +38,7 @@ public class PreferenceController implements Serializable {
     @Inject
     private PreferenceDAO preferenceDAO;
     @Inject
-    private ExperimentoController experimentoController;
+    private LoginManager loginManager;
     private Preference preference = new Preference();
     private List<Preference> listaPreference;
     private int sizeFont = 100;
@@ -165,9 +166,8 @@ public class PreferenceController implements Serializable {
         //Si es una tarea PR o PR ficticia -> se usa el theme del usuario
         //Si es no es una tarea PR/PR ficticia -> redmond
         try {
-            System.out.println("Ficticia: " + experimentoController.getClickPopupFicticiaPR() + " PR: " + experimentoController.getClickPopupPR());
             //Verificamos si es la tarea PR o la ficticia de PR se usa el style guardado del usuario
-            if (experimentoController.getClickPopupFicticiaPR() || experimentoController.getClickPopupPR()) {
+            if (this.loginManager.getUsarPreferenciaUsuario()) {
                 Preference p = preferenceDAO.find(JSFutil.getUsuarioConectado().getIdPreference().getIdPreference());
                 if (p == null) {
                     tema = "blitzer";

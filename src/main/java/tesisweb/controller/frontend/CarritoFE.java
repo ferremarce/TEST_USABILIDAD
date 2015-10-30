@@ -26,6 +26,7 @@ import tesisweb.ejb.tienda.entity.DireccionCliente;
 import tesisweb.ejb.tienda.entity.MetodoPagoCliente;
 import tesisweb.ejb.tienda.entity.OrdenCarrito;
 import tesisweb.ejb.tienda.entity.TarjetaCredito;
+import tesisweb.ejb.tienda.facade.ArticuloDAO;
 import tesisweb.ejb.tienda.facade.CarritoDAO;
 import tesisweb.ejb.tienda.facade.ClienteDAO;
 import tesisweb.ejb.tienda.facade.DireccionClienteDAO;
@@ -60,6 +61,8 @@ public class CarritoFE implements Serializable {
     private DireccionDAO direccionDAO;
     @Inject
     private ClienteDAO clienteDAO;
+    @Inject
+    ArticuloDAO articuloDAO;
     private Carrito carrito;
     private List<OrdenCarrito> listaOrdenCarrito;
     private List<OrdenCarrito> listaOrdenCarritoAbort;
@@ -177,20 +180,17 @@ public class CarritoFE implements Serializable {
         return "/frontend/carrito/ProcesarCarrito";
     }
 
-    public void doAgregarCarritoInit(Articulo a) {
-        OrdenCarrito ocarrito = new OrdenCarrito();
-        ocarrito.setCantidad(1);
-        ocarrito.setIdArticulo(a);
-        Boolean existe = Boolean.FALSE;
-        for (int i = 0; i < this.listaOrdenCarrito.size(); i++) {
+    public void doCerarCarrito() {
+        this.listaOrdenCarrito = new ArrayList<>();
+        this.listaOrdenCarritoAbort = new ArrayList<>();
+    }
 
-            if (this.listaOrdenCarrito.get(i).getIdArticulo().getIdArticulo().compareTo(a.getIdArticulo()) == 0) {
-                this.listaOrdenCarrito.get(i).setCantidad(this.listaOrdenCarrito.get(i).getCantidad() + 1);
-                existe = Boolean.TRUE;
+    public void doAgregarCarritoInit() {
+        for (Articulo art : articuloDAO.findAll()) {
+            this.doAgregarCarrito(art);
+            if (listaOrdenCarrito.size() > 2) {
+                return;
             }
-        }
-        if (!existe) {
-            this.listaOrdenCarrito.add(ocarrito);
         }
     }
 
@@ -369,9 +369,9 @@ public class CarritoFE implements Serializable {
 
     public void mensajeCodigo() {
         if (codigoPromocional != null && codigoPromocional.compareTo(2015) == 0) {
-            JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("CodigoPromoOk"));
+            //JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("CodigoPromoOk"));
         } else {
-            JSFutil.addErrorMessage(JSFutil.getMyBundle().getString("CodigoPromoNoOk"));
+            //JSFutil.addErrorMessage(JSFutil.getMyBundle().getString("CodigoPromoNoOk"));
         }
     }
 

@@ -20,12 +20,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.ToggleEvent;
-import tesisweb.controller.disenho.GrupoMatrizExperimentalController;
-import tesisweb.controller.experimento.ExperimentoController;
 import tesisweb.ejb.experimento.entity.GrupoMatrizExperimental;
 import tesisweb.ejb.experimento.entity.OrdenExposicionMuGrupo;
 import tesisweb.ejb.experimento.facade.GrupoMatrizExperimentalFacade;
-import tesisweb.ejb.tienda.entity.Articulo;
 import tesisweb.ejb.tienda.entity.Usuario;
 import tesisweb.ejb.tienda.facade.ArticuloDAO;
 import tesisweb.ejb.tienda.facade.UsuarioDAO;
@@ -50,8 +47,6 @@ public class LoginManager implements Serializable {
     CarritoFE carritoFE;
     @Inject
     ArticuloDAO articuloDAO;
-    @Inject
-    ExperimentoController experimentoController;
     private final String USER_SESSION_KEY = "user";
     private final String USER_SESSION_LANGUAGE = "language";
     private String cuenta;
@@ -64,11 +59,20 @@ public class LoginManager implements Serializable {
     private Integer contadorPR = 0;
     private Boolean contadorPRhabilitado = Boolean.TRUE;
     private GrupoMatrizExperimental grupoUsuarioLogin;
+    private Boolean usarPreferenciaUsuario = Boolean.TRUE;
 
     /**
      * Creates a new instance of LoginManager
      */
     public LoginManager() {
+    }
+
+    public Boolean getUsarPreferenciaUsuario() {
+        return usarPreferenciaUsuario;
+    }
+
+    public void setUsarPreferenciaUsuario(Boolean usarPreferenciaUsuario) {
+        this.usarPreferenciaUsuario = usarPreferenciaUsuario;
     }
 
     public Integer getContadorPR() {
@@ -330,7 +334,7 @@ public class LoginManager implements Serializable {
 
     public Integer getIdPreferenciaUsuario() {
         try {
-            if (experimentoController.getClickPopupFicticiaPR() || experimentoController.getClickPopupPR()) {
+            if (this.usarPreferenciaUsuario) {
                 if (JSFutil.getUsuarioConectado() != null) {
                     return JSFutil.getUsuarioConectado().getIdPreference().getIdPreference();
                 } else {
@@ -438,15 +442,6 @@ public class LoginManager implements Serializable {
             String usuarioSujeto = paramMap.get("q");
             HttpServletRequest req = (HttpServletRequest) context.getExternalContext().getRequest();
             HttpServletResponse response = (HttpServletResponse) context.getExternalContext().getResponse();
-            //Agregar prodcutos al carrito
-            if (carritoFE.getListaOrdenCarrito().isEmpty()) {
-                for (Articulo art : articuloDAO.findAll()) {
-                    carritoFE.doAgregarCarritoInit(art);
-                    if (carritoFE.getListaOrdenCarrito().size() > 1) {
-                        break;
-                    }
-                }
-            }
 
             if (usuarioSujeto != null) {
                 this.cuenta = usuarioSujeto;
