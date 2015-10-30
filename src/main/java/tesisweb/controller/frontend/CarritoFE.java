@@ -183,6 +183,7 @@ public class CarritoFE implements Serializable {
     public void doCerarCarrito() {
         this.listaOrdenCarrito = new ArrayList<>();
         this.listaOrdenCarritoAbort = new ArrayList<>();
+        this.codigoPromocional=null;
     }
 
     public void doAgregarCarritoInit() {
