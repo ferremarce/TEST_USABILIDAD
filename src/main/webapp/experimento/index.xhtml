@@ -35,11 +35,11 @@
                     <p/>
                 </p:panel>
                 <p:panel header="Cuestionario de interés">
-                    <p:panelGrid columns="2">
+                    <p:panelGrid rendered="false" columns="2">
                         <p:outputLabel value="Nombre o Alias" for="alias1" />
                         <p:inputText size="30" id="alias1" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.aliases}" title="Alias" required="true" requiredMessage="#{bundle.Requerido}"/>
                     </p:panelGrid>
-                    <p:panelGrid rendered="false" columns="2">
+                    <p:panelGrid rendered="true" columns="2">
                         <p:outputLabel value="Nombre o Alias" for="alias" />
                         <p:inputText size="30" id="alias" value="#{CuestionarioFamiliaridadController.cuestionarioFamiliaridad.aliases}" title="Alias" required="true" requiredMessage="#{bundle.Requerido}"/>
                         <p:outputLabel value="Sexo:" for="sexo" />
