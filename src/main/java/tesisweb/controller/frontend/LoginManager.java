@@ -457,7 +457,7 @@ public class LoginManager implements Serializable {
                 //No se puede hacer el experimento si el usuario no esta logeado en el sistema              
                 response.sendRedirect(req.getContextPath() + "/404.xhtml");
             }
-            System.out.println("Idioma al cargar: " + JSFutil.getIdiomaSesion());
+            //System.out.println("Idioma al cargar: " + JSFutil.getIdiomaSesion());
         } catch (NumberFormatException | NullPointerException e) {
         } catch (IOException ex) {
             Logger.getLogger(LoginManager.class.getName()).log(Level.SEVERE, null, ex);
