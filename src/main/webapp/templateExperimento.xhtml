@@ -19,8 +19,18 @@
                     <p:panel styleClass="header-background">
                         <h:panelGrid width="100%" columns="2">
                             <h:outputText style="font-size: 30px; font-weight: bold" value="TEST"/>
-                            <p:outputPanel style="position: absolute; right: 10px">
+                            <p:outputPanel style="position: absolute; right: 10px; top: 5px">
                                 <h:outputText rendered="#{LoginManager.usuarioLogeado!=null}" value="#{LoginManager.usuarioLogeado} [#{LoginManager.usuarioLogeado.idGrupoExperimental.idDisenho.contexto}]"/>
+                                <p:outputPanel rendered="true">
+                                    #{LoginManager.usuarioLogeado.idGrupoExperimental.nombreGrupo}
+                                    <table>
+                                        <tr>
+                                            <ui:repeat value="#{LoginManager.usuarioLogeado.idGrupoExperimental.ordenExposicionMuGrupoList}" var="ord">
+                                                <td style="text-align: center">#{ord.orden}-#{ord.idMu.abreviatura}: #{ord.estado?'1':'0'} | </td>
+                                            </ui:repeat>
+                                        </tr>
+                                    </table>
+                                </p:outputPanel>
                                 <p:spacer height="20"/>
                                 <h:outputText rendered="#{ExperimentoController.debugMode}" value="ID_SESION: #{LoginManager.doGetSessionID()}"/>
                                 <p:spacer height="20"/>
@@ -28,8 +38,6 @@
                                     <p:ajax update="@all"/>
                                 </p:selectBooleanButton>
                                 <p:spacer height="20"/>
-                                <h:outputText rendered="#{ExperimentoController.debugMode}" value="Estás en Modo Debug"/>
-                                <h:outputText rendered="#{!ExperimentoController.debugMode}" value="Estás en Modo Normal"/>
                             </p:outputPanel>
                         </h:panelGrid>
                     </p:panel>

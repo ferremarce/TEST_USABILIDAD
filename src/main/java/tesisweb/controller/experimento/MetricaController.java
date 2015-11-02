@@ -81,7 +81,7 @@ public class MetricaController implements Serializable {
     public void increment() {
         tmpClickCounter++;
         //System.out.println("Click counter: "+tmpClickCounter);
-                
+
     }
 
     public List<Metrica> doGetListaMetrica() {
@@ -95,7 +95,7 @@ public class MetricaController implements Serializable {
     public String doListMetricaDisenho(DisenhoExperimental de) {
         this.disenhoExperimental = de;
         this.idMu = null;
-        //this.listaMetrica = metricaFacade.findAllbyDisenho(de.getIdDisenho());
+        this.listaMetrica = new ArrayList<>();
         return "/disenho/VerMetricas";
     }
 
