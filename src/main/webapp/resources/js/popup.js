@@ -7,6 +7,12 @@
 var myWindow;
 function openWin(url) {
     myWindow = window.open(url, "myWindow", "width=400, height=200");
+    try {
+        myWindow.focus();
+    }
+    catch (e) {
+        alert("Tu navegador tiene bloqueado las ventanas emergentes. Por favor, desactivelo antes de continuar.");
+    }
     var w = screen.width - 50;
     var h = screen.height - 100;
     var left = (screen.width / 2) - (w / 2);
