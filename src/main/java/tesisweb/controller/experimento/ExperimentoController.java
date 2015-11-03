@@ -101,6 +101,7 @@ public class ExperimentoController implements Serializable {
     }
 
     public String gotoFirstForm() {
+        this.startMetricaGlobal();
         this.indexFormActual = -1;
         this.loginManager.setContadorPRhabilitado(Boolean.TRUE);
         return this.gotoNextForm();
@@ -226,6 +227,14 @@ public class ExperimentoController implements Serializable {
         this.loginManager.setUsarPreferenciaUsuario(Boolean.FALSE);
         this.startMetrica();
         this.abrirURLTienda();
+    }
+
+    public void doAbrirPopupPrueba() {
+        String dire = JSFutil.getServerUrl() + "/tesisweb/frontend/popup.xhtml";
+        RequestContext context = RequestContext.getCurrentInstance();
+        String direccion = "openWin('" + dire + "')";
+        context.execute(direccion);
+
     }
 
     private void startMetrica() {
