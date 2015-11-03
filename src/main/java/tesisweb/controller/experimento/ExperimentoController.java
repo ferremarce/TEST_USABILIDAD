@@ -190,6 +190,8 @@ public class ExperimentoController implements Serializable {
         this.setClickPopupPR(Boolean.TRUE);
         this.carritoFE.doCerarCarrito();
         this.loginManager.setUsarPreferenciaUsuario(Boolean.TRUE);
+        //Inicializar el contador de la ventana emergente
+        this.loginManager.setContadorPR(0);
         this.startMetrica();
     }
 

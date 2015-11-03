@@ -11,6 +11,7 @@
     <ui:define name="content">
          <f:metadata>
              <f:event type="preRenderView" listener="#{ExperimentoController.startMetricaGlobal()}"/>
+             <f:event type="preRenderView" listener="#{LoginManager.relogin()}"/>
         </f:metadata>
         <h:form>
             <p:growl globalOnly="true" id="messages"/>

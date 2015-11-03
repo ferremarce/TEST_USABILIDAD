@@ -432,6 +432,24 @@ public class LoginManager implements Serializable {
         return JSFutil.doGetSessionID();
     }
 
+    public void relogin() {
+        Usuario usuario = usuarioDAO.find(JSFutil.getUsuarioConectado().getIdUsuario());
+        JSFutil.putSessionVariable(USER_SESSION_KEY, usuario);
+        for (OrdenExposicionMuGrupo orden : usuario.getIdGrupoExperimental().getOrdenExposicionMuGrupoList()) {
+                switch (orden.getIdMu().getIdMu()) {
+                    case 1: //PREFERENCE
+                        this.muController.setMuPreference(orden.getEstado());
+                        break;
+                    case 2: //ABORT OPERATION
+                        this.muController.setMuAbortOperation(orden.getEstado());
+                        break;
+                    case 3: //PROGRESS FEEDBACK
+                        this.muController.setMuProgressFeedBack(orden.getEstado());
+                        break;
+                }
+            }
+    }
+
     public void init() {
         try {
             /**
