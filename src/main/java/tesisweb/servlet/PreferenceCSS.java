@@ -105,7 +105,19 @@ public class PreferenceCSS extends HttpServlet {
 //                    + "{\n"
 //                    + "    font-size: 1em !important;\n"
 //                    + "}";
-            cadena = "";
+            String size="100%";
+            cadena = "label, .texto-no-tachado"
+                    + "{\n"
+                    + "    font-size: " + size + " !important;\n"
+                    + "}\n"
+                    + ".ui-widget,"
+                    + ".ui-widget .ui-widget,"
+                    + ".ui-datalist-item,"
+                    + ".ui-panel-title "
+                    + "{\n"
+                    + "    font-size: " + size + " !important;\n"
+                    //+ "     background-color: #c2c2c2 ; \n"
+                    + "}";
             out.println(cadena);
         }
         out.close();
