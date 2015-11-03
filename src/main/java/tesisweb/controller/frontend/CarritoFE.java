@@ -180,15 +180,32 @@ public class CarritoFE implements Serializable {
         return "/frontend/carrito/ProcesarCarrito";
     }
 
+    private void doAddCartAbort(Articulo a) {
+        OrdenCarrito ocarrito = new OrdenCarrito();
+        ocarrito.setCantidad(1);
+        ocarrito.setIdArticulo(a);
+        Boolean existe = Boolean.FALSE;
+        for (int i = 0; i < this.listaOrdenCarrito.size(); i++) {
+
+            if (this.listaOrdenCarrito.get(i).getIdArticulo().getIdArticulo().compareTo(a.getIdArticulo()) == 0) {
+                this.listaOrdenCarrito.get(i).setCantidad(this.listaOrdenCarrito.get(i).getCantidad() + 1);
+                existe = Boolean.TRUE;
+            }
+        }
+        if (!existe) {
+            this.listaOrdenCarrito.add(ocarrito);
+        }
+    }
+
     public void doCerarCarrito() {
         this.listaOrdenCarrito = new ArrayList<>();
         this.listaOrdenCarritoAbort = new ArrayList<>();
-        this.codigoPromocional=null;
+        this.codigoPromocional = null;
     }
 
     public void doAgregarCarritoInit() {
         for (Articulo art : articuloDAO.findAll()) {
-            this.doAgregarCarrito(art);
+            this.doAddCartAbort(art);
             if (listaOrdenCarrito.size() > 2) {
                 return;
             }
