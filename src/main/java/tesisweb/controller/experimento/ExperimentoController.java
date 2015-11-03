@@ -10,6 +10,7 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJBException;
 import javax.inject.Inject;
+import org.primefaces.context.RequestContext;
 import tesisweb.controller.frontend.CarritoFE;
 import tesisweb.controller.frontend.LoginManager;
 import tesisweb.ejb.experimento.entity.Metrica;
@@ -193,6 +194,13 @@ public class ExperimentoController implements Serializable {
         //Inicializar el contador de la ventana emergente
         this.loginManager.setContadorPR(0);
         this.startMetrica();
+        this.abrirURLTienda();
+    }
+
+    private void abrirURLTienda() {
+        RequestContext context = RequestContext.getCurrentInstance();
+        String direccion = "openWin('" + this.doGetURLAPP() + "')";
+        context.execute(direccion);
     }
 
     public void doActivateFicticiaPR() {
@@ -200,6 +208,7 @@ public class ExperimentoController implements Serializable {
         this.carritoFE.doCerarCarrito();
         this.loginManager.setUsarPreferenciaUsuario(Boolean.TRUE);
         this.startMetrica();
+        this.abrirURLTienda();
     }
 
     public void doActivateAB() {
@@ -208,6 +217,7 @@ public class ExperimentoController implements Serializable {
         this.carritoFE.doAgregarCarritoInit();
         this.loginManager.setUsarPreferenciaUsuario(Boolean.FALSE);
         this.startMetrica();
+        this.abrirURLTienda();
     }
 
     public void doActivateFB() {
@@ -215,6 +225,7 @@ public class ExperimentoController implements Serializable {
         this.carritoFE.doCerarCarrito();
         this.loginManager.setUsarPreferenciaUsuario(Boolean.FALSE);
         this.startMetrica();
+        this.abrirURLTienda();
     }
 
     private void startMetrica() {
@@ -254,7 +265,7 @@ public class ExperimentoController implements Serializable {
             this.metricaGlobal.setClickCounter(0);
             this.metricaGlobal.setInformacion("TAREA TOTAL");
             System.out.print("Start de métrica Global...");
-        }else{
+        } else {
             System.out.print("Métrica Global inicializada...");
         }
     }

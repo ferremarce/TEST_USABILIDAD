@@ -30,9 +30,7 @@
                     </span>
                     <p:separator/>
                     Para hacer esta tarea accede a la Tienda Virtual haciendo click 
-                    <p:commandButton value="Aquí" onclick="openWin('#{ExperimentoController.doGetURLAPP()}')">
-                        <p:ajax listener="#{ExperimentoController.doActivatePR()}"/>
-                    </p:commandButton>
+                    <p:commandButton value="Aquí" action="#{ExperimentoController.doActivatePR()}"/>
                     <p/>
                     <h:outputText styleClass="itemResaltado3" value="Cuando acabes, cierra la ventana de la Tienda y haz click en el botón 'SIGUIENTE'."/>
                 </p:panel>
