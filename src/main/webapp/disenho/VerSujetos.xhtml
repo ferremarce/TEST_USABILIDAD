@@ -18,11 +18,17 @@
                         <p:dataExporter type="csv" target="tablaSujetos" fileName="tablaSujetos" />
                     </h:commandLink>
                 </f:facet>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="item"/>
+                    </f:facet>
+                    <h:outputText value="#{index+1}"/>
+                </p:column>
                 <p:column sortBy="#{item.cuenta}">
                     <f:facet name="header">
                         <h:outputText value="Cuenta"/>
                     </f:facet>
-                    <h:outputText value="#{index+1}. #{item.toUsuarioString()}"/>
+                    <h:outputText value="#{item.toUsuarioString()}"/>
                 </p:column>
                 <p:column sortBy="#{item.apellidos}">
                     <f:facet name="header">
@@ -64,6 +70,12 @@
                     <h:outputText value="#{item.fechaHoraConexion}">
                         <f:convertDateTime timeZone="#{UsuarioController.myTimeZone}" pattern="dd/MM/yyyy HH:mm" />
                     </h:outputText>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Sumario de Métricas"/>
+                    </f:facet>
+                    <h:outputText escape="false" value="#{UsuarioController.sumarioMetricas(item)}"/>
                 </p:column>
             </p:dataTable>
         </h:form>

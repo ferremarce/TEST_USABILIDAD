@@ -17,6 +17,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import tesisweb.ejb.experimento.entity.Metrica;
 import tesisweb.ejb.tienda.entity.Preference;
 import tesisweb.ejb.tienda.entity.Usuario;
 import tesisweb.ejb.tienda.facade.PreferenceDAO;
@@ -234,5 +235,41 @@ public class UsuarioController implements Serializable {
     public HttpServletRequest getRequest() {
         return (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 
+    }
+
+    public String sumarioMetricas(Usuario u) {
+        int prf = 0, abr = 0, pfb = 0, mt = 0, cuest = 0;
+        //System.out.println(u.getCuenta());
+        String cadena = "";
+        try {
+            for (Metrica m : u.getMetricaList()) {
+                if (m.getIdMecanismoUsabilidad() != null) {
+                    switch (m.getIdMecanismoUsabilidad().getIdMu()) {
+                        case 1: //PRF
+                            prf++;
+                            break;
+                        case 2: //ABR
+                            abr++;
+                            break;
+                        case 3: //PFB
+                            pfb++;
+                            break;
+                    }
+                } else {
+                    mt++;
+                }
+            }
+            cuest=u.getCuestionarioUsabilidadList().size();
+            if (prf == 2 && abr == 1 && pfb == 1 && mt > 0) {
+                cadena = " SI ";
+            } else {
+                cadena = " NO ";
+            }
+            cadena += "PRF: " + prf + " ABR: " + abr + " PFB: " + pfb + " MT: " + mt + " CUE: " + cuest;
+            return cadena;
+        } catch (Exception e) {
+            cadena = "ERROR";
+            return cadena;
+        }
     }
 }
