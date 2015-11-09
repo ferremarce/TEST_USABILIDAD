@@ -15,11 +15,11 @@
                 <p:commandButton value="#{bundle.NuevoBoton}" ajax="false" action="#{UsuarioController.doCrearForm()}" icon="ui-icon-document"/>
             </p:panel>
             <p:dataTable value="#{UsuarioController.listaUsuario}" var="item" emptyMessage="#{bundle.SinRegistrosMensaje}">
-                <p:column>
+                <p:column sortBy="#{item.cuenta}" filterBy="#{item.cuenta}" filterMatchMode="contains">
                     <f:facet name="header">
                         <h:outputText value="Cuenta"/>
                     </f:facet>
-                    <h:outputText value="#{item.cuenta}"/>
+                    <h:outputText value="#{item.cuenta}-#{item.idUsuario}"/>
                 </p:column>
                 <p:column sortBy="#{item.apellidos}">
                     <f:facet name="header">
@@ -33,13 +33,16 @@
                     </f:facet>
                     <h:outputText value="#{item.idGrupoExperimental.idDisenho.contexto} - #{item.idGrupoExperimental}"/>
                 </p:column>
-                <p:column>
+                <p:column sortBy="#{item.ipConexion}">
                     <f:facet name="header">
-                        <h:outputText value="Rol"/>
+                        <h:outputText value="IP"/>
                     </f:facet>
-                    <h:outputText value="#{item.idRol}"/>
-                    <hr/>
-                    <h:outputText value="#{item.ipConexion}"/><br/>
+                    <h:outputText value="#{item.ipConexion}"/>
+                </p:column>
+                <p:column sortBy="#{item.fechaHoraConexion}">
+                    <f:facet name="header">
+                        <h:outputText value="Fecha-Hora"/>
+                    </f:facet>
                     <h:outputText value="#{item.fechaHoraConexion}">
                         <f:convertDateTime timeZone="#{UsuarioController.myTimeZone}" pattern="dd/MM/yyyy HH:mm" />
                     </h:outputText>
