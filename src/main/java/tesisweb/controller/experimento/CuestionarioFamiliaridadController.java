@@ -192,6 +192,11 @@ public class CuestionarioFamiliaridadController implements Serializable {
         }
     }
 
+    public String doListarCuestionarioFamiliaridadForm(Integer idDise) {
+        this.listaCuestionarioFamiliaridad = this.cuestionarioFamiliaridadDAO.getAllCuestionarioFamiliaridadExperimento(idDise);
+        return "/disenho/VerCuestionarioFamilia";
+    }
+
     @PostConstruct
     public void init() {
         this.cuestionarioFamiliaridad = new CuestionarioFamiliaridad();

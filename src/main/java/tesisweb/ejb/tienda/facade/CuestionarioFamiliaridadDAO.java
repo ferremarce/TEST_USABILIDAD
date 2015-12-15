@@ -5,9 +5,11 @@
  */
 package tesisweb.ejb.tienda.facade;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import tesisweb.ejb.tienda.entity.CuestionarioFamiliaridad;
 
 /**
@@ -16,6 +18,7 @@ import tesisweb.ejb.tienda.entity.CuestionarioFamiliaridad;
  */
 @Stateless
 public class CuestionarioFamiliaridadDAO extends AbstractFacade<CuestionarioFamiliaridad> {
+
     @PersistenceContext(unitName = "tesisweb_tesisweb_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
@@ -27,5 +30,13 @@ public class CuestionarioFamiliaridadDAO extends AbstractFacade<CuestionarioFami
     public CuestionarioFamiliaridadDAO() {
         super(CuestionarioFamiliaridad.class);
     }
-    
+
+    public List<CuestionarioFamiliaridad> getAllCuestionarioFamiliaridadExperimento(Integer idDise) {
+        Query q = em.createQuery("SELECT a FROM CuestionarioFamiliaridad a WHERE a.idUsuario.idGrupoExperimental.idDisenho.idDisenho=:xIdDise ORDER BY a.idUsuario.apellidos, a.idUsuario.nombres");
+        q.setParameter("xIdDise", idDise);
+        List<CuestionarioFamiliaridad> tr = q.getResultList();
+        return tr;
+
+    }
+
 }

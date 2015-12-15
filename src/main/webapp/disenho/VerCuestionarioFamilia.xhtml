@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="/templateDisenho.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h2 class="ui-state-default ui-corner-all"><h:outputText value="Listar Cuestionario de Familiaridad"/></h2>
+        <h:form id="mainForm">
+            <p:growl life="5000" globalOnly="true" id="messages"/>
+            <p:dataTable id="tablaCuestionarioFamiliaridad" rowIndexVar="index" value="#{CuestionarioFamiliaridadController.listaCuestionarioFamiliaridad}" var="item" emptyMessage="#{bundle.SinRegistrosMensaje}">
+                <f:facet name="header">
+                    <h:commandLink value="Exportar">
+                        <p:graphicImage value="/icono/csv.png" width="24"/>
+                        <p:dataExporter type="csv" target="tablaCuestionarioFamiliaridad" fileName="tablaCuestionarioFamiliaridad" />
+                    </h:commandLink>
+                </f:facet>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="item"/>
+                    </f:facet>
+                    <h:outputText value="#{index+1}"/>
+                </p:column>
+                <p:column sortBy="#{item.idUsuario.cuenta}">
+                    <f:facet name="header">
+                        <h:outputText value="Cuenta"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idUsuario.toUsuarioString()}"/>
+                </p:column>
+                <p:column sortBy="#{item.aliases}">
+                    <f:facet name="header">
+                        <h:outputText value="Alias"/>
+                    </f:facet>
+                    <h:outputText value="#{item.aliases}"/>
+                </p:column>
+                <p:column sortBy="#{item.sexo}">
+                    <f:facet name="header">
+                        <h:outputText value="Sexo"/>
+                    </f:facet>
+                    <h:outputText value="#{item.sexo}"/>
+                </p:column>
+                <p:column sortBy="#{item.edad}">
+                    <f:facet name="header">
+                        <h:outputText value="Edad"/>
+                    </f:facet>
+                    <h:outputText value="#{item.edad}"/>
+                </p:column>
+                <p:column sortBy="#{item.idioma}">
+                    <f:facet name="header">
+                        <h:outputText value="Idiomas"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idioma}"/>
+                </p:column>
+                <p:column sortBy="#{item.esProfesional}">
+                    <f:facet name="header">
+                        <h:outputText value="Es Informatico"/>
+                    </f:facet>
+                    <h:outputText value="#{item.esProfesional}"/>
+                </p:column>
+                <p:column sortBy="#{item.profesion}">
+                    <f:facet name="header">
+                        <h:outputText value="Profesion"/>
+                    </f:facet>
+                    <h:outputText value="#{item.profesion.toUpperCase()}"/>
+                </p:column>
+                <p:column sortBy="#{item.dondeUsasInternet}">
+                    <f:facet name="header">
+                        <h:outputText value="Donde usas Internet"/>
+                    </f:facet>
+                    <h:outputText value="#{item.dondeUsasInternet}"/>
+                    <h:outputText rendered="#{item.dondeUsasInternetOtros.length()>0}" value=", [#{item.dondeUsasInternetOtros.toUpperCase()}]"/>
+                </p:column>
+                <p:column sortBy="#{item.paraqueUsasInternet}">
+                    <f:facet name="header">
+                        <h:outputText value="Para que usas Internet"/>
+                    </f:facet>
+                    <h:outputText value="#{item.paraqueUsasInternet}"/>
+                    <h:outputText rendered="#{item.paraqueUsasInternetOtros.length()>0}" value=", [#{item.paraqueUsasInternetOtros.toUpperCase()}]"/>
+                </p:column>
+                <p:column sortBy="#{item.queAppUsa}">
+                    <f:facet name="header">
+                        <h:outputText value="Que App usas"/>
+                    </f:facet>
+                    <h:outputText value="#{item.queAppUsa}"/>
+                     <h:outputText rendered="#{item.queAppUsaOtros.length()>0}" value=", [#{item.queAppUsaOtros.toUpperCase()}]"/>
+                </p:column>
+                <p:column sortBy="#{item.comprasPersonales}">
+                    <f:facet name="header">
+                        <h:outputText value="Has comprado personalmente"/>
+                    </f:facet>
+                    <h:outputText value="#{item.comprasPersonales}"/>
+                </p:column>
+                <p:column sortBy="#{item.comprasIntermediario}">
+                    <f:facet name="header">
+                        <h:outputText value="Has comprado con intermediarios"/>
+                    </f:facet>
+                    <h:outputText value="#{item.comprasIntermediario}"/>
+                </p:column>
+                <p:column sortBy="#{item.tiendasPreferidas}">
+                    <f:facet name="header">
+                        <h:outputText value="Tiendas preferidas"/>
+                    </f:facet>
+                    <h:outputText value="#{item.tiendasPreferidas}"/>
+                </p:column>
+                <p:column sortBy="#{item.problemasPercibidos}">
+                    <f:facet name="header">
+                        <h:outputText value="Problemas percibido en las compras"/>
+                    </f:facet>
+                    <h:outputText value="#{item.problemasPercibidos}"/>
+                    <h:outputText rendered="#{item.problemasPercibidosOtros.length()>0}" value=", [#{item.problemasPercibidosOtros.toUpperCase()}]"/>
+                </p:column>
+                <p:column sortBy="#{item.esAtractivoCompra}">
+                    <f:facet name="header">
+                        <h:outputText value="Consideras atractivo las compras por internet"/>
+                    </f:facet>
+                    <h:outputText value="#{item.esAtractivoCompra}"/>
+                </p:column>
+            </p:dataTable>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

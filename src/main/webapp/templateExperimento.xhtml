@@ -34,7 +34,7 @@
                                 <p:spacer height="20"/>
                                 <h:outputText rendered="#{ExperimentoController.debugMode}" value="ID_SESION: #{LoginManager.doGetSessionID()}"/>
                                 <p:spacer height="20"/>
-                                <p:selectBooleanButton rendered="false" offLabel="Modo Debug" onLabel="Modo Normal" value="#{ExperimentoController.debugMode}">
+                                <p:selectBooleanButton offLabel="Modo Debug" onLabel="Modo Normal" value="#{ExperimentoController.debugMode}">
                                     <p:ajax update="@all"/>
                                 </p:selectBooleanButton>
                                 <p:spacer height="20"/>
