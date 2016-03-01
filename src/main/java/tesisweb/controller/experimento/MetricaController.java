@@ -80,7 +80,7 @@ public class MetricaController implements Serializable {
     //METODOS DE ACCIÓN
     public void increment() {
         tmpClickCounter++;
-        //System.out.println("Click counter: "+tmpClickCounter);
+        System.out.println("Click counter: "+tmpClickCounter);
 
     }
 

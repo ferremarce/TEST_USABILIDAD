@@ -93,7 +93,7 @@
                     </p:outputPanel>
                 </p:layoutUnit>
                 <p:layoutUnit position="center" >
-                    <h:form>
+                    <h:form id="formToolbar">
                         <p:panel styleClass="header-background">
                             <h:panelGrid columns="2">
                                 <h:panelGrid>
@@ -114,7 +114,7 @@
                                     </h:panelGrid>
                                 </h:panelGrid>
                             </h:panelGrid>
-                            <p:toolbar >
+                            <p:toolbar>
                                 <f:facet name="left">
                                     <p:outputPanel style="font-size: 16px !important">
                                         <p:commandButton icon="ui-icon-home" ajax="false" style="font-size: 16px !important" value="#{bundle.lblInicio}" action="#{LoginManager.gotoHome()}"/>
@@ -123,7 +123,7 @@
                                 </f:facet>
                                 <f:facet name="right">
                                     <p:outputPanel style="font-size: 16px !important;" rendered="#{MUController.muPreference and LoginManager.usuarioLogeado!=null}">
-                                        <p:commandButton style="font-size: 16px !important" ajax="false" value="#{bundle.PreferenciaBoton}" action="#{PreferenceController.doCambiarPreferenciaUsuario()}" icon="ui-icon-power"/>
+                                        <p:commandButton global="false" style="font-size: 16px !important" id="cmdPreferencia" value="#{bundle.PreferenciaBoton}" action="#{PreferenceController.doCambiarPreferenciaUsuario()}" icon="ui-icon-circle-triangle-s"/>
                                         <p:commandLink style="font-size: 14px !important" value="Español" ajax="false" action="#{LanguageSwitcher.changeLanguage('es')}"/>
                                         <p:graphicImage width="30" height="25" value="/icono/flag_spain.png"/>
                                         <p:spacer width="10"/>
@@ -137,36 +137,38 @@
                             </p:toolbar>
                         </p:panel>
                     </h:form>
-                    <p:dialog widgetVar="dlgPreference" minHeight="40" modal="true" appendTo="@(body)" >
+                    <p:overlayPanel id="imgPanel" showCloseIcon="true" showEffect="fade" widgetVar="overlayPreference" showEvent="none" for="formToolbar:cmdPreferencia" hideEffect="fade" >
                         <f:facet name="header">
                             <h:outputText styleClass="normalFont" value="Preferencias"/>
                         </f:facet>
                         <h:form id="formDialogPreference">
-                            <h:panelGrid  id="panelPreference" columns="3">
-                                <p:outputLabel style="font-size: 16px !important; font-family: 'Droid Sans' !important" value="Familia de la Letra:" for="fuente" />
+                            <p:ajax async="true" global="false" event="click" update="#{sistema.form_update}," listener="#{MetricaController.increment()}"/>
+                            <h:panelGrid  id="panelPreference">
+                                <p:outputLabel style="color:#660000; font-weight: bold ;font-size: 16px !important; font-family: 'Droid Sans' !important" value="Familia de la Letra:" for="fuente" />
                                 <h:selectOneMenu styleClass="normalFont" id="fuente" value="#{PreferenceController.preference.fuente}" required="true" requiredMessage="#{bundle.Requerido}" >
                                     <f:selectItems value="#{PreferenceController.doGetFonts()}"/>
                                 </h:selectOneMenu>
                                 <p:message for="fuente"/>
-                                <p:outputLabel style="font-size: 16px !important; font-family: 'Droid Sans' !important" value="Tamaño de la Letra:" for="tamanho" />
+                                <p:outputLabel style="color:#660000; font-weight: bold ;font-size: 16px !important; font-family: 'Droid Sans' !important" value="Tamaño de la Letra:" for="tamanho" />
                                 <h:panelGrid columns="1" style="margin-bottom: 10px;" >
                                     <p:outputLabel style="font-size: 16px !important; font-family: 'Droid Sans' !important" id="tamanho" value="#{PreferenceController.sizeFont}%" />
                                     <h:inputHidden id="txt2" value="#{PreferenceController.sizeFont}" />
-                                    <p:slider style="width: 300px;" for="txt2" display="tamanho" maxValue="120" minValue="40" displayTemplate="Ajustar al {value}%" />
+                                    <p:slider  style="width: 300px;" for="txt2" display="tamanho" maxValue="120" minValue="40" displayTemplate="Ajustar al {value}%" >
+                                    </p:slider>
                                 </h:panelGrid>
                                 <p:message for="tamanho"/>
-                                <p:outputLabel style="font-size: 16px !important; font-family: 'Droid Sans' !important" value="Idioma:" for="idioma" />
+                                <p:outputLabel style="color:#660000; font-weight: bold ;font-size: 16px !important; font-family: 'Droid Sans' !important" value="Idioma:" for="idioma" />
                                 <h:selectOneMenu styleClass="normalFont" id="idioma" value="#{PreferenceController.preference.idioma}" required="true" requiredMessage="#{bundle.Requerido}" >
                                     <f:selectItems value="#{PreferenceController.doGetLanguages()}"/>
                                 </h:selectOneMenu>
                                 <p:message for="idioma"/>
                             </h:panelGrid>
                             <p:panel >
-                                <p:commandButton style="font-size: 20px !important; font-family: 'Droid Sans' !important" ajax="false" title="Aplicar" value="Aplicar" action="#{PreferenceController.doGuardar()}" icon="ui-icon-disk"/>
-                                <p:commandButton style="font-size: 20px !important; font-family: 'Droid Sans' !important" global="false" ajax="false" title="Cerrar" value="Cerrar" action="#{PreferenceController.doCancelar()}" icon="ui-icon-disk"/>
+                                <p:commandButton style="font-size: 20px !important; font-family: 'Droid Sans' !important" ajax="false" title="Aplicar" value="#{bundle.AplicarBoton}" action="#{PreferenceController.doGuardar()}"  icon="ui-icon-disk"/>
+                                <p:commandButton global="false" style="font-size: 20px !important; font-family: 'Droid Sans' !important" title="Aplicar" value="#{bundle.CancelarBoton}" icon="ui-icon-closethick" onclick="PF('overlayPreference').hide();"/>
                             </p:panel>
                         </h:form>
-                    </p:dialog>
+                    </p:overlayPanel>
                     <ui:insert name="content">Content</ui:insert>
                     <h:form>
                         <p:panel>

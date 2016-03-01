@@ -151,7 +151,7 @@ public class PreferenceController implements Serializable {
     public void doCambiarPreferenciaUsuario() {
         this.doCambiarPreferencia(JSFutil.getUsuarioConectado().getIdPreference());
         RequestContext context = RequestContext.getCurrentInstance();
-        context.execute("PF('dlgPreference').show();");
+        context.execute("PF('overlayPreference').show();");
     }
 
     public void doBorrar(Preference u) {
