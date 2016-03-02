@@ -24,6 +24,17 @@
         <h:panelGrid>
             <p:ajax async="true" global="false" event="click" update="#{sistema.form_update}," listener="#{MetricaController.increment()}"/>
             <p:layout fullPage="true">
+                <p:layoutUnit id="top" position="north" size="100" >
+                    <p:panel style="font-size: 11px !important">
+                        <f:facet name="header">
+                            <h:outputText style="font-size: 11px !important" value="TAREA"/>
+                        </f:facet>
+                        <h:outputText rendered="#{ExperimentoController.clickPopupPR}" escape="false" value="#{sistema.txtTareaPRF}"/>
+                        <h:outputText rendered="#{ExperimentoController.clickPopupFicticiaPR}" escape="false" value="#{sistema.txtTareaPRFF}"/>
+                        <h:outputText rendered="#{ExperimentoController.clickPopupAB}" escape="false" value="#{sistema.txtTareaABR}"/>
+                        <h:outputText rendered="#{ExperimentoController.clickPopupFB}" escape="false" value="#{sistema.txtTareaPFB}"/>
+                    </p:panel>
+                </p:layoutUnit>
                 <p:layoutUnit position="east" size="250" header="#{bundle.lblOpciones}" collapsed="#{LoginManager.clientCollapse}" collapsible="true" >
                     <h:form id="formCarrito">
                         <p:panel>

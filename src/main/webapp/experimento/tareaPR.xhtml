@@ -26,8 +26,7 @@
                     <h2>TAREA #{ExperimentoController.indexFormActual+1}</h2>
                 </f:facet>
                 <p:panel>
-                    <span style="font-size: larger !important; font-style: italic;"><b>Revisa la apariencia de la Tienda Virtual</b> y comprueba que estás cómodo con sus características: tamaño de letra, tipo de letra... <b>Si necesitas cambiar algo, ahora es el momento</b>. Procede, por favor, a hacerlo.
-                    </span>
+                    <h:outputText escape="false" value="#{sistema.txtTareaPRF}"/>
                     <p:separator/>
                     Para hacer esta tarea accede a la Tienda Virtual haciendo click 
                     <p:commandButton ajax="false" value="Aquí" action="#{ExperimentoController.doActivatePR()}"/>

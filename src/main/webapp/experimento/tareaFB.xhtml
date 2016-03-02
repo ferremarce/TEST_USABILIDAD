@@ -19,7 +19,7 @@
                 </f:facet>
                 <p:panel>
                     <p:outputPanel>
-                        <span style="font-size: larger !important; font-style: italic;">Imagina que un amigo te ha recomendado visitar la tienda porque estás interesado en adquirir el libro titulado “LA CHICA DEL TREN”. Entonces realiza una <b> búsqueda de este artículo </b> y agrégalo a tu carrito de compra.</span>
+                        <h:outputText escape="false" value="#{sistema.txtTareaPFB}"/>
                         <p:separator/>
                         Para hacer esta tarea accede a la Tienda Virtual haciendo click 
                         <p:commandButton ajax="false" value="Aquí" action="#{ExperimentoController.doActivateFB()}"/>
