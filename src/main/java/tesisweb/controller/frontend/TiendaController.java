@@ -8,6 +8,8 @@ package tesisweb.controller.frontend;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.inject.Inject;
+import tesisweb.controller.experimento.ExperimentoController;
 
 /**
  *
@@ -18,6 +20,8 @@ import java.io.Serializable;
 public class TiendaController implements Serializable {
 
     private Integer tipoGarantia;
+    @Inject
+    private ExperimentoController experimentoController;
 
     /**
      * Creates a new instance of TiendaController
@@ -35,6 +39,12 @@ public class TiendaController implements Serializable {
 
     public String doGarantiaForm(Integer id) {
         this.tipoGarantia = id;
+        try {
+            //Se usó el PRF FICTICIA
+            this.experimentoController.getMetrica().addProgresoTarea("PRFF-1");
+        } catch (Exception e) {
+            //Evita que el sistema caiga sin ejecutarse desde el entorno experimental
+        }
         return "/frontend/legal/garantia?faces-redirect=true";
     }
 }

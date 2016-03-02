@@ -31,7 +31,7 @@ import tesisweb.ejb.tienda.entity.Usuario;
 @NamedQueries({
     @NamedQuery(name = "Metrica.findAll", query = "SELECT m FROM Metrica m")})
 public class Metrica implements Serializable {
-
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,9 +43,12 @@ public class Metrica implements Serializable {
     @Size(max = 3000)
     @Column(name = "PARTIAL_TIME")
     private String partialTime;
-     @Size(max = 255)
+    @Size(max = 255)
     @Column(name = "INFORMACION")
     private String informacion;
+    @Size(max = 255)
+    @Column(name = "PROGRESO_TAREA")
+    private String progresoTarea;
     @Column(name = "STOP_TIME")
     private long stopTime;
     @Column(name = "CLICK_COUNTER")
@@ -56,85 +59,93 @@ public class Metrica implements Serializable {
     @JoinColumn(name = "ID_MECANISMO_USABILIDAD", referencedColumnName = "ID_MU")
     @ManyToOne
     private MecanismoUsabilidad idMecanismoUsabilidad;
-
+    
     public Metrica() {
     }
-
+    
     public Metrica(Integer idMetrica) {
         this.idMetrica = idMetrica;
     }
-
+    
     public Integer getIdMetrica() {
         return idMetrica;
     }
-
+    
     public void setIdMetrica(Integer idMetrica) {
         this.idMetrica = idMetrica;
     }
-
+    
     public long getStartTime() {
         return startTime;
     }
-
+    
     public void setStartTime(long startTime) {
         this.startTime = startTime;
     }
-
+    
     public long getStopTime() {
         return stopTime;
     }
-
+    
     public void setStopTime(long stopTime) {
         this.stopTime = stopTime;
     }
-
+    
     public String getPartialTime() {
         return partialTime;
     }
-
+    
     public void setPartialTime(String partialTime) {
         this.partialTime = partialTime;
     }
-
+    
     public Integer getClickCounter() {
         return clickCounter;
     }
-
+    
     public void setClickCounter(Integer clickCounter) {
         this.clickCounter = clickCounter;
     }
-
+    
     public Usuario getIdUsuario() {
         return idUsuario;
     }
-
+    
     public void setIdUsuario(Usuario idUsuario) {
         this.idUsuario = idUsuario;
     }
-
+    
     public MecanismoUsabilidad getIdMecanismoUsabilidad() {
         return idMecanismoUsabilidad;
     }
-
+    
     public void setIdMecanismoUsabilidad(MecanismoUsabilidad idMecanismoUsabilidad) {
         this.idMecanismoUsabilidad = idMecanismoUsabilidad;
     }
-
+    
     public String getInformacion() {
         return informacion;
     }
-
+    
     public void setInformacion(String informacion) {
         this.informacion = informacion;
     }
-
+    
+    public String getProgresoTarea() {
+        return progresoTarea;
+    }
+    
+    public void setProgresoTarea(String progresoTarea) {
+        this.progresoTarea = progresoTarea;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (idMetrica != null ? idMetrica.hashCode() : 0);
         return hash;
     }
-
+    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -147,10 +158,17 @@ public class Metrica implements Serializable {
         }
         return true;
     }
-
+    
     @Override
     public String toString() {
         return "modelo.Metrica[ idMetrica=" + idMetrica + " ]";
     }
-
+    
+    public void addProgresoTarea(String dato) {
+        if (this.progresoTarea == null) {
+            this.setProgresoTarea(dato);
+        } else {
+            this.setProgresoTarea(this.getProgresoTarea() + "," + dato);
+        }
+    }
 }

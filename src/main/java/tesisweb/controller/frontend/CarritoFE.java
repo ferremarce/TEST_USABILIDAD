@@ -18,6 +18,7 @@ import javax.inject.Inject;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FlowEvent;
 import org.primefaces.event.SelectEvent;
+import tesisweb.controller.experimento.ExperimentoController;
 import tesisweb.ejb.tienda.entity.Articulo;
 import tesisweb.ejb.tienda.entity.Carrito;
 import tesisweb.ejb.tienda.entity.Cliente;
@@ -63,6 +64,9 @@ public class CarritoFE implements Serializable {
     private ClienteDAO clienteDAO;
     @Inject
     ArticuloDAO articuloDAO;
+    @Inject
+    private ExperimentoController experimentoController;
+
     private Carrito carrito;
     private List<OrdenCarrito> listaOrdenCarrito;
     private List<OrdenCarrito> listaOrdenCarritoAbort;
@@ -177,6 +181,12 @@ public class CarritoFE implements Serializable {
             this.listaOrdenCarrito.add(ocarrito);
         }
         JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("ArticuloAgregadoCarro"));
+        try {
+            //Se usó el PFB articulo agregado
+            this.experimentoController.getMetrica().addProgresoTarea("PFB-2");
+        } catch (Exception e) {
+            //Evita que el sistema caiga sin ejecutarse desde el entorno experimental
+        }
         return "/frontend/carrito/ProcesarCarrito";
     }
 
@@ -217,6 +227,12 @@ public class CarritoFE implements Serializable {
         this.codigoPromocionalAbort = this.codigoPromocional;
         this.hayCambios = Boolean.FALSE;
         this.aceptaPolitica = null;
+        try {
+            //Se usó el PRF FICTICIA
+            this.experimentoController.getMetrica().addProgresoTarea("ABR-1");
+        } catch (Exception e) {
+            //Evita que el sistema caiga sin ejecutarse desde el entorno experimental
+        }
         return "/frontend/carrito/ProcesarCarrito";
     }
 
@@ -271,6 +287,12 @@ public class CarritoFE implements Serializable {
     }
 
     public String doAbortOperation() {
+        try {
+            //Se usó el ABR BOTON
+            this.experimentoController.getMetrica().addProgresoTarea("ABR-4");
+        } catch (Exception e) {
+            //Evita que el sistema caiga sin ejecutarse desde el entorno experimental
+        }
         if (this.hayCambios) {
             RequestContext context = RequestContext.getCurrentInstance();
             context.execute("PF('confirmacionAbort').show();");
@@ -312,6 +334,12 @@ public class CarritoFE implements Serializable {
         Float total = Float.valueOf("0");
         for (OrdenCarrito oc : this.listaOrdenCarrito) {
             total += oc.getCantidad() * this.calcularPrecioFinal(oc.getIdArticulo());
+        }
+        try {
+            //Se usó el ABR MODIFICA LA CANTIDAD
+            this.experimentoController.getMetrica().addProgresoTarea("ABR-2");
+        } catch (Exception e) {
+            //Evita que el sistema caiga sin ejecutarse desde el entorno experimental
         }
         return total;
     }
@@ -390,6 +418,12 @@ public class CarritoFE implements Serializable {
             //JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("CodigoPromoOk"));
         } else {
             //JSFutil.addErrorMessage(JSFutil.getMyBundle().getString("CodigoPromoNoOk"));
+        }
+        try {
+            //Se usó el ABR VALIDA CODIGO
+            this.experimentoController.getMetrica().addProgresoTarea("ABR-3");
+        } catch (Exception e) {
+            //Evita que el sistema caiga sin ejecutarse desde el entorno experimental
         }
     }
 

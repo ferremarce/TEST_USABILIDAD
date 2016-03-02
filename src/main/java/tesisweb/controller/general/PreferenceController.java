@@ -39,6 +39,8 @@ public class PreferenceController implements Serializable {
     private PreferenceDAO preferenceDAO;
     @Inject
     private LoginManager loginManager;
+    @Inject
+    private ExperimentoController experimentoController;
     private Preference preference = new Preference();
     private List<Preference> listaPreference;
     private int sizeFont = 100;
@@ -92,6 +94,13 @@ public class PreferenceController implements Serializable {
             }
         } else {
             persist(PersistAction.CREATE);
+        }
+
+        try {
+            //Se usó el PRF
+            this.experimentoController.getMetrica().addProgresoTarea("PRF-1");
+        } catch (Exception e) {
+            //Evita que el sistema caiga sin ejecutarse desde el entorno experimental
         }
         return "/frontend/index";
     }

@@ -21,6 +21,7 @@ import javax.faces.event.PhaseId;
 import javax.inject.Inject;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
+import tesisweb.controller.experimento.ExperimentoController;
 import tesisweb.ejb.tienda.entity.Articulo;
 import tesisweb.ejb.tienda.entity.ArticuloAdjunto;
 import tesisweb.ejb.tienda.entity.SubTipo;
@@ -49,6 +50,9 @@ public class ArticuloFE implements Serializable {
     private ArticuloAdjuntoDAO articuloAdjuntoDAO;
     @Inject
     private SubTipoDAO subTipoDAO;
+    @Inject
+    private ExperimentoController experimentoController;
+
     private Articulo articulo;
     private List<Articulo> listaArticulo;
     private List<Articulo> listaArticuloFiltrado;
@@ -149,24 +153,30 @@ public class ArticuloFE implements Serializable {
         } catch (InterruptedException ex) {
             Logger.getLogger(ArticuloFE.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            //Se usó el PFB click en buscar
+            this.experimentoController.getMetrica().addProgresoTarea("PFB-1");
+        } catch (Exception e) {
+            //Evita que el sistema caiga sin ejecutarse desde el entorno experimental
+        }
         return "/frontend/articulo/BuscarArticulo";
     }
 
     public String doListarCategoriaForm() {
-        
-            FacesContext context = FacesContext.getCurrentInstance();
-            String idCategoria = context.getExternalContext().getRequestParameterMap().get("idCategoria");
-            this.listaArticulo = articuloDAO.findAllbyCategoria(Integer.parseInt(idCategoria));
-            this.categoriaSeleccionada = subTipoDAO.find(Integer.parseInt(idCategoria));
-            if (this.listaArticulo.size() > 0) {
 
-                JSFutil.addSuccessMessage(this.listaArticulo.size() + " " + JSFutil.getMyBundle().getString("RegistrosRecuperadosMensaje"));
-            } else {
+        FacesContext context = FacesContext.getCurrentInstance();
+        String idCategoria = context.getExternalContext().getRequestParameterMap().get("idCategoria");
+        this.listaArticulo = articuloDAO.findAllbyCategoria(Integer.parseInt(idCategoria));
+        this.categoriaSeleccionada = subTipoDAO.find(Integer.parseInt(idCategoria));
+        if (this.listaArticulo.size() > 0) {
 
-                JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("SinRegistrosMensaje"));
-            }
-            return "/frontend/articulo/ListarArticuloCategoria";
-        
+            JSFutil.addSuccessMessage(this.listaArticulo.size() + " " + JSFutil.getMyBundle().getString("RegistrosRecuperadosMensaje"));
+        } else {
+
+            JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("SinRegistrosMensaje"));
+        }
+        return "/frontend/articulo/ListarArticuloCategoria";
+
     }
 
     public String doVerDetalleArticulo(Articulo u) {
