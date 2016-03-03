@@ -98,7 +98,9 @@ public class PreferenceController implements Serializable {
 
         try {
             //Se usó el PRF
-            this.experimentoController.getMetrica().addProgresoTarea("PRF-1");
+            if (this.experimentoController.getClickPopupPR()) {
+                this.experimentoController.getMetrica().addProgresoTarea("PRF-1");
+            }
         } catch (Exception e) {
             //Evita que el sistema caiga sin ejecutarse desde el entorno experimental
         }

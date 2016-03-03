@@ -155,7 +155,9 @@ public class ArticuloFE implements Serializable {
         }
         try {
             //Se usó el PFB click en buscar
-            this.experimentoController.getMetrica().addProgresoTarea("PFB-1");
+            if (this.experimentoController.getClickPopupFB()) {
+                this.experimentoController.getMetrica().addProgresoTarea("PFB-1");
+            }
         } catch (Exception e) {
             //Evita que el sistema caiga sin ejecutarse desde el entorno experimental
         }

@@ -41,7 +41,9 @@ public class TiendaController implements Serializable {
         this.tipoGarantia = id;
         try {
             //Se usó el PRF FICTICIA
-            this.experimentoController.getMetrica().addProgresoTarea("PRFF-1");
+            if (this.experimentoController.getClickPopupFicticiaPR()) {
+                this.experimentoController.getMetrica().addProgresoTarea("PRFF-1");
+            }
         } catch (Exception e) {
             //Evita que el sistema caiga sin ejecutarse desde el entorno experimental
         }

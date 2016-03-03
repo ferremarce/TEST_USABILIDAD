@@ -183,7 +183,9 @@ public class CarritoFE implements Serializable {
         JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("ArticuloAgregadoCarro"));
         try {
             //Se usó el PFB articulo agregado
-            this.experimentoController.getMetrica().addProgresoTarea("PFB-2");
+            if (this.experimentoController.getClickPopupFB()) {
+                this.experimentoController.getMetrica().addProgresoTarea("PFB-2");
+            }
         } catch (Exception e) {
             //Evita que el sistema caiga sin ejecutarse desde el entorno experimental
         }
@@ -228,8 +230,10 @@ public class CarritoFE implements Serializable {
         this.hayCambios = Boolean.FALSE;
         this.aceptaPolitica = null;
         try {
-            //Se usó el PRF FICTICIA
-            this.experimentoController.getMetrica().addProgresoTarea("ABR-1");
+            //Se usó el ABR
+            if (this.experimentoController.getClickPopupAB()) {
+                this.experimentoController.getMetrica().addProgresoTarea("ABR-1");
+            }
         } catch (Exception e) {
             //Evita que el sistema caiga sin ejecutarse desde el entorno experimental
         }
@@ -289,7 +293,9 @@ public class CarritoFE implements Serializable {
     public String doAbortOperation() {
         try {
             //Se usó el ABR BOTON
-            this.experimentoController.getMetrica().addProgresoTarea("ABR-4");
+            if (this.experimentoController.getClickPopupAB()) {
+                this.experimentoController.getMetrica().addProgresoTarea("ABR-4");
+            }
         } catch (Exception e) {
             //Evita que el sistema caiga sin ejecutarse desde el entorno experimental
         }
@@ -337,7 +343,9 @@ public class CarritoFE implements Serializable {
         }
         try {
             //Se usó el ABR MODIFICA LA CANTIDAD
-            this.experimentoController.getMetrica().addProgresoTarea("ABR-2");
+            if (this.experimentoController.getClickPopupAB()) {
+                this.experimentoController.getMetrica().addProgresoTarea("ABR-2");
+            }
         } catch (Exception e) {
             //Evita que el sistema caiga sin ejecutarse desde el entorno experimental
         }
@@ -421,7 +429,9 @@ public class CarritoFE implements Serializable {
         }
         try {
             //Se usó el ABR VALIDA CODIGO
-            this.experimentoController.getMetrica().addProgresoTarea("ABR-3");
+            if (this.experimentoController.getClickPopupAB()) {
+                this.experimentoController.getMetrica().addProgresoTarea("ABR-3");
+            }
         } catch (Exception e) {
             //Evita que el sistema caiga sin ejecutarse desde el entorno experimental
         }
