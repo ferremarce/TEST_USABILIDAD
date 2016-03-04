@@ -94,6 +94,12 @@ public class CuestionarioFamiliaridad implements Serializable {
     @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO")
     @ManyToOne
     private Usuario idUsuario;
+    @Size(max = 255)
+    @Column(name = "EMAIL")
+    private String email;
+    @Size(max = 255)
+    @Column(name = "TELEFONO")
+    private String telefono;
 
     public CuestionarioFamiliaridad() {
     }
@@ -260,6 +266,22 @@ public class CuestionarioFamiliaridad implements Serializable {
 
     public void setProblemasPercibidosOtros(String problemasPercibidosOtros) {
         this.problemasPercibidosOtros = problemasPercibidosOtros;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     @Override

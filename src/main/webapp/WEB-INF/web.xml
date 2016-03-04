@@ -35,7 +35,7 @@
         <location>/500.xhtml</location>
     </error-page>
     <welcome-file-list>
-        <welcome-file>experimento/index.xhtml</welcome-file>
+        <welcome-file>experimento/main.xhtml</welcome-file>
     </welcome-file-list>
     
     <!-- WEB FONTS-->
