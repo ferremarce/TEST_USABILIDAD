@@ -25,6 +25,13 @@ body{
 {
     font-size: 14px !important;
 }
+.container {
+    display: block !important;
+    border: none;
+    height: calc(100vh - 5px) !important;
+    width: 100% !important;
+    min-height: 100% !important;
+}
 .ui-button, .ui-button-text {
     font-size: 14px;
 }
@@ -155,15 +162,15 @@ body{
 }
 
 .image { 
-   position: relative; 
-   width: 100%; /* for IE 6 */
+    position: relative; 
+    width: 100%; /* for IE 6 */
 }
 
 .overImage { 
-   position: absolute; 
-   top: 30px; 
-   left: 350px; 
-   width: 100%; 
+    position: absolute; 
+    top: 30px; 
+    left: 350px; 
+    width: 100%; 
 }
 
 
@@ -215,15 +222,15 @@ body{
 }
 
 #top a:link, #top a:visited {
-  color: white;
-  font-weight : bold;
-  text-decoration: none;
+    color: white;
+    font-weight : bold;
+    text-decoration: none;
 }
 
 #top a:link:hover, #top a:visited:hover  {
-  color: black;
-  font-weight : bold;
-  text-decoration : underline;
+    color: black;
+    font-weight : bold;
+    text-decoration : underline;
 }
 
 

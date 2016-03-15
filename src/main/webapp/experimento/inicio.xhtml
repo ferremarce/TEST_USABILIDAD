@@ -10,8 +10,8 @@
 
     <ui:define name="content">
         <h:outputScript library="js" name="popup.js" />
-         <f:metadata>
-             <f:event type="preRenderView" listener="#{LoginManager.relogin()}"/>
+        <f:metadata>
+            <f:event type="preRenderView" listener="#{LoginManager.relogin()}"/>
         </f:metadata>
         <h:form>
             <p:growl globalOnly="true" id="messages"/>
@@ -41,14 +41,13 @@
                     </p:panel>
                 </h:panelGrid>
                 <hr/>
-                <h:outputLabel value="Antes de iniciar la primera tarea te recomendamos probar las ventanas emergentes de tu navegador haciendo click "/><p:commandButton ajax="false" value="Aquí" action="#{ExperimentoController.doAbrirPopupPrueba()}"/>
-                <p/>
                 <h:outputText styleClass="itemResaltado3" value="Para iniciar la primera tarea, haga click en el botón 'INICIAR TAREA'."/>
                 <f:facet name="footer">
                     <p:commandButton ajax="false" onmouseup="closeWin()"  action="#{ExperimentoController.gotoFirstForm()}" value="Iniciar Tarea"/>
                 </f:facet>
             </p:panel>
         </h:form>
+        <ui:include src="/popupTienda.xhtml"/>
     </ui:define>
 
 </ui:composition>

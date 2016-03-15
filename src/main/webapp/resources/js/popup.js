@@ -5,7 +5,12 @@
  */
 
 var myWindow;
+
 function openWin(url) {
+     document.getElementById("enlaceApp").click();
+     //return false;
+}
+function openWin2(url) {
     myWindow = window.open(url, "myWindow", "width=400, height=200");
     try {
         myWindow.focus();

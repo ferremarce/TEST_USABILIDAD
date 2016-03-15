@@ -26,7 +26,7 @@ import tesisweb.util.JSFutil;
 @Named(value = "ExperimentoController")
 @SessionScoped
 public class ExperimentoController implements Serializable {
-    
+
     @Inject
     LoginManager loginManager;
     @Inject
@@ -59,62 +59,62 @@ public class ExperimentoController implements Serializable {
     public void setMetrica(Metrica metrica) {
         this.metrica = metrica;
     }
-    
+
     public int getIndexFormActual() {
         return indexFormActual;
     }
-    
+
     public void setIndexFormActual(int indexFormActual) {
         this.indexFormActual = indexFormActual;
     }
-    
+
     public Boolean getClickPopupFicticiaPR() {
         return clickPopupFicticiaPR;
     }
-    
+
     public void setClickPopupFicticiaPR(Boolean clickPopupFicticiaPR) {
         this.clickPopupFicticiaPR = clickPopupFicticiaPR;
     }
-    
+
     public Boolean getDebugMode() {
         return debugMode;
     }
-    
+
     public void setDebugMode(Boolean debugMode) {
         this.debugMode = debugMode;
     }
-    
+
     public Boolean getClickPopupPR() {
         return clickPopupPR;
     }
-    
+
     public void setClickPopupPR(Boolean clickPopupPR) {
         this.clickPopupPR = clickPopupPR;
     }
-    
+
     public Boolean getClickPopupAB() {
         return clickPopupAB;
     }
-    
+
     public void setClickPopupAB(Boolean clickPopupAB) {
         this.clickPopupAB = clickPopupAB;
     }
-    
+
     public Boolean getClickPopupFB() {
         return clickPopupFB;
     }
-    
+
     public void setClickPopupFB(Boolean clickPopupFB) {
         this.clickPopupFB = clickPopupFB;
     }
-    
+
     public String gotoFirstForm() {
         this.startMetricaGlobal();
         this.indexFormActual = -1;
         this.loginManager.setContadorPRhabilitado(Boolean.TRUE);
         return this.gotoNextForm();
     }
-    
+
     public String gotoNextForm() {
         //Se despliega un mensaje si no se abrió el popup en las tareas
         if (!this.clickPopupFicticiaPR && !this.clickPopupAB && !this.clickPopupFB && !this.clickPopupPR && this.indexFormActual != -1) {
@@ -144,7 +144,7 @@ public class ExperimentoController implements Serializable {
             return "/experimento/agradecimiento";
         }
     }
-    
+
     public String gotoTareaFicticiaPRForm() {
         if (!this.clickPopupPR) {
             JSFutil.addErrorMessage("No puedes continuar con la siguiente tarea sin haber abierto la Tienda y haber realizado la tarea que aquí se propone");
@@ -154,7 +154,7 @@ public class ExperimentoController implements Serializable {
         this.stopMetrica();
         return "/experimento/tareaFicticaPR?faces-redirect=true";
     }
-    
+
     public String gotoCuestionarioPRForm() {
         if (!this.clickPopupFicticiaPR) {
             JSFutil.addErrorMessage("No puedes continuar con la siguiente tarea sin haber abierto la Tienda y haber realizado la tarea que aquí se propone");
@@ -164,7 +164,7 @@ public class ExperimentoController implements Serializable {
         this.stopMetrica();
         return "/experimento/cuestionarioPR?faces-redirect=true";
     }
-    
+
     public String gotoCuestionarioABForm() {
         if (!this.clickPopupAB) {
             JSFutil.addErrorMessage("No puedes continuar con la siguiente tarea sin haber abierto la Tienda y haber realizado la tarea que aquí se propone");
@@ -174,7 +174,7 @@ public class ExperimentoController implements Serializable {
         this.stopMetrica();
         return "/experimento/cuestionarioAB?faces-redirect=true";
     }
-    
+
     public String gotoCuestionarioFBForm() {
         if (!this.clickPopupFB) {
             JSFutil.addErrorMessage("No puedes continuar con la siguiente tarea sin haber abierto la Tienda y haber realizado la tarea que aquí se propone");
@@ -184,18 +184,18 @@ public class ExperimentoController implements Serializable {
         this.stopMetrica();
         return "/experimento/cuestionarioFB?faces-redirect=true";
     }
-    
+
     public String doGetURLAPP() {
         return JSFutil.getServerUrl() + "/tesisweb/frontend/index.xhtml";
     }
-    
+
     private void initPopup() {
         this.clickPopupAB = Boolean.FALSE;
         this.clickPopupPR = Boolean.FALSE;
         this.clickPopupFB = Boolean.FALSE;
         this.clickPopupFicticiaPR = Boolean.FALSE;
     }
-    
+
     public void doActivatePR() {
         this.setClickPopupPR(Boolean.TRUE);
         this.carritoFE.doCerarCarrito();
@@ -205,13 +205,15 @@ public class ExperimentoController implements Serializable {
         this.startMetrica();
         this.abrirURLTienda();
     }
-    
+
     private void abrirURLTienda() {
         RequestContext context = RequestContext.getCurrentInstance();
-        String direccion = "openWin('" + this.doGetURLAPP() + "')";
+        String direccion = "PF('dlg2').show();";
+        context.execute(direccion);
+        direccion = "PF('dlg2').toggleMaximize();";
         context.execute(direccion);
     }
-    
+
     public void doActivateFicticiaPR() {
         this.setClickPopupFicticiaPR(Boolean.TRUE);
         this.carritoFE.doCerarCarrito();
@@ -219,7 +221,7 @@ public class ExperimentoController implements Serializable {
         this.startMetrica();
         this.abrirURLTienda();
     }
-    
+
     public void doActivateAB() {
         this.setClickPopupAB(Boolean.TRUE);
         this.carritoFE.doCerarCarrito();
@@ -228,7 +230,7 @@ public class ExperimentoController implements Serializable {
         this.startMetrica();
         this.abrirURLTienda();
     }
-    
+
     public void doActivateFB() {
         this.setClickPopupFB(Boolean.TRUE);
         this.carritoFE.doCerarCarrito();
@@ -236,15 +238,15 @@ public class ExperimentoController implements Serializable {
         this.startMetrica();
         this.abrirURLTienda();
     }
-    
+
     public void doAbrirPopupPrueba() {
         String dire = JSFutil.getServerUrl() + "/tesisweb/frontend/popup.xhtml";
         RequestContext context = RequestContext.getCurrentInstance();
-        String direccion = "openWin('" + dire + "')";
+        String direccion = "PF('dlg2').show();PF('dlg2').toggleMaximize();";
         context.execute(direccion);
-        
+
     }
-    
+
     private void startMetrica() {
         Integer id;
         String info = "TAREA NORMAL";
@@ -273,7 +275,7 @@ public class ExperimentoController implements Serializable {
             System.out.print("Start de métrica...");
         }
     }
-    
+
     public void startMetricaGlobal() {
         if (this.metricaGlobal == null) {
             this.metricaGlobal = new Metrica();
@@ -286,7 +288,7 @@ public class ExperimentoController implements Serializable {
             System.out.print("Métrica Global inicializada...");
         }
     }
-    
+
     private void stopMetricaGlobal() {
         if (this.metricaGlobal != null) {
             this.metricaGlobal.setStopTime(System.currentTimeMillis());
@@ -310,7 +312,7 @@ public class ExperimentoController implements Serializable {
             System.out.print("StopMetrica... Métrica Global no inicializada...");
         }
     }
-    
+
     private void stopMetrica() {
         if (this.metrica != null) {
             this.metrica.setStopTime(System.currentTimeMillis());

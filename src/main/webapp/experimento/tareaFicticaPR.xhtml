@@ -34,10 +34,11 @@
                     <h:outputText styleClass="itemResaltado3" value="Cuando acabes, cierra la ventana de la Tienda y haz click en el botón 'SIGUIENTE'."/>
                 </p:panel>
                 <f:facet name="footer">
-                    <p:commandButton ajax="false" onmouseup="closeWin()"  action="#{ExperimentoController.gotoCuestionarioPRForm()}" value="Siguiente"/>
+                    <p:commandButton ajax="false" action="#{ExperimentoController.gotoCuestionarioPRForm()}" value="Siguiente"/>
                 </f:facet>
             </p:panel>
         </h:form>
+        <ui:include src="/popupTienda.xhtml"/>
     </ui:define>
 
 </ui:composition>

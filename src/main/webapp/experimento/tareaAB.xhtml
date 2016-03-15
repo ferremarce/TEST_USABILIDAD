@@ -29,10 +29,11 @@
                     </p:outputPanel>
                 </p:panel>
                 <f:facet name="footer">
-                    <p:commandButton ajax="false" onmouseup="closeWin()"  action="#{ExperimentoController.gotoCuestionarioABForm()}" value="Siguiente"/>
+                    <p:commandButton ajax="false" action="#{ExperimentoController.gotoCuestionarioABForm()}" value="Siguiente"/>
                 </f:facet>
             </p:panel>
         </h:form>
+        <ui:include src="/popupTienda.xhtml"/>
     </ui:define>
 
 </ui:composition>

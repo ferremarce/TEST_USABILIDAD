@@ -24,17 +24,7 @@
         <h:panelGrid>
             <p:ajax async="true" global="false" event="click" update="#{sistema.form_update}," listener="#{MetricaController.increment()}"/>
             <p:layout fullPage="true">
-                <p:layoutUnit rendered="#{ExperimentoController.clickPopupPR or ExperimentoController.clickPopupFicticiaPR or ExperimentoController.clickPopupAB or ExperimentoController.clickPopupFB}" id="top" position="north" size="115" >
-                    <f:facet name="header">
-                        <h:outputText style="font-size: 12px !important; font-family: Arial !important" value="TAREA"/>
-                    </f:facet>
-                    <h:panelGrid style="font-size: 12px !important; font-family: Arial !important; color: #ff0000 !important">
-                        <h:outputText rendered="#{ExperimentoController.clickPopupPR}" escape="false" value="#{sistema.txtTareaPRF}"/>
-                        <h:outputText rendered="#{ExperimentoController.clickPopupFicticiaPR}" escape="false" value="#{sistema.txtTareaPRFF}"/>
-                        <h:outputText rendered="#{ExperimentoController.clickPopupAB}" escape="false" value="#{sistema.txtTareaABR}"/>
-                        <h:outputText rendered="#{ExperimentoController.clickPopupFB}" escape="false" value="#{sistema.txtTareaPFB}"/>
-                    </h:panelGrid>
-                </p:layoutUnit>
+
                 <p:layoutUnit position="east" size="250" header="#{bundle.lblOpciones}" collapsed="#{LoginManager.clientCollapse}" collapsible="true" >
                     <h:form id="formCarrito">
                         <p:panel>
@@ -164,7 +154,7 @@
                                 <h:panelGrid columns="1" style="margin-bottom: 10px;" >
                                     <p:outputLabel style="font-size: 16px !important; font-family: 'Droid Sans' !important" id="tamanho" value="#{PreferenceController.sizeFont}%" />
                                     <h:inputHidden id="txt2" value="#{PreferenceController.sizeFont}" />
-                                    <p:slider style="width: 300px;" for="txt2" display="tamanho" maxValue="120" minValue="40" displayTemplate="Ajustar al {value}%" >
+                                    <p:slider  style="width: 300px; height: 10px !important" for="txt2" display="tamanho" maxValue="120" minValue="40" displayTemplate="Ajustar al {value}%" >
                                     </p:slider>
                                 </h:panelGrid>
                                 <p:message for="tamanho"/>
@@ -205,6 +195,7 @@
                                 </p>
                             </f:facet>
                         </p:panel>
+                        <h:panelGrid style="height: 100px !important"/>
                     </h:form>
                     <h:form>
                         <p:outputPanel id="panelContadorPR">

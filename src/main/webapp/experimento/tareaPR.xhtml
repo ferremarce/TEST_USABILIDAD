@@ -10,14 +10,6 @@
 
     <ui:define name="content">
         <h:outputScript library="js" name="popup.js" />
-        <style>
-            iframe {
-                display: block;
-                border: none;
-                height: calc(100vh - 30px);
-                width: 100%;
-            }
-        </style>
         <h:form>
             <p:messages/>
             <p:growl globalOnly="true" id="messages"/>
@@ -34,21 +26,12 @@
                     <h:outputText styleClass="itemResaltado3" value="Cuando acabes, cierra la ventana de la Tienda y haz click en el botón 'SIGUIENTE'."/>
                 </p:panel>
                 <f:facet name="footer">
-                    <p:commandButton ajax="false" onmouseup="closeWin()"  action="#{ExperimentoController.gotoTareaFicticiaPRForm()}" value="Siguiente"/>
+                    <p:commandButton ajax="false" action="#{ExperimentoController.gotoTareaFicticiaPRForm()}" value="Siguiente"/>
                 </f:facet>
             </p:panel>
             <!--p:commandButton value="Modal" type="button" onmousedown="PF('dlg2').show();" onmouseup="PF('dlg2').toggleMaximize();"/-->
         </h:form>
-        <p:dialog widgetVar="dlg2" >
-            <f:facet name="header">
-                <h:outputText value="Sistema Tienda"/>
-                <p:commandButton value="Recargar la página" update="panelFrame"/>
-                <p:commandButton value="Terminar" type="button" onmouseup="PF('dlg2').hide();"/>
-            </f:facet>
-            <p:outputPanel id="panelFrame">
-                <iframe frameborder="0" src="#{ExperimentoController.doGetURLAPP()}"/>
-            </p:outputPanel>
-        </p:dialog>  
+        <ui:include src="/popupTienda.xhtml"/>
     </ui:define>
 
 </ui:composition>
