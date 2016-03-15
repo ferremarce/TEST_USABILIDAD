@@ -9,27 +9,19 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
-        <h:outputScript library="js" name="popup.js" />
-        <style>
-            iframe {
-                display: block;
-                border: none;
-                height: calc(100vh - 30px);
-                width: 100%;
-            }
-        </style>
         <h:form>
             <p:messages/>
             <p:growl globalOnly="true" id="messages"/>
             <p:panel>
                 <f:facet name="header">
                     <h2>TAREA #{ExperimentoController.indexFormActual+1}.1</h2>
+                    <h:outputText value="Haz visualizado o cambiado la apariencia de la Tienda, ahora realiza esta tarea..."/>
                 </f:facet>
                 <p:panel>
                     <h:outputText escape="false" value="#{sistema.txtTareaPRFF}"/>
                     <p:separator/>
                     Para hacer esta tarea accede a la Tienda Virtual haciendo click 
-                    <p:commandButton ajax="false" value="Aquí" action="#{ExperimentoController.doActivateFicticiaPR()}"/>
+                    <p:commandButton ajax="false" value="Hacer esta Tarea" action="#{ExperimentoController.doActivateFicticiaPR()}"/>
                     <p/>
                     <h:outputText styleClass="itemResaltado3" value="Cuando acabes, cierra la ventana de la Tienda y haz click en el botón 'SIGUIENTE'."/>
                 </p:panel>

@@ -9,19 +9,21 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:define name="content">
-        <h:outputScript library="js" name="popup.js" />
         <h:form>
             <p:messages/>
             <p:growl globalOnly="true" id="messages"/>
             <p:panel>
                 <f:facet name="header">
                     <h2>TAREA #{ExperimentoController.indexFormActual+1}</h2>
+                    <h:outputText rendered="#{ExperimentoController.indexFormActual==0}" value="Por favor... Lee bien las indicaciones!"/>
+                    <h:outputText rendered="#{ExperimentoController.indexFormActual==1}" value="Hacemos ahora la segunda tarea, recuerda leer bien las indicaciones de la tarea"/>
+                    <h:outputText rendered="#{ExperimentoController.indexFormActual==2}" value="Ya estas por terminar, prosigue con esta última tarea"/>
                 </f:facet>
                 <p:panel>
                     <h:outputText escape="false" value="#{sistema.txtTareaPRF}"/>
                     <p:separator/>
                     Para hacer esta tarea accede a la Tienda Virtual haciendo click 
-                    <p:commandButton ajax="false" value="Aquí" action="#{ExperimentoController.doActivatePR()}"/>
+                    <p:commandButton ajax="false" value="Hacer esta Tarea" action="#{ExperimentoController.doActivatePR()}"/>
                     <p/>
                     <h:outputText styleClass="itemResaltado3" value="Cuando acabes, cierra la ventana de la Tienda y haz click en el botón 'SIGUIENTE'."/>
                 </p:panel>
