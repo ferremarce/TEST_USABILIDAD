@@ -14,8 +14,8 @@
             <p:growl globalOnly="true" id="messages"/>
             <p:panel>
                 <f:facet name="header">
+                    <h:outputText style="color: #000099; font-size: 16px !important" value="Haz visualizado o cambiado la apariencia de la Tienda, ahora realiza esta tarea..."/>
                     <h2>TAREA #{ExperimentoController.indexFormActual+1}.1</h2>
-                    <h:outputText value="Haz visualizado o cambiado la apariencia de la Tienda, ahora realiza esta tarea..."/>
                 </f:facet>
                 <p:panel>
                     <h:outputText escape="false" value="#{sistema.txtTareaPRFF}"/>
@@ -23,10 +23,9 @@
                     Para hacer esta tarea accede a la Tienda Virtual haciendo click 
                     <p:commandButton ajax="false" value="Hacer esta Tarea" action="#{ExperimentoController.doActivateFicticiaPR()}"/>
                     <p/>
-                    <h:outputText styleClass="itemResaltado3" value="Cuando acabes, cierra la ventana de la Tienda y haz click en el botón 'SIGUIENTE'."/>
                 </p:panel>
                 <f:facet name="footer">
-                    <p:commandButton ajax="false" action="#{ExperimentoController.gotoCuestionarioPRForm()}" value="Siguiente"/>
+                    <p:commandButton ajax="false" action="#{ExperimentoController.gotoCuestionarioPRForm()}" value="He terminado esta tarea y quiero hacer la siguiente"/>
                 </f:facet>
             </p:panel>
         </h:form>

@@ -14,10 +14,10 @@
             <p:growl globalOnly="true" id="messages"/>
             <p:panel>
                 <f:facet name="header">
+                    <h:outputText style="color: #990000; font-size: 16px !important" rendered="#{ExperimentoController.indexFormActual==0}" value="Por favor... Lea bien las indicaciones!"/>
+                    <h:outputText style="color: #006666; font-size: 16px !important" rendered="#{ExperimentoController.indexFormActual==1}" value="Hacemos ahora la segunda tarea, recuerda leer bien las indicaciones de la tarea."/>
+                    <h:outputText style="color:  #ff6600; font-size: 16px !important" rendered="#{ExperimentoController.indexFormActual==2}" value="Ya estas por terminar, prosigue con esta última tarea."/>
                     <h2>TAREA #{ExperimentoController.indexFormActual+1}</h2>
-                    <h:outputText rendered="#{ExperimentoController.indexFormActual==0}" value="Por favor... Lee bien las indicaciones!"/>
-                    <h:outputText rendered="#{ExperimentoController.indexFormActual==1}" value="Hacemos ahora la segunda tarea, recuerda leer bien las indicaciones de la tarea"/>
-                    <h:outputText rendered="#{ExperimentoController.indexFormActual==2}" value="Ya estas por terminar, prosigue con esta última tarea"/>
                 </f:facet>
                 <p:panel>
                     <p:outputPanel>
@@ -26,10 +26,9 @@
                         Para hacer esta tarea accede a la Tienda Virtual haciendo click 
                         <p:commandButton ajax="false" value="Hacer esta Tarea" action="#{ExperimentoController.doActivateFB()}"/>
                         <p/>
-                        <h:outputText styleClass="itemResaltado3" value="Cuando acabes, cierra la ventana de la Tienda y haz click en el botón 'SIGUIENTE'."/>
                     </p:outputPanel>
                     <f:facet name="footer">
-                        <p:commandButton ajax="false" action="#{ExperimentoController.gotoCuestionarioFBForm()}" value="Siguiente"/>
+                        <p:commandButton ajax="false" action="#{ExperimentoController.gotoCuestionarioFBForm()}" value="He terminado esta tarea y quiero hacer la siguiente"/>
                     </f:facet>
                 </p:panel>
             </p:panel>

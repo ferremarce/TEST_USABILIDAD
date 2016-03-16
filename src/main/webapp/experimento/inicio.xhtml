@@ -25,11 +25,13 @@
                     <p:outputPanel>
                         Estás a punto de evaluar la Aplicación Web de una tienda virtual.
                         <p/>
-                        Durante la realización de cada una de las tareas, <b>la tienda virtual a ser evaluada será desplegada en una ventana emergente</b> y cada vez que finalizas una tarea debes cerrar dicha ventana para continuar con la siguiente.
+                        Durante la realización de cada una de las tareas, <b>la tienda virtual a ser evaluada será desplegada en una ventana emergente</b> y tendrás una opción para <b>FINALIZAR LA TAREA</b> de modo a dar por terminado dicha tarea y continuar con la siguiente.
                         <p/>
-                        Ten presente que algunas de las tareas se podrán hacer y otras quizás no. Para cada tarea <b>invierte el tiempo</b> en buscar cómo hacerla por la interfaz porque eso es parte de esta evaluación. 
-                        <p/>
-                        <b>Intenta jugar todo lo que puedas</b> con la interfaz hasta que el sistema te avise, hasta que estés aburrido o, simplemente, cuando creas que ya has hecho lo suficiente.
+                        <p:panel header="Importante!">
+                            Ten presente que algunas de las tareas que te vamos a proponer se podrán hacer y otras quizás no. Para cada tarea <b>invierte el tiempo</b> en buscar cómo hacerla por la interfaz porque eso es parte de esta evaluación. 
+                            <p/>
+                            <b>Intenta jugar todo lo que puedas</b> con la interfaz hasta que el sistema te avise, hasta que estés aburrido o, simplemente, cuando creas que ya has hecho lo suficiente.
+                        </p:panel>
                     </p:outputPanel>
                     <p:panel style="width: 700px" collapsed="true" rendered="#{LoginManager.usuarioLogeado!=null and ExperimentoController.debugMode}" header="Ver detalle del Entorno Experimental asignado" toggleable="true">
                         <h:outputLabel for="usuarioExperimental"  value="Experimento de:&nbsp;"/>
