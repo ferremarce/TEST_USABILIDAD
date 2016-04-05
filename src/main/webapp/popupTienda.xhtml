@@ -9,15 +9,15 @@
         <p:dialog widgetVar="dlg2" >
             <f:facet name="header">
                 <h:outputText value="Cuando termines esta tarea haz click en  "/>
-                <p:commandButton value="HE FINALIZADO ESTA TAREA" type="button" onmouseup="PF('dlg2').hide();"/>
+                <p:commandButton icon="ui-icon-circle-check" style="background: linear-gradient(white, yellow) !important;" value="HE FINALIZADO ESTA TAREA" type="button" onmouseup="PF('dlg2').hide();"/>
             </f:facet>
             <p:panelGrid >
                 <h:outputText style="font-size: 12px !important" rendered="#{ExperimentoController.clickPopupPR}" escape="false" value="#{sistema.txtTareaPRF}"/>
                 <h:outputText style="font-size: 12px !important" rendered="#{ExperimentoController.clickPopupFicticiaPR}" escape="false" value="#{sistema.txtTareaPRFF}"/>
                 <h:outputText style="font-size: 12px !important" rendered="#{ExperimentoController.clickPopupAB}" escape="false" value="#{sistema.txtTareaABR}"/>
                 <h:outputText style="font-size: 12px !important" rendered="#{ExperimentoController.clickPopupFB}" escape="false" value="#{sistema.txtTareaPFB}"/>
+                <p:separator/>
             </p:panelGrid>
-            <p:separator/>
             <iframe  class="container" src="#{ExperimentoController.doGetURLAPP()}"/>
         </p:dialog>  
     </ui:fragment>
