@@ -135,6 +135,9 @@ public class Metrica implements Serializable {
     }
 
     public String getProgresoTarea() {
+        if (this.progresoTarea != null) {
+            this.progresoTarea = progresoTarea.replace(",", ";");
+        }
         return progresoTarea;
     }
 
@@ -176,11 +179,50 @@ public class Metrica implements Serializable {
     }
 
     public List<String> listaProgresoTarea() {
-        if (this.progresoTarea!=null) {
+        if (this.progresoTarea != null) {
             String[] lista = this.progresoTarea.split(",");
             return Arrays.asList(lista);
         } else {
             return new ArrayList();
+        }
+    }
+
+    public Integer porcentajeTare() {
+        if (this.progresoTarea != null) {
+            switch (this.idMecanismoUsabilidad.getIdMu()) {
+                case 1: //PREFERENCE
+                    if (this.progresoTarea.contains("PRFF-1")) {
+                        return 100;
+                    } else if (this.progresoTarea.contains("PRF-1")) {
+                        return 100;
+                    } else {
+                        return 0;
+                    }
+                case 2: //ABORT OPERATION
+                    if (this.progresoTarea.contains("ABR-4")) {
+                        return 100;
+                    } else if (this.progresoTarea.contains("ABR-3")) {
+                        return 75;
+                    } else if (this.progresoTarea.contains("ABR-1")) {
+                        return 50;
+                    } else if (this.progresoTarea.contains("ABR-1")) {
+                        return 25;
+                    } else {
+                        return 0;
+                    }
+                case 3: //PROGRESS FEEDBACK
+                    if (this.progresoTarea.contains("PFB-2")) {
+                        return 100;
+                    } else if (this.progresoTarea.contains("PFB-1")) {
+                        return 100;
+                    } else {
+                        return 0;
+                    }
+                default: //NO MECANISMO
+                    return -1;
+            }
+        } else {
+            return 0;
         }
     }
 }
