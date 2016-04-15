@@ -36,6 +36,18 @@
                     </f:facet>
                     <h:outputText value="#{item.aliases}"/>
                 </p:column>
+                <p:column sortBy="#{item.email}">
+                    <f:facet name="header">
+                        <h:outputText value="Email"/>
+                    </f:facet>
+                    <h:outputText value="#{item.email}"/>
+                </p:column>
+                <p:column sortBy="#{item.telefono}">
+                    <f:facet name="header">
+                        <h:outputText value="Telefono"/>
+                    </f:facet>
+                    <h:outputText value="#{item.telefono}"/>
+                </p:column>
                 <p:column sortBy="#{item.sexo}">
                     <f:facet name="header">
                         <h:outputText value="Sexo"/>
