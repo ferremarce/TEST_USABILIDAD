@@ -17,7 +17,9 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import tesisweb.ejb.experimento.entity.GrupoMatrizExperimental;
 import tesisweb.ejb.experimento.entity.Metrica;
+import tesisweb.ejb.experimento.facade.GrupoMatrizExperimentalFacade;
 import tesisweb.ejb.tienda.entity.Preference;
 import tesisweb.ejb.tienda.entity.Usuario;
 import tesisweb.ejb.tienda.facade.PreferenceDAO;
@@ -42,6 +44,8 @@ public class UsuarioController implements Serializable {
     UsuarioDAO usuarioDAO;
     @Inject
     PreferenceDAO preferenceDAO;
+    @Inject
+    GrupoMatrizExperimentalFacade grupoMatrizExperimentalDAO;
 
     private List<Usuario> listaUsuario;
     private Usuario usuario;
@@ -207,7 +211,10 @@ public class UsuarioController implements Serializable {
      */
     public void doBorrar(Usuario u) {
         try {
+            GrupoMatrizExperimental grupo=u.getIdGrupoExperimental();
             usuarioDAO.remove(u);
+            grupo.setCantidadParticipante(grupo.getCantidadParticipante()-1);
+            grupoMatrizExperimentalDAO.edit(grupo);
             JSFutil.addSuccessMessage(JSFutil.getMyBundle().getString("UpdateSuccess"));
         } catch (EJBException ex) {
             String msg = "";
