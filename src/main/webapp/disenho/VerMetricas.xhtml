@@ -80,11 +80,11 @@
                         <p:column headerText="PorcentajeTarea">
                             <h:outputText value="#{item.porcentajeTare()}"/>
                         </p:column>
-                        <p:column headerText="ProgresoTarea">
-                            <h:outputText value="#{item.progresoTarea}"/>
-                        </p:column>
                         <p:column headerText="ValorTerminado">
                             <h:outputText value="#{MetricaController.doGetValorRespuestaFinalizacion(item)}"/>
+                        </p:column>
+                        <p:column headerText="ProgresoTarea">
+                            <h:outputText value="#{item.progresoTarea}"/>
                         </p:column>
                     </p:dataTable>
                 </h:form>
