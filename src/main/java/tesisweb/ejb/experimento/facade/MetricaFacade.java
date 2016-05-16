@@ -10,6 +10,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import tesisweb.ejb.experimento.entity.CuestionarioUsabilidad;
 import tesisweb.ejb.experimento.entity.Metrica;
 
 /**
@@ -54,6 +55,18 @@ public class MetricaFacade extends AbstractFacade<Metrica> {
         //LOG.log(Level.INFO, "findAllbyTipo: {0}", sql);
         List<Metrica> tr = q.getResultList();
         return tr;
+    }
+
+    public Integer getValorRespuestaCuestionario(Integer usuario, Integer idPreg) {
+        Query q = em.createQuery("SELECT a FROM CuestionarioUsabilidad a WHERE a.idUsuario.idUsuario=:xIdUsu AND a.idPreguntaUsabilidad.idPreguntaUsabilidad=:xIdPreg");
+        q.setParameter("xIdUsu", usuario);
+        q.setParameter("xIdPreg", idPreg);
+        List<CuestionarioUsabilidad> tr = q.getResultList();
+        if (!tr.isEmpty()) {
+            return tr.get(0).getValorPregunta();
+        } else {
+            return -1;
+        }
     }
 
 }

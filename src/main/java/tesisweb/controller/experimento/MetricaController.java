@@ -80,7 +80,7 @@ public class MetricaController implements Serializable {
     //METODOS DE ACCIÓN
     public void increment() {
         tmpClickCounter++;
-        System.out.println("Click counter: "+tmpClickCounter);
+        System.out.println("Click counter: " + tmpClickCounter);
 
     }
 
@@ -111,5 +111,25 @@ public class MetricaController implements Serializable {
         } else {
             return null;
         }
+    }
+
+    public Integer doGetValorRespuestaFinalizacion(Metrica m) {
+        Integer valorRespuesta;
+        Integer idPreg = 0;
+        if (m.getIdMecanismoUsabilidad() != null) {
+            if (m.getIdMecanismoUsabilidad().getIdMu().compareTo(1) == 0) { //PREFERENCE
+                if (m.getInformacion().compareTo("TAREA NORMAL") == 0) {
+                    idPreg = 1;
+                } else {
+                    idPreg = 2;
+                }
+            } else if (m.getIdMecanismoUsabilidad().getIdMu().compareTo(2) == 0) { //ABORT OPERATION
+                idPreg = 5;
+            } else if (m.getIdMecanismoUsabilidad().getIdMu().compareTo(3) == 0) { //PROGRESS FEEDBACK
+                idPreg = 8;
+            }
+        }
+        valorRespuesta = metricaFacade.getValorRespuestaCuestionario(m.getIdUsuario().getIdUsuario(), idPreg);
+        return valorRespuesta;
     }
 }
