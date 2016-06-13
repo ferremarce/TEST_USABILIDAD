@@ -203,7 +203,7 @@ public class Metrica implements Serializable {
                         return 100;
                     } else if (this.progresoTarea.contains("ABR-3")) {
                         return 75;
-                    } else if (this.progresoTarea.contains("ABR-1")) {
+                    } else if (this.progresoTarea.contains("ABR-2")) {
                         return 50;
                     } else if (this.progresoTarea.contains("ABR-1")) {
                         return 25;
