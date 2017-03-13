@@ -32,7 +32,7 @@ public class CuestionarioFamiliaridadDAO extends AbstractFacade<CuestionarioFami
     }
 
     public List<CuestionarioFamiliaridad> getAllCuestionarioFamiliaridadExperimento(Integer idDise) {
-        Query q = em.createQuery("SELECT a FROM CuestionarioFamiliaridad a WHERE a.idUsuario.idGrupoExperimental.idDisenho.idDisenho=:xIdDise ORDER BY a.idUsuario.apellidos, a.idUsuario.nombres");
+        Query q = em.createQuery("SELECT a FROM CuestionarioFamiliaridad a WHERE a.idUsuario.idGrupoExperimental.idDisenho.idDisenho=:xIdDise ORDER BY a.idUsuario.fechaHoraConexion");
         q.setParameter("xIdDise", idDise);
         List<CuestionarioFamiliaridad> tr = q.getResultList();
         return tr;
