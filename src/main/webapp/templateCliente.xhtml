@@ -9,7 +9,7 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="google" content="notranslate" />
-        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet library="css" name="default.css"/>
         <link rel="icon" type="image/x-icon" href="#{request.contextPath}/img/favicon.ico"/>
         <title>TESIS USABILIDAD - WEB</title>
     </h:head>
@@ -147,15 +147,15 @@
                             <p:ajax async="true" global="false" event="click" update="#{sistema.form_update}," listener="#{MetricaController.increment()}"/>
                             <h:panelGrid  id="panelPreference">
                                 <p:outputLabel style="color:#660000; font-weight: bold ;font-size: 16px !important; font-family: 'Droid Sans' !important" value="Familia de la Letra:" for="fuente" />
-                                <h:selectOneMenu styleClass="normalFont" id="fuente" value="#{PreferenceController.preference.fuente}" required="true" requiredMessage="#{bundle.Requerido}" >
+                                <h:selectOneListbox id="fuente" value="#{PreferenceController.preference.fuente}" required="true" requiredMessage="#{bundle.Requerido}" >
                                     <f:selectItems value="#{PreferenceController.doGetFonts()}"/>
-                                </h:selectOneMenu>
+                                </h:selectOneListbox>
                                 <p:message for="fuente"/>
                                 <p:outputLabel style="color:#660000; font-weight: bold ;font-size: 16px !important; font-family: 'Droid Sans' !important" value="Tamaño de la Letra: (recomendado 100%)" for="tamanho" />
-                                <h:panelGrid columns="1" style="margin-bottom: 10px;" >
+                                <h:panelGrid columns="1" style="margin-bottom: 10px; clear: both" >
                                     <p:outputLabel style="font-size: 16px !important; font-family: 'Droid Sans' !important" id="tamanho" value="#{PreferenceController.sizeFont}%" />
                                     <h:inputHidden id="txt2" value="#{PreferenceController.sizeFont}" />
-                                    <p:slider  style="width: 300px; height: 10px !important" for="txt2" display="tamanho" maxValue="120" minValue="40" displayTemplate="Ajustar al {value}%" >
+                                    <p:slider style="width: 300px; height: 18px !important" for="txt2" display="tamanho" maxValue="120" minValue="40" displayTemplate="Ajustar al {value}%" >
                                     </p:slider>
                                 </h:panelGrid>
                                 <p:message for="tamanho"/>

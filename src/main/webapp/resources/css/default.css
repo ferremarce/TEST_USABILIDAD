@@ -147,3 +147,8 @@
     font-size: 16px !important;
     font-family: 'Droid Sans', arial, serif !important;
 }
+
+select, select option {
+    font-size: 16px !important;
+    font-family: 'Droid Sans', arial, serif !important;
+}

@@ -16,7 +16,7 @@
         </h2>
         <h:form>
             <p:growl sticky="true" globalOnly="true" id="messages"/>
-            <p:dataTable id="dataTableOrdenCarrito" value="#{CarritoFE.listaOrdenCarrito}" var="item" emptyMessage="#{bundle.SinRegistrosMensaje}" >
+            <p:dataTable reflow="true" id="dataTableOrdenCarrito" value="#{CarritoFE.listaOrdenCarrito}" var="item" emptyMessage="#{bundle.SinRegistrosMensaje}" >
                 <p:column style="width: 50px">
                     <p:commandButton rendered="false" style="position: relative; right: 10px;" title="#{bundle.EliminarBoton}" icon="ui-icon-closethick" update="#{sistema.form_update},@form" action="#{CarritoFE.doSacarArticuloOrdenCompra(item)}"/>
                 </p:column>
@@ -25,12 +25,12 @@
                         <p:outputLabel value="#{bundle.lblArticulo}"/>
                     </f:facet>
                     <p:outputPanel rendered="#{item.idArticulo!=null}">                                        
-                        <p:graphicImage rendered="#{item.idArticulo.articuloAdjuntoList.size()>0}" styleClass="texto-centrado" width="50" height="50" value="/fotos/#{item.idArticulo.articuloAdjuntoList.get(0).toNameDownload()}" />                        
+                        <p:graphicImage rendered="#{item.idArticulo.articuloAdjuntoList.size()>0}" styleClass="texto-centrado" width="50" height="50" value="#{LoginManager.doGetURLServer()}/fotos/#{item.idArticulo.articuloAdjuntoList.get(0).toNameDownload()}" />                        
                         <span style="font-weight: bold;font-style: italic">[#{item.idArticulo.idCategoria}] </span>
                         <p:commandLink ajax="false" value="#{item.idArticulo.nombreArticulo}" action="#{ArticuloFE.doVerDetalleArticulo(item.idArticulo)}"/>
                     </p:outputPanel>
                 </p:column>
-                <p:column style="width: 150px;">
+                <p:column>
                     <f:facet name="header">
                         <p:outputLabel value="#{bundle.lblCantidad}"/>
                     </f:facet>
@@ -39,7 +39,7 @@
                         <p:ajax global="no" listener="#{CarritoFE.siHayCambios()}"/>
                     </p:spinner>
                 </p:column>
-                <p:column style="width: 250px; text-align: right">
+                <p:column style="text-align: right">
                     <f:facet name="header">
                         <p:outputLabel value="#{bundle.lblPrecio}"/>
                     </f:facet>

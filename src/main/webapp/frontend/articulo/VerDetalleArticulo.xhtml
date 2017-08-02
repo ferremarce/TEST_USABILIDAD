@@ -35,7 +35,7 @@
                     </p:panel>
                 </h:panelGrid>
                 <p:galleria value="#{ArticuloFE.articulo.articuloAdjuntoList}"  var="adjunto" frameHeight="70" showCaption="true" >
-                    <p:graphicImage width="500" height="400" value="/fotos/#{adjunto.toNameDownload()}" alt="" title=""/>
+                    <p:graphicImage width="500" height="400" value="#{LoginManager.doGetURLServer()}/fotos/#{adjunto.toNameDownload()}" alt="" title=""/>
                 </p:galleria>
             </h:panelGrid>
             <p:panel>
