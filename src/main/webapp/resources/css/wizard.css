@@ -27,8 +27,10 @@ body{
 }
 .container {
     border: none;
-    height: 450px;
-    width: 100vw;
+    height: 78vh !important;
+    width: 100% !important;
+    overflow-y: scroll;
+    resize:both;
 }
 .ui-button, .ui-button-text {
     font-size: 14px;
