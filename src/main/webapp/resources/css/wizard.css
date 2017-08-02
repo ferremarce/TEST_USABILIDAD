@@ -26,11 +26,9 @@ body{
     font-size: 14px !important;
 }
 .container {
-    display: block !important;
     border: none;
-    height: calc(100vh - 5px) !important;
-    width: 100% !important;
-    min-height: 100% !important;
+    height: 450px;
+    width: 100vw;
 }
 .ui-button, .ui-button-text {
     font-size: 14px;

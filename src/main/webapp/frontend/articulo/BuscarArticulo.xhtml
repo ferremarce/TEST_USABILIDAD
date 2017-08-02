@@ -19,7 +19,7 @@
                     <h:outputText value="#{ArticuloFE.listaArticulo.size()} registros recuperados."/>
                 </f:facet>
                 <p:column style="width: 150px">
-                    <p:graphicImage rendered="#{item.articuloAdjuntoList.size()>0}" height="150" width="150" value="#{LoginManager.doGetURLServer()}/fotos/#{item.articuloAdjuntoList.get(0).toNameDownload()}"/>
+                    <p:graphicImage rendered="#{item.articuloAdjuntoList.size()>0}" height="150" width="150" value="/fotos/#{item.articuloAdjuntoList.get(0).toNameDownload()}"/>
                 </p:column>
                 <p:column>
                     <p:panel>
